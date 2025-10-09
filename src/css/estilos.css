@@ -1,0 +1,391 @@
+ :root {
+    --cor-primaria: #0a1428;
+    --cor-secundaria: #091428;
+    --cor-destaque: #c8aa6e;
+    --cor-texto: #cdbe91;
+    --cor-borda: #daa520;
+    --cor-sucesso: #0ac986;
+    --cor-erro: #ff4757;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--cor-primaria);
+    color: var(--cor-texto);
+    line-height: 1.6;
+    padding: 20px;
+    background-image: url('../imagens/download.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: var(--cor-secundaria);
+    border: 1px solid var(--cor-borda);
+    border-radius: 5px;
+    padding: 30px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+h1 {
+    text-align: center;
+    color: var(--cor-destaque);
+    margin-bottom: 30px;
+    font-size: 28px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Classe row para organização */
+.row {
+    display: flex;
+}
+
+/* Barra de progresso */
+.progresso {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.progresso::before {
+    content: '';
+    position: absolute;
+    top: 15px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: var(--cor-borda);
+    z-index: 1;
+}
+
+.barra-progresso {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: var(--cor-secundaria);
+    border: 2px solid var(--cor-borda);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+    font-size: 14px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.barra-progresso.ativo {
+    background-color: var(--cor-destaque);
+    color: var(--cor-primaria);
+    border-color: var(--cor-destaque);
+    transform: scale(1.1);
+}
+
+/* Estilos das páginas */
+.pagina {
+    display: none;
+}
+
+.pagina.ativa {
+    display: block;
+    animation: aparecer 0.3s ease-in;
+}
+
+@keyframes aparecer {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Seções */
+.secao {
+    margin-bottom: 25px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--cor-borda);
+}
+
+.titulo {
+    color: var(--cor-destaque);
+    margin-bottom: 20px;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Grupos de formulário */
+.formulario {
+    margin-bottom: 20px;
+}
+
+.formulario label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: var(--cor-texto);
+}
+
+/* Campos de entrada */
+input[type="text"],
+textarea {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--cor-primaria);
+    border: 1px solid var(--cor-borda);
+    color: var(--cor-texto);
+    border-radius: 4px;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--cor-destaque);
+}
+
+textarea {
+    min-height: 80px;
+    resize: vertical;
+}
+
+/* Seleção de rota */
+.selecao-rota {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+    padding: 15px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.selecao-rota.erro {
+    border: 2px solid var(--cor-erro);
+    background-color: rgba(255, 71, 87, 0.1);
+}
+
+.rota {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.rota:hover {
+    background-color: rgba(200, 170, 110, 0.1);
+}
+
+.checkbox-rota {
+    margin: 0;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+
+.rota span {
+    color: var(--cor-texto);
+    font-weight: 500;
+}
+
+/* Checkboxes */
+.grupo-checkbox {
+    margin: 15px 0;
+}
+
+.grupo-checkbox label {
+    display: inline-flex;
+    align-items: center;
+    margin-right: 20px;
+    font-weight: normal;
+    cursor: pointer;
+    gap: 8px;
+}
+
+.grupo-checkbox input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+
+/* Botões */
+.botoes {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+    gap: 15px;
+}
+
+.btn {
+    background-color: var(--cor-destaque);
+    color: var(--cor-primaria);
+    border: none;
+    padding: 12px 24px;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    font-size: 14px;
+    min-width: 120px;
+}
+
+.btn:hover:not(:disabled) {
+    background-color: #d4af37;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(200, 170, 110, 0.3);
+}
+
+.btn:disabled {
+    background-color: #5d5d5d;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.btn-enviar {
+    background-color: var(--cor-sucesso);
+    color: white;
+}
+
+.btn-enviar:hover {
+    background-color: #09b176;
+}
+
+/* Mensagens */
+.mensagem-sucesso {
+    display: none;
+    text-align: center;
+    padding: 25px;
+    background-color: rgba(10, 201, 134, 0.1);
+    border: 1px solid var(--cor-sucesso);
+    border-radius: 4px;
+    margin-top: 20px;
+    color: var(--cor-sucesso);
+}
+
+.mensagem-sucesso.mostrar {
+    display: block;
+    animation: deslizarEntrada 0.3s ease-out;
+}
+
+@keyframes deslizarEntrada {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Estados de erro */
+input.erro,
+textarea.erro {
+    border-color: var(--cor-erro) !important;
+    background-color: rgba(255, 71, 87, 0.1);
+}
+
+/* Estilos para elementos condicionais */
+.pagina,
+.formulario {
+    transition: opacity 0.3s ease, display 0.3s ease;
+}
+
+/* Quando um elemento está oculto */
+.pagina.oculta,
+.formulario.oculta {
+    display: none !important;
+    opacity: 0;
+}
+
+/* Quando um elemento está visível */
+.pagina.visivel,
+.formulario.visivel {
+    display: block !important;
+    opacity: 1;
+}
+
+/* Barra de progresso para páginas ocultas */
+.barra-progresso.oculta {
+    display: none !important;
+}
+
+/* Garantir que elementos ocultos não quebrem o layout inicial */
+.pagina-jungle.oculta,
+.formulario-jungle.oculta,
+.formulario-jungle-mid.oculta {
+    display: none !important;
+}
+
+/* Garantir que apenas a página ativa seja mostrada */
+.pagina:not(.ativa) {
+    display: none !important;
+}
+
+.pagina.ativa {
+    display: block !important;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+        margin: 10px;
+    }
+    
+    .selecao-rota {
+        gap: 10px;
+    }
+    
+    .botoes {
+        flex-direction: column;
+    }
+    
+    .btn {
+        width: 100%;
+    }
+    
+    .barra-progresso {
+        width: 28px;
+        height: 28px;
+        font-size: 12px;
+    }
+    
+    .row {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+    
+    h1 {
+        font-size: 24px;
+    }
+    
+    .titulo {
+        font-size: 18px;
+    }
+    
+    .selecao-rota {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .rota {
+        justify-content: center;
+    }
+}
