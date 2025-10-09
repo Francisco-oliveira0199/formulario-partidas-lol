@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análise de Partida - League of Legends</title>
+    <link rel="stylesheet" href="./src/css/reset.css">
+    <link rel="stylesheet" href="./src/css/estilos.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Análise de Partida - League of Legends</h1>
+
+        <div class="progresso">
+            <div class="barra-progresso ativo" numero-pagina="1">1</div>
+            <div class="barra-progresso" numero-pagina="2">2</div>
+            <div class="barra-progresso" numero-pagina="3">3</div>
+            <div class="barra-progresso" numero-pagina="4">4</div>
+            <div class="barra-progresso" numero-pagina="5">5</div>
+            <div class="barra-progresso" numero-pagina="6">6</div>
+        </div>
+
+        <form id="formularioAnalisePartida" action="https://formsubmit.co/daschaggasf@gmail.com" method="POST">
+            <!-- Campo oculto para redirecionamento após envio -->
+            <input type="hidden" name="_next" value="https://seusite.com/obrigado.html">
+            <input type="hidden" name="_subject" value="Nova Análise de Partida - League of Legends">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="text" name="_honey" style="display:none">
+            
+            <!-- Página 1: Pré-jogo -->
+            <div class="pagina ativa" id="pagina1">
+                <div class="secao">
+                    <h2 class="titulo"><span>🧠</span> Pré-jogo</h2>
+
+                    <div class="formulario">
+                        <label>Nome:</label>
+                        <input type="text" name="nome" placeholder="Nome do jogador." required>
+                    </div>
+
+                    <div class="formulario">  
+                        <label>Rota:</label>
+                        <div class="selecao-rota">
+                            <div class="rota">
+                                <input type="checkbox" class="checkbox-rota" value="Top" name="rota">
+                                <span>Top</span>
+                            </div>
+                            <div class="rota">
+                                <input type="checkbox" class="checkbox-rota" value="Jungle" name="rota">
+                                <span>Jungle</span>
+                            </div>
+                            <div class="rota">
+                                <input type="checkbox" class="checkbox-rota" value="Mid" name="rota">
+                                <span>Mid</span>
+                            </div>
+                            <div class="rota">
+                                <input type="checkbox" class="checkbox-rota" value="Adc" name="rota">
+                                <span>Adc</span>
+                            </div>
+                            <div class="rota">
+                                <input type="checkbox" class="checkbox-rota" value="Sup" name="rota">
+                                <span>Sup</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="formulario">
+                        <label>Campeão:</label>
+                        <input type="text" name="campeao" placeholder="Campeão usado." required>
+                    </div>
+
+                    <div class="formulario">
+                        <label>Matchup:</label>
+                        <input type="text" name="matchup" placeholder="Campeão inimigo em rota." required>
+                    </div>
+
+                    <div class="formulario">
+                        <label>Draft do inimigo:</label>
+                        <textarea name="draft_inimigo" placeholder="Composição inimiga." required></textarea>
+                    </div>
+
+                    <div class="formulario">
+                        <label>Win condition:</label>
+                        <textarea name="win_condition" placeholder="Condição de vitória da partida." required></textarea>
+                    </div>
+
+                    <!-- Pathing Inicial (apenas para Jungle) -->
+                    <div class="formulario formulario-jungle">
+                        <label>Pathing inicial planejado:</label>
+                        <textarea name="pathing_inicial" placeholder="Ideia inicial de clear na jungle para a partida."></textarea>
+                    </div>
+                </div>
+
+                <div class="botoes">
+                    <button type="button" class="btn btn-voltar" disabled>Voltar</button>
+                    <button type="button" class="btn btn-avancar">Avançar</button>
+                </div>
+            </div>
+
+            <!-- Página 2: Clear Inicial (apenas para Jungle) -->
+            <div class="pagina pagina-jungle" id="pagina2">
+                <div class="secao">
+                    <h2 class="titulo"><span>⚔</span> Clear Inicial</h2>
+
+                    <div class="formulario">
+                        <label>Skill Order (1ª e 2ª):</label>
+                        <input type="text" name="skill_order" placeholder="Habilidades upadas para serem usadas na selva.">
+                    </div>
+
+                    <div class="formulario">
+                        <label>Ordem dos campos:</label>
+                        <textarea name="ordem_campos" placeholder="Especificação de monstros abatidos na selva, ex: Red, galinha, lobo, arongeuijo."></textarea>
+                    </div>
+
+                    <div class="formulario">
+                        <label>Combos de clear:</label>
+                        <textarea name="combos_clear" placeholder="Combo de habilidades usadas para limpar a selva."></textarea>
+                    </div>
+                </div>
+
+                <div class="botoes">
+                    <button type="button" class="btn btn-voltar">Voltar</button>
+                    <button type="button" class="btn btn-avancar">Avançar</button>
+                </div>
+            </div>
+
+            <!-- Página 3: Primeiros Ganks (visível para TODAS as rotas) -->
+            <div class="pagina" id="pagina3">
+                <div class="secao">
+                    <h2 class="titulo"><span>🎯</span> Primeiros Ganks</h2>
+
+                    <div class="formulario">
+                        <label>Rota alvo:</label>
+                        <input type="text" name="rota_alvo" placeholder="Rota com prioridade de ganks aliados ou maior taxa de sucesso.">
+                    </div>
+
+                    <div class="formulario">
+                        <label>Estado do inimigo:</label>
+                        <textarea name="estado_inimigo" placeholder="Descreva se o inimigo tinha muito hp, feitiços ou ultimate durante o gank aliado, como estava a wave de minions."></textarea>
+                    </div>
+
+                    <div class="formulario">
+                        <label>Recursos queimados:</label>
+                        <textarea name="recursos_queimados" placeholder="Descreva os recursos aliados e inimigos utilizados durante o gank."></textarea>
+                    </div>
+
+                    <div class="formulario">
+                        <label>Resultado:</label>
+                        <textarea name="resultado_gank" placeholder="Descreva qual o resultado do gank levando em consideração os recursos usados e possível vantagem obtida."></textarea>
+                    </div>
+
+                    <div class="formulario">
+                        <label>Ganhos:</label>
+                        <textarea name="ganhos" placeholder="Ganho em ouro, barricadas, kills, assistências, torres, pressão para objetivo ou invade."></textarea>
+                    </div>
+
+                    <div class="formulario">
+                        <label>Perdas:</label>
+                        <textarea name="perdas" placeholder="Perda de recursos importantes como feitiços, ultimate, morte de parceiros de equipe, perda de minions ou de pressão para objetivos. uso de crossmap por parte do adversarios ou counter gank."></textarea>
+                    </div>
+                </div>
+
+                <div class="botoes">
+                    <button type="button" class="btn btn-voltar">Voltar</button>
+                    <button type="button" class="btn btn-avancar">Avançar</button>
+                </div>
+            </div>
+
+            <!-- Página 4: Objetivos -->
+            <div class="pagina" id="pagina4">
+                <div class="secao">
+                    <h2 class="titulo"><span>🐉</span> Objetivos</h2>
+
+                    <div class="grupo-checkbox">
+                        <label>
+                            <input type="checkbox" name="dragao_feito" value="Sim">
+                            Dragão feito?
+                        </label>
+                    </div>
+
+                    <div class="grupo-checkbox">
+                        <label>
+                            <input type="checkbox" name="arauto_feito" value="Sim">
+                            Arauto feito?
+                        </label>
+                    </div>
+
+                    <div class="formulario">
+                        <label>Visão controlada:</label>
+                        <textarea name="controle_visao" placeholder="Descreva como foi seu uso e eficiência de suas wards, pink ou lente e florividente durante a partida." required></textarea>
+                    </div>
+                </div>
+
+                <div class="botoes">
+                    <button type="button" class="btn btn-voltar">Voltar</button>
+                    <button type="button" class="btn btn-avancar">Avançar</button>
+                </div>
+            </div>
+
+            <!-- Página 5: Erros -->
+            <div class="pagina" id="pagina5">
+                <div class="secao">
+                    <h2 class="titulo"><span>❌</span> Erros</h2>
+
+                    <div class="formulario">
+                        <label>Situação:</label>
+                        <textarea name="situacao_erro" placeholder="Descreva possíveis erros durante a fase rotas, por exemplo: errar last hit em minions, erros no controle de wave, trocas erradas na fase de rota, gank em rota não prioritária." required></textarea>
+                    </div>
+
+                    <div class="formulario">
+                        <label>Causa:</label>
+                        <textarea name="causa_erro" placeholder="Explique sobre a possível causa de seus erros, levando em consideração também sua frequência." required></textarea>
+                    </div>
+
+                    <div class="formulario">
+                        <label>Consequência:</label>
+                        <textarea name="consequencia_erro" placeholder="Quais foram as Consequências de seus erros?" required></textarea>
+                    </div>
+
+                    <div class="formulario">
+                        <label>Como evitar:</label>
+                        <textarea name="prevencao_erro" placeholder="Levando em consideração seus conhecimentos empíricos e novos conhecimentos obtidos, como seria possível prevenir estes erros?" required></textarea>
+                    </div>
+                </div>
+
+                <div class="botoes">
+                    <button type="button" class="btn btn-voltar">Voltar</button>
+                    <button type="button" class="btn btn-avancar">Avançar</button>
+                </div>
+            </div>
+
+            <!-- Página 6: Pós-Jogo e Checklist -->
+            <div class="pagina" id="pagina6">
+                <div class="secao">
+                    <h2 class="titulo"><span>📊</span> Pós-Jogo</h2>
+
+                    <div class="formulario">
+                        <label>Resumo da matchup:</label>
+                        <textarea name="resumo_matchup" placeholder="Descreva como é a matchup em rota contra o adversário e quem tem vantagem, assim como desvantagens." required></textarea>
+                    </div>
+
+                    <!-- Rota mais Impactada (apenas para Jungle e Mid) -->
+                    <div class="formulario formulario-jungle-mid">
+                        <label>Rota mais impactada:</label>
+                        <input type="text" name="rota_impactante" placeholder="Rota onde você teve maior influência, seja com ganks ou pressão de mapa.">
+                    </div>
+
+                    <div class="formulario">
+                        <label>Momentos chave:</label>
+                        <textarea name="momentos_chave" placeholder="Momentos/Decisões as quais foram de grande importância para o resultado da partida." required></textarea>
+                    </div>
+
+                    <div class="formulario">
+                        <label>Aprendizados:</label>
+                        <textarea name="aprendizados" placeholder="Descreva quais foram os aprendizados obtidos com está desta partida." required></textarea>
+                    </div>
+                </div>
+                
+                <div class="secao">
+                    <h2 class="titulo"><span>✅</span> Checklist Rápido</h2>
+
+                    <div class="grupo-checkbox">
+                        <label>
+                            <input type="checkbox" name="check1" value="Sim">
+                            Pathing condizente com matchup
+                        </label>
+                    </div>
+
+                    <div class="grupo-checkbox">
+                        <label>
+                            <input type="checkbox" name="check2" value="Sim">
+                            Recursos bem usados nos ganks
+                        </label>
+                    </div>
+
+                    <div class="grupo-checkbox">
+                        <label>
+                            <input type="checkbox" name="check3" value="Sim">
+                            Boa troca de ganhos x perdas
+                        </label>
+                    </div>
+
+                    <div class="grupo-checkbox">
+                        <label>
+                            <input type="checkbox" name="check4" value="Sim">
+                            Controle de visão antes de objetivos
+                        </label>
+                    </div>
+
+                    <div class="grupo-checkbox">
+                        <label>
+                            <input type="checkbox" name="check5" value="Sim">
+                            Aprendizados anotados
+                        </label>
+                    </div>
+                </div>
+
+                <div class="botoes">
+                    <button type="button" class="btn btn-voltar">Voltar</button>
+                    <button type="submit" class="btn btn-enviar">Enviar Análise</button>
+                </div>
+            </div>
+        </form>
+
+        <div class="mensagem-sucesso" id="mensagemSucesso">
+            <h3>Análise enviada com sucesso!</h3>
+            <p>Seus dados foram registrados e serão analisados.</p>
+        </div>
+    </div>
+
+    <script src="./src/js/index.js"></script>
+</body>
+</html>
