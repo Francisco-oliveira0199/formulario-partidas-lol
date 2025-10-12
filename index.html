@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Análise de Partida - League of Legends</title>
-    <link rel="stylesheet" href="./src/css/reset.css">
     <link rel="stylesheet" href="./src/css/estilos.css">
 </head>
 <body>
@@ -21,51 +20,124 @@
         </div>
 
         <form id="formularioAnalisePartida" action="https://formsubmit.co/daschaggasf@gmail.com" method="POST">
-            <!-- Campo oculto para redirecionamento após envio -->
+            <!-- Configurações do FormSubmit -->
             <input type="hidden" name="_next" value="https://seusite.com/obrigado.html">
             <input type="hidden" name="_subject" value="Nova Análise de Partida - League of Legends">
             <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_template" value="table">
             <input type="text" name="_honey" style="display:none">
             
             <!-- Página 1: Pré-jogo -->
             <div class="pagina ativa" id="pagina1">
                 <div class="secao">
-                    <h2 class="titulo"><span>🧠</span> Pré-jogo</h2>
+                    <h2 class="titulo">Pré-jogo</h2>
 
                     <div class="formulario">
-                        <label>Nome:</label>
-                        <input type="text" name="nome" placeholder="Nome do jogador." required>
+                        <label>
+                        <img src="https://i.ibb.co/CsvL6HZB/10034-em-ll-pengu-phonescreenshot-inventory-tft-accessories-1519.png" alt="10034-em-ll-pengu-phonescreenshot-inventory-tft-accessories-1519" class="emote">
+                        Nome:</label>
+                        <input type="text" name="nome" placeholder="Nome completo do jogador." required>
+                    </div>
+
+                    <div class="formulario">
+                        <label>
+                            <img src="https://i.ibb.co/wFGCC9xZ/4942-lta-n-team-liquid-inventory-accessories-15-20.png" 
+                        alt="emote-cool" class="emote">
+                        Nickname:</label>
+                        <input type="text" name="nickname" placeholder="Nome de invocador no League of Legends." required>
+                    </div>
+
+                    <div class="formulario">
+                        <label>
+                        <img src="https://i.ibb.co/60YMWgbR/10023-em-ll-kobuko-wakeupsamurai-inventory-tft-accessories-1513.png" alt="10023-em-ll-kobuko-wakeupsamurai-inventory-tft-accessories-1513" class="emote">
+                        Qual seu elo?</label>
+                        <select name="elo" required>
+                            <option value="">Selecione seu elo</option>
+                            <option value="Ferro IV">Ferro IV</option>
+                            <option value="Ferro III">Ferro III</option>
+                            <option value="Ferro II">Ferro II</option>
+                            <option value="Ferro I">Ferro I</option>
+                            <option value="Bronze IV">Bronze IV</option>
+                            <option value="Bronze III">Bronze III</option>
+                            <option value="Bronze II">Bronze II</option>
+                            <option value="Bronze I">Bronze I</option>
+                            <option value="Prata IV">Prata IV</option>
+                            <option value="Prata III">Prata III</option>
+                            <option value="Prata II">Prata II</option>
+                            <option value="Prata I">Prata I</option>
+                            <option value="Ouro IV">Ouro IV</option>
+                            <option value="Ouro III">Ouro III</option>
+                            <option value="Ouro II">Ouro II</option>
+                            <option value="Ouro I">Ouro I</option>
+                            <option value="Platina IV">Platina IV</option>
+                            <option value="Platina III">Platina III</option>
+                            <option value="Platina II">Platina II</option>
+                            <option value="Platina I">Platina I</option>
+                            <option value="Esmeralda IV">Esmeralda IV</option>
+                            <option value="Esmeralda III">Esmeralda III</option>
+                            <option value="Esmeralda II">Esmeralda II</option>
+                            <option value="Esmeralda I">Esmeralda I</option>
+                            <option value="Diamante IV">Diamante IV</option>
+                            <option value="Diamante III">Diamante III</option>
+                            <option value="Diamante II">Diamante II</option>
+                            <option value="Diamante I">Diamante I</option>
+                            <!-- Mestre dividido em divisões -->
+                            <option value="Mestre III">Mestre III</option>
+                            <option value="Mestre II">Mestre II</option>
+                            <option value="Mestre I">Mestre I</option>
+                            <!-- Grão-Mestre dividido em divisões -->
+                            <option value="Grão-Mestre III">Grão-Mestre III</option>
+                            <option value="Grão-Mestre II">Grão-Mestre II</option>
+                            <option value="Grão-Mestre I">Grão-Mestre I</option>
+                            <option value="Desafiante">Desafiante</option>
+                            <!-- Novo elo Monarca -->
+                            <option value="Monarca">Monarca</option>
+                        </select>
                     </div>
 
                     <div class="formulario">  
                         <label>Rota:</label>
                         <div class="selecao-rota">
                             <div class="rota">
-                                <input type="checkbox" class="checkbox-rota" value="Top" name="rota">
+                                <input type="radio" class="radio-rota" value="Top" name="rota" required>
                                 <span>Top</span>
                             </div>
                             <div class="rota">
-                                <input type="checkbox" class="checkbox-rota" value="Jungle" name="rota">
+                                <input type="radio" class="radio-rota" value="Jungle" name="rota" required>
                                 <span>Jungle</span>
                             </div>
                             <div class="rota">
-                                <input type="checkbox" class="checkbox-rota" value="Mid" name="rota">
+                                <input type="radio" class="radio-rota" value="Mid" name="rota" required>
                                 <span>Mid</span>
                             </div>
                             <div class="rota">
-                                <input type="checkbox" class="checkbox-rota" value="Adc" name="rota">
+                                <input type="radio" class="radio-rota" value="Adc" name="rota" required>
                                 <span>Adc</span>
                             </div>
                             <div class="rota">
-                                <input type="checkbox" class="checkbox-rota" value="Sup" name="rota">
+                                <input type="radio" class="radio-rota" value="Sup" name="rota" required>
                                 <span>Sup</span>
                             </div>
                         </div>
                     </div>
 
                     <div class="formulario">
-                        <label>Campeão:</label>
+                        <label>
+                        <a href="https://ibb.co/SDqS299m"><img src="https://i.ibb.co/wZDtTxxQ/4806-exalted-skin-sett-animated-emote-inventory-accessories-15-1.png" alt="4806-exalted-skin-sett-animated-emote-inventory-accessories-15-1" class="emote"></a>
+                        Campeão:</label>
                         <input type="text" name="campeao" placeholder="Campeão usado." required>
+                    </div>
+
+                    <!-- Suporte Aliado (apenas para ADC) -->
+                    <div class="formulario formulario-adc oculta">
+                        <label>Suporte aliado:</label>
+                        <input type="text" name="suporte_aliado" placeholder="Campeão do suporte aliado.">
+                    </div>
+
+                    <!-- ADC Aliado (apenas para Suporte) -->
+                    <div class="formulario formulario-sup oculta">
+                        <label>ADC aliado:</label>
+                        <input type="text" name="adc_aliado" placeholder="Campeão do ADC aliado.">
                     </div>
 
                     <div class="formulario">
@@ -84,7 +156,7 @@
                     </div>
 
                     <!-- Pathing Inicial (apenas para Jungle) -->
-                    <div class="formulario formulario-jungle">
+                    <div class="formulario formulario-jungle oculta">
                         <label>Pathing inicial planejado:</label>
                         <textarea name="pathing_inicial" placeholder="Ideia inicial de clear na jungle para a partida."></textarea>
                     </div>
@@ -97,7 +169,7 @@
             </div>
 
             <!-- Página 2: Clear Inicial (apenas para Jungle) -->
-            <div class="pagina pagina-jungle" id="pagina2">
+            <div class="pagina pagina-jungle oculta" id="pagina2">
                 <div class="secao">
                     <h2 class="titulo"><span>⚔</span> Clear Inicial</h2>
 
@@ -123,12 +195,13 @@
                 </div>
             </div>
 
-            <!-- Página 3: Primeiros Ganks (visível para TODAS as rotas) -->
+            <!-- Página 3: Primeiros Ganks -->
             <div class="pagina" id="pagina3">
                 <div class="secao">
                     <h2 class="titulo"><span>🎯</span> Primeiros Ganks</h2>
 
-                    <div class="formulario">
+                    <!-- Rota Alvo (apenas para Jungle e Mid) -->
+                    <div class="formulario oculta">
                         <label>Rota alvo:</label>
                         <input type="text" name="rota_alvo" placeholder="Rota com prioridade de ganks aliados ou maior taxa de sucesso.">
                     </div>
@@ -149,7 +222,9 @@
                     </div>
 
                     <div class="formulario">
-                        <label>Ganhos:</label>
+                        <label>
+                        <img src="https://ibb.co/Vpj215J1" alt="emote-minion" class="emote">
+                        Ganhos:</label>
                         <textarea name="ganhos" placeholder="Ganho em ouro, barricadas, kills, assistências, torres, pressão para objetivo ou invade."></textarea>
                     </div>
 
@@ -239,7 +314,7 @@
                     </div>
 
                     <!-- Rota mais Impactada (apenas para Jungle e Mid) -->
-                    <div class="formulario formulario-jungle-mid">
+                    <div class="formulario formulario-jungle-mid oculta">
                         <label>Rota mais impactada:</label>
                         <input type="text" name="rota_impactante" placeholder="Rota onde você teve maior influência, seja com ganks ou pressão de mapa.">
                     </div>
@@ -310,3 +385,4 @@
     <script src="./src/js/index.js"></script>
 </body>
 </html>
+
