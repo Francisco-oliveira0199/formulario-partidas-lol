@@ -1,0 +1,168 @@
+.objetivos-container {
+    margin: 25px 0;
+    padding: 20px;
+    background: rgba(10, 20, 40, 0.5);
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--border-radius);
+}
+
+.objetivo-grupo {
+    margin-bottom: 20px;
+    padding: 15px;
+    background: rgba(10, 20, 40, 0.3);
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--border-radius);
+    transition: var(--transition);
+}
+
+.objetivo-grupo.ativo {
+    background: rgba(200, 170, 110, 0.1);
+    border-color: var(--cor-destaque);
+}
+
+.objetivo-grupo.erro {
+    border-color: var(--cor-erro);
+    background: rgba(255, 71, 87, 0.05);
+}
+
+.objetivo-cabecalho {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0;
+    cursor: pointer;
+}
+
+.checkbox-objetivo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 0;
+    cursor: pointer;
+    font-weight: bold;
+    color: var(--cor-texto);
+    flex: 1;
+}
+
+.checkbox-objetivo input[type="checkbox"] {
+    display: none;
+}
+
+.checkbox-objetivo .checkmark {
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+}
+
+.tempo-objetivo {
+    font-size: 16px;
+    color: var(--cor-destaque);
+    font-weight: bold;
+}
+
+.checkbox-objetivo input:checked ~ .tempo-objetivo {
+    color: var(--cor-sucesso);
+}
+
+.objetivo-grupo.erro .tempo-objetivo {
+    color: var(--cor-erro);
+}
+
+.objetivo-opcoes {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid rgba(200, 170, 110, 0.3);
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 20px;
+    align-items: start;
+}
+
+.objetivo-opcoes.visivel {
+    display: grid;
+    animation: aparecerSuave 0.3s ease;
+}
+
+@keyframes aparecerSuave {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.select-objetivo {
+    width: 100%;
+    padding: 10px 12px;
+    background: var(--cor-primaria);
+    border: 1px solid var(--cor-borda);
+    color: var(--cor-texto);
+    border-radius: var(--border-radius);
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.objetivo-time {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 140px;
+}
+
+.radio-time {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 10px;
+    border-radius: var(--border-radius);
+    transition: var(--transition);
+    cursor: pointer;
+    border: 1px solid transparent;
+}
+
+.radio-time:hover {
+    background: rgba(200, 170, 110, 0.1);
+}
+
+.radio-time input[type="radio"] {
+    display: none;
+}
+
+.radio-custom {
+    width: 16px;
+    height: 16px;
+    border: 2px solid var(--cor-borda);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+    flex-shrink: 0;
+}
+
+.radio-time input[type="radio"]:checked + .radio-custom {
+    border-color: var(--cor-destaque);
+}
+
+.radio-time input[type="radio"]:checked + .radio-custom::after {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background: var(--cor-destaque);
+    border-radius: 50%;
+}
+
+.radio-time input[type="radio"]:checked ~ span:last-child {
+    color: var(--cor-destaque);
+    font-weight: bold;
+}
+
+.mensagem-erro-objetivo {
+    color: var(--cor-erro);
+    font-size: 12px;
+    margin-top: 8px;
+    text-align: center;
+    font-style: italic;
+}
