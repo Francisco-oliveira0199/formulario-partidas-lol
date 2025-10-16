@@ -50,24 +50,24 @@ class ObjectiveSystem {
     gerarOpcoes(objetivo) {
         const opcoes = {
             'dragão': [
-                { value: 'Fogo', label: '🐲 Dragão de Fogo' },
-                { value: 'Gelo', label: '❄️ Dragão de Gelo' },
-                { value: 'Montanha', label: '🏔️ Dragão de Montanha' },
-                { value: 'Oceano', label: '🌊 Dragão de Oceano' },
-                { value: 'Orquestra', label: '🎵 Dragão da Orquestra' }
+                { value: 'Fogo', label: ' Dragão de Fogo' },
+                { value: 'Gelo', label: ' Dragão de Gelo' },
+                { value: 'Montanha', label: ' Dragão de Montanha' },
+                { value: 'Oceano', label: ' Dragão de Oceano' },
+                { value: 'Orquestra', label: ' Arauto ' }
             ],
             'baron': [
-                { value: 'Baron', label: '🐉 Baron Nashor' }
+                { value: 'Baron', label: ' Baron Nashor' }
             ],
             'ancião': [
-                { value: 'Ancião', label: '🧊 Dragão Ancião' }
+                { value: 'Ancião', label: ' Dragão Ancião' }
             ],
             'ambos': [
-                { value: 'Fogo', label: '🐲 Dragão de Fogo' },
-                { value: 'Gelo', label: '❄️ Dragão de Gelo' },
-                { value: 'Montanha', label: '🏔️ Dragão de Montanha' },
-                { value: 'Oceano', label: '🌊 Dragão de Oceano' },
-                { value: 'Baron', label: '🐉 Baron Nashor' }
+                { value: 'Fogo', label: ' Dragão de Fogo' },
+                { value: 'Gelo', label: ' Dragão de Gelo' },
+                { value: 'Montanha', label: ' Dragão de Montanha' },
+                { value: 'Oceano', label: ' Dragão de Oceano' },
+                { value: 'Baron', label: ' Baron Nashor' }
             ]
         };
 

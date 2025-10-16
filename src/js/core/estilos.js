@@ -18,7 +18,7 @@ class EstilosManager {
     carregarCampeoes() {
         return [
             'Aatrox', 'Ahri', 'Akali', 'Alistar', 'Amumu', 'Anivia', 'Annie', 'Ashe', 'Aurelion Sol',
-            'Blitzcrank', 'Brand', 'Braum', 'Caitlyn', 'Camille', 'Corki', 'Darius', 'Diana', 'Draven',
+            'Blitzcrank', 'Brand', 'Braum', 'Bardo', 'Caitlyn', 'Camille', 'Corki', 'Darius', 'Diana', 'Draven',
             'Dr. Mundo', 'Ekko', 'Elise', 'Evelynn', 'Ezreal', 'Fiddlesticks', 'Fiora', 'Fizz', 'Galio',
             'Garen', 'Gragas', 'Graves', 'Gwen', 'Hecarim', 'Illaoi', 'Irelia', 'Ivern', 'Janna', 'Jarvan IV',
             'Jax', 'Jayce', 'Jhin', 'Jinx', 'KaiSa', 'Kalista', 'Karma', 'Katarina', 'Kayle', 'Kayn',
