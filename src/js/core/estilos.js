@@ -17,7 +17,7 @@ class EstilosManager {
 
     carregarCampeoes() {
         return [
-            'Aatrox', 'Ahri', 'Akali', 'Alistar', 'Amumu', 'Anivia', 'Annie', 'Ashe', 'Aurelion Sol',
+            'Aatrox', 'Ambessa', 'Ahri', 'Akali', 'Alistar', 'Amumu', 'Anivia', 'Annie', 'Ashe', 'Aurelion Sol',
             'Blitzcrank', 'Brand', 'Braum', 'Bardo', 'Caitlyn', 'Camille', 'Corki', 'Darius', 'Diana', 'Draven',
             'Dr. Mundo', 'Ekko', 'Elise', 'Evelynn', 'Ezreal', 'Fiddlesticks', 'Fiora', 'Fizz', 'Galio',
             'Garen', 'Gragas', 'Graves', 'Gwen', 'Hecarim', 'Illaoi', 'Irelia', 'Ivern', 'Janna', 'Jarvan IV',
@@ -71,7 +71,7 @@ class EstilosManager {
             c.toLowerCase() === valor.toLowerCase()
         );
 
-        campo.setCustomValidity(valido ? '' : 'Campeão não reconhecido');
+        campo.setCustomValidity (valido ? '' : 'Campeão não reconhecido');
         this.validarCampo(campo);
         return valido;
     }

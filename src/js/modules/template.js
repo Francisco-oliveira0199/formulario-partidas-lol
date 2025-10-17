@@ -71,6 +71,6 @@ class TemplateSystem {
             if (condicaoCampeao) condicaoCampeao.value = template.condicaoCampeao;
         }
 
-        console.log(`📋 Template aplicado: ${template.nome}`);
+        console.log(` Template aplicado: ${template.nome}`);
     }
 }

@@ -18,91 +18,88 @@
 </head>
 <body>
     <div class="container">  
-
         <h1 id="tituloPrincipal">Análise de Partida - Wild Rift</h1>
 
         <div class="progresso" role="progressbar" aria-label="Progresso do formulário">
-    <div class="barra-progresso ativo" data-pagina="1" data-numero="1" aria-current="step"></div>
-    <div class="barra-progresso" data-pagina="2" data-numero="2"></div>
-    <div class="barra-progresso" data-pagina="3" data-numero="3"></div>
-    <div class="barra-progresso" data-pagina="4" data-numero="4"></div>
-    <div class="barra-progresso" data-pagina="5" data-numero="5"></div>
-    <div class="barra-progresso" data-pagina="6" data-numero="6"></div>
-</div>
+            <div class="barra-progresso ativo" data-pagina="1" data-numero="1" aria-current="step"></div>
+            <div class="barra-progresso" data-pagina="2" data-numero="2"></div>
+            <div class="barra-progresso" data-pagina="3" data-numero="3"></div>
+            <div class="barra-progresso" data-pagina="4" data-numero="4"></div>
+            <div class="barra-progresso" data-pagina="5" data-numero="5"></div>
+            <div class="barra-progresso" data-pagina="6" data-numero="6"></div>
+        </div>
 
         <form id="formularioAnalisePartida" novalidate>
             <input type="hidden" name="rota_selecionada" id="rotaSelecionadaHidden">
 
             <!-- Página 1: Pré-jogo -->
-            <div class="pagina ativa" id="pagina1" data-pagina="1">
+            <div class="pagina ativo" id="pagina1" data-pagina="1">
                 <div class="secao">
                     <h2 class="titulo">
                         <img src="https://i.ibb.co/Zp4KKnkR/4929-chat-did-you-see-that-inventory-accessories-15-19.png" alt="Pré-jogo" class="emote"> 
                         Pré-jogo
                     </h2>
 
-<div class="form-grid">
+                    <div class="form-grid">
+                        <div class="form-group obrigatorio">
+                            <label for="nome">Nome</label>
+                            <input type="text" id="nome" name="nome" placeholder="Nome completo" required>
+                        </div>
 
-    <div class="form-group obrigatorio">
-        <label for="nome">Nome</label>
-        <input type="text" id="nome" name="nome" placeholder="Nome completo" required>
-    </div>
+                        <div class="form-group obrigatorio">
+                            <label for="nickname">Nickname</label>
+                            <input type="text" id="nickname" name="nickname" placeholder="Nome de invocador" required>
+                        </div>
 
-    <div class="form-group obrigatorio">
-        <label for="nickname">Nickname</label>
-        <input type="text" id="nickname" name="nickname" placeholder="Nome de invocador" required>
-    </div>
+                        <div class="form-group obrigatorio">
+                            <label for="elo">Elo</label>
+                            <select id="elo" name="elo" required>
+                                <option value="">Selecione seu elo</option>
+                                <option value="Ferro">Ferro IV</option>
+                                <option value="Ferro">Ferro III</option>
+                                <option value="Ferro">Ferro II</option>
+                                <option value="Ferro">Ferro I</option>
+                                <option value="Bronze">Bronze IV</option>
+                                <option value="Bronze">Bronze III</option>
+                                <option value="Bronze">Bronze II</option>
+                                <option value="Bronze">Bronze I</option>
+                                <option value="Prata">Prata IV</option>
+                                <option value="Prata">Prata III</option>
+                                <option value="Prata">Prata II</option>
+                                <option value="Prata">Prata I</option>
+                                <option value="Ouro">Ouro IV</option>
+                                <option value="Ouro">Ouro III</option>
+                                <option value="Ouro">Ouro II</option>
+                                <option value="Ouro">Ouro I</option>
+                                <option value="Platina">Platina IV</option>
+                                <option value="Platina">Platina III</option>
+                                <option value="Platina">Platina II</option>
+                                <option value="Platina">Platina I</option>
+                                <option value="Esmeralda">Esmeralda IV</option>
+                                <option value="Esmeralda">Esmeralda III</option>
+                                <option value="Esmeralda">Esmeralda II</option>
+                                <option value="Esmeralda">Esmeralda I</option>
+                                <option value="Diamante">Diamante IV</option>
+                                <option value="Diamante">Diamante III</option>
+                                <option value="Diamante">Diamante II</option>
+                                <option value="Diamante">Diamante I</option>
+                                <option value="Mestre">Mestre III</option>
+                                <option value="Mestre">Mestre II</option>
+                                <option value="Mestre">Mestre I</option>
+                                <option value="Grão-Mestre">Grão-Mestre III</option>
+                                <option value="Grão-Mestre">Grão-Mestre II</option>
+                                <option value="Grão-Mestre">Grão-Mestre I</option>
+                                <option value="Desafiante">Desafiante</option>
+                                <option value="Monarca">Monarca</option>
+                            </select>
+                        </div>
 
-    <!-- Linha 2: Elo e Campeão lado a lado -->
-    <div class="form-group obrigatorio">
-        <label for="elo">Elo</label>
-        <select id="elo" name="elo" required>
-            <option value="">Selecione seu elo</option>
-            <option value="Ferro">Ferro IV</option>
-            <option value="Ferro">Ferro III</option>
-            <option value="Ferro">Ferro II</option>
-            <option value="Ferro">Ferro I</option>
-            <option value="Bronze">Bronze IV</option>
-            <option value="Bronze">Bronze III</option>
-            <option value="Bronze">Bronze II</option>
-            <option value="Bronze">Bronze I</option>
-            <option value="Prata">Prata IV</option>
-            <option value="Prata">Prata III</option>
-            <option value="Prata">Prata II</option>
-            <option value="Prata">Prata I</option>
-            <option value="Ouro">Ouro IV</option>
-            <option value="Ouro">Ouro III</option>
-            <option value="Ouro">Ouro II</option>
-            <option value="Ouro">Ouro I</option>
-            <option value="Platina">Platina IV</option>
-            <option value="Platina">Platina III</option>
-            <option value="Platina">Platina II</option>
-            <option value="Platina">Platina I</option>
-            <option value="Esmeralda">Esmeralda IV</option>
-            <option value="Esmeralda">Esmeralda III</option>
-            <option value="Esmeralda">Esmeralda II</option>
-            <option value="Esmeralda">Esmeralda I</option>
-            <option value="Diamante">Diamante IV</option>
-            <option value="Diamante">Diamante III</option>
-            <option value="Diamante">Diamante II</option>
-            <option value="Diamante">Diamante I</option>
-            <option value="Mestre">Mestre III</option>
-            <option value="Mestre">Mestre II</option>
-            <option value="Mestre">Mestre I</option>
-            <option value="Grão-Mestre">Grão-Mestre III</option>
-            <option value="Grão-Mestre">Grão-Mestre II</option>
-            <option value="Grão-Mestre">Grão-Mestre I</option>
-            <option value="Desafiante">Desafiante</option>
-            <option value="Monarca">Monarca</option>
-        </select>
-    </div>
-
-    <div class="form-group obrigatorio">
-        <label for="campeao">Campeão</label>
-        <input type="text" id="campeao" name="campeao" placeholder="Campeão usado" required list="listaCampeoes">
-        <datalist id="listaCampeoes"></datalist>
-    </div>
-</div>
+                        <div class="form-group obrigatorio">
+                            <label for="campeao">Campeão</label>
+                            <input type="text" id="campeao" name="campeao" placeholder="Campeão usado" required list="listaCampeoes">
+                            <datalist id="listaCampeoes"></datalist>
+                        </div>
+                    </div>
 
                     <!-- Seleção de Rota -->
                     <div class="form-group obrigatorio">
@@ -244,7 +241,7 @@
                         </div>
                     </div>
 
-                    <!-- Jungle Pathing -->
+                    <!-- Jungle Pathing (APENAS Jungle) -->
                     <div class="form-group jungle-only oculta" id="pathingContainer">
                         <label for="pathingInicial">Pathing inicial planejado</label>
                         <textarea id="pathingInicial" name="pathing_inicial" placeholder="Ideia inicial de clear na jungle"></textarea>
@@ -257,8 +254,8 @@
                 </div>
             </div>
 
-            <!-- Página 2: Clear Inicial (Jungle) -->
-            <div class="pagina oculta" id="pagina2" data-pagina="2">
+            <!-- Página 2: Clear Inicial (APENAS Jungle) -->
+            <div class="pagina oculta jungle-only" id="pagina2" data-pagina="2">
                 <div class="secao">
                     <h2 class="titulo">
                         <img src="https://i.ibb.co/xKYCkPZ8/4914-power-up-inventory-accessories-15-19.png" alt="Clear Inicial" class="emote">
@@ -295,6 +292,7 @@
                         Primeiros Ganks
                     </h2>
 
+                    <!-- Rota Alvo (Jungle E Mid) -->
                     <div class="form-group jungle-mid-only oculta" id="rotaAlvoContainer">
                         <label for="rotaAlvo">Rota alvo</label>
                         <input type="text" id="rotaAlvo" name="rota_alvo" placeholder="Rota com prioridade de ganks">
@@ -404,6 +402,7 @@
                         <textarea id="resumoPartida" name="resumo_partida" placeholder="Resumo geral da partida" required></textarea>
                     </div>
 
+                    <!-- Rota Impactante (Jungle E Mid) -->
                     <div class="form-group jungle-mid-only oculta" id="rotaImpactanteContainer">
                         <label for="rotaImpactante">Rota mais impactada</label>
                         <input type="text" id="rotaImpactante" name="rota_impactante" placeholder="Rota com maior influência">

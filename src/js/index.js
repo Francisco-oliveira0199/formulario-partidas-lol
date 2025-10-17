@@ -1,11 +1,12 @@
 class WildRiftAnalyzer {
     constructor() {
         this.modulos = {};
+        this.emailDestino = 'analise.wildrift@email.com'; // EMAIL FIXO
     }
 
     init() {
         try {
-            console.log('🚀 Inicializando Wild Rift Analyzer...');
+            console.log('🎮 Inicializando Wild Rift Analyzer...');
             
             // Inicializar módulos na ordem correta
             this.modulos.estilos = new EstilosManager();
@@ -16,6 +17,7 @@ class WildRiftAnalyzer {
 
             // Configurar sistemas
             this.configurarSistemas();
+            this.configurarEnvioFormulario();
             
             console.log('✅ Wild Rift Analyzer inicializado com sucesso!');
         } catch (error) {
@@ -23,13 +25,104 @@ class WildRiftAnalyzer {
         }
     }
 
+    configurarEnvioFormulario() {
+        const formulario = document.getElementById('formularioAnalisePartida');
+        if (formulario) {
+            formulario.addEventListener('submit', (e) => {
+                e.preventDefault();
+                this.enviarAnalise();
+            });
+        }
+    }
+
+    async enviarAnalise() {
+        try {
+            console.log('📤 Iniciando envio da análise...');
+            
+            // Coletar dados do formulário
+            const dados = this.coletarDadosFormulario();
+            
+            // Validar dados obrigatórios
+            if (!this.validarDadosEnvio(dados)) {
+                alert('Por favor, preencha todos os campos obrigatórios antes de enviar.');
+                return;
+            }
+
+            // Simular geração de PDF e envio por email
+            await this.simularEnvioEmail(dados);
+            
+            alert('✅ Análise enviada com sucesso para: ' + this.emailDestino);
+            this.limparFormulario();
+            
+        } catch (error) {
+            console.error('❌ Erro ao enviar análise:', error);
+            alert('❌ Erro ao enviar análise. Tente novamente.');
+        }
+    }
+
+    coletarDadosFormulario() {
+        const dados = {};
+        const formData = new FormData(document.getElementById('formularioAnalisePartida'));
+        
+        for (let [key, value] of formData.entries()) {
+            dados[key] = value;
+        }
+        
+        return dados;
+    }
+
+    validarDadosEnvio(dados) {
+        const camposObrigatorios = [
+            'nome', 'nickname', 'elo', 'campeao', 'rota',
+            'draft_inimigo_top', 'draft_inimigo_jungle', 'draft_inimigo_mid', 
+            'draft_inimigo_adc', 'draft_inimigo_sup',
+            'condicao_vitoria_time', 'condicao_vitoria_campeao',
+            'controle_visao', 'resumo_partida', 'momentos_chave', 'aprendizados'
+        ];
+
+        return camposObrigatorios.every(campo => {
+            const valor = dados[campo];
+            return valor && valor.toString().trim() !== '';
+        });
+    }
+
+    async simularEnvioEmail(dados) {
+        // Simular processamento
+        console.log('📧 Enviando análise para:', this.emailDestino);
+        console.log('📊 Dados coletados:', dados);
+        
+        // Simular delay de processamento
+        await new Promise(resolve => setTimeout(resolve, 2000));
+        
+        // Aqui você integraria com uma API real de email
+        // Exemplo: EmailJS, SendGrid, ou backend próprio
+        console.log('✅ Análise enviada com sucesso!');
+        
+        // Para implementação real, você precisaria:
+        // 1. Uma API backend para enviar emails
+        // 2. Ou usar serviços como EmailJS, SendGrid, etc.
+        // 3. Gerar PDF com bibliotecas como jsPDF ou html2pdf.js
+    }
+
+    limparFormulario() {
+        const formulario = document.getElementById('formularioAnalisePartida');
+        if (formulario) {
+            formulario.reset();
+            
+            // Voltar para a primeira página
+            if (window.analyzer && window.analyzer.modulos.nav) {
+                window.analyzer.modulos.nav.irParaPagina(1);
+            }
+        }
+    }
+
     configurarSistemas() {
         // Inicializar cada módulo
-        this.modulos.estilos.init();
-        this.modulos.nav.init();
-        this.modulos.draft.init();
-        this.modulos.objetivos.init();
-        this.modulos.template.init();
+        Object.values(this.modulos).forEach(modulo => {
+            if (modulo && typeof modulo.init === 'function') {
+                modulo.init();
+            }
+        });
         
         // Garantir que a primeira página esteja visível
         this.mostrarPaginaInicial();

@@ -1,11 +1,31 @@
 class ObjectiveSystem {
     constructor() {
         this.objetivos = [
-            { tempo: '6:00', nome: 'Primeiro Dragão', tipo: 'dragão' },
-            { tempo: '11:00', nome: 'Segundo Dragão', tipo: 'dragão' },
-            { tempo: '15:00', nome: 'Baron Nashor', tipo: 'baron' },
-            { tempo: '16:00', nome: 'Terceiro Dragão ou Baron', tipo: 'ambos' },
-            { tempo: '18:00', nome: 'Dragão Ancião', tipo: 'ancião' }
+            { 
+                tempo: '6:00', 
+                nome: 'Primeiro Objetivo', 
+                tipo: 'primeiro-objetivo'
+            },
+            { 
+                tempo: '11:00', 
+                nome: 'Segundo Dragão', 
+                tipo: 'dragão' 
+            },
+            { 
+                tempo: '15:00', 
+                nome: 'Baron Nashor', 
+                tipo: 'baron' 
+            },
+            { 
+                tempo: '16:00', 
+                nome: 'Terceiro Dragão ou Baron', 
+                tipo: 'ambos' 
+            },
+            { 
+                tempo: '18:00', 
+                nome: 'Dragão Ancião', 
+                tipo: 'ancião' 
+            }
         ];
     }
 
@@ -49,25 +69,36 @@ class ObjectiveSystem {
 
     gerarOpcoes(objetivo) {
         const opcoes = {
+            'primeiro-objetivo': [
+                { value: 'Fogo', label: 'Dragão de Fogo' },
+                { value: 'Gelo', label: 'Dragão de Gelo' },
+                { value: 'Montanha', label: 'Dragão de Montanha' },
+                { value: 'Oceano', label: 'Dragão de Oceano' },
+                { value: 'Arauto', label: 'Arauto' },
+                { value: 'Nenhum', label: 'Nenhum (não foi feito)' }
+            ],
             'dragão': [
-                { value: 'Fogo', label: ' Dragão de Fogo' },
-                { value: 'Gelo', label: ' Dragão de Gelo' },
-                { value: 'Montanha', label: ' Dragão de Montanha' },
-                { value: 'Oceano', label: ' Dragão de Oceano' },
-                { value: 'Orquestra', label: ' Arauto ' }
+                { value: 'Fogo', label: 'Dragão de Fogo' },
+                { value: 'Gelo', label: 'Dragão de Gelo' },
+                { value: 'Montanha', label: 'Dragão de Montanha' },
+                { value: 'Oceano', label: 'Dragão de Oceano' },
+                { value: 'Nenhum', label: 'Nenhum (não foi feito)' }
             ],
             'baron': [
-                { value: 'Baron', label: ' Baron Nashor' }
+                { value: 'Baron', label: 'Baron Nashor' },
+                { value: 'Nenhum', label: 'Nenhum (não foi feito)' }
             ],
             'ancião': [
-                { value: 'Ancião', label: ' Dragão Ancião' }
+                { value: 'Ancião', label: 'Dragão Ancião' },
+                { value: 'Nenhum', label: 'Nenhum (não foi feito)' }
             ],
             'ambos': [
-                { value: 'Fogo', label: ' Dragão de Fogo' },
-                { value: 'Gelo', label: ' Dragão de Gelo' },
-                { value: 'Montanha', label: ' Dragão de Montanha' },
-                { value: 'Oceano', label: ' Dragão de Oceano' },
-                { value: 'Baron', label: ' Baron Nashor' }
+                { value: 'Fogo', label: 'Dragão de Fogo' },
+                { value: 'Gelo', label: 'Dragão de Gelo' },
+                { value: 'Montanha', label: 'Dragão de Montanha' },
+                { value: 'Oceano', label: 'Dragão de Oceano' },
+                { value: 'Baron', label: 'Baron Nashor' },
+                { value: 'Nenhum', label: 'Nenhum (não foi feito)' }
             ]
         };
 
@@ -75,11 +106,10 @@ class ObjectiveSystem {
         
         return `
             <select name="objetivo_${objetivo.tempo.replace(':', '')}_tipo" class="select-objetivo">
-                <option value="">Selecione...</option>
+                <option value="">Selecione o objetivo...</option>
                 ${opcoesTipo.map(opcao => 
                     `<option value="${opcao.value}">${opcao.label}</option>`
                 ).join('')}
-                <option value="Nenhum">⚪ Nenhum (não foi feito)</option>
             </select>
         `;
     }
@@ -125,6 +155,8 @@ class ObjectiveSystem {
 
         const tipoSelecionado = select?.value;
         const timeSelecionado = Array.from(radios).some(radio => radio.checked);
+        
+        // Para "Nenhum", não precisa selecionar time
         const valido = tipoSelecionado && (tipoSelecionado === 'Nenhum' || timeSelecionado);
 
         grupo.classList.toggle('erro', !valido);
