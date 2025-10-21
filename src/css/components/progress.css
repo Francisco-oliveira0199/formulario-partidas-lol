@@ -1,0 +1,72 @@
+.progresso {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    position: relative;
+    padding: 0 20px;
+}
+
+.progresso::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    right: 20px;
+    height: 2px;
+    background: var(--cor-borda);
+    z-index: 1;
+    transform: translateY(-50%);
+}
+
+.barra-progresso {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--cor-secundaria);
+    border: 2px solid var(--cor-borda);
+    position: relative;
+    z-index: 2;
+    transition: var(--transition);
+    flex-shrink: 0;
+}
+
+/* CORREÇÃO: Centralização absoluta do número */
+.barra-progresso::before {
+    content: attr(data-numero);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 1;
+}
+
+.barra-progresso.ativo {
+    background: var(--cor-destaque);
+    border-color: var(--cor-destaque);
+}
+
+.barra-progresso.ativo::before {
+    color: var(--cor-primaria);
+    font-weight: bold; /* Pode manter o negrito pois a centralização é absoluta */
+}
+
+.barra-progresso.concluido {
+    background: var(--cor-sucesso);
+    border-color: var(--cor-sucesso);
+}
+
+.barra-progresso.concluido::before {
+    color: white;
+}
+
+.barra-progresso.com-erro {
+    background: var(--cor-erro);
+    border-color: var(--cor-erro);
+}
+
+.barra-progresso.com-erro::before {
+    color: white;
+}
