@@ -1,127 +1,31 @@
 class ObjectiveSystem {
     constructor() {
-        this.objetivos = [
-            { 
-                tempo: '6:00', 
-                nome: 'Primeiro Objetivo', 
-                tipo: 'primeiro-objetivo'
-            },
-            { 
-                tempo: '11:00', 
-                nome: 'Segundo Dragão', 
-                tipo: 'dragão' 
-            },
-            { 
-                tempo: '15:00', 
-                nome: 'Baron Nashor', 
-                tipo: 'baron' 
-            },
-            { 
-                tempo: '16:00', 
-                nome: 'Terceiro Dragão ou Baron', 
-                tipo: 'ambos' 
-            },
-            { 
-                tempo: '18:00', 
-                nome: 'Dragão Ancião', 
-                tipo: 'ancião' 
-            }
-        ];
+        this.objetivosSelecionados = new Set();
     }
 
     init() {
-        this.renderizarObjetivos();
         this.configurarEventos();
-        console.log('✅ ObjectiveSystem inicializado');
-    }
-
-    renderizarObjetivos() {
-        const container = document.getElementById('objetivosContainer');
-        if (!container) return;
-
-        container.innerHTML = this.objetivos.map(objetivo => `
-            <div class="objetivo-grupo" data-tempo="${objetivo.tempo}">
-                <div class="objetivo-cabecalho">
-                    <label class="checkbox-objetivo">
-                        <input type="checkbox" name="objetivo_${objetivo.tempo.replace(':', '')}_ativo" value="sim">
-                        <span class="checkmark"></span>
-                        <span class="tempo-objetivo">${objetivo.tempo} - ${objetivo.nome}</span>
-                    </label>
-                </div>
-                <div class="objetivo-opcoes oculta">
-                    ${this.gerarOpcoes(objetivo)}
-                    <div class="objetivo-time">
-                        <label class="radio-time">
-                            <input type="radio" name="objetivo_${objetivo.tempo.replace(':', '')}_time" value="Aliado">
-                            <span class="radio-custom"></span>
-                            Time Aliado
-                        </label>
-                        <label class="radio-time">
-                            <input type="radio" name="objetivo_${objetivo.tempo.replace(':', '')}_time" value="Inimigo">
-                            <span class="radio-custom"></span>
-                            Time Inimigo
-                        </label>
-                    </div>
-                </div>
-            </div>
-        `).join('');
-    }
-
-    gerarOpcoes(objetivo) {
-        const opcoes = {
-            'primeiro-objetivo': [
-                { value: 'Fogo', label: 'Dragão de Fogo' },
-                { value: 'Gelo', label: 'Dragão de Gelo' },
-                { value: 'Montanha', label: 'Dragão de Montanha' },
-                { value: 'Oceano', label: 'Dragão de Oceano' },
-                { value: 'Arauto', label: 'Arauto' },
-                { value: 'Nenhum', label: 'Nenhum (não foi feito)' }
-            ],
-            'dragão': [
-                { value: 'Fogo', label: 'Dragão de Fogo' },
-                { value: 'Gelo', label: 'Dragão de Gelo' },
-                { value: 'Montanha', label: 'Dragão de Montanha' },
-                { value: 'Oceano', label: 'Dragão de Oceano' },
-                { value: 'Nenhum', label: 'Nenhum (não foi feito)' }
-            ],
-            'baron': [
-                { value: 'Baron', label: 'Baron Nashor' },
-                { value: 'Nenhum', label: 'Nenhum (não foi feito)' }
-            ],
-            'ancião': [
-                { value: 'Ancião', label: 'Dragão Ancião' },
-                { value: 'Nenhum', label: 'Nenhum (não foi feito)' }
-            ],
-            'ambos': [
-                { value: 'Fogo', label: 'Dragão de Fogo' },
-                { value: 'Gelo', label: 'Dragão de Gelo' },
-                { value: 'Montanha', label: 'Dragão de Montanha' },
-                { value: 'Oceano', label: 'Dragão de Oceano' },
-                { value: 'Baron', label: 'Baron Nashor' },
-                { value: 'Nenhum', label: 'Nenhum (não foi feito)' }
-            ]
-        };
-
-        const opcoesTipo = opcoes[objetivo.tipo] || [];
-        
-        return `
-            <select name="objetivo_${objetivo.tempo.replace(':', '')}_tipo" class="select-objetivo">
-                <option value="">Selecione o objetivo...</option>
-                ${opcoesTipo.map(opcao => 
-                    `<option value="${opcao.value}">${opcao.label}</option>`
-                ).join('')}
-            </select>
-        `;
+        console.log('✅ ObjectiveSystem inicializado (HTML estático)');
     }
 
     configurarEventos() {
         document.addEventListener('change', (e) => {
-            if (e.target.matches('.checkbox-objetivo input[type="checkbox"]')) {
+            if (e.target.matches('.objetivo-checkbox')) {
                 this.toggleOpcoesObjetivo(e.target);
             }
             
             if (e.target.matches('.select-objetivo, .objetivo-time input[type="radio"]')) {
                 this.validarObjetivo(e.target.closest('.objetivo-grupo'));
+            }
+        });
+
+        // Validar objetivos ao tentar avançar de página
+        document.addEventListener('click', (e) => {
+            if (e.target.matches('.btn-avancar') && document.getElementById('pagina4').classList.contains('ativo')) {
+                if (!this.validarTodosObjetivos()) {
+                    e.preventDefault();
+                    this.mostrarErroGeral();
+                }
             }
         });
     }
@@ -133,34 +37,56 @@ class ObjectiveSystem {
         if (checkbox.checked) {
             grupo.classList.add('ativo');
             opcoes.classList.remove('oculta');
-            opcoes.classList.add('visivel');
+            this.objetivosSelecionados.add(grupo.dataset.tempo);
         } else {
-            grupo.classList.remove('ativo');
+            grupo.classList.remove('ativo', 'erro');
             opcoes.classList.add('oculta');
-            opcoes.classList.remove('visivel');
+            this.objetivosSelecionados.delete(grupo.dataset.tempo);
             
-            const select = opcoes.querySelector('.select-objetivo');
+            // Limpar seleções
+            const selects = opcoes.querySelectorAll('.select-objetivo');
             const radios = opcoes.querySelectorAll('input[type="radio"]');
-            if (select) select.value = '';
+            
+            selects.forEach(select => select.value = '');
             radios.forEach(radio => radio.checked = false);
         }
     }
 
     validarObjetivo(grupo) {
-        const checkbox = grupo.querySelector('input[type="checkbox"]');
-        const select = grupo.querySelector('.select-objetivo');
+        const checkbox = grupo.querySelector('.objetivo-checkbox');
+        const selects = grupo.querySelectorAll('.select-objetivo');
         const radios = grupo.querySelectorAll('.objetivo-time input[type="radio"]');
         
-        if (!checkbox.checked) return true;
+        if (!checkbox.checked) {
+            grupo.classList.remove('erro');
+            return true;
+        }
 
-        const tipoSelecionado = select?.value;
+        // Validação especial para objetivo duplo (6:00)
+        const isObjetivoDuplo = grupo.dataset.tempo === '6:00';
+        let tipoValido = false;
+
+        if (isObjetivoDuplo) {
+            // Para objetivo duplo, pelo menos um select deve estar preenchido
+            tipoValido = Array.from(selects).some(select => select.value && select.value !== '');
+        } else {
+            // Para objetivos normais, o select principal deve estar preenchido
+            tipoValido = selects[0]?.value && selects[0].value !== '';
+        }
+
         const timeSelecionado = Array.from(radios).some(radio => radio.checked);
         
         // Para "Nenhum", não precisa selecionar time
-        const valido = tipoSelecionado && (tipoSelecionado === 'Nenhum' || timeSelecionado);
+        const valido = tipoValido && (this.contemNenhum(selects) || timeSelecionado);
 
         grupo.classList.toggle('erro', !valido);
         return valido;
+    }
+
+    contemNenhum(selects) {
+        return Array.from(selects).some(select => 
+            select.value === 'Nenhum' || select.value === 'Nenhum (não foi feito)'
+        );
     }
 
     validarTodosObjetivos() {
@@ -170,9 +96,49 @@ class ObjectiveSystem {
         grupos.forEach(grupo => {
             if (!this.validarObjetivo(grupo)) {
                 valido = false;
+                
+                // Scroll para o primeiro objetivo com erro
+                if (valido === false) {
+                    grupo.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
             }
         });
 
         return valido;
+    }
+
+    mostrarErroGeral() {
+        const gruposComErro = document.querySelectorAll('.objetivo-grupo.erro');
+        if (gruposComErro.length > 0) {
+            alert('⚠️ Por favor, complete as informações dos objetivos selecionados antes de avançar.');
+        }
+    }
+
+    // Método para coletar dados dos objetivos (útil para o envio do formulário)
+    coletarDadosObjetivos() {
+        const dados = {};
+        const grupos = document.querySelectorAll('.objetivo-grupo');
+        
+        grupos.forEach(grupo => {
+            const tempo = grupo.dataset.tempo.replace(':', '');
+            const checkbox = grupo.querySelector('.objetivo-checkbox');
+            
+            if (checkbox.checked) {
+                const selects = grupo.querySelectorAll('.select-objetivo');
+                const radioSelecionado = grupo.querySelector('.objetivo-time input[type="radio"]:checked');
+                
+                // Para objetivo duplo (6:00)
+                if (grupo.dataset.tempo === '6:00') {
+                    dados[`objetivo_${tempo}_tipo_1`] = selects[0]?.value || '';
+                    dados[`objetivo_${tempo}_tipo_2`] = selects[1]?.value || '';
+                } else {
+                    dados[`objetivo_${tempo}_tipo`] = selects[0]?.value || '';
+                }
+                
+                dados[`objetivo_${tempo}_time`] = radioSelecionado?.value || '';
+            }
+        });
+        
+        return dados;
     }
 }

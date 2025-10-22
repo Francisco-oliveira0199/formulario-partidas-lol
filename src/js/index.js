@@ -1,7 +1,7 @@
 class WildRiftAnalyzer {
     constructor() {
         this.modulos = {};
-        this.emailDestino = 'analise.wildrift@email.com'; // EMAIL FIXO
+        this.emailDestino = 'nittocoach@gmail.com';
     }
 
     init() {
@@ -14,6 +14,7 @@ class WildRiftAnalyzer {
             this.modulos.draft = new DraftSystem();
             this.modulos.objetivos = new ObjectiveSystem();
             this.modulos.template = new TemplateSystem();
+            this.modulos.upload = new UploadSystem(); // NOVO MÓDULO
 
             // Configurar sistemas
             this.configurarSistemas();
@@ -25,31 +26,21 @@ class WildRiftAnalyzer {
         }
     }
 
-    configurarEnvioFormulario() {
-        const formulario = document.getElementById('formularioAnalisePartida');
-        if (formulario) {
-            formulario.addEventListener('submit', (e) => {
-                e.preventDefault();
-                this.enviarAnalise();
-            });
-        }
-    }
-
     async enviarAnalise() {
         try {
             console.log('📤 Iniciando envio da análise...');
             
             // Coletar dados do formulário
-            const dados = this.coletarDadosFormulario();
+            const formData = this.coletarDadosFormulario();
             
             // Validar dados obrigatórios
-            if (!this.validarDadosEnvio(dados)) {
+            if (!this.validarDadosEnvio(formData)) {
                 alert('Por favor, preencha todos os campos obrigatórios antes de enviar.');
                 return;
             }
 
-            // Simular geração de PDF e envio por email
-            await this.simularEnvioEmail(dados);
+            // Enviar por email
+            await this.enviarPorEmail(formData);
             
             alert('✅ Análise enviada com sucesso para: ' + this.emailDestino);
             this.limparFormulario();
@@ -61,14 +52,14 @@ class WildRiftAnalyzer {
     }
 
     coletarDadosFormulario() {
-        const dados = {};
         const formData = new FormData(document.getElementById('formularioAnalisePartida'));
         
-        for (let [key, value] of formData.entries()) {
-            dados[key] = value;
+        // Adicionar imagens ao FormData
+        if (this.modulos.upload) {
+            this.modulos.upload.coletarDadosImagens(formData);
         }
         
-        return dados;
+        return formData;
     }
 
     validarDadosEnvio(dados) {

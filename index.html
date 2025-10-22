@@ -15,6 +15,8 @@
     <link rel="stylesheet" href="./src/css/components/drafts.css">
     <link rel="stylesheet" href="./src/css/components/objectives.css">
     <link rel="stylesheet" href="./src/css/components/buttons.css">
+    <link rel="stylesheet" href="./src/css/components/upload.css">
+
 </head>
 <body>
     <div class="container">  
@@ -331,28 +333,234 @@
             </div>
 
             <!-- Página 4: Objetivos -->
-            <div class="pagina oculta" id="pagina4" data-pagina="4">
-                <div class="secao">
-                    <h2 class="titulo">
-                        <img src="https://i.ibb.co/PGFQtZhd/4824-stressed-inventory-accessories-15-4.png" alt="Objetivos" class="emote">
-                        Objetivos
-                    </h2>
+<div class="pagina oculta" id="pagina4" data-pagina="4">
+    <div class="secao">
+        <h2 class="titulo">
+            <img src="https://i.ibb.co/PGFQtZhd/4824-stressed-inventory-accessories-15-4.png" alt="Objetivos" class="emote">
+            Objetivos
+        </h2>
 
-                    <div class="objetivos-container" id="objetivosContainer">
-                        <!-- Objetivos serão inseridos via JavaScript -->
-                    </div>
-
-                    <div class="form-group obrigatorio">
-                        <label for="controleVisao">Controle de visão</label>
-                        <textarea id="controleVisao" name="controle_visao" placeholder="Uso de wards e visão" required></textarea>
-                    </div>
+        <div class="objetivos-container">
+            <!-- Primeiro Controle - Arongueijos (1:25) -->
+            <div class="objetivo-grupo" data-tempo="1:25">
+                <div class="objetivo-cabecalho">
+                    <span class="tempo-texto">
+                        <input type="checkbox" class="objetivo-checkbox" name="objetivo_125_ativo">
+                        <span class="checkmark"></span>
+                        1:25 - Primeiro objetivo neutro
+                    </span>
                 </div>
-
-                <div class="botoes-navegacao">
-                    <button type="button" class="btn btn-voltar">Voltar</button>
-                    <button type="button" class="btn btn-avancar">Avançar</button>
+                <div class="objetivo-opcoes oculta">
+                    <select name="objetivo_125_tipo" class="select-objetivo">
+                        <option value="">Selecione quantos arongueijos...</option>
+                        <option value="Um">Arongueijo bot</option>
+                        <option value="Um">Arongueijo top</option>
+                        <option value="Dois">Dois arongueijos</option>
+                        <option value="Nenhum">Nenhum</option>
+                    </select>
+                    <div class="objetivo-time">
+                        <label class="radio-time">
+                            <input type="radio" name="objetivo_125_time" value="Aliado">
+                            <span class="radio-custom"></span>
+                            Time Aliado
+                        </label>
+                        <label class="radio-time">
+                            <input type="radio" name="objetivo_125_time" value="Inimigo">
+                            <span class="radio-custom"></span>
+                            Time Inimigo
+                        </label>
+                    </div>
                 </div>
             </div>
+
+            <!-- Primeiro Objetivo (6:00) -->
+            <div class="objetivo-grupo" data-tempo="6:00">
+                <div class="objetivo-cabecalho">
+                    <span class="tempo-texto">
+                        <input type="checkbox" class="objetivo-checkbox" name="objetivo_600_ativo">
+                        <span class="checkmark"></span>
+                        6:00 - Primeiro Objetivo
+                    </span>
+                </div>
+                <div class="objetivo-opcoes oculta">
+                    <div class="objetivo-duplo">
+                        <div class="select-duplo">
+                            <select name="objetivo_600_tipo_1" class="select-objetivo">
+                                <option value="">Primeiro objetivo...</option>
+                                <option value="Fogo">Dragão de Fogo</option>
+                                <option value="Gelo">Dragão de Gelo</option>
+                                <option value="Montanha">Dragão de Montanha</option>
+                                <option value="Oceano">Dragão de Oceano</option>
+                                <option value="Arauto">Arauto</option>
+                                <option value="Nenhum">Nenhum</option>
+                            </select>
+                        </div>
+                        <div class="select-duplo">
+                            <select name="objetivo_600_tipo_2" class="select-objetivo">
+                                <option value="">Segundo objetivo...</option>
+                                <option value="Fogo">Dragão de Fogo</option>
+                                <option value="Gelo">Dragão de Gelo</option>
+                                <option value="Montanha">Dragão de Montanha</option>
+                                <option value="Oceano">Dragão de Oceano</option>
+                                <option value="Arauto">Arauto</option>
+                                <option value="Nenhum">Nenhum</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="objetivo-time">
+                        <label class="radio-time">
+                            <input type="radio" name="objetivo_600_time" value="Aliado">
+                            <span class="radio-custom"></span>
+                            Time Aliado
+                        </label>
+                        <label class="radio-time">
+                            <input type="radio" name="objetivo_600_time" value="Inimigo">
+                            <span class="radio-custom"></span>
+                            Time Inimigo
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Segundo Dragão (11:00) -->
+            <div class="objetivo-grupo" data-tempo="11:00">
+                <div class="objetivo-cabecalho">
+                    <span class="tempo-texto">
+                        <input type="checkbox" class="objetivo-checkbox" name="objetivo_1100_ativo">
+                        <span class="checkmark"></span>
+                        11:00 - Segundo Dragão
+                    </span>
+                </div>
+                <div class="objetivo-opcoes oculta">
+                    <select name="objetivo_1100_tipo" class="select-objetivo">
+                        <option value="">Selecione o objetivo...</option>
+                        <option value="Fogo">Dragão de Fogo</option>
+                        <option value="Gelo">Dragão de Gelo</option>
+                        <option value="Montanha">Dragão de Montanha</option>
+                        <option value="Oceano">Dragão de Oceano</option>
+                        <option value="Nenhum">Nenhum</option>
+                    </select>
+                    <div class="objetivo-time">
+                        <label class="radio-time">
+                            <input type="radio" name="objetivo_1100_time" value="Aliado">
+                            <span class="radio-custom"></span>
+                            Time Aliado
+                        </label>
+                        <label class="radio-time">
+                            <input type="radio" name="objetivo_1100_time" value="Inimigo">
+                            <span class="radio-custom"></span>
+                            Time Inimigo
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Baron Nashor (15:00) -->
+            <div class="objetivo-grupo" data-tempo="15:00">
+                <div class="objetivo-cabecalho">
+                    <span class="tempo-texto">
+                        <input type="checkbox" class="objetivo-checkbox" name="objetivo_1500_ativo">
+                        <span class="checkmark"></span>
+                        15:00 - Baron Nashor
+                    </span>
+                </div>
+                <div class="objetivo-opcoes oculta">
+                    <select name="objetivo_1500_tipo" class="select-objetivo">
+                        <option value="">Selecione o objetivo...</option>
+                        <option value="Baron">Baron Nashor</option>
+                        <option value="Nenhum">Nenhum</option>
+                    </select>
+                    <div class="objetivo-time">
+                        <label class="radio-time">
+                            <input type="radio" name="objetivo_1500_time" value="Aliado">
+                            <span class="radio-custom"></span>
+                            Time Aliado
+                        </label>
+                        <label class="radio-time">
+                            <input type="radio" name="objetivo_1500_time" value="Inimigo">
+                            <span class="radio-custom"></span>
+                            Time Inimigo
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Terceiro Dragão ou Baron (16:00) -->
+            <div class="objetivo-grupo" data-tempo="16:00">
+                <div class="objetivo-cabecalho">
+                    <span class="tempo-texto">
+                        <input type="checkbox" class="objetivo-checkbox" name="objetivo_1600_ativo">
+                        <span class="checkmark"></span>
+                        16:00 - Terceiro Dragão ou Baron
+                    </span>
+                </div>
+                <div class="objetivo-opcoes oculta">
+                    <select name="objetivo_1600_tipo" class="select-objetivo">
+                        <option value="">Selecione o objetivo...</option>
+                        <option value="Fogo">Dragão de Fogo</option>
+                        <option value="Gelo">Dragão de Gelo</option>
+                        <option value="Montanha">Dragão de Montanha</option>
+                        <option value="Oceano">Dragão de Oceano</option>
+                        <option value="Baron">Baron Nashor</option>
+                        <option value="Nenhum">Nenhum</option>
+                    </select>
+                    <div class="objetivo-time">
+                        <label class="radio-time">
+                            <input type="radio" name="objetivo_1600_time" value="Aliado">
+                            <span class="radio-custom"></span>
+                            Time Aliado
+                        </label>
+                        <label class="radio-time">
+                            <input type="radio" name="objetivo_1600_time" value="Inimigo">
+                            <span class="radio-custom"></span>
+                            Time Inimigo
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dragão Ancião (18:00) -->
+            <div class="objetivo-grupo" data-tempo="18:00">
+                <div class="objetivo-cabecalho">
+                    <span class="tempo-texto">
+                        <input type="checkbox" class="objetivo-checkbox" name="objetivo_1800_ativo">
+                        <span class="checkmark"></span>
+                        18:00 - Dragão Ancião
+                    </span>
+                </div>
+                <div class="objetivo-opcoes oculta">
+                    <select name="objetivo_1800_tipo" class="select-objetivo">
+                        <option value="">Selecione o objetivo...</option>
+                        <option value="Ancião">Dragão Ancião</option>
+                        <option value="Nenhum">Nenhum</option>
+                    </select>
+                    <div class="objetivo-time">
+                        <label class="radio-time">
+                            <input type="radio" name="objetivo_1800_time" value="Aliado">
+                            <span class="radio-custom"></span>
+                            Time Aliado
+                        </label>
+                        <label class="radio-time">
+                            <input type="radio" name="objetivo_1800_time" value="Inimigo">
+                            <span class="radio-custom"></span>
+                            Time Inimigo
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group obrigatorio">
+            <label for="controleVisao">Controle de visão</label>
+            <textarea id="controleVisao" name="controle_visao" placeholder="Uso de wards e visão" required></textarea>
+        </div>
+    </div>
+
+    <div class="botoes-navegacao">
+        <button type="button" class="btn btn-voltar">Voltar</button>
+        <button type="button" class="btn btn-avancar">Avançar</button>
+    </div>
+</div>
 
             <!-- Página 5: Erros -->
             <div class="pagina oculta" id="pagina5" data-pagina="5">
@@ -390,75 +598,134 @@
             </div>
 
             <!-- Página 6: Pós-Jogo -->
-            <div class="pagina oculta" id="pagina6" data-pagina="6">
-                <div class="secao">
-                    <h2 class="titulo">
-                        <img src="https://i.ibb.co/766YHfJ/4681-sweating-blitzcrank-inventory-accessories-14-19.png" alt="Pós-Jogo" class="emote">
-                        Pós-Jogo
-                    </h2>
+<div class="pagina oculta" id="pagina6" data-pagina="6">
+    <div class="secao">
+        <h2 class="titulo">
+            <img src="https://i.ibb.co/766YHfJ/4681-sweating-blitzcrank-inventory-accessories-14-19.png" alt="Pós-Jogo" class="emote">
+            Pós-Jogo
+        </h2>
 
-                    <div class="form-group">
-                        <label for="resumoPartida">Resumo da partida</label>
-                        <textarea id="resumoPartida" name="resumo_partida" placeholder="Resumo geral da partida" required></textarea>
+        <div class="form-group">
+            <label for="resumoPartida">Resumo da partida</label>
+            <textarea id="resumoPartida" name="resumo_partida" placeholder="Resumo geral da partida" required></textarea>
+        </div>
+
+        <!-- Rota Impactante (Jungle E Mid) -->
+        <div class="form-group jungle-mid-only oculta" id="rotaImpactanteContainer">
+            <label for="rotaImpactante">Rota mais impactada</label>
+            <input type="text" id="rotaImpactante" name="rota_impactante" placeholder="Rota com maior influência">
+        </div>
+
+        <div class="form-group">
+            <label for="momentosChave">Momentos chave</label>
+            <textarea id="momentosChave" name="momentos_chave" placeholder="Momentos decisivos" required></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="aprendizados">Aprendizados</label>
+            <textarea id="aprendizados" name="aprendizados" placeholder="Aprendizados da partida" required></textarea>
+        </div>
+    </div>
+
+    <!-- Nova Seção: Upload de Imagens -->
+    <div class="secao">
+        <h2 class="titulo">
+            <img src="https://i.ibb.co/CsvL6HZB/10034-em-ll-pengu-phonescreenshot-inventory-tft-accessories-1519.png" alt="10034-em-ll-pengu-phonescreenshot-inventory-tft-accessories-1519" class="emote">
+            Imagens da Partida
+        </h2>
+
+        <div class="imagens-container">
+            <!-- Upload da Build e KDA -->
+            <div class="upload-group">
+                <label class="upload-label">
+                    <span class="upload-title">Build e KDA</span>
+                    <span class="upload-description">Print da tela de final de partida mostrando itens e estatísticas</span>
+                    <input type="file" 
+                           name="imagem_build_kda" 
+                           class="upload-input" 
+                           accept="image/*" 
+                           capture="environment">
+                    <div class="upload-area">
+                        <div class="upload-placeholder">
+                            <span class="upload-icon"></span>
+                            <span class="upload-text">Clique para adicionar ou arraste uma imagem</span>
+                            <span class="upload-hint">PNG, JPG ou WebP (máx. 5MB)</span>
+                        </div>
+                        <div class="upload-preview oculta">
+                            <img src="" alt="Preview da build e KDA" class="preview-image">
+                            <button type="button" class="btn-remover-imagem"> Remover</button>
+                        </div>
                     </div>
-
-                    <!-- Rota Impactante (Jungle E Mid) -->
-                    <div class="form-group jungle-mid-only oculta" id="rotaImpactanteContainer">
-                        <label for="rotaImpactante">Rota mais impactada</label>
-                        <input type="text" id="rotaImpactante" name="rota_impactante" placeholder="Rota com maior influência">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="momentosChave">Momentos chave</label>
-                        <textarea id="momentosChave" name="momentos_chave" placeholder="Momentos decisivos" required></textarea>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="aprendizados">Aprendizados</label>
-                        <textarea id="aprendizados" name="aprendizados" placeholder="Aprendizados da partida" required></textarea>
-                    </div>
-                </div>
-
-                <div class="secao">
-                    <h2 class="titulo">Checklist Rápido</h2>
-                    <div class="checklist-container">
-                        <label class="checklist-item">
-                            <input type="checkbox" name="check_pathing" value="Sim">
-                            <span class="checkmark"></span>
-                            Pathing condizente
-                        </label>
-                        <label class="checklist-item">
-                            <input type="checkbox" name="check_recursos" value="Sim">
-                            <span class="checkmark"></span>
-                            Recursos bem usados
-                        </label>
-                        <label class="checklist-item">
-                            <input type="checkbox" name="check_trocas" value="Sim">
-                            <span class="checkmark"></span>
-                            Boa troca de ganhos x perdas
-                        </label>
-                        <label class="checklist-item">
-                            <input type="checkbox" name="check_visao" value="Sim">
-                            <span class="checkmark"></span>
-                            Controle de visão
-                        </label>
-                        <label class="checklist-item">
-                            <input type="checkbox" name="check_aprendizados" value="Sim">
-                            <span class="checkmark"></span>
-                            Aprendizados anotados
-                        </label>
-                    </div>
-                </div>
-
-                <div class="botoes-navegacao">
-                    <button type="button" class="btn btn-voltar">Voltar</button>
-                    <button type="submit" class="btn btn-enviar">Enviar Análise</button>
-                </div>
+                </label>
             </div>
+
+            <!-- Upload das Runas -->
+            <div class="upload-group">
+                <label class="upload-label">
+                    <span class="upload-title">Runas</span>
+                    <span class="upload-description">Print da tela de runas usadas na partida</span>
+                    <input type="file" 
+                           name="imagem_runas" 
+                           class="upload-input" 
+                           accept="image/*" 
+                           capture="environment">
+                    <div class="upload-area">
+                        <div class="upload-placeholder">
+                            <span class="upload-icon"></span>
+                            <span class="upload-text">Clique para adicionar ou arraste uma imagem</span>
+                            <span class="upload-hint">PNG, JPG ou WebP (máx. 5MB)</span>
+                        </div>
+
+                        <div class="upload-preview oculta">
+                            <img src="" alt="Preview das runas" class="preview-image">
+                            <button type="button" class="btn-remover-imagem"> Remover</button>
+                        </div>
+                    </div>
+                </label>
+            </div>  
+
+    <div class="secao">
+        <h2 class="titulo">
+            <img src="https://i.ibb.co/tMP8W18C/4866-onward-inventory-accessories-15-11.png" alt="4866-onward-inventory-accessories-15-11" class="emote"> Checklist Rápido</h2>
+        <div class="checklist-container">
+            <label class="checklist-item">
+                <input type="checkbox" name="check_pathing" value="Sim">
+                <span class="checkmark"></span>
+                Pathing condizente
+            </label>
+            <label class="checklist-item">
+                <input type="checkbox" name="check_recursos" value="Sim">
+                <span class="checkmark"></span>
+                Recursos bem usados
+            </label>
+            <label class="checklist-item">
+                <input type="checkbox" name="check_trocas" value="Sim">
+                <span class="checkmark"></span>
+                Boa troca de ganhos x perdas
+            </label>
+            <label class="checklist-item">
+                <input type="checkbox" name="check_visao" value="Sim">
+                <span class="checkmark"></span>
+                Controle de visão
+            </label>
+            <label class="checklist-item">
+                <input type="checkbox" name="check_aprendizados" value="Sim">
+                <span class="checkmark"></span>
+                Aprendizados anotados
+            </label>
+        </div>
+    </div>
+</div>
+
+    <div class="botoes-navegacao">
+        <button type="button" class="btn btn-voltar">Voltar</button>
+        <button type="submit" class="btn btn-enviar">Enviar Análise</button>
+    </div>
+</div>
+</div>
         </form>
     </div>
 
-    <!-- Scripts Modulares -->
     <script src="./src/js/core/estilos.js"></script>
     <script src="./src/js/core/nav.js"></script>
     <script src="./src/js/core/validacao.js"></script>
@@ -466,5 +733,6 @@
     <script src="./src/js/modules/objetivos.js"></script>
     <script src="./src/js/modules/template.js"></script>
     <script src="./src/js/index.js"></script>
+    <script src="./src/js/modules/upload.js"></script>
 </body>
 </html>

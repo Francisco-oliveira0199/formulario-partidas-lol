@@ -7,6 +7,7 @@ class DraftSystem {
             'Adc': 'adc',
             'Sup': 'sup'
         };
+        this.paginaAtual = 1;
     }
 
     init() {
@@ -67,13 +68,11 @@ class DraftSystem {
     atualizarVisibilidadeRota(rotaSelecionada) {
         console.log('🔄 Atualizando visibilidade para rota:', rotaSelecionada);
         
-        // CORREÇÃO CRÍTICA: Separar Jungle-only de Jungle-Mid
-        const elementosJungleOnly = document.querySelectorAll('.jungle-only');
-        const elementosJungleMid = document.querySelectorAll('.jungle-mid-only');
-        const paginaJungle = document.getElementById('pagina2');
-
         // CORREÇÃO: Jungle-only deve aparecer APENAS para Jungle
         const isJungle = rotaSelecionada === 'Jungle';
+        const elementosJungleOnly = document.querySelectorAll('.jungle-only');
+        const paginaJungle = document.getElementById('pagina2');
+
         elementosJungleOnly.forEach(el => {
             if (isJungle) {
                 el.classList.remove('oculta');
@@ -82,7 +81,7 @@ class DraftSystem {
             }
         });
         
-        // CORREÇÃO: Página 2 (Clear Inicial) deve aparecer APENAS para Jungle
+        // CORREÇÃO CRÍTICA: Página 2 deve aparecer APENAS para Jungle
         if (paginaJungle) {
             if (isJungle) {
                 paginaJungle.classList.remove('oculta');
@@ -93,6 +92,8 @@ class DraftSystem {
 
         // CORREÇÃO: Jungle-mid-only deve aparecer para Jungle E Mid
         const isJungleOrMid = ['Jungle', 'Mid'].includes(rotaSelecionada);
+        const elementosJungleMid = document.querySelectorAll('.jungle-mid-only');
+        
         elementosJungleMid.forEach(el => {
             if (isJungleOrMid) {
                 el.classList.remove('oculta');
@@ -109,8 +110,10 @@ class DraftSystem {
 
         console.log(`👀 Visibilidade atualizada - Jungle: ${isJungle}, Jungle/Mid: ${isJungleOrMid}`);
         
-        // CORREÇÃO: Atualizar navegação para pular página 2 se não for Jungle
-        this.ajustarNavegacaoRota(rotaSelecionada);
+        // CORREÇÃO: Se não for Jungle e estiver na página 2, voltar automaticamente para página 1
+        if (!isJungle && this.paginaAtual === 2 && window.analyzer && window.analyzer.modulos.nav) {
+            window.analyzer.modulos.nav.irParaPagina(1);
+        }
     }
 
     ajustarNavegacaoRota(rotaSelecionada) {

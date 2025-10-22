@@ -15,14 +15,26 @@
     transition: var(--transition);
 }
 
+.objetivo-grupo:last-child {
+    margin-bottom: 0;
+}
+
 .objetivo-grupo.ativo {
     background: rgba(200, 170, 110, 0.1);
     border-color: var(--cor-destaque);
+    box-shadow: 0 0 15px rgba(200, 170, 110, 0.2);
 }
 
 .objetivo-grupo.erro {
     border-color: var(--cor-erro);
     background: rgba(255, 71, 87, 0.05);
+    animation: tremor 0.3s ease-in-out;
+}
+
+@keyframes tremor {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-3px); }
+    75% { transform: translateX(3px); }
 }
 
 .objetivo-cabecalho {
@@ -30,9 +42,14 @@
     align-items: center;
     margin-bottom: 0;
     cursor: pointer;
+    transition: var(--transition);
 }
 
-.checkbox-objetivo {
+.objetivo-cabecalho:hover {
+    transform: translateX(5px);
+}
+
+.tempo-texto {
     display: flex;
     align-items: center;
     gap: 12px;
@@ -41,29 +58,53 @@
     font-weight: bold;
     color: var(--cor-texto);
     flex: 1;
+    transition: var(--transition);
 }
 
-.checkbox-objetivo input[type="checkbox"] {
+.tempo-texto:hover {
+    color: var(--cor-destaque);
+}
+
+.objetivo-checkbox {
     display: none;
 }
 
-.checkbox-objetivo .checkmark {
+.tempo-texto .checkmark {
     width: 20px;
     height: 20px;
     border-radius: 4px;
+    border: 2px solid var(--cor-borda);
+    transition: var(--transition);
+    flex-shrink: 0;
+    position: relative;
 }
 
-.tempo-objetivo {
-    font-size: 16px;
-    color: var(--cor-destaque);
+.tempo-texto:hover .checkmark {
+    border-color: var(--cor-destaque);
+}
+
+.objetivo-checkbox:checked + .checkmark {
+    background: var(--cor-destaque);
+    border-color: var(--cor-destaque);
+}
+
+.objetivo-checkbox:checked + .checkmark::after {
+    content: '✓';
+    color: var(--cor-primaria);
+    font-size: 12px;
     font-weight: bold;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
-.checkbox-objetivo input:checked ~ .tempo-objetivo {
-    color: var(--cor-sucesso);
+.objetivo-checkbox:checked ~ .tempo-texto {
+    color: var(--cor-destaque);
+    text-shadow: 0 0 10px rgba(200, 170, 110, 0.5);
 }
 
-.objetivo-grupo.erro .tempo-objetivo {
+.objetivo-grupo.erro .tempo-texto {
     color: var(--cor-erro);
 }
 
@@ -75,11 +116,30 @@
     grid-template-columns: 1fr auto;
     gap: 20px;
     align-items: start;
+    animation: aparecerSuave 0.3s ease;
 }
 
-.objetivo-opcoes.visivel {
+.objetivo-opcoes.oculta {
+    display: none;
+}
+
+.objetivo-duplo {
+    grid-column: 1;
     display: grid;
-    animation: aparecerSuave 0.3s ease;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.select-duplo {
+    display: flex;
+    flex-direction: column;
+}
+
+.select-duplo label {
+    font-size: 12px;
+    color: var(--cor-texto);
+    margin-bottom: 5px;
+    font-weight: normal;
 }
 
 @keyframes aparecerSuave {
@@ -102,6 +162,18 @@
     border-radius: var(--border-radius);
     font-size: 14px;
     cursor: pointer;
+    transition: var(--transition);
+}
+
+.select-objetivo:focus {
+    border-color: var(--cor-destaque);
+    box-shadow: 0 0 10px rgba(200, 170, 110, 0.3);
+}
+
+.select-objetivo option {
+    background: var(--cor-primaria);
+    color: var(--cor-texto);
+    padding: 8px;
 }
 
 .objetivo-time {
@@ -115,7 +187,7 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    padding: 6px 10px;
+    padding: 8px 12px;
     border-radius: var(--border-radius);
     transition: var(--transition);
     cursor: pointer;
@@ -124,6 +196,7 @@
 
 .radio-time:hover {
     background: rgba(200, 170, 110, 0.1);
+    border-color: var(--cor-borda);
 }
 
 .radio-time input[type="radio"] {
@@ -140,6 +213,10 @@
     justify-content: center;
     transition: var(--transition);
     flex-shrink: 0;
+}
+
+.radio-time:hover .radio-custom {
+    border-color: var(--cor-destaque);
 }
 
 .radio-time input[type="radio"]:checked + .radio-custom {
@@ -165,4 +242,50 @@
     margin-top: 8px;
     text-align: center;
     font-style: italic;
+    grid-column: 1 / -1;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .objetivo-opcoes {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .objetivo-duplo {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+    
+    .objetivo-time {
+        flex-direction: row;
+        justify-content: space-around;
+        min-width: auto;
+    }
+    
+    .objetivo-grupo {
+        padding: 12px;
+    }
+    
+    .tempo-texto {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .objetivos-container {
+        padding: 15px;
+    }
+    
+    .tempo-texto {
+        gap: 8px;
+    }
+    
+    .tempo-texto {
+        font-size: 13px;
+    }
+    
+    .objetivo-duplo {
+        grid-template-columns: 1fr;
+    }
 }

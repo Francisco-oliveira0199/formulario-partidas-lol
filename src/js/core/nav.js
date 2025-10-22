@@ -31,14 +31,34 @@ class Navigation {
     }
 
     avancarPagina() {
-        if (this.paginaAtual < this.totalPaginas) {
-            this.irParaPagina(this.paginaAtual + 1);
+        const rotaSelecionada = document.querySelector('input[name="rota"]:checked')?.value;
+        const isJungle = rotaSelecionada === 'Jungle';
+        
+        let proximaPagina = this.paginaAtual + 1;
+        
+        // CORREÇÃO: Se não for Jungle e estiver na página 1, pular para página 3
+        if (!isJungle && this.paginaAtual === 1) {
+            proximaPagina = 3;
+        }
+        
+        if (proximaPagina <= this.totalPaginas) {
+            this.irParaPagina(proximaPagina);
         }
     }
 
     voltarPagina() {
-        if (this.paginaAtual > 1) {
-            this.irParaPagina(this.paginaAtual - 1);
+        const rotaSelecionada = document.querySelector('input[name="rota"]:checked')?.value;
+        const isJungle = rotaSelecionada === 'Jungle';
+        
+        let paginaAnterior = this.paginaAtual - 1;
+        
+        // CORREÇÃO: Se não for Jungle e estiver na página 3, voltar para página 1
+        if (!isJungle && this.paginaAtual === 3) {
+            paginaAnterior = 1;
+        }
+        
+        if (paginaAnterior >= 1) {
+            this.irParaPagina(paginaAnterior);
         }
     }
 
@@ -49,6 +69,11 @@ class Navigation {
             this.atualizarProgresso(numero);
             this.atualizarBotoes(numero);
             this.paginaAtual = numero;
+            
+            // Atualizar página atual no DraftSystem
+            if (window.analyzer && window.analyzer.modulos.draft) {
+                window.analyzer.modulos.draft.paginaAtual = numero;
+            }
         }
     }
 
@@ -60,6 +85,11 @@ class Navigation {
             if (!campo.checkValidity()) {
                 campo.classList.add('erro');
                 valido = false;
+                
+                // Scroll para o primeiro campo com erro
+                if (valido === false) {
+                    campo.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
             }
         });
 
@@ -77,13 +107,29 @@ class Navigation {
         const pagina = document.getElementById(`pagina${numero}`);
         if (pagina) {
             pagina.classList.add('ativo');
+            
+            // Scroll para o topo da página
+            setTimeout(() => {
+                pagina.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 100);
         }
     }
 
     atualizarProgresso(numero) {
         document.querySelectorAll('.barra-progresso').forEach((barra, index) => {
-            barra.classList.toggle('ativo', index + 1 === numero);
-            barra.classList.toggle('concluido', index + 1 < numero);
+            const numeroBarra = index + 1;
+            barra.classList.toggle('ativo', numeroBarra === numero);
+            barra.classList.toggle('concluido', numeroBarra < numero);
+            
+            // CORREÇÃO: Ocultar visualmente a página 2 no progresso se não for Jungle
+            const rotaSelecionada = document.querySelector('input[name="rota"]:checked')?.value;
+            const isJungle = rotaSelecionada === 'Jungle';
+            
+            if (numeroBarra === 2 && !isJungle) {
+                barra.style.opacity = '0.3';
+            } else {
+                barra.style.opacity = '1';
+            }
         });
     }
 
@@ -92,5 +138,24 @@ class Navigation {
         if (btnVoltar) {
             btnVoltar.disabled = numero === 1;
         }
+        
+        // Atualizar texto do botão avançar na última página
+        const btnAvancar = document.querySelector('.btn-avancar');
+        if (btnAvancar && numero === this.totalPaginas) {
+            btnAvancar.style.display = 'none';
+        } else if (btnAvancar) {
+            btnAvancar.style.display = 'block';
+        }
+    }
+
+    getProximaPagina() {
+        const rotaSelecionada = document.querySelector('input[name="rota"]:checked')?.value;
+        const isJungle = rotaSelecionada === 'Jungle';
+        
+        if (!isJungle && this.paginaAtual === 1) {
+            return 3; // Pular página 2 se não for Jungle
+        }
+        
+        return this.paginaAtual + 1;
     }
 }
