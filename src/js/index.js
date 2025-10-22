@@ -6,7 +6,7 @@ class WildRiftAnalyzer {
 
     init() {
         try {
-            console.log('🎮 Inicializando Wild Rift Analyzer...');
+            console.log(' Inicializando Wild Rift Analyzer...');
             
             // Inicializar módulos na ordem correta
             this.modulos.estilos = new EstilosManager();
