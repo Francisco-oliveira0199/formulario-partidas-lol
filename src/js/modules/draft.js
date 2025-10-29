@@ -14,6 +14,7 @@ class DraftSystem {
         console.log('🎯 Inicializando DraftSystem...');
         this.configurarEventos();
         this.inicializarDrafts();
+        this.inicializarChecklist(); // NOVO: Inicializar checklist
         console.log('✅ DraftSystem inicializado');
     }
 
@@ -23,6 +24,7 @@ class DraftSystem {
                 console.log('🔄 Rota selecionada:', e.target.value);
                 this.atualizarDraftAliado(e.target.value);
                 this.atualizarVisibilidadeRota(e.target.value);
+                this.atualizarChecklistRota(e.target.value); // NOVO MÉTODO
             }
         });
     }
@@ -34,6 +36,16 @@ class DraftSystem {
         });
         
         console.log('📋 Drafts aliados inicializados (ocultos)');
+    }
+
+    // NOVO: Inicializar checklist
+    inicializarChecklist() {
+        // Garantir que o checklist jungle comece oculto
+        const checklistPathing = document.getElementById('checklistPathingContainer');
+        if (checklistPathing) {
+            checklistPathing.classList.add('oculta');
+            console.log('📋 Checklist Pathing inicializado (oculto)');
+        }
     }
 
     atualizarDraftAliado(rotaJogador) {
@@ -65,14 +77,35 @@ class DraftSystem {
         }
     }
 
+    // NOVO MÉTODO: Atualizar visibilidade do checklist baseado na rota
+    atualizarChecklistRota(rotaSelecionada) {
+        const isJungle = rotaSelecionada === 'Jungle';
+        const checklistPathing = document.getElementById('checklistPathingContainer');
+        
+        if (checklistPathing) {
+            if (isJungle) {
+                checklistPathing.classList.remove('oculta');
+                console.log('📋 Checklist Pathing: VISÍVEL para Jungle');
+            } else {
+                checklistPathing.classList.add('oculta');
+                // Resetar o checkbox se não for Jungle
+                const checkbox = checklistPathing.querySelector('input[type="checkbox"]');
+                if (checkbox) {
+                    checkbox.checked = false;
+                    console.log('📋 Checklist Pathing: OCULTO e desmarcado');
+                }
+            }
+        }
+    }
+
     atualizarVisibilidadeRota(rotaSelecionada) {
         console.log('🔄 Atualizando visibilidade para rota:', rotaSelecionada);
         
-        // CORREÇÃO: Jungle-only deve aparecer APENAS para Jungle
         const isJungle = rotaSelecionada === 'Jungle';
         const elementosJungleOnly = document.querySelectorAll('.jungle-only');
         const paginaJungle = document.getElementById('pagina2');
 
+        // Atualizar elementos jungle-only
         elementosJungleOnly.forEach(el => {
             if (isJungle) {
                 el.classList.remove('oculta');
@@ -101,6 +134,9 @@ class DraftSystem {
                 el.classList.add('oculta');
             }
         });
+
+        // NOVO: Atualizar checklist também
+        this.atualizarChecklistRota(rotaSelecionada);
 
         // Atualizar campo hidden
         const rotaHidden = document.getElementById('rotaSelecionadaHidden');

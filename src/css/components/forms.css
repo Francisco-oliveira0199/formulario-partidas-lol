@@ -228,3 +228,27 @@ select {
     flex-direction: column;
     gap: 10px;
 }
+
+/* NOVO: Estilo específico para checklist jungle */
+.checklist-item.jungle-only {
+    transition: all 0.3s ease;
+}
+
+.checklist-item.jungle-only.oculta {
+    display: none !important;
+}
+
+/* Garantir que o checklist jungle tenha o mesmo estilo dos outros */
+.checklist-item.jungle-only {
+    background: rgba(10, 20, 40, 0.6);
+    border: 1px solid transparent;
+    padding: 8px 12px;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.checklist-item.jungle-only:hover {
+    background: rgba(200, 170, 110, 0.1);
+    border-color: var(--cor-borda);
+}
