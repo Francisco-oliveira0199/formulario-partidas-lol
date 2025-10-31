@@ -252,3 +252,12 @@ select {
     background: rgba(200, 170, 110, 0.1);
     border-color: var(--cor-borda);
 }
+
+/* ELEMENTOS ESPECÍFICOS POR ROTA */
+.jungle-only, .jungle-mid-only {
+    transition: all 0.3s ease;
+}
+
+.jungle-only.oculta, .jungle-mid-only.oculta {
+    display: none !important;
+}

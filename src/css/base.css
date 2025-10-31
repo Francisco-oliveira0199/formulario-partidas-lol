@@ -45,7 +45,7 @@ body::before {
     box-shadow: var(--shadow-lg);
 }
 
-/* CORREÇÃO CRÍTICA: Estados de visibilidade */
+/* CORREÇÃO CRÍTICA: Estados de visibilidade - GARANTIR prioridade */
 .oculta { 
     display: none !important; 
 }

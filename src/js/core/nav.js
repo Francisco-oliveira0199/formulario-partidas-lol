@@ -1,3 +1,4 @@
+// nav.js - VERSÃO CORRIGIDA
 class Navigation {
     constructor() {
         this.paginaAtual = 1;
@@ -36,10 +37,13 @@ class Navigation {
         
         let proximaPagina = this.paginaAtual + 1;
         
-        // CORREÇÃO: Se não for Jungle e estiver na página 1, pular para página 3
+        // CORREÇÃO: Lógica simplificada - Jungle segue sequência normal
+        // Não-Jungle pula da página 1 para página 3
         if (!isJungle && this.paginaAtual === 1) {
             proximaPagina = 3;
         }
+        
+        console.log(`🔄 Avançando: ${this.paginaAtual} → ${proximaPagina} (Jungle: ${isJungle})`);
         
         if (proximaPagina <= this.totalPaginas) {
             this.irParaPagina(proximaPagina);
@@ -52,10 +56,14 @@ class Navigation {
         
         let paginaAnterior = this.paginaAtual - 1;
         
-        // CORREÇÃO: Se não for Jungle e estiver na página 3, voltar para página 1
+        // CORREÇÃO: Lógica de voltar corrigida
         if (!isJungle && this.paginaAtual === 3) {
             paginaAnterior = 1;
+        } else if (isJungle && this.paginaAtual === 3) {
+            paginaAnterior = 2; // Jungle volta da 3 para 2 normalmente
         }
+        
+        console.log(`🔄 Voltando: ${this.paginaAtual} → ${paginaAnterior} (Jungle: ${isJungle})`);
         
         if (paginaAnterior >= 1) {
             this.irParaPagina(paginaAnterior);
@@ -63,8 +71,10 @@ class Navigation {
     }
 
     irParaPagina(numero) {
+        console.log(`🎯 Navegando para página ${numero}`);
+        
         if (this.validarPaginaAtual()) {
-            this.ocultarPaginaAtual();
+            this.ocultarTodasPaginas();
             this.mostrarPagina(numero);
             this.atualizarProgresso(numero);
             this.atualizarBotoes(numero);
@@ -73,12 +83,33 @@ class Navigation {
             // Atualizar página atual no DraftSystem
             if (window.analyzer && window.analyzer.modulos.draft) {
                 window.analyzer.modulos.draft.paginaAtual = numero;
+                // Forçar atualização da visibilidade ao mudar de página
+                setTimeout(() => {
+                    window.analyzer.modulos.draft.atualizarVisibilidadeRota();
+                }, 100);
             }
         }
     }
 
+    ocultarTodasPaginas() {
+        document.querySelectorAll('.pagina').forEach(pagina => {
+            pagina.classList.remove('ativo');
+        });
+    }
+
     validarPaginaAtual() {
-        const camposObrigatorios = document.querySelectorAll(`#pagina${this.paginaAtual} [required]`);
+        const paginaAtual = document.getElementById(`pagina${this.paginaAtual}`);
+        let camposObrigatorios = paginaAtual.querySelectorAll('[required]');
+        
+        // CORREÇÃO: Filtrar campos que estão visíveis
+        camposObrigatorios = Array.from(camposObrigatorios).filter(campo => {
+            const elementoPai = campo.closest('.jungle-only, .jungle-mid-only');
+            if (elementoPai && elementoPai.classList.contains('oculta')) {
+                return false; // Ignorar campos em elementos ocultos
+            }
+            return true;
+        });
+        
         let valido = true;
 
         camposObrigatorios.forEach(campo => {
@@ -89,18 +120,18 @@ class Navigation {
                 // Scroll para o primeiro campo com erro
                 if (valido === false) {
                     campo.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    campo.focus();
                 }
+            } else {
+                campo.classList.remove('erro');
             }
         });
 
-        return valido;
-    }
-
-    ocultarPaginaAtual() {
-        const paginaAtual = document.getElementById(`pagina${this.paginaAtual}`);
-        if (paginaAtual) {
-            paginaAtual.classList.remove('ativo');
+        if (!valido) {
+            alert('Por favor, preencha todos os campos obrigatórios antes de avançar.');
         }
+
+        return valido;
     }
 
     mostrarPagina(numero) {
@@ -116,19 +147,30 @@ class Navigation {
     }
 
     atualizarProgresso(numero) {
+        const rotaSelecionada = document.querySelector('input[name="rota"]:checked')?.value;
+        const isJungle = rotaSelecionada === 'Jungle';
+        
         document.querySelectorAll('.barra-progresso').forEach((barra, index) => {
             const numeroBarra = index + 1;
-            barra.classList.toggle('ativo', numeroBarra === numero);
-            barra.classList.toggle('concluido', numeroBarra < numero);
             
-            // CORREÇÃO: Ocultar visualmente a página 2 no progresso se não for Jungle
-            const rotaSelecionada = document.querySelector('input[name="rota"]:checked')?.value;
-            const isJungle = rotaSelecionada === 'Jungle';
+            // Estados principais
+            const estaAtiva = numeroBarra === numero;
+            const foiConcluida = numeroBarra < numero;
+            const ehPagina2 = numeroBarra === 2;
             
-            if (numeroBarra === 2 && !isJungle) {
-                barra.style.opacity = '0.3';
-            } else {
-                barra.style.opacity = '1';
+            // Resetar classes
+            barra.classList.remove('ativo', 'concluido', 'ignorada', 'com-erro');
+            
+            // Aplicar classes conforme estado
+            if (estaAtiva) {
+                barra.classList.add('ativo');
+            } else if (foiConcluida) {
+                barra.classList.add('concluido');
+            }
+            
+            // Página 2 fica "ignorada" se não for Jungle
+            if (!isJungle && ehPagina2) {
+                barra.classList.add('ignorada');
             }
         });
     }
@@ -141,21 +183,16 @@ class Navigation {
         
         // Atualizar texto do botão avançar na última página
         const btnAvancar = document.querySelector('.btn-avancar');
-        if (btnAvancar && numero === this.totalPaginas) {
-            btnAvancar.style.display = 'none';
-        } else if (btnAvancar) {
-            btnAvancar.style.display = 'block';
-        }
-    }
-
-    getProximaPagina() {
-        const rotaSelecionada = document.querySelector('input[name="rota"]:checked')?.value;
-        const isJungle = rotaSelecionada === 'Jungle';
+        const btnEnviar = document.querySelector('.btn-enviar');
         
-        if (!isJungle && this.paginaAtual === 1) {
-            return 3; // Pular página 2 se não for Jungle
+        if (btnAvancar && btnEnviar) {
+            if (numero === this.totalPaginas) {
+                btnAvancar.style.display = 'none';
+                btnEnviar.style.display = 'block';
+            } else {
+                btnAvancar.style.display = 'block';
+                btnEnviar.style.display = 'none';
+            }
         }
-        
-        return this.paginaAtual + 1;
     }
 }

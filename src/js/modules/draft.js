@@ -1,3 +1,4 @@
+// draft.js - VERSÃO CORRIGIDA E SIMPLIFICADA
 class DraftSystem {
     constructor() {
         this.rotas = {
@@ -7,158 +8,189 @@ class DraftSystem {
             'Adc': 'adc',
             'Sup': 'sup'
         };
+        this.rotaSelecionada = null;
         this.paginaAtual = 1;
     }
 
     init() {
-        console.log('🎯 Inicializando DraftSystem...');
+        console.log('🎯 INICIANDO DRAFT SYSTEM');
+        
         this.configurarEventos();
         this.inicializarDrafts();
-        this.inicializarChecklist(); // NOVO: Inicializar checklist
+        this.inicializarChecklist();
+        
         console.log('✅ DraftSystem inicializado');
     }
 
     configurarEventos() {
-        document.addEventListener('change', (e) => {
-            if (e.target.name === 'rota') {
-                console.log('🔄 Rota selecionada:', e.target.value);
-                this.atualizarDraftAliado(e.target.value);
-                this.atualizarVisibilidadeRota(e.target.value);
-                this.atualizarChecklistRota(e.target.value); // NOVO MÉTODO
-            }
+        console.log('🔧 Configurando eventos...');
+        
+        // Evento para mudança de rota
+        document.querySelectorAll('input[name="rota"]').forEach(radio => {
+            radio.addEventListener('change', (e) => {
+                if (e.target.checked) {
+                    this.rotaSelecionada = e.target.value;
+                    console.log('🎯 ROTA SELECIONADA:', this.rotaSelecionada);
+                    this.atualizarDraftAliado();
+                    this.atualizarVisibilidadeRota();
+                }
+            });
         });
+
+        // Verificar se já tem rota selecionada
+        setTimeout(() => {
+            const rotaPreSelecionada = document.querySelector('input[name="rota"]:checked');
+            if (rotaPreSelecionada) {
+                this.rotaSelecionada = rotaPreSelecionada.value;
+                console.log('🔍 Rota pré-selecionada:', this.rotaSelecionada);
+                this.atualizarDraftAliado();
+                this.atualizarVisibilidadeRota();
+            }
+        }, 100);
     }
 
     inicializarDrafts() {
-        // Ocultar todos os drafts aliados inicialmente
-        Object.values(this.rotas).forEach(rota => {
-            this.toggleDraftField(rota, false);
+        console.log('📋 INICIALIZAÇÃO: Ocultando TODOS os drafts aliados inicialmente');
+        
+        // Inicialmente ocultar todos os drafts aliados
+        const draftAliadoFields = this.getDraftAliadoFields();
+        draftAliadoFields.forEach(field => {
+            this.ocultarCampo(field);
         });
         
-        console.log('📋 Drafts aliados inicializados (ocultos)');
+        console.log(`🚫 ${draftAliadoFields.length} drafts aliados ocultos`);
     }
 
-    // NOVO: Inicializar checklist
+    atualizarDraftAliado() {
+        if (!this.rotaSelecionada) {
+            console.log('⏳ Aguardando seleção de rota...');
+            return;
+        }
+        
+        console.log('🔄 ATUALIZANDO DRAFT para rota:', this.rotaSelecionada);
+        
+        const draftAliadoFields = this.getDraftAliadoFields();
+        let mostrados = 0;
+        let ocultados = 0;
+        
+        // LÓGICA CORRIGIDA: Mostrar APENAS as rotas que NÃO são a do jogador
+        draftAliadoFields.forEach(field => {
+            const rotaField = field.getAttribute('data-rota');
+            const rotaCorrespondente = this.getRotaPorId(rotaField);
+            
+            if (!rotaCorrespondente) {
+                console.warn('⚠️ Rota não encontrada para campo:', rotaField);
+                return;
+            }
+            
+            if (rotaCorrespondente !== this.rotaSelecionada) {
+                // MOSTRAR esta rota (não é a do jogador)
+                this.mostrarCampo(field);
+                mostrados++;
+            } else {
+                // OCULTAR esta rota (é a do jogador)
+                this.ocultarCampo(field);
+                ocultados++;
+            }
+        });
+        
+        console.log(`🎯 RESULTADO: ${mostrados} mostrados, ${ocultados} ocultados`);
+    }
+
+    mostrarCampo(campo) {
+        campo.classList.remove('oculta');
+    }
+
+    ocultarCampo(campo) {
+        campo.classList.add('oculta');
+    }
+
+    getDraftAliadoFields() {
+        return document.querySelectorAll('.draft-coluna:first-child .draft-field');
+    }
+
+    getRotaPorId(idRota) {
+        return Object.keys(this.rotas).find(nome => this.rotas[nome] === idRota);
+    }
+
     inicializarChecklist() {
-        // Garantir que o checklist jungle comece oculto
         const checklistPathing = document.getElementById('checklistPathingContainer');
         if (checklistPathing) {
             checklistPathing.classList.add('oculta');
-            console.log('📋 Checklist Pathing inicializado (oculto)');
         }
     }
 
-    atualizarDraftAliado(rotaJogador) {
-        console.log('🔄 Atualizando draft aliado para:', rotaJogador);
-        
-        // Ocultar todos os drafts
-        Object.values(this.rotas).forEach(rota => {
-            this.toggleDraftField(rota, false);
+    atualizarVisibilidadeRota() {
+        if (!this.rotaSelecionada) return;
+
+        const isJungle = this.rotaSelecionada === 'Jungle';
+        const isJungleOrMid = ['Jungle', 'Mid'].includes(this.rotaSelecionada);
+        const isTopAdcSup = ['Top', 'Adc', 'Sup'].includes(this.rotaSelecionada);
+
+        console.log(`🔄 Atualizando visibilidade - Rota: ${this.rotaSelecionada}, Jungle: ${isJungle}, Jungle/Mid: ${isJungleOrMid}`);
+
+        // Elementos específicos de Jungle
+        document.querySelectorAll('.jungle-only').forEach(el => {
+            el.classList.toggle('oculta', !isJungle);
         });
 
-        // Mostrar apenas as rotas que NÃO são a do jogador
-        Object.entries(this.rotas).forEach(([nome, id]) => {
-            if (nome !== rotaJogador) {
-                this.toggleDraftField(id, true);
-            }
+        // Elementos específicos de Jungle e Mid
+        document.querySelectorAll('.jungle-mid-only').forEach(el => {
+            el.classList.toggle('oculta', !isJungleOrMid);
         });
 
-        console.log(`🎯 Draft aliado atualizado: mostrando todas as rotas exceto ${rotaJogador}`);
-    }
-
-    toggleDraftField(rotaId, mostrar) {
-        const field = document.querySelector(`.draft-field[data-rota="${rotaId}"]`);
-        if (field) {
-            if (mostrar) {
-                field.classList.remove('oculta');
-            } else {
-                field.classList.add('oculta');
-            }
+        // CORREÇÃO: Para Top/Adc/Sup, garantir que campos de ganks sejam opcionais
+        if (isTopAdcSup && this.paginaAtual === 3) {
+            const camposGanks = ['estadoInimigo', 'recursosQueimados', 'resultadoGank', 'ganhos', 'perdas'];
+            camposGanks.forEach(id => {
+                const campo = document.getElementById(id);
+                if (campo) {
+                    campo.removeAttribute('required');
+                    // Garantir que o placeholder não tenha indicação de obrigatório
+                    if (!campo.placeholder.includes('(opcional')) {
+                        campo.placeholder = campo.placeholder + ' (opcional)';
+                    }
+                }
+            });
         }
+
+        // Atualizar páginas específicas
+        const paginaJungle = document.getElementById('pagina2');
+        if (paginaJungle) {
+            paginaJungle.classList.toggle('oculta', !isJungle);
+        }
+
+        // Atualizar campo hidden
+        const rotaHidden = document.getElementById('rotaSelecionadaHidden');
+        if (rotaHidden) {
+            rotaHidden.value = this.rotaSelecionada;
+        }
+
+        this.atualizarChecklistRota();
     }
 
-    // NOVO MÉTODO: Atualizar visibilidade do checklist baseado na rota
-    atualizarChecklistRota(rotaSelecionada) {
-        const isJungle = rotaSelecionada === 'Jungle';
+    atualizarChecklistRota() {
+        if (!this.rotaSelecionada) return;
+
+        const isJungle = this.rotaSelecionada === 'Jungle';
         const checklistPathing = document.getElementById('checklistPathingContainer');
         
         if (checklistPathing) {
             if (isJungle) {
                 checklistPathing.classList.remove('oculta');
-                console.log('📋 Checklist Pathing: VISÍVEL para Jungle');
             } else {
                 checklistPathing.classList.add('oculta');
-                // Resetar o checkbox se não for Jungle
                 const checkbox = checklistPathing.querySelector('input[type="checkbox"]');
-                if (checkbox) {
-                    checkbox.checked = false;
-                    console.log('📋 Checklist Pathing: OCULTO e desmarcado');
-                }
+                if (checkbox) checkbox.checked = false;
             }
         }
     }
 
-    atualizarVisibilidadeRota(rotaSelecionada) {
-        console.log('🔄 Atualizando visibilidade para rota:', rotaSelecionada);
-        
-        const isJungle = rotaSelecionada === 'Jungle';
-        const elementosJungleOnly = document.querySelectorAll('.jungle-only');
-        const paginaJungle = document.getElementById('pagina2');
-
-        // Atualizar elementos jungle-only
-        elementosJungleOnly.forEach(el => {
-            if (isJungle) {
-                el.classList.remove('oculta');
-            } else {
-                el.classList.add('oculta');
-            }
-        });
-        
-        // CORREÇÃO CRÍTICA: Página 2 deve aparecer APENAS para Jungle
-        if (paginaJungle) {
-            if (isJungle) {
-                paginaJungle.classList.remove('oculta');
-            } else {
-                paginaJungle.classList.add('oculta');
-            }
-        }
-
-        // CORREÇÃO: Jungle-mid-only deve aparecer para Jungle E Mid
-        const isJungleOrMid = ['Jungle', 'Mid'].includes(rotaSelecionada);
-        const elementosJungleMid = document.querySelectorAll('.jungle-mid-only');
-        
-        elementosJungleMid.forEach(el => {
-            if (isJungleOrMid) {
-                el.classList.remove('oculta');
-            } else {
-                el.classList.add('oculta');
-            }
-        });
-
-        // NOVO: Atualizar checklist também
-        this.atualizarChecklistRota(rotaSelecionada);
-
-        // Atualizar campo hidden
-        const rotaHidden = document.getElementById('rotaSelecionadaHidden');
-        if (rotaHidden) {
-            rotaHidden.value = rotaSelecionada;
-        }
-
-        console.log(`👀 Visibilidade atualizada - Jungle: ${isJungle}, Jungle/Mid: ${isJungleOrMid}`);
-        
-        // CORREÇÃO: Se não for Jungle e estiver na página 2, voltar automaticamente para página 1
-        if (!isJungle && this.paginaAtual === 2 && window.analyzer && window.analyzer.modulos.nav) {
-            window.analyzer.modulos.nav.irParaPagina(1);
-        }
-    }
-
-    ajustarNavegacaoRota(rotaSelecionada) {
-        // Se não for Jungle e estiver na página 2, voltar para página 1
-        if (rotaSelecionada !== 'Jungle' && window.analyzer && window.analyzer.modulos.nav) {
-            const nav = window.analyzer.modulos.nav;
-            if (nav.paginaAtual === 2) {
-                nav.irParaPagina(1);
-            }
+    // Método para forçar atualização se necessário
+    forcarAtualizacao() {
+        if (this.rotaSelecionada) {
+            this.atualizarDraftAliado();
+            this.atualizarVisibilidadeRota();
         }
     }
 }
