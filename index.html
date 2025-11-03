@@ -312,55 +312,51 @@
             </div>
 
             <!-- Página 3: Primeiros Ganks -->
-            <div class="pagina oculta" id="pagina3" data-pagina="3">
-                <div class="secao">
-                    <h2 class="titulo">
-                        <img src="https://i.ibb.co/GZDTbbY/10029-em-unbound-thresh-fingerswag-inventory-tft-accessories-1515.png"
-                            alt="Primeiros Ganks" class="emote">
-                        Primeiros Ganks
-                    </h2>
+<div class="pagina oculta" id="pagina3" data-pagina="3">
+    <div class="secao">
+        <h2 class="titulo">
+            <img src="https://i.ibb.co/GZDTbbY/10029-em-unbound-thresh-fingerswag-inventory-tft-accessories-1515.png" alt="Primeiros Ganks" class="emote">
+            Primeiros Ganks
+        </h2>
 
-                    <!-- Rota Alvo (APENAS Jungle E Mid) -->
-                    <div class="form-group jungle-mid-only oculta" id="rotaAlvoContainer">
-                        <label for="rotaAlvo">Rota alvo</label>
-                        <input type="text" id="rotaAlvo" name="rota_alvo" placeholder="Rota com prioridade de ganks">
-                    </div>
+        <!-- Rota Alvo (APENAS Jungle E Mid) -->
+        <div class="form-group jungle-mid-only oculta" id="rotaAlvoContainer">
+            <label for="rotaAlvo">Rota alvo</label>
+            <input type="text" id="rotaAlvo" name="rota_alvo" placeholder="Rota com prioridade de ganks" required>
+        </div>
 
-                    <!-- CAMPOS PARA TODAS AS ROTAS (SEM required) -->
-                    <div class="form-group">
-                        <label for="estadoInimigo">Estado do inimigo</label>
-                        <textarea id="estadoInimigo" name="estado_inimigo"
-                            placeholder="HP, feitiços, ultimate do inimigo"></textarea>
-                    </div>
+        <!-- CAMPOS PARA TODAS AS ROTAS (COM required) -->
+        <div class="form-group">
+            <label for="estadoInimigo">Estado do inimigo</label>
+            <textarea id="estadoInimigo" name="estado_inimigo" placeholder="HP, feitiços, ultimate do inimigo" required></textarea>
+        </div>
 
-                    <div class="form-group">
-                        <label for="recursosQueimados">Recursos queimados</label>
-                        <textarea id="recursosQueimados" name="recursos_queimados"
-                            placeholder="Recursos usados no gank"></textarea>
-                    </div>
+        <div class="form-group">
+            <label for="recursosQueimados">Recursos queimados</label>
+            <textarea id="recursosQueimados" name="recursos_queimados" placeholder="Recursos usados no gank" required></textarea>
+        </div>
 
-                    <div class="form-group">
-                        <label for="resultadoGank">Resultado</label>
-                        <textarea id="resultadoGank" name="resultado_gank" placeholder="Resultado do gank"></textarea>
-                    </div>
+        <div class="form-group">
+            <label for="resultadoGank">Resultado</label>
+            <textarea id="resultadoGank" name="resultado_gank" placeholder="Resultado do gank" required></textarea>
+        </div>
 
-                    <div class="form-group">
-                        <label for="ganhos">Ganhos</label>
-                        <textarea id="ganhos" name="ganhos" placeholder="Ganhos obtidos"></textarea>
-                    </div>
+        <div class="form-group">
+            <label for="ganhos">Ganhos</label>
+            <textarea id="ganhos" name="ganhos" placeholder="Ganhos obtidos" required></textarea>
+        </div>
 
-                    <div class="form-group">
-                        <label for="perdas">Perdas</label>
-                        <textarea id="perdas" name="perdas" placeholder="Perdas sofridas"></textarea>
-                    </div>
-                </div>
+        <div class="form-group">
+            <label for="perdas">Perdas</label>
+            <textarea id="perdas" name="perdas" placeholder="Perdas sofridas" required></textarea>
+        </div>
+    </div>
 
-                <div class="botoes-navegacao">
-                    <button type="button" class="btn btn-voltar">Voltar</button>
-                    <button type="button" class="btn btn-avancar">Avançar</button>
-                </div>
-            </div>
-
+    <div class="botoes-navegacao">
+        <button type="button" class="btn btn-voltar">Voltar</button>
+        <button type="button" class="btn btn-avancar">Avançar</button>
+    </div>
+</div>
             <!-- Página 4: Objetivos -->
             <div class="pagina oculta" id="pagina4" data-pagina="4">
                 <div class="secao">

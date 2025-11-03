@@ -1,4 +1,5 @@
- :root {
+ /* base.css - VERSÃO COMPLETA E CORRIGIDA */
+:root {
     --cor-primaria: #0a1428;
     --cor-secundaria: #091428;
     --cor-destaque: #c8aa6e;
@@ -23,13 +24,16 @@ body {
     line-height: 1.6;
     min-height: 100vh;
     padding: 20px;
+    position: relative;
 }
 
 body::before {
     content: '';
     position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
+    top: 0; 
+    left: 0;
+    width: 100%; 
+    height: 100%;
     background: rgba(10, 20, 40, 0.4);
     z-index: -1;
 }
@@ -43,44 +47,252 @@ body::before {
     padding: 30px;
     backdrop-filter: blur(2px);
     box-shadow: var(--shadow-lg);
+    position: relative;
+    z-index: 1;
 }
 
-/* CORREÇÃO CRÍTICA: Estados de visibilidade - GARANTIR prioridade */
+/* === CORREÇÃO CRÍTICA: SISTEMA DE VISIBILIDADE === */
+/* REGRAS PRINCIPAIS - DEVEM TER MÁXIMA PRIORIDADE */
 .oculta { 
     display: none !important; 
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    position: absolute !important;
+    left: -9999px !important;
 }
 
 .ativo { 
     display: block !important; 
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: all !important;
+    position: relative !important;
+    left: auto !important;
+    animation: aparecer 0.5s ease-in-out !important;
 }
 
+/* === SISTEMA DE PÁGINAS - CORREÇÃO COMPLETA === */
 .pagina {
-    display: none;
+    /* REMOVIDO: display: none - Isso estava causando o problema! */
+    /* AGORA: As páginas são controladas apenas pelas classes .ativo e .oculta */
+    width: 100%;
+    min-height: 500px;
+    position: relative;
+    transition: var(--transition);
+}
+
+/* Garantir que apenas a página ativa seja visível */
+.pagina:not(.ativo) {
+    display: none !important;
 }
 
 .pagina.ativo {
-    display: block;
-    animation: aparecer 0.3s ease-in;
+    display: block !important;
+    animation: aparecer 0.5s ease-in-out;
 }
 
+/* Animações suaves */
 @keyframes aparecer {
     from { 
         opacity: 0; 
-        transform: translateY(10px); 
+        transform: translateY(20px) scale(0.98);
     }
     to { 
         opacity: 1; 
-        transform: translateY(0); 
+        transform: translateY(0) scale(1);
     }
 }
 
-/* Utilitários */
+@keyframes deslizarDireita {
+    from { 
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to { 
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes deslizarEsquerda {
+    from { 
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to { 
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Utilitários de visibilidade adicionais */
+.invisivel {
+    visibility: hidden !important;
+}
+
+.transparente {
+    opacity: 0 !important;
+}
+
+.visivel {
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* === UTILITÁRIOS GERAIS === */
 .obrigatorio label::after { 
     content: " *"; 
-    color: var(--cor-erro); 
+    color: var(--cor-erro);
+    font-weight: bold;
 }
 
 .erro {
     border-color: var(--cor-erro) !important;
     background: rgba(255, 71, 87, 0.1) !important;
+    box-shadow: 0 0 8px rgba(255, 71, 87, 0.3) !important;
+}
+
+.sucesso {
+    border-color: var(--cor-sucesso) !important;
+    background: rgba(10, 201, 134, 0.1) !important;
+}
+
+.aviso {
+    border-color: var(--cor-aviso) !important;
+    background: rgba(255, 165, 0, 0.1) !important;
+}
+
+.destaque {
+    border-color: var(--cor-destaque) !important;
+    background: rgba(200, 170, 110, 0.1) !important;
+}
+
+/* === ESTADOS DE CARREGAMENTO E FEEDBACK === */
+.carregando {
+    position: relative;
+    overflow: hidden;
+}
+
+.carregando::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+    animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+/* Feedback para usuário */
+.feedback {
+    font-size: 12px;
+    margin-top: 4px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    display: inline-block;
+}
+
+.feedback.erro {
+    color: var(--cor-erro);
+    background: rgba(255, 71, 87, 0.1);
+    border: 1px solid var(--cor-erro);
+}
+
+.feedback.sucesso {
+    color: var(--cor-sucesso);
+    background: rgba(10, 201, 134, 0.1);
+    border: 1px solid var(--cor-sucesso);
+}
+
+/* === ELEMENTOS ESPECÍFICOS POR ROTA === */
+.jungle-only,
+.jungle-mid-only {
+    transition: var(--transition);
+}
+
+.jungle-only.oculta,
+.jungle-mid-only.oculta {
+    display: none !important;
+}
+
+/* === RESPONSIVIDADE === */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+    
+    .container {
+        padding: 20px;
+        margin: 10px;
+    }
+    
+    .pagina {
+        min-height: 400px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 5px;
+    }
+    
+    .container {
+        padding: 15px;
+        margin: 5px;
+    }
+    
+    .pagina {
+        min-height: 300px;
+    }
+}
+
+/* === CORREÇÕES ESPECÍFICAS PARA PÁGINAS === */
+/* Garantir que não haja conflitos com outros estilos */
+#pagina1,
+#pagina2, 
+#pagina3,
+#pagina4,
+#pagina5,
+#pagina6,
+#paginaAgradecimento {
+    /* Reset de estilos conflitantes */
+    float: none !important;
+    clear: both !important;
+    overflow: visible !important;
+}
+
+/* === DEBUG TEMPORÁRIO - REMOVER DEPOIS DE TESTAR === */
+/* Descomente estas linhas para debug temporário */
+/*
+#pagina3 {
+    border: 3px solid #00ff00 !important;
+    background: rgba(0, 255, 0, 0.1) !important;
+}
+
+.pagina.ativo {
+    border: 2px solid var(--cor-destaque) !important;
+    box-shadow: 0 0 20px rgba(200, 170, 110, 0.3) !important;
+}
+*/
+
+/* === GARANTIAS FINAIS === */
+/* Estas regras garantem que nada sobrescreva nosso sistema */
+html body .container .pagina.ativo {
+    display: block !important;
+}
+
+html body .container .pagina.oculta {
+    display: none !important;
+}
+
+/* Remover qualquer possível overlay que bloqueie */
+body > .oculta:not(.pagina) {
+    display: none !important;
 }

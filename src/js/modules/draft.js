@@ -1,4 +1,4 @@
-// draft.js - VERSÃO CORRIGIDA E SIMPLIFICADA
+// draft.js - VERSÃO COMPLETA COM GERENCIAMENTO DE PÁGINAS
 class DraftSystem {
     constructor() {
         this.rotas = {
@@ -127,11 +127,17 @@ class DraftSystem {
         const isJungleOrMid = ['Jungle', 'Mid'].includes(this.rotaSelecionada);
         const isTopAdcSup = ['Top', 'Adc', 'Sup'].includes(this.rotaSelecionada);
 
-        console.log(`🔄 Atualizando visibilidade - Rota: ${this.rotaSelecionada}, Jungle: ${isJungle}, Jungle/Mid: ${isJungleOrMid}`);
+        console.log(`🔄 Atualizando visibilidade - Rota: ${this.rotaSelecionada}, Jungle: ${isJungle}, Jungle/Mid: ${isJungleOrMid}, Página: ${this.paginaAtual}`);
+
+        // Gerenciar Página 2 (Clear Inicial) - APENAS para Jungle
+        this.gerenciarPagina2(isJungle);
 
         // Elementos específicos de Jungle
         document.querySelectorAll('.jungle-only').forEach(el => {
-            el.classList.toggle('oculta', !isJungle);
+            // Não aplicar à Página 2 (já gerenciada acima)
+            if (!el.closest('#pagina2')) {
+                el.classList.toggle('oculta', !isJungle);
+            }
         });
 
         // Elementos específicos de Jungle e Mid
@@ -139,26 +145,8 @@ class DraftSystem {
             el.classList.toggle('oculta', !isJungleOrMid);
         });
 
-        // CORREÇÃO: Para Top/Adc/Sup, garantir que campos de ganks sejam opcionais
-        if (isTopAdcSup && this.paginaAtual === 3) {
-            const camposGanks = ['estadoInimigo', 'recursosQueimados', 'resultadoGank', 'ganhos', 'perdas'];
-            camposGanks.forEach(id => {
-                const campo = document.getElementById(id);
-                if (campo) {
-                    campo.removeAttribute('required');
-                    // Garantir que o placeholder não tenha indicação de obrigatório
-                    if (!campo.placeholder.includes('(opcional')) {
-                        campo.placeholder = campo.placeholder + ' (opcional)';
-                    }
-                }
-            });
-        }
-
-        // Atualizar páginas específicas
-        const paginaJungle = document.getElementById('pagina2');
-        if (paginaJungle) {
-            paginaJungle.classList.toggle('oculta', !isJungle);
-        }
+        // Gerenciar campos required da Página 3
+        this.gerenciarCamposGanks(isTopAdcSup);
 
         // Atualizar campo hidden
         const rotaHidden = document.getElementById('rotaSelecionadaHidden');
@@ -167,6 +155,62 @@ class DraftSystem {
         }
 
         this.atualizarChecklistRota();
+    }
+
+    gerenciarPagina2(isJungle) {
+        const pagina2 = document.getElementById('pagina2');
+        if (!pagina2) return;
+
+        // Página 2 só aparece se for Jungle E estiver na página 2
+        if (isJungle && this.paginaAtual === 2) {
+            pagina2.classList.remove('oculta');
+            console.log('📄 Página 2: VISÍVEL (Jungle na página 2)');
+        } else {
+            pagina2.classList.add('oculta');
+            console.log('📄 Página 2: OCULTA');
+        }
+    }
+
+    gerenciarCamposGanks(isTopAdcSup) {
+        const camposGanks = [
+            'estadoInimigo', 
+            'recursosQueimados', 
+            'resultadoGank', 
+            'ganhos', 
+            'perdas'
+        ];
+        
+        camposGanks.forEach(id => {
+            const campo = document.getElementById(id);
+            if (campo) {
+                if (isTopAdcSup) {
+                    // Para Top/Adc/Sup - remover required
+                    campo.removeAttribute('required');
+                    // Limpar classes de erro
+                    campo.classList.remove('erro');
+                    // Atualizar placeholder se necessário
+                    if (!campo.placeholder.includes('(opcional)')) {
+                        campo.placeholder = campo.placeholder + ' (opcional)';
+                    }
+                } else {
+                    // Para Jungle/Mid - garantir que tem required
+                    campo.setAttribute('required', 'required');
+                    // Remover indicação de opcional do placeholder
+                    campo.placeholder = campo.placeholder.replace(' (opcional)', '');
+                }
+            }
+        });
+
+        // Gerenciar campo "Rota Alvo" (apenas Jungle/Mid)
+        const rotaAlvo = document.getElementById('rotaAlvo');
+        if (rotaAlvo) {
+            if (isTopAdcSup) {
+                rotaAlvo.removeAttribute('required');
+                rotaAlvo.classList.remove('erro');
+            } else {
+                rotaAlvo.setAttribute('required', 'required');
+            }
+        }
     }
 
     atualizarChecklistRota() {
@@ -191,6 +235,19 @@ class DraftSystem {
         if (this.rotaSelecionada) {
             this.atualizarDraftAliado();
             this.atualizarVisibilidadeRota();
+        }
+    }
+
+    // Método para atualizar quando a página muda
+    atualizarPaginaAtual(numeroPagina) {
+        this.paginaAtual = numeroPagina;
+        console.log(`📄 DraftSystem - Página atualizada para: ${this.paginaAtual}`);
+        
+        // Reaplicar as regras de visibilidade quando a página muda
+        if (this.rotaSelecionada) {
+            setTimeout(() => {
+                this.atualizarVisibilidadeRota();
+            }, 50);
         }
     }
 }
