@@ -1,0 +1,193 @@
+{
+  "estrategias_macro_completo": {
+    "setup_objetivos": {
+      "wave_management": {
+        "basico": "Empurrar waves antes de objetivos para forçar inimigo a escolher entre farm e contestação",
+        "intermediario": {
+          "dragão": "Empurrar bot lane 30-45 segundos antes do spawn",
+          "arauto": "Empurrar mid e top lanes simultaneamente", 
+          "barão": "Coordenar todas as três lanes, priorizando bot e mid"
+        },
+        "avancado": {
+          "slow_push": "Acumula minions que chegam quando inimigo está longe",
+          "fast_push": "Força recall imediato do inimigo", 
+          "freeze": "Mantém inimigo preso na lane"
+        }
+      },
+      
+      "controle_visao": {
+        "visao_ofensiva": "Wards nos brushes próximos ao objetivo e rotas de rotação inimigas",
+        "visao_defensiva": "Wards nas próprias entradas da jungle para detectar flanks",
+        "deny_vision": "Limpeza sistemática de wards inimigas com sweepers e control wards"
+      },
+      
+      "jungle_strong_side": {
+        "prioridade_absoluta": "Jungle sempre buscar lado favorável do mapa",
+        "timing_sincronizado": "Coordenar ganks com wave states da strong side",
+        "objetivo_setup": "Iniciar pathing para objetivo 1-2 minutos antes do spawn",
+        "cross_map_pressure": "Criar pressão no weak side enquanto foca strong side"
+      }
+    },
+
+    "reset_timings": {
+      "reset_individual": {
+        "quando_fazer": [
+          "Após kill/assist com gold para item importante",
+          "Vida/mana baixa com risco de morte", 
+          "Antes de objetivos importantes com dinheiro para itens"
+        ],
+        "como_executar": [
+          "Empurrar wave completamente antes de voltar",
+          "Comunicar timing para o time",
+          "Retornar antes de perder recursos importantes"
+        ]
+      },
+      
+      "reset_equipe": {
+        "situacoes_ideais": [
+          "Após teamfight vencido mas com recursos baixos",
+          "Antes de Barão/Dragão Ancião com dinheiro para itens cruciais", 
+          "Após garantir objetivos importantes"
+        ],
+        "coordenacao": "Reset sincronizado para power spikes simultâneos"
+      },
+      
+      "tecnicas_avancadas": {
+        "power_spikes_sincronizados": "Coordenar resets para múltiplos power spikes simultâneos",
+        "fake_resets": "Simular volta à base para punir inimigos desprevenidos",
+        "recall_baits": "Enganar inimigo com recalls falsos"
+      }
+    },
+
+    "map_pressure_crossmap": {
+      "elementos_pressao": {
+        "pressao_lane": "Split push e slow push coordenado",
+        "pressao_jungle": "Invasões coordenadas para negar farm e visão",
+        "strong_side_dominance": "Maximizar vantagem no lado favorável"
+      },
+      
+      "crossmap_plays": {
+        "torre_trade": "Trocar torres em lados opostos do mapa", 
+        "objetivo_trade": "Sacrificar um objetivo por outro mais valioso",
+        "attention_diversion": "Distrair inimigo enquanto toma objetivo principal",
+        "strong_side_priority": "Usar strong side como isca para objetivos cross-map"
+      },
+      
+      "inovacoes_estrategicas": {
+        "korean_teleport": "Usar TP para split push enquanto time defende",
+        "jungle_cross_map": "Jungle aparece strong side enquanto objetivo real é weak side"
+      }
+    },
+
+    "controle_terreno_zonas_perigo": {
+      "tipos_terreno": {
+        "choke_points": "Áreas estreitas do mapa",
+        "zonas_visao_criticas": "Tri-bushes, river bushes, jungle entrances", 
+        "strong_side_control_zones": "Áreas prioritárias perto do lado forte"
+      },
+      
+      "controle_por_composicao": {
+        "poke": "Jayce, Nidalee, Ezreal - controlar à distância",
+        "teamfight": "Malphite, Sejuani, Orianna - dominar áreas fechadas",
+        "split_push": "Fiora, Tryndamere - controlar side lanes"
+      },
+      
+      "posicionamento_estrategico": {
+        "strong_side_control": "Dominar terreno próximo à strong side", 
+        "objective_setup": "Controlar acesso a objetivos 60-90s antes do spawn",
+        "jungle_pathing_control": "Controlar rotas de jungle do inimigo"
+      }
+    },
+
+    "macro_defensivo": {
+      "filosofia": "Criar oportunidades em desvantagem, forçar erros inimigos",
+      
+      "pilares": {
+        "wave_clear_eficiente": "Limpar waves sob torre com segurança",
+        "controle_visao_defensiva": "Wards nas entradas do território próprio", 
+        "pick_potential": "Buscar picks isolados para criar vantagens",
+        "strong_side_retreat": "Recuar strategicamente mantendo strong side control"
+      },
+      
+      "estrategias_avancadas": {
+        "time_stalling": "Atrasar jogo até alcançar power spikes",
+        "reverse_psychology": "Enganar inimigo sobre intenções reais", 
+        "bait_and_switch": "Isolar alvos prioritários em desvantagem"
+      }
+    },
+
+    "lane_swap_system": {
+      "early_game_swaps": {
+        "bot_to_mid": {
+          "cenario": "ADC scaling perdendo para early game bot",
+          "execucao": "ADC vai mid, mid vai bot aos 3-4min", 
+          "vantagens": [
+            "Scaler farma seguro no mid",
+            "Mid pressiona bot lane mais fraco", 
+            "Surpresa tática",
+            "Quebra rotina inimiga"
+          ]
+        },
+        
+        "top_swap_scenarios": {
+          "weak_side_top": "Top perdendo swap com bot para freeze seguro",
+          "strong_side_top": "Top ganhando swap com bot para pressionar", 
+          "matchup_specific": "Counter pick avoidance via swap",
+          "jungle_synergy": "Swap para melhor sinergia com jungle pathing"
+        }
+      },
+
+      "mid_game_assignments": {
+        "sidelane_priority": {
+          "split_pusher": "Vai para side lane oposta ao próximo objetivo",
+          "teamfighter": "Fica mid para controle de objetivos", 
+          "scaler": "Vai para side lane segura com visão",
+          "strong_side_player": "Mantém pressão no lado favorável"
+        }
+      }
+    },
+
+    "solo_queue_vs_competitive": {
+      "solo_queue_realities": {
+        "coordenacao": "Limitada - ping e chat apenas",
+        "estrategia": "Simplificar - um objetivo claro", 
+        "comunicacao": "Spam ping + objetivo claro",
+        "expectativas": "Não contar com swaps complexos",
+        "jungle_focus": "Jungle deve identificar e focar strong side natural"
+      },
+
+      "competitive_dynamics": {
+        "coordenacao": "Comunicação vocal completa", 
+        "estrategia": "Plays complexos e swaps",
+        "flexibilidade": "Adaptação em tempo real", 
+        "execucao": "Timing perfeito entre membros",
+        "jungle_orchestration": "Jungle coordena toda a macro do time"
+      }
+    },
+
+    "wave_management_swaps": {
+      "pre_swap_preparation": {
+        "slow_push": "Criar wave grande antes do swap",
+        "crash_timing": "Recall sincronizado com wave crash", 
+        "vision_control": "Ward nova rota antes do swap",
+        "resource_management": "HP/mana cheios para novo matchup",
+        "jungle_support": "Jungle protege durante transição"
+      },
+
+      "post_swap_adaptation": {
+        "build_adjustment": "Adaptar build para novo matchup", 
+        "playstyle_change": "Mudar agressividade baseado no novo oponente",
+        "objective_focus": "Reposicionar foco de objetivos",
+        "jungle_priority": "Ajustar jungle pathing para nova configuração - priorizar strong side",
+        "vision_reset": "Reestabelecer visão para nova rota"
+      }
+    },
+
+    "integracao_macro_final": {
+      "principio_strong_side": "Todas as decisões devem considerar e priorizar o lado forte do mapa",
+      "sincronizacao_total": "Wave management + jungle pathing + objective control + vision",
+      "adaptabilidade": "Mudar strong side dinamicamente baseado no estado do jogo",
+      "decisao_hierarquica": "Objetivos > Farm > Pressão > Visão"
+    }
+  }
+}

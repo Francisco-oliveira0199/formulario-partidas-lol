@@ -1,0 +1,319 @@
+{
+  "framework_identificacao": {
+    "perguntas_diagnosticas": {
+      "composicao": [
+        "Qual campeão do meu time tem maior potencial de carry?",
+        "Qual fase do jogo favorece minha composição?",
+        "Minha composição vence em teamfights 5v5 ou em skirmishes?",
+        "Tenho split pusher forte ou preciso agrupar?",
+        "Minha composição escala melhor ou pior que a inimiga?"
+      ],
+      "estado_jogo": [
+        "Quem está com vantagem de ouro/experiência?",
+        "Quais torres ainda estão de pé?",
+        "Quantos dragões cada time tem?",
+        "Quais campeões atingiram power spikes?",
+        "Qual time tem melhor scaling?"
+      ],
+      "matchups": [
+        "Quais lanes estão vencendo?",
+        "Quais lanes estão perdendo?",
+        "Qual campeão inimigo está mais forte?",
+        "Qual campeão inimigo preciso neutralizar?",
+        "Quem pode fazer split push sem ser contestado?"
+      ]
+    },
+
+    "tipos_composicao": {
+      "early_game_focused": {
+        "win_condition": "Criar vantagem massiva antes de 12 minutos",
+        "lose_condition": "Permitir que inimigos escalem",
+        "plano": ["ganks_agressivos", "contestar_objetivos_precoces", "forcar_fights"]
+      },
+      "scaling_late_game": {
+        "win_condition": "Atingir 3+ itens nos carries principais",
+        "lose_condition": "Sofrer snowball no early game",
+        "plano": ["farm_seguro", "evitar_fights_desnecessarias", "stall_objetivos"]
+      },
+      "teamfight_composition": {
+        "win_condition": "Forçar fight 5v5 em choke points",
+        "lose_condition": "Ser dividido por split push",
+        "plano": ["agrupar_constantemente", "contestar_objetivos_diretamente"]
+      },
+      "split_push_composition": {
+        "win_condition": "Pressão lateral irresistível",
+        "lose_condition": "Ser forçado a teamfights 5v5",
+        "plano": ["1_3_1_ou_1_4", "evitar_agrupamento_completo"]
+      },
+      "pick_composition": {
+        "win_condition": "Conseguir picks isolados, criar vantagens numéricas",
+        "lose_condition": "Ser forçado a fights frontais",
+        "plano": ["vision_game_agressivo", "catches_em_rotacoes"]
+      }
+    }
+  },
+
+  "negacao_win_conditions": {
+    "inimigo_scaling": {
+      "estrategia": "Forçar objetivos precoces",
+      "acoes": ["agredir_constantemente", "evitar_farm_passivo", "fechar_jogo_antes_15min"]
+    },
+    "inimigo_early_game": {
+      "estrategia": "Jogar defensivo primeiros 10 minutos",
+      "acoes": ["trocar_objetivos", "escalar_seguramente", "stall_power_spikes"]
+    },
+    "inimigo_split_pusher": {
+      "estrategia": "Agrupar 4 defensores",
+      "acoes": ["forcar_teamfights_5v4", "ward_profundo_detectar_split", "enviar_duelista"]
+    },
+    "inimigo_teamfight": {
+      "estrategia": "Evitar fights 5v5 diretos",
+      "acoes": ["poke_antes_objetivos", "split_push_dividir", "fazer_picks_isolados"]
+    }
+  },
+
+  "adaptacao_partida": {
+    "sinais_adaptacao": [
+      "win_condition_original_nao_funcionando",
+      "carry_principal_muito_atras",
+      "campeao_dominante_perdendo_lane",
+      "composicao_sendo_countereada",
+      "estado_jogo_mudou_drasticamente",
+      "campeao_inesperado_carregando"
+    ],
+
+    "estrategias_adaptacao": {
+      "carry_principal_falha": {
+        "situacao": "ADC 0/4, muito atrás para carregar",
+        "adaptacao": [
+          "mudar_foco_mid_ou_top",
+          "protecao_novo_carry",
+          "adc_papel_utilitario",
+          "build_sobrevivencia"
+        ]
+      },
+      "atras_jogo": {
+        "situacao": "5k ouro atrás aos 12 minutos",
+        "adaptacao": [
+          "mudar_contestacao_para_trade",
+          "focar_farm_recuperacao",
+          "evitar_teamfights_power_spikes",
+          "defender_inibidores",
+          "jogar_erro_inimigo"
+        ]
+      },
+      "muito_frente": {
+        "situacao": "8k ouro à frente aos 10 minutos",
+        "adaptacao": [
+          "nao_overconfident",
+          "evitar_plays_arriscadas",
+          "fechar_metodicamente",
+          "manter_vision_control",
+          "forcar_barao_seguranca"
+        ]
+      },
+      "composicao_nao_funciona": {
+        "situacao": "Teamfight comp perdendo todos teamfights",
+        "adaptacao": [
+          "mudar_split_push",
+          "fazer_picks_isolados",
+          "focar_poke_antes_objetivos",
+          "evitar_agrupamento_vantagem_decisiva"
+        ]
+      }
+    }
+  },
+
+  "comeback_strategies": {
+    "condicoes_minimas": [
+      "pelo_menos_um_carry_potencial_scaling",
+      "wave_clear_suficiente_defender",
+      "campeao_engage_ou_pick_potential",
+      "disciplina_nao_forcar_plays_desesperadas"
+    ],
+
+    "estrategias_comeback": {
+      "defender_escalar": {
+        "acoes": [
+          "clear_waves_sob_torre",
+          "nao_contestar_objetivos_perdidos_exceto_inibidores",
+          "farm_jungle_lanes_seguranca",
+          "aguardar_power_spikes_itens",
+          "forcar_apenas_vantagem_clara"
+        ]
+      },
+      "capitalizar_erros_inimigos": {
+        "erros_comuns_inimigo": [
+          "overextending_sem_visao",
+          "dividindo_desnecessariamente",
+          "iniciando_barao_condicoes_arriscadas",
+          "overconfident_fights"
+        ],
+        "como_explorar": [
+          "manter_visao_mesmo_desvantagem",
+          "punir_severamente_erro",
+          "defender_estruturas_ate_erros",
+          "converter_erro_vantagem_maxima"
+        ]
+      },
+      "barao_steal": {
+        "setup": [
+          "jungler_smite_ready",
+          "flash_disponivel_entrar_pit",
+          "time_posicionado_colapsar",
+          "ward_pit_ver_hp_barao"
+        ],
+        "execucao": [
+          "entrar_apenas_barao_baixo_2000hp",
+          "combinar_habilidade_burst_smite",
+          "exemplos: lee_sin_qqsmite, nunu_qsmite, jax_qwsmite"
+        ]
+      },
+      "elder_last_stand": {
+        "condicao": "Inimigo tem Soul e próximo de Elder",
+        "estrategia": [
+          "contestar_mesmo_4v5_desvantagem",
+          "tentar_steal_possivel",
+          "wipe_inimigo_erro",
+          "ultima_chance_evitar_derrota"
+        ]
+      }
+    },
+
+    "exemplos_comeback": [
+      {
+        "nome": "The Stall",
+        "situacao": "6k ouro atrás aos 14 minutos",
+        "composicao": ["Jinx", "Orianna", "Malphite"],
+        "estrategia": [
+          "defender_todas_torres_possiveis",
+          "clear_waves_seguramente",
+          "nao_contestar_dragoes_1_3",
+          "farm_ate_jinx_3_itens",
+          "forcar_teamfight_choke_point_base",
+          "malphite_ulti_orianna_ulti_wipe",
+          "apos_wipe_tomar_barao_empurrar"
+        ]
+      },
+      {
+        "nome": "The Punish",
+        "situacao": "4k ouro atrás, inimigo overconfident",
+        "composicao": ["Zed", "Lee Sin"],
+        "estrategia": [
+          "visao_profunda_jungle_inimigo",
+          "detectar_adc_inimigo_farmando_sozinho",
+          "lee_sin_zed_collapse_pick",
+          "5v4_forcar_barao",
+          "com_barao_empurrar_inibidor",
+          "repetir_estrategia_picks_equilibrar"
+        ]
+      },
+      {
+        "nome": "The Objective Steal",
+        "situacao": "7k ouro atrás, inimigo tenta Barão 18min",
+        "composicao": ["Nunu jungle"],
+        "estrategia": [
+          "nunu_entra_snowball_w_flash",
+          "q_smite_barao_combo_2000_damage",
+          "steal_bem_sucedido",
+          "time_colapsa_wipe_inimigo_enfraquecido",
+          "com_barao_buff_tomar_multiplos_objetivos",
+          "jogo_volta_equilibrado"
+        ]
+      }
+    ]
+  },
+
+  "mentalidade_win_condition": {
+    "principios_execucao": {
+      "commitment": [
+        "todo_time_jogar_ao_redor_win_condition",
+        "nao_dividir_recursos_estrategias_multiplas",
+        "confiar_plano_mesmo_nao_funcionar_imediatamente"
+      ],
+      "patience": [
+        "win_conditions_scaling_exigem_tempo",
+        "nao_forcar_plays_antes_power_spikes",
+        "aceitar_pequenas_perdas_evitar_grandes_desastres"
+      ],
+      "discipline": [
+        "nao_perseguir_kills_desnecessarios",
+        "nao_contestar_objetivos_impossiveis",
+        "seguir_plano_mesmo_tentador_desviar"
+      ],
+      "flexibility": [
+        "reconhecer_win_condition_original_falhou",
+        "adaptar_plano_b_rapidamente",
+        "nao_insistir_estrategia_nao_funciona"
+      ]
+    },
+
+    "erros_comuns": [
+      "confundir_tatica_com_estrategia",
+      "ganhar_luta_nao_significa_vitoria",
+      "conseguir_kill_nao_e_win_condition",
+      "objetivos_maior_kills",
+      "nao_adaptar_teamfights_composicao_nao_favorece",
+      "continuar_protegendo_carry_atras",
+      "nao_mudar_build_estrategia_necessario"
+    ]
+  },
+
+  "contextos_especificos": {
+    "solo_queue_strategies": {
+      "mentalidade": "Assumir coordenação limitada",
+      "estrategias_efetivas": [
+        "Focar um objetivo claro por vez",
+        "Comunicar com pings simples",
+        "Jogar around de um carry identificado",
+        "Evitar estratégias complexas demais"
+      ],
+      "objetivos_prioritarios": [
+        "Arauto quando em vantagem clara",
+        "Dragão quando composição scaling",
+        "Torres sobre kills desorganizadas"
+      ]
+    },
+
+    "competitive_5v5_strategies": {
+      "mentalidade": "Coordenação total possível",
+      "estrategias_avancadas": [
+        "Dual objective control",
+        "Complex lane swaps",
+        "Synchronized recalls and rotations",
+        "Adaptive objective trading"
+      ],
+      "flexibilidade": "Mudar estratégia baseado em matchup real"
+    }
+  },
+
+  "adaptive_game_plans": {
+    "recognizing_win_conditions": {
+      "early_game_comps": "Acelerar via arauto + torres early",
+      "scaling_comps": "Stall via dragões + farm seguro",
+      "teamfight_comps": "Forçar objetivos com vantagem numérica",
+      "split_push_comps": "Arauto em side lanes + pressure"
+    },
+
+    "mid_game_transitions": {
+      "successful_early": "Usar vantagem para snowball com arauto",
+      "failed_early": "Trocar objetivos + farm para scaling",
+      "even_game": "Focar dragões + picks com arauto como bait"
+    }
+  },
+
+  "adaptacoes_wild_rift": {
+    "win_conditions_priorizadas": {
+      "early_game_domination": "Criar vantagem insuperável nos primeiros 10min",
+      "snowball_accelerated": "Converter vantagens em objetivos imediatamente", 
+      "objective_focus": "Dragões e torres mais valiosos que no PC",
+      "time_efficiency": "Cada minuto conta - não浪费时间"
+    },
+
+    "comeback_strategies_ajustadas": {
+      "janela_comeback": "Apenas 5-8 minutos para recuperar",
+      "estrategia": "Capitalizar erro inimigo + objetivo crítico",
+      "observacao": "Comebacks mais raros e difíceis no WR"
+    }
+  }
+}

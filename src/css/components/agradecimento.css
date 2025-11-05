@@ -1,17 +1,44 @@
-/* agradecimento.css */
+/* agradecimento.css - VERSÃO COMPLETA E CORRIGIDA */
+
 /* Página de Agradecimento - Estrutura Geral */
 .pagina-agradecimento {
-    position: fixed;
-    top: 0;
-    left: 0;
+    position: relative;
     width: 100%;
-    height: 100%;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     z-index: 1000;
     background: linear-gradient(135deg, #0a1428 0%, #1a2d4a 100%);
+    padding: 20px;
+}
+
+/* CORREÇÃO CRÍTICA: Garantir que a página de agradecimento seja visível */
+#paginaAgradecimento.ativo {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: relative !important;
+    width: 100% !important;
+    min-height: 100vh !important;
+    background: linear-gradient(135deg, #0a1428 0%, #1a2d4a 100%) !important;
+}
+
+#paginaAgradecimento.oculta {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+}
+
+/* CORREÇÃO: Container principal deve sumir quando agradecimento estiver ativo */
+body.pagina-agradecimento-ativa .container,
+body:has(#paginaAgradecimento.ativo) .container {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    position: absolute !important;
+    left: -9999px !important;
 }
 
 /* Fundo com a imagem */
@@ -50,7 +77,6 @@
     gap: 40px;
     max-width: 1200px;
     width: 90%;
-    height: 70vh;
     margin: 0 auto;
 }
 
@@ -101,7 +127,53 @@
     font-size: 12px;
 }
 
-/* Responsividade */
+/* CORREÇÃO: Garantir que o body tenha o fundo correto quando na página de agradecimento */
+body.pagina-agradecimento-ativa {
+    background: linear-gradient(135deg, #0a1428 0%, #1a2d4a 100%) !important;
+    background-attachment: fixed !important;
+    overflow-x: hidden;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+/* CORREÇÃO DE EMERGÊNCIA: Forçar visibilidade */
+.pagina-agradecimento-forcada {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    z-index: 99999 !important;
+    background: linear-gradient(135deg, #0a1428 0%, #1a2d4a 100%) !important;
+}
+
+.pagina-agradecimento-forcada * {
+    box-sizing: border-box !important;
+}
+
+/* GARANTIA MÁXIMA DE VISIBILIDADE - PRIORIDADE ABSOLUTA */
+html body #paginaAgradecimento.ativo {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: relative !important;
+    width: 100% !important;
+    min-height: 100vh !important;
+    background: linear-gradient(135deg, #0a1428 0%, #1a2d4a 100%) !important;
+}
+
+html body.pagina-agradecimento-ativa .container {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    position: absolute !important;
+    left: -9999px !important;
+}
+
+/* Responsividade ESPECÍFICA para agradecimento */
 @media (max-width: 1024px) {
     .conteudo-agradecimento {
         flex-direction: column;
@@ -135,6 +207,10 @@
 }
 
 @media (max-width: 480px) {
+    .pagina-agradecimento {
+        padding: 15px;
+    }
+    
     .conteudo-agradecimento {
         width: 95%;
     }

@@ -1,0 +1,2572 @@
+{
+  "categorias_sinergias": {
+    "wombo_combo": "Campeões com AoE CC que combinam devastadoramente",
+    "protect_the_carry": "Enchanters que protegem hypercarries", 
+    "dive_comp": "Campeões que mergulham no backline juntos",
+    "poke_comp": "Campeões de longo alcance que desgastam",
+    "split_push": "Duos que pressionam múltiplas lanes",
+    "pick_comp": "Campeões que isolam e executam alvos"
+  },
+  
+  "campeoes": {
+    "Aatrox": {
+      "rotas": ["Topo", "Selva"],
+      "sinergias": [
+        {"campeao": "Yuumi", "descricao": "Cura massiva potencializa sustain de Aatrox"},
+        {"campeao": "Zilean", "descricao": "Revive permite Aatrox entrar sem medo"},
+        {"campeao": "Lulu", "descricao": "Buffs aumentam dano e sustain"},
+        {"campeao": "Orianna", "descricao": "Shield + ultimate combo com entrada de Aatrox"}
+      ],
+      "counters": [
+        {"campeao": "Fiora", "descricao": "Riposte bloqueia Q3, true damage ignora tankness"},
+        {"campeao": "Kled", "descricao": "Remonta cancela all-in de Aatrox"},
+        {"campeao": "Vayne", "descricao": "True damage, kiting e condemn interrompem"},
+        {"campeao": "Kog'Maw", "descricao": "Shred de tank de longa distância"}
+      ],
+      "counter_picks": ["Tanks imóveis (Cho'Gath, Mundo, Sion)", "Campeões dependentes de cura (Mundo, Vladimir)"]
+    },
+    "Ahri": {
+      "rotas": ["Meio"],
+      "sinergias": [
+        {"campeao": "Jarvan IV", "descricao": "Cataclysm prende alvos para Charm de Ahri"},
+        {"campeao": "Hecarim", "descricao": "Engage sincronizado, múltiplos picks"},
+        {"campeao": "Thresh", "descricao": "Lantern salva Ahri após assassinato"},
+        {"campeao": "Sejuani", "descricao": "Setup CC para Charm garantido"}
+      ],
+      "counters": [
+        {"campeao": "Fizz", "descricao": "E dodges Charm, all-in mata Ahri"},
+        {"campeao": "Kassadin", "descricao": "Escala e ignora poke de Ahri"},
+        {"campeao": "Diana", "descricao": "All-in pós-6 devastador"},
+        {"campeao": "Malzahar", "descricao": "R supressão cancela ultimate de Ahri"}
+      ],
+      "counter_picks": ["Mages imóveis (Xerath, Lux, Ziggs)", "Assassinos squishy (Zed, Talon)"]
+    },
+    "Akali": {
+      "rotas": ["Meio", "Topo"],
+      "sinergias": [
+        {"campeao": "Lee Sin", "descricao": "Setup de kick para ultimate de Akali"},
+        {"campeao": "Galio", "descricao": "Ultimate global para salvar Akali em dive"},
+        {"campeao": "Shen", "descricao": "Ultimate protege Akali em split push"},
+        {"campeao": "Lulu", "descricao": "Buffs permitem Akali dominar teamfights"}
+      ],
+      "counters": [
+        {"campeao": "Galio", "descricao": "Anti-mage, taunt cancela combo"},
+        {"campeao": "Sylas", "descricao": "Rouba ultimate de Akali"},
+        {"campeao": "Malzahar", "descricao": "Supressão cancela mobilidade"},
+        {"campeao": "Pantheon", "descricao": "Poke constante e E bloqueia burst"}
+      ],
+      "counter_picks": ["Mages de skill shot (Lux, Ahri, Syndra)", "Champions squishy sem escape"]
+    },
+    "Akshan": {
+      "rotas": ["Meio", "Topo", "Atirador"],
+      "sinergias": [
+        {"campeao": "Rengar", "descricao": "Ambush combo com revive potential"},
+        {"campeao": "Pyke", "descricao": "Execuções em cadeia + revive de W"},
+        {"campeao": "Kha'Zix", "descricao": "Picks isolados com revive insurance"},
+        {"campeao": "Nocturne", "descricao": "Darkness facilita engajamento de Akshan"}
+      ],
+      "counters": [
+        {"campeao": "Malphite", "descricao": "Tanky, engage cancela mobilidade"},
+        {"campeao": "Irelia", "descricao": "All in imparável"},
+        {"campeao": "Zed", "descricao": "Out-duela e assassina Akshan"}
+      ],
+      "counter_picks": ["Campções sem escape (Veigar, Xerath)", "Squishy ADCs (Jinx, Kog'Maw)"]
+    },
+    "Alistar": {
+      "rotas": ["Suporte"],
+      "sinergias": [
+        {"campeao": "Miss Fortune", "descricao": "Combo W+Q setup para R de MF"},
+        {"campeao": "Yasuo", "descricao": "Q knockup ativa R de Yasuo"},
+        {"campeao": "Kai'Sa", "descricao": "Engage permite Kai'Sa entrar com R"},
+        {"campeao": "Samira", "descricao": "Setup CC para ultimate de Samira"}
+      ],
+      "counters": [
+        {"campeao": "Morgana", "descricao": "Black Shield nega combo W+Q"},
+        {"campeao": "Janna", "descricao": "Q/R cancelam engage de Alistar"},
+        {"campeao": "Thresh", "descricao": "Flay cancela W de Alistar"},
+        {"campeao": "Tahm Kench", "descricao": "Devour salva aliado do combo"}
+      ],
+      "counter_picks": ["ADCs imóveis (Ashe, Jhin, Varus)", "Squishy supports (Sona, Yuumi, Soraka)"]
+    },
+    "Amumu": {
+      "rotas": ["Selva", "Suporte"],
+      "sinergias": [
+        {"campeao": "Yasuo", "descricao": "R knockup + R de Yasuo = wipe"},
+        {"campeao": "Miss Fortune", "descricao": "R de Amumu setup para R de MF"},
+        {"campeao": "Orianna", "descricao": "Combo R devastador em teamfight"},
+        {"campeao": "Katarina", "descricao": "R de Amumu permite reset livre de Katarina"}
+      ],
+      "counters": [
+        {"campeao": "Olaf", "descricao": "R ignora CC de Amumu"},
+        {"campeao": "Kindred", "descricao": "R nega burst de Amumu"},
+        {"campeao": "Master Yi", "descricao": "Q dodges R, escala melhor"},
+        {"campeao": "Morgana", "descricao": "Black Shield nega R"}
+      ],
+      "counter_picks": ["Times squishy sem mobilidade", "Comps agrupadas (poke comps)"]
+    },
+    "Anivia": {
+      "rotas": ["Meio"],
+      "sinergias": [
+        {"campeao": "Jarvan IV", "descricao": "Cataclysm + wall + R = prison devastador"},
+        {"campeao": "Trundle", "descricao": "Pillar + wall = impossible escape"},
+        {"campeao": "Yasuo", "descricao": "Q knockup ativa R de Yasuo"},
+        {"campeao": "Taliyah", "descricao": "Duplo wall control absurdo"}
+      ],
+      "counters": [
+        {"campeao": "Fizz", "descricao": "E dodges tudo, mobilidade ignora wall"},
+        {"campeao": "Kassadin", "descricao": "R passa por wall"},
+        {"campeao": "Yasuo", "descricao": "Wind wall bloqueia Q e R"},
+        {"campeao": "Zed", "descricao": "R dodges burst, out-rooms Anivia"}
+      ],
+      "counter_picks": ["Mages imóveis (Xerath, Lux)", "Melee sem dash (Garen, Darius na mid)"]
+    },
+    "Annie": {
+      "rotas": ["Meio", "Suporte"],
+      "sinergias": [
+        {"campeao": "Graves", "descricao": "Combo burst instantâneo"},
+        {"campeao": "Leona", "descricao": "Chain CC devastador"},
+        {"campeao": "Jarvan IV", "descricao": "Flash R Tibbers em Cataclysm"},
+        {"campeao": "Miss Fortune", "descricao": "R setup para R de MF"}
+      ],
+      "counters": [
+        {"campeao": "Xerath", "descricao": "Outrange, poke seguro"},
+        {"campeao": "Syndra", "descricao": "Out-burst com maior alcance"},
+        {"campeao": "Fizz", "descricao": "E dodges combo"},
+        {"campeao": "Kassadin", "descricao": "Escala, tank AP damage"}
+      ],
+      "counter_picks": ["Melee mids (Yasuo, Zed, Katarina)", "Squishy ADCs sem escape"]
+    },
+    "Aphelios": {
+      "rotas": ["Atirador"],
+      "sinergias": [
+        {"campeao": "Thresh", "descricao": "Lantern reposition para armas perfeitas"},
+        {"campeao": "Lulu", "descricao": "Buffs maximizam DPS"},
+        {"campeao": "Braum", "descricao": "Peel perfeito"},
+        {"campeao": "Nautilus", "descricao": "Lockdown permite full combo"}
+      ],
+      "counters": [
+        {"campeao": "Draven", "descricao": "Out-damages early"},
+        {"campeao": "Caitlyn", "descricao": "Outrange, poke grátis"},
+        {"campeao": "Sivir", "descricao": "Spell shield + waveclear neutraliza"},
+        {"campeao": "Ezreal", "descricao": "Poke seguro, escape com E"}
+      ],
+      "counter_picks": ["Short range ADCs (Lucian, Vayne)", "Immobile supports (Sona, Soraka)"]
+    },
+    "Ashe": {
+      "rotas": ["Atirador", "Suporte"],
+      "sinergias": [
+        {"campeao": "Zyra", "descricao": "E slow + Zyra E = garantido"},
+        {"campeao": "Trundle", "descricao": "Pillar + slow = impossível escapar"},
+        {"campeao": "Sejuani", "descricao": "Engage duplo devastador"},
+        {"campeao": "Amumu", "descricao": "R setup para R de Ashe"}
+      ],
+      "counters": [
+        {"campeao": "Sivir", "descricao": "Spell shield bloqueia R"},
+        {"campeao": "Yasuo", "descricao": "Wind wall bloqueia R e W"},
+        {"campeao": "Vayne", "descricao": "Tumble dodges R, out-scales"},
+        {"campeao": "Lucian", "descricao": "Dash dodges habilidades, out-damages early"}
+      ],
+      "counter_picks": ["Imóveis sem dash (Jinx, Kog'Maw, Varus)", "Engage champions (beneficia de R para counter-engage)"]
+    },
+    "Aurelion Sol": {
+      "rotas": ["Meio"],
+      "sinergias": [
+        {"campeao": "Shen", "descricao": "Duplo roaming global"},
+        {"campeao": "Twisted Fate", "descricao": "Duplo roaming, picks constantes"},
+        {"campeao": "Pantheon", "descricao": "Triplo roaming comp"},
+        {"campeao": "Galio", "descricao": "Ultimate combo para salvar lanes"}
+      ],
+      "counters": [
+        {"campeao": "Fizz", "descricao": "Gap close ignora stars, E dodges tudo"},
+        {"campeao": "Zed", "descricao": "R gap close, assassinato rápido"},
+        {"campeao": "Yasuo", "descricao": "Wind wall bloqueia Q"},
+        {"campeao": "Kassadin", "descricao": "Escala, ignora poke"}
+      ],
+      "counter_picks": ["Imóveis sem gap close (Xerath, Lux, Veigar)", "Times que não podem contest roams"]
+    },
+    "Azir": {
+      "rotas": ["Meio"],
+      "sinergias": [
+        {"campeao": "Jarvan IV", "descricao": "Cataclysm + R de Azir = prison"},
+        {"campeao": "Gragas", "descricao": "R empurra para soldiers de Azir"},
+        {"campeao": "Lee Sin", "descricao": "Kick para soldiers"},
+        {"campeao": "Alistar", "descricao": "Combo empurra para Azir"}
+      ],
+      "counters": [
+        {"campeao": "Zed", "descricao": "R dodges soldiers, assassina Azir"},
+        {"campeao": "Fizz", "descricao": "E + gap close ignora poke"},
+        {"campeao": "Irelia", "descricao": "Q spam através de soldiers"},
+        {"campeao": "Yasuo", "descricao": "Wind wall bloqueia soldiers"}
+      ],
+      "counter_picks": ["Short range mages (Annie, Ryze)"]
+    },
+    "Bard": {
+      "rotas": ["Suporte"],
+      "sinergias": [
+        {"campeao": "Kindred", "descricao": "R combo = invencibilidade prolongada"},
+        {"campeao": "Camille", "descricao": "R + Bard R = pick garantido"},
+        {"campeao": "Caitlyn", "descricao": "Traps sob R de Bard"},
+        {"campeao": "Twitch", "descricao": "R invisível após stasis de Bard"}
+      ],
+      "counters": [
+        {"campeao": "Blitzcrank", "descricao": "Hook punishes roaming"},
+        {"campeao": "Thresh", "descricao": "Out-roams e out-hooks"},
+        {"campeao": "Nautilus", "descricao": "More reliable engage"},
+        {"campeao": "Pyke", "descricao": "Out-roams Bard"}
+      ],
+      "counter_picks": ["Immobile ADCs (Ashe, Jhin)", "Squishy teams (R em teamfight)"]
+    },
+    "Belveth": {
+      "rotas": ["Selva"],
+      "sinergias": [
+        {"campeao": "Orianna", "descricao": "Ball em Bel'Veth diving"},
+        {"campeao": "Lulu", "descricao": "Buffs maximizam DPS e E true damage"},
+        {"campeao": "Zilean", "descricao": "Bombs e revive para dive perfeito"},
+        {"campeao": "Yuumi", "descricao": "Buffs enquanto Bel'Veth carrega"}
+      ],
+      "counters": [
+        {"campeao": "Rammus", "descricao": "Tank + taunt cancelam dive"},
+        {"campeao": "Jax", "descricao": "Counter Strike dodges AAs"},
+        {"campeao": "Poppy", "descricao": "W bloqueia E de Bel'Veth"},
+        {"campeao": "Malphite", "descricao": "Ataque speed slow destrói Bel'Veth"}
+      ],
+      "counter_picks": ["Squishy teams sem CC", "Times sem front line"]
+    },
+    "Blitzcrank": {
+      "rotas": ["Suporte"],
+      "sinergias": [
+        {"campeao": "Tristana", "descricao": "Hook + Tristana combo = kill instantâneo"},
+        {"campeao": "Draven", "descricao": "Hook garante Draven cash in"},
+        {"campeao": "Yasuo", "descricao": "Q knockup + Yasuo R"},
+        {"campeao": "Vi", "descricao": "Double lockdown devastador"}
+      ],
+      "counters": [
+        {"campeao": "Ezreal", "descricao": "E dodges hook"},
+        {"campeao": "Sivir", "descricao": "Spell shield bloqueia hook"},
+        {"campeao": "Morgana", "descricao": "Black Shield nega hook"},
+        {"campeao": "Thresh", "descricao": "Lantern salva aliado hooked"}
+      ],
+      "counter_picks": ["Immobile ADCs (Ashe, Jhin, Kog'Maw)", "Squishy supports (Sona, Yuumi, Soraka)"]
+    },
+    "Brand": {
+      "rotas": ["Suporte", "Meio"],
+      "sinergias": [
+        {"campeao": "Amumu", "descricao": "R setup para R bounce de Brand"},
+        {"campeao": "Leona", "descricao": "Lockdown permite full combo"},
+        {"campeao": "Ashe", "descricao": "Slow garante skill shots de Brand"},
+        {"campeao": "Malphite", "descricao": "R agrupamento = R de Brand devastador"}
+      ],
+      "counters": [
+        {"campeao": "Xerath", "descricao": "Outrange Brand"},
+        {"campeao": "Vel'Koz", "descricao": "Outrange + out-poke"},
+        {"campeao": "Blitzcrank", "descricao": "Hook = morte para Brand"},
+        {"campeao": "Nami", "descricao": "Sustain + disengage neutraliza poke"}
+      ],
+      "counter_picks": ["Melee supports (Alistar, Leona, Nautilus)", "Grouped teams (R bounce)"]
+    },
+    "Braum": {
+      "rotas": ["Suporte"],
+      "sinergias": [
+        {"campeao": "Lucian", "descricao": "Passiva de Braum procca rápido com Lucian"},
+        {"campeao": "Kai'Sa", "descricao": "On-hit procs passiva de Braum"},
+        {"campeao": "Jhin", "descricao": "4th shot procs passiva instantaneamente"},
+        {"campeao": "Kindred", "descricao": "R combo para teamfight prolongado"}
+      ],
+      "counters": [
+        {"campeao": "Brand", "descricao": "DoT ignora escudo"},
+        {"campeao": "Zyra", "descricao": "Poke over shield"},
+        {"campeao": "Vel'Koz", "descricao": "True damage + poke"},
+        {"campeao": "Xerath", "descricao": "Poke de longa distância"}
+      ],
+      "counter_picks": ["Projectile ADCs (Ezreal, Jinx, Caitlyn)", "Assassins (Zed, Talon, Katarina)"]
+    },
+    "Briar": {
+      "rotas": ["Selva"],
+      "sinergias": [
+        {"campeao": "Yuumi", "descricao": "Attached durante R de Briar"},
+        {"campeao": "Zilean", "descricao": "Bombs + revive para dive suicida"},
+        {"campeao": "Orianna", "descricao": "Ball em Briar durante R"},
+        {"campeao": "Lulu", "descricao": "Buffs maximizam damage em frenzy"}
+      ],
+      "counters": [
+        {"campeao": "Jax", "descricao": "Counter Strike dodges frenzy"},
+        {"campeao": "Rammus", "descricao": "Taunt + armor destroyer Briar"},
+        {"campeao": "Poppy", "descricao": "W bloqueia R dash"},
+        {"campeao": "Warwick", "descricao": "Out-sustains e out-duels"}
+      ],
+      "counter_picks": ["Squishy junglers (Karthus, Nidalee)", "Times sem peel"]
+    },
+    "Caitlyn": {
+      "rotas": ["Atirador"],
+      "sinergias": [
+        {"campeao": "Morgana", "descricao": "Q root garante trap de Caitlyn"},
+        {"campeao": "Lux", "descricao": "Q root garante headshot"},
+        {"campeao": "Karma", "descricao": "Speed boost para kiting perfeito"},
+        {"campeao": "Thresh", "descricao": "Flay para trap"}
+      ],
+      "counters": [
+        {"campeao": "Sivir", "descricao": "Spell shield + push neutraliza"},
+        {"campeao": "Yasuo", "descricao": "Wind wall bloqueia R"},
+        {"campeao": "Tristana", "descricao": "Out-ranges late, W escapa traps"},
+        {"campeao": "Ezreal", "descricao": "E dodges skills e traps"}
+      ],
+      "counter_picks": ["Short range ADCs (Lucian, Vayne, Draven)", "Immobile supports (Sona, Soraka)"]
+    },
+    "Camille": {
+      "rotas": ["Topo", "Selva"],
+      "sinergias": [
+        {"campeao": "Orianna", "descricao": "Ball em Camille E"},
+        {"campeao": "Zilean", "descricao": "Bombs em Camille dive"},
+        {"campeao": "Galio", "descricao": "Ultimate em Camille R"},
+        {"campeao": "Bard", "descricao": "R em Camille R = pick garantido"}
+      ],
+      "counters": [
+        {"campeao": "Jax", "descricao": "Counter Strike dodges Q2 true damage"},
+        {"campeao": "Fiora", "descricao": "Riposte bloqueia tudo"},
+        {"campeao": "Renekton", "descricao": "Out-trades early"},
+        {"campeao": "Poppy", "descricao": "W bloqueia E de Camille"}
+      ],
+      "counter_picks": ["Immobile tops (Garen, Darius, Illaoi)", "Squishy mids/ADCs (para ganks)"]
+    },
+    "Cassiopeia": {
+      "rotas": ["Meio", "Topo"],
+      "sinergias": [
+        {"campeao": "Singed", "descricao": "Flip para Cassiopeia R"},
+        {"campeao": "Skarner", "descricao": "R para Cassiopeia R garantido"},
+        {"campeao": "Nunu", "descricao": "Snowball para Cassiopeia R"},
+        {"campeao": "Jarvan IV", "descricao": "Cataclysm força olhar para Cass R"}
+      ],
+      "counters": [
+        {"campeao": "Fizz", "descricao": "E dodges tudo, gap close mata Cass"},
+        {"campeao": "Zed", "descricao": "R assassina antes Cass reagir"},
+        {"campeao": "Yasuo", "descricao": "Wind wall bloqueia Q"},
+        {"campeao": "Kassadin", "descricao": "Escala, tank damage, R mobility"}
+      ],
+      "counter_picks": ["Immobile mages (Xerath, Lux, Veigar)", "Tanks (DPS shred)"]
+    },
+    "Cho'Gath": {
+      "rotas": ["Topo", "Meio"],
+      "sinergias": [
+        {"campeao": "Anivia", "descricao": "Duplo CC area control"},
+        {"campeao": "Taliyah", "descricao": "Wall + Q de Cho = garantido"},
+        {"campeao": "Jarvan IV", "descricao": "Cataclysm garante Q de Cho"},
+        {"campeao": "Kalista", "descricao": "R throw Cho gigante"}
+      ],
+      "counters": [
+        {"campeao": "Fiora", "descricao": "True damage + riposte Q"},
+        {"campeao": "Vayne", "descricao": "True damage shred"},
+        {"campeao": "Kog'Maw", "descricao": "%HP damage"},
+        {"campeao": "Darius", "descricao": "Out-sustains e out-damages"}
+      ],
+      "counter_picks": ["Melee sem sustain (Riven, Yasuo)", "Immobile mages (Xerath, Lux)"]
+    },
+    "Corki": {
+      "rotas": ["Meio", "Atirador"],
+      "sinergias": [
+        {"campeao": "Galio", "descricao": "Hero's Entrance salva Corki"},
+        {"campeao": "Lulu", "descricao": "Buffs maximizam package dive"},
+        {"campeao": "Janna", "descricao": "Shield + peel para DPS"},
+        {"campeao": "Karma", "descricao": "Speed boost para poke perfeito"}
+      ],
+      "counters": [
+        {"campeao": "Fizz", "descricao": "Gap close + burst mata Corki"},
+        {"campeao": "Zed", "descricao": "Assassinato rápido"},
+        {"campeao": "Kassadin", "descricao": "Gap close constante"},
+        {"campeao": "Irelia", "descricao": "Q spam fecha gap"}
+      ],
+      "counter_picks": ["Tanks (true/magic damage hybrid shred)", "Immobile mages (Xerath, Veigar)"]
+    },
+    "Darius": {
+      "rotas": ["Topo"],
+      "sinergias": [
+        {"campeao": "Zilean", "descricao": "Speed boost garante Darius Q outer ring"},
+        {"campeao": "Yuumi", "descricao": "Healing + speed maximiza chase"},
+        {"campeao": "Lulu", "descricao": "Speed + buffs impossibilitam escape"},
+        {"campeao": "Orianna", "descricao": "Speed boost + shield"}
+      ],
+      "counters": [
+        {"campeao": "Vayne", "descricao": "True damage + kiting perfeito"},
+        {"campeao": "Quinn", "descricao": "Poke + kiting impossível pegar"},
+        {"campeao": "Teemo", "descricao": "Blind + kiting + poke"},
+        {"campeao": "Gnar", "descricao": "Range + kiting + escape"}
+      ],
+      "counter_picks": ["Melee imóveis (Garen, Mordekaiser, Illaoi)", "Tanks sem mobilidade (Sion, Cho'Gath)"]
+    },
+    "Diana": {
+      "rotas": ["Selva", "Meio"],
+      "sinergias": [
+        {"campeao": "Yasuo", "descricao": "Diana R + Yasuo R combo"},
+        {"campeao": "Orianna", "descricao": "Ball em Diana R"},
+        {"campeao": "Miss Fortune", "descricao": "Diana R agrupamento = MF R"},
+        {"campeao": "Amumu", "descricao": "Duplo AoE engage"}
+      ],
+      "counters": [
+        {"campeao": "Jax", "descricao": "Counter Strike dodges AAs"},
+        {"campeao": "Lissandra", "descricao": "R self-cast nega all-in"},
+        {"campeao": "Fizz", "descricao": "E dodges Diana R"},
+        {"campeao": "Kassadin", "descricao": "Escala melhor, R mobility"}
+      ],
+      "counter_picks": ["Squishy mages (Lux, Xerath, Ziggs)", "Immobile ADCs"]
+    },
+    "Dr. Mundo": {
+      "rotas": ["Topo", "Selva"],
+      "sinergias": [
+        {"campeao": "Yuumi", "descricao": "Healing stack absurdo"},
+        {"campeao": "Soraka", "descricao": "Healing + Mundo R = imortal"},
+        {"campeao": "Lulu", "descricao": "R + Mundo R = tank gigante"},
+        {"campeao": "Zilean", "descricao": "Revive permite Mundo dive sem medo"}
+      ],
+      "counters": [
+        {"campeao": "Fiora", "descricao": "True damage + %HP"},
+        {"campeao": "Vayne", "descricao": "True damage shred"},
+        {"campeao": "Kog'Maw", "descricao": "%HP magic damage"},
+        {"campeao": "Gwen", "descricao": "True damage + anti-tank"}
+      ],
+      "counter_picks": ["Poke comps sem burst", "Balanced damage comps (Mundo tank ambos)"]
+    },
+    "Draven": {
+      "rotas": ["Atirador"],
+      "sinergias": [
+        {"campeao": "Thresh", "descricao": "Lantern + Flay = catch perfeito"},
+        {"campeao": "Blitzcrank", "descricao": "Hook = kill instantâneo"},
+        {"campeao": "Leona", "descricao": "All-in level 2 devastador"},
+        {"campeao": "Nautilus", "descricao": "Lockdown permite Draven executar"}
+      ],
+      "counters": [
+        {"campeao": "Caitlyn", "descricao": "Outrange + traps"},
+        {"campeao": "Ezreal", "descricao": "E dodges axes"},
+        {"campeao": "Sivir", "descricao": "Spell shield + push"},
+        {"campeao": "Tristana", "descricao": "W escape + out-scale"}
+      ],
+      "counter_picks": ["Short range ADCs (Vayne, Lucian)", "Squishy supports (Sona, Yuumi, Soraka)"]
+    },
+    "Ekko": {
+      "rotas": ["Selva", "Meio"],
+      "sinergias": [
+        {"campeao": "Orianna", "descricao": "Ball em Ekko E/R"},
+        {"campeao": "Zilean", "descricao": "Duplo revive insurance"},
+        {"campeao": "Bard", "descricao": "R setup para Ekko W"},
+        {"campeao": "Twisted Fate", "descricao": "Duplo roaming picks"}
+      ],
+      "counters": [
+        {"campeao": "Diana", "descricao": "Out-trades early, escala igual"},
+        {"campeao": "Kassadin", "descricao": "R mobility ignora combo"},
+        {"campeao": "Fizz", "descricao": "E dodges W stun"},
+        {"campeao": "Sylas", "descricao": "Rouba R de Ekko"}
+      ],
+      "counter_picks": ["Immobile mages (Xerath, Lux, Veigar)", "Squishy carries sem escape"]
+    },
+    "Elise": {
+      "rotas": ["Selva"],
+      "sinergias": [
+        {"campeao": "Jayce", "descricao": "Duplo poke/all-in early"},
+        {"campeao": "Lee Sin", "descricao": "Duplo early game pressure"},
+        {"campeao": "Twisted Fate", "descricao": "Gold card garante cocoon"},
+        {"campeao": "Ryze", "descricao": "Root garante cocoon"}
+      ],
+      "counters": [
+        {"campeao": "Olaf", "descricao": "Invade early, out-duels"},
+        {"campeao": "Lee Sin", "descricao": "Out-duels, kick cancela rappel"},
+        {"campeao": "Graves", "descricao": "Out-duels, out-farms"},
+        {"campeao": "Udyr", "descricao": "Out-farms, out-scales"}
+      ],
+      "counter_picks": ["Scaling junglers (Master Yi, Karthus)", "Squishy immobile laners"]
+    },
+    "Evelynn": {
+      "rotas": ["Selva"],
+      "sinergias": [
+        {"campeao": "Twisted Fate", "descricao": "R visibility setup para Eve"},
+        {"campeao": "Ashe", "descricao": "E visibility setup"},
+        {"campeao": "Thresh", "descricao": "Lantern escape após assassinato"},
+        {"campeao": "Shen", "descricao": "Ultimate protege Eve em dive"}
+      ],
+      "counters": [
+        {"campeao": "Lee Sin", "descricao": "R visibility, invade early"},
+        {"campeao": "Kha'Zix", "descricao": "Out-assassina"},
+        {"campeao": "Graves", "descricao": "Invade, out-farms"},
+        {"campeao": "Rengar", "descricao": "Out-assassina, vision control"}
+      ],
+      "counter_picks": ["Squishy immobile carries", "Times sem tanks"]
+    },
+    "Ezreal": {
+      "rotas": ["Atirador"],
+      "sinergias": [
+        {"campeao": "Yuumi", "descricao": "Attached enquanto Ezreal kita"},
+        {"campeao": "Karma", "descricao": "Speed boost + shield maximiza poke"},
+        {"campeao": "Lulu", "descricao": "Buffs para DPS constante"},
+        {"campeao": "Zilean", "descricao": "Revive permite Ezreal agressivo"}
+      ],
+      "counters": [
+        {"campeao": "Draven", "descricao": "Out-damages early"},
+        {"campeao": "Caitlyn", "descricao": "Outrange + poke"},
+        {"campeao": "Sivir", "descricao": "Spell shield + push"},
+        {"campeao": "Tristana", "descricao": "All-in pós-6"}
+      ],
+      "counter_picks": ["Short range ADCs (Vayne, Lucian)", "Immobile supports (Sona, Soraka)"]
+    },
+    "Fiddlesticks": {
+      "rotas": ["Selva", "Suporte"],
+      "sinergias": [
+        {"campeao": "Malphite", "descricao": "R agrupamento = R de Fiddle"},
+        {"campeao": "Amumu", "descricao": "R agrupamento = R de Fiddle"},
+        {"campeao": "Orianna", "descricao": "Ball em Fiddle R"},
+        {"campeao": "Yasuo", "descricao": "Fiddle R knockup + Yasuo R"}
+      ],
+      "counters": [
+        {"campeao": "Lee Sin", "descricao": "R kick cancela ultimate"},
+        {"campeao": "Graves", "descricao": "W smoke screen nega ultimate"},
+        {"campeao": "Olaf", "descricao": "R ignora fear"},
+        {"campeao": "Udyr", "descricao": "Stun cancela ultimate"}
+      ],
+      "counter_picks": ["Squishy grouped teams", "Immobile carries"]
+    },
+    "Fiora": {
+      "rotas": ["Topo"],
+      "sinergias": [
+        {"campeao": "Yuumi", "descricao": "Speed boost garante vitals"},
+        {"campeao": "Lulu", "descricao": "Buffs maximizam duel"},
+        {"campeao": "Zilean", "descricao": "Revive permite Fiora agressiva"},
+        {"campeao": "Bard", "descricao": "R setup para Fiora R"}
+      ],
+      "counters": [
+        {"campeao": "Malphite", "descricao": "Attack speed slow + tankiness"},
+        {"campeao": "Poppy", "descricao": "W bloqueia Q vital"},
+        {"campeao": "Quinn", "descricao": "Range + kiting + blind"},
+        {"campeao": "Teemo", "descricao": "Blind + kiting + poke"}
+      ],
+      "counter_picks": ["Tanks imóveis (Sion, Cho'Gath, Mundo)", "Melee sem CC (Yasuo, Tryndamere)"]
+    },
+    "Fizz": {
+      "rotas": ["Meio"],
+      "sinergias": [
+        {"campeao": "Lee Sin", "descricao": "Kick para Fizz R garantido"},
+        {"campeao": "Nautilus", "descricao": "Lockdown garante Fizz combo"},
+        {"campeao": "Sejuani", "descricao": "CC chain perfeito"},
+        {"campeao": "Zilean", "descricao": "Revive permite Fizz dive suicida"}
+      ],
+      "counters": [
+        {"campeao": "Galio", "descricao": "Anti-mage, tank AP damage"},
+        {"campeao": "Kassadin", "descricao": "Escala melhor, R mobility"},
+        {"campeao": "Lissandra", "descricao": "R self-cast nega all-in"},
+        {"campeao": "Malzahar", "descricao": "Supressão cancela engage"}
+      ],
+      "counter_picks": ["Immobile mages (Lux, Xerath, Veigar)", "Squishy ADCs"]
+    },
+    "Galio": {
+      "rotas": ["Meio", "Suporte"],
+      "sinergias": [
+        {"campeao": "Camille", "descricao": "Ultimate em Camille R"},
+        {"campeao": "Jarvan IV", "descricao": "Cataclysm + Galio R"},
+        {"campeao": "Shen", "descricao": "Duplo global ultimate"},
+        {"campeao": "Twisted Fate", "descricao": "R global combo"}
+      ],
+      "counters": [
+        {"campeao": "Fiora", "descricao": "True damage + riposte taunt"},
+        {"campeao": "Vayne", "descricao": "True damage shred"},
+        {"campeao": "Kog'Maw", "descricao": "%HP damage"},
+        {"campeao": "Cassiopeia", "descricao": "DPS constante, R counter"}
+      ],
+      "counter_picks": ["AP assassins (Fizz, Ekko, Katarina)", "AP mages (Syndra, Orianna, Ahri)"]
+    },
+    "Gangplank": {
+      "rotas": ["Topo", "Meio"],
+      "sinergias": [
+        {"campeao": "Orianna", "descricao": "Ball em barrel chain"},
+        {"campeao": "Jarvan IV", "descricao": "Cataclysm garante barrel"},
+        {"campeao": "Zilean", "descricao": "Speed boost para barrel combo"},
+        {"campeao": "Bard", "descricao": "R setup para barrel chain"}
+      ],
+      "counters": [
+        {"campeao": "Fiora", "descricao": "Riposte + gap close"},
+        {"campeao": "Irelia", "descricao": "Q spam através barrels"},
+        {"campeao": "Yasuo", "descricao": "Wind wall bloqueia barrels"},
+        {"campeao": "Pantheon", "descricao": "Point-click stun + burst"}
+      ],
+      "counter_picks": ["Tanks imóveis (Sion, Cho'Gath, Mundo)", "Melee sem gap close (Darius, Garen)"]
+    },
+    "Garen": {
+      "rotas": ["Topo"],
+      "sinergias": [
+        {"campeao": "Yuumi", "descricao": "Speed boost garante Q + R"},
+        {"campeao": "Lulu", "descricao": "Buffs maximizam all-in"},
+        {"campeao": "Zilean", "descricao": "Speed boost + revive"},
+        {"campeao": "Karma", "descricao": "Speed boost + shield"}
+      ],
+      "counters": [
+        {"campeao": "Vayne", "descricao": "True damage + kiting perfeito"},
+        {"campeao": "Teemo", "descricao": "Blind + kiting + poke"},
+        {"campeao": "Quinn", "descricao": "Range + kiting + escape"},
+        {"campeao": "Darius", "descricao": "Out-trades, bleed ignora passive"}
+      ],
+      "counter_picks": ["Melee imóveis (Mordekaiser, Illaoi)", "Tanks sem burst (Sion, Cho'Gath)"]
+    },
+    "Gnar": {
+      "rotas": ["Topo"],
+      "sinergias": [
+        {"campeao": "Orianna", "descricao": "Ball em Gnar R"},
+        {"campeao": "Yasuo", "descricao": "Gnar R + Yasuo R combo"},
+        {"campeao": "Amumu", "descricao": "Duplo AoE engage"},
+        {"campeao": "Malphite", "descricao": "Duplo engage devastador"}
+      ],
+      "counters": [
+        {"campeao": "Fiora", "descricao": "Riposte + true damage"},
+        {"campeao": "Irelia", "descricao": "Q spam gap close"},
+        {"campeao": "Jax", "descricao": "Counter Strike + gap close"},
+        {"campeao": "Camille", "descricao": "Gap close + true damage"}
+      ],
+      "counter_picks": ["Tanks imóveis (Sion, Cho'Gath, Mundo)", "Melee sem gap close (Darius, Garen)"]
+    },
+    "Gragas": {
+      "rotas": ["Selva", "Topo", "Meio"],
+      "sinergias": [
+        {"campeao": "Yasuo", "descricao": "R knockup + Yasuo R"},
+        {"campeao": "Orianna", "descricao": "Ball em Gragas E/R"},
+        {"campeao": "Azir", "descricao": "R empurra para soldiers"},
+        {"campeao": "Miss Fortune", "descricao": "R agrupamento = MF R"}
+      ],
+      "counters": [
+        {"campeao": "Fiora", "descricao": "Riposte R de Gragas"},
+        {"campeao": "Olaf", "descricao": "R ignora CC"},
+        {"campeao": "Morgana", "descricao": "Black Shield nega combo"},
+        {"campeao": "Sivir", "descricao": "Spell shield bloqueia R"}
+      ],
+      "counter_picks": ["Immobile mages (Lux, Xerath, Veigar)", "Squishy carries"]
+    },
+    "Graves": {
+      "rotas": ["Selva"],
+      "sinergias": [
+        {"campeao": "Yuumi", "descricao": "Attached enquanto Graves invade"},
+        {"campeao": "Lulu", "descricao": "Buffs maximizam burst"},
+        {"campeao": "Zilean", "descricao": "Revive permite Graves agressivo"},
+        {"campeao": "Karma", "descricao": "Speed boost + shield"}
+      ],
+      "counters": [
+        {"campeao": "Lee Sin", "descricao": "Out-duels, kick cancela R"},
+        {"campeao": "Kindred", "descricao": "R nega burst"},
+        {"campeao": "Rammus", "descricao": "Tank + taunt destroyer Graves"},
+        {"campeao": "Master Yi", "descricao": "Q dodges AAs, escala melhor"}
+      ],
+      "counter_picks": ["Squishy junglers (Karthus, Nidalee)", "Immobile laners"]
+    },
+    "Gwen": {
+      "rotas": ["Topo", "Selva"],
+      "sinergias": [
+        {"campeao": "Yuumi", "descricao": "Healing + speed maximiza W uptime"},
+        {"campeao": "Lulu", "descricao": "Buffs + R para dive perfeito"},
+        {"campeao": "Zilean", "descricao": "Revive permite Gwen dive suicida"},
+        {"campeao": "Orianna", "descricao": "Ball em Gwen R"}
+      ],
+      "counters": [
+        {"campeao": "Fiora", "descricao": "Riposte + true damage"},
+        {"campeao": "Jax", "descricao": "Counter Strike dodges AAs"},
+        {"campeao": "Malphite", "descricao": "Attack speed slow + tankiness"},
+        {"campeao": "Vayne", "descricao": "True damage + kiting"}
+      ],
+      "counter_picks": ["Tanks (Sion, Cho'Gath, Mundo)", "AP mages (W immunity)"]
+    },
+    "Hecarim": {
+      "rotas": ["Selva"],
+      "sinergias": [
+        {"campeao": "Yuumi", "descricao": "Attached durante R engage"},
+        {"campeao": "Zilean", "descricao": "Speed boost + revive"},
+        {"campeao": "Karma", "descricao": "Speed boost + shield"},
+        {"campeao": "Orianna", "descricao": "Ball em Hecarim R"}
+      ],
+      "counters": [
+        {"campeao": "Rammus", "descricao": "Tank + taunt destroyer Hecarim"},
+        {"campeao": "Jax", "descricao": "Counter Strike dodges Q"},
+        {"campeao": "Poppy", "descricao": "W bloqueia E charge"},
+        {"campeao": "Kindred", "descricao": "R nega burst"}
+      ],
+      "counter_picks": ["Squishy immobile teams", "Poke comps sem disengage"]
+    },
+    "Heimerdinger": {
+      "rotas": ["Meio", "Topo"],
+      "sinergias": [
+        {"campeao": "Zilean", "descricao": "Bombs em turrets"},
+        {"campeao": "Orianna", "descricao": "Ball em turret setup"},
+        {"campeao": "Jarvan IV", "descricao": "Cataclysm garante turret DPS"},
+        {"campeao": "Bard", "descricao": "R setup para turret burst"}
+      ],
+      "counters": [
+        {"campeao": "Syndra", "descricao": "W throw turrets"},
+        {"campeao": "Xerath", "descricao": "Outrange turrets"},
+        {"campeao": "Ziggs", "descricao": "Q poke destrói turrets"},
+        {"campeao": "Irelia", "descricao": "Q destrói turrets rapidamente"}
+      ],
+      "counter_picks": ["Melee sem waveclear (Yasuo, Zed)", "Immobile mages (Lux, Veigar)"]
+    },
+    "Illaoi": {
+      "rotas": ["Topo"],
+      "sinergias": [
+        {"campeao": "Yuumi", "descricao": "Healing durante ultimate"},
+        {"campeao": "Zilean", "descricao": "Revive permite Illaoi agressiva"},
+        {"campeao": "Bard", "descricao": "R setup para Illaoi R"},
+        {"campeao": "Orianna", "descricao": "Ball em Illaoi durante R"}
+      ],
+      "counters": [
+        {"campeao": "Mordekaiser", "descricao": "R remove tentacles"},
+        {"campeao": "Yorick", "descricao": "Ghouls bloqueiam E"},
+        {"campeao": "Gangplank", "descricao": "Oranges cleanse E"},
+        {"campeao": "Vayne", "descricao": "True damage + kiting"}
+      ],
+      "counter_picks": ["Melee imóveis (Darius, Garen, Sett)", "Tanks sem burst (Sion, Cho'Gath)"]
+    },
+    "Irelia": {
+      "rotas": ["Topo", "Meio"],
+      "sinergias": [
+        {"campeao": "Yuumi", "descricao": "Attached durante dive"},
+        {"campeao": "Lulu", "descricao": "Buffs maximizam all-in"},
+        {"campeao": "Zilean", "descricao": "Revive permite Irelia agressiva"},
+        {"campeao": "Orianna", "descricao": "Ball em Irelia durante R"}
+      ],
+      "counters": [
+        {"campeao": "Fiora", "descricao": "Riposte + true damage"},
+        {"campeao": "Jax", "descricao": "Counter Strike dodges AAs"},
+        {"campeao": "Malphite", "descricao": "Attack speed slow + tankiness"},
+        {"campeao": "Sett", "descricao": "Out-trades early"}
+      ],
+      "counter_picks": ["Mages imóveis (Lux, Xerath, Veigar)", "Squishy ADCs"]
+    },
+    "Ivern": {
+      "rotas": ["Selva"],
+      "sinergias": [
+        {"campeao": "Rengar", "descricao": "Brush synergy + shield"},
+        {"campeao": "Daisy", "descricao": "Daisy + Rengar combo"},
+        {"campeao": "Kha'Zix", "descricao": "Brush synergy"},
+        {"campeao": "Caitlyn", "descricao": "Brush traps"}
+      ],
+      "counters": [
+        {"campeao": "Lee Sin", "descricao": "Invade early, out-duels"},
+        {"campeao": "Graves", "descricao": "Invade, out-farms"},
+        {"campeao": "Kindred", "descricao": "Invade, counter-jungle"},
+        {"campeao": "Nidalee", "descricao": "Out-tempo, invade"}
+      ],
+      "counter_picks": ["Scaling carries (Master Yi, Karthus)", "Squishy teams"]
+    },
+    "Janna": {
+      "rotas": ["Suporte"],
+      "sinergias": [
+        {"campeao": "Kog'Maw", "descricao": "Peel perfeito para hypercarry"},
+        {"campeao": "Jinx", "descricao": "Peel para escala"},
+        {"campeao": "Vayne", "descricao": "Peel para late game"},
+        {"campeao": "Twitch", "descricao": "Peel durante ultimate"}
+      ],
+      "counters": [
+        {"campeao": "Blitzcrank", "descricao": "Hook burst down Janna"},
+        {"campeao": "Leona", "descricao": "All-in ignora peel"},
+        {"campeao": "Nautilus", "descricao": "Lockdown through peel"},
+        {"campeao": "Pyke", "descricao": "Mobility + execute"}
+      ],
+      "counter_picks": ["Poke comps (disengage)", "Dive comps (counter-engage)"]
+    },
+    "Jarvan IV": {
+      "rotas": ["Selva", "Topo"],
+      "sinergias": [
+        {"campeao": "Orianna", "descricao": "Ball em Jarvan R"},
+        {"campeao": "Yasuo", "descricao": "Cataclysm + Yasuo R"},
+        {"campeao": "Miss Fortune", "descricao": "Cataclysm = MF R perfeito"},
+        {"campeao": "Fiddlesticks", "descricao": "Cataclysm = Fiddle R perfeito"}
+      ],
+      "counters": [
+        {"campeao": "Jax", "descricao": "Counter Strike + Q escape"},
+        {"campeao": "Fiora", "descricao": "Riposte E+Q combo"},
+        {"campeao": "Olaf", "descricao": "R ignora Cataclysm"},
+        {"campeao": "Poppy", "descricao": "W bloqueia E+Q"}
+      ],
+      "counter_picks": ["Immobile mages (Lux, Xerath, Veigar)", "Squishy carries"]
+    },
+    "Jax": {
+      "rotas": ["Topo", "Selva"],
+      "sinergias": [
+        {"campeao": "Yuumi", "descricao": "Attached durante split push"},
+        {"campeao": "Lulu", "descricao": "Buffs maximizam duel"},
+        {"campeao": "Zilean", "descricao": "Revive permite Jax agressivo"},
+        {"campeao": "Orianna", "descricao": "Ball em Jax durante engage"}
+      ],
+      "counters": [
+        {"campeao": "Malphite", "descricao": "Attack speed slow + tankiness"},
+        {"campeao": "Poppy", "descricao": "W bloqueia Q"},
+        {"campeao": "Garen", "descricao": "Silence + tankiness"},
+        {"campeao": "Fiora", "descricao": "Riposte + true damage"}
+      ],
+      "counter_picks": ["AD carries (Counter Strike)", "Melee sem burst (Sion, Cho'Gath)"]
+    },
+    "Jayce": {
+      "rotas": ["Topo", "Meio"],
+      "sinergias": [
+        {"campeao": "Yuumi", "descricao": "Attached durante poke"},
+        {"campeao": "Lulu", "descricao": "Buffs maximizam burst"},
+        {"campeao": "Zilean", "descricao": "Speed boost para combo"},
+        {"campeao": "Karma", "descricao": "Speed boost + shield"}
+      ],
+      "counters": [
+        {"campeao": "Irelia", "descricao": "Gap close + sustain"},
+        {"campeao": "Malphite", "descricao": "Tankiness + engage"},
+        {"campeao": "Sion", "descricao": "Tankiness + waveclear"},
+        {"campeao": "Yorick", "descricao": "Ghouls + all-in"}
+      ],
+      "counter_picks": ["Melee imóveis (Darius, Garen)", "Squishy mages (Lux, Xerath)"]
+    },
+    "Jhin": {
+      "rotas": ["Atirador"],
+      "sinergias": [
+        {"campeao": "Morgana", "descricao": "Q root garante W de Jhin"},
+        {"campeao": "Lux", "descricao": "Q root garante combo"},
+        {"campeao": "Zilean", "descricao": "Speed boost para kiting"},
+        {"campeao": "Bard", "descricao": "R setup para W de Jhin"}
+      ],
+      "counters": [
+        {"campeao": "Sivir", "descricao": "Spell shield + push"},
+        {"campeao": "Ezreal", "descricao": "E dodges W"},
+        {"campeao": "Tristana", "descricao": "W escape + out-scale"},
+        {"campeao": "Vayne", "descricao": "Tumble dodges skills, out-scales"}
+      ],
+      "counter_picks": ["Immobile ADCs (Ashe, Varus)", "Squishy supports (Sona, Yuumi)"]
+    },
+    "Jinx": {
+      "rotas": ["Atirador"],
+      "sinergias": [
+        {"campeao": "Lulu", "descricao": "Buffs maximizam DPS"},
+        {"campeao": "Janna", "descricao": "Peel perfeito para escala"},
+        {"campeao": "Thresh", "descricao": "Lantern salva Jinx"},
+        {"campeao": "Braum", "descricao": "Peel + passiva combo"}
+      ],
+      "counters": [
+        {"campeao": "Draven", "descricao": "Out-damages early"},
+        {"campeao": "Caitlyn", "descricao": "Outrange + poke"},
+        {"campeao": "Tristana", "descricao": "All-in pós-6"},
+        {"campeao": "Samira", "descricao": "All-in + wind wall"}
+      ],
+      "counter_picks": ["Short range ADCs (Vayne, Lucian)", "Immobile supports (Sona, Soraka)"]
+    },
+    "Kai'Sa": {
+      "rotas": ["Atirador"],
+      "sinergias": [
+        {"campeao": "Nautilus", "descricao": "Lockdown garante passive stack"},
+        {"campeao": "Leona", "descricao": "CC chain para passive"},
+        {"campeao": "Thresh", "descricao": "Lantern para reposicionamento R"},
+        {"campeao": "Bard", "descricao": "R setup para Kai'Sa R"}
+      ],
+      "counters": [
+        {"campeao": "Caitlyn", "descricao": "Outrange + poke"},
+        {"campeao": "Ashe", "descricao": "Slow impede engage"},
+        {"campeao": "Draven", "descricao": "Out-damages early"},
+        {"campeao": "Jhin", "descricao": "Poke + root"}
+      ],
+      "counter_picks": ["Short range ADCs (Vayne, Lucian)", "Squishy supports (Sona, Yuumi)"]
+    },
+    "Kalista": {
+      "rotas": ["Atirador"],
+      "sinergias": [
+        {"campeao": "Thresh", "descricao": "Lantern + Kalista R combo"},
+        {"campeao": "Alistar", "descricao": "Kalista R engage perfeito"},
+        {"campeao": "Nautilus", "descricao": "Kalista R engage"},
+        {"campeao": "Leona", "descricao": "Kalista R engage"}
+      ],
+      "counters": [
+        {"campeao": "Caitlyn", "descricao": "Outrange + traps"},
+        {"campeao": "Ashe", "descricao": "Slow impede kiting"},
+        {"campeao": "Draven", "descricao": "Out-damages early"},
+        {"campeao": "Jhin", "descricao": "Poke + root"}
+      ],
+      "counter_picks": ["Short range ADCs (Vayne, Lucian)", "Engage supports (Alistar, Leona)"]
+    },
+    "Karma": {
+      "rotas": ["Suporte", "Meio"],
+      "sinergias": [
+        {"campeao": "Ezreal", "descricao": "Speed boost + shield para poke"},
+        {"campeao": "Jhin", "descricao": "Speed boost para kiting"},
+        {"campeao": "Sivir", "descricao": "Speed boost para engage/disengage"},
+        {"campeao": "Hecarim", "descricao": "Speed boost para engage"}
+      ],
+      "counters": [
+        {"campeao": "Blitzcrank", "descricao": "Hook burst down Karma"},
+        {"campeao": "Leona", "descricao": "All-in ignora poke"},
+        {"campeao": "Nautilus", "descricao": "Lockdown through shield"},
+        {"campeao": "Pyke", "descricao": "Mobility + execute"}
+      ],
+      "counter_picks": ["Poke comps (out-poke)", "Squishy teams (burst)"]
+    },
+    "Karthus": {
+      "rotas": ["Selva", "Meio"],
+      "sinergias": [
+        {"campeao": "Yuumi", "descricao": "Attached durante R"},
+        {"campeao": "Zilean", "descricao": "Revive permite Karthus suicida"},
+        {"campeao": "Sion", "descricao": "Passive + Karthus R combo"},
+        {"campeao": "Kled", "descricao": "Remount + Karthus R combo"}
+      ],
+      "counters": [
+        {"campeao": "Lee Sin", "descricao": "Invade early, out-tempo"},
+        {"campeao": "Graves", "descricao": "Invade, out-farms"},
+        {"campeao": "Kindred", "descricao": "R nega R de Karthus"},
+        {"campeao": "Nocturne", "descricao": "Spell shield bloqueia R"}
+      ],
+      "counter_picks": ["Squishy teams (R damage)", "Times sem shields"]
+    },
+    "Kassadin": {
+      "rotas": ["Meio"],
+      "sinergias": [
+        {"campeao": "Yuumi", "descricao": "Attached durante dive"},
+        {"campeao": "Lulu", "descricao": "Buffs maximizam burst"},
+        {"campeao": "Zilean", "descricao": "Revive permite Kassadin agressivo"},
+        {"campeao": "Orianna", "descricao": "Ball em Kassadin durante R"}
+      ],
+      "counters": [
+        {"campeao": "Talon", "descricao": "AD damage + roam"},
+        {"campeao": "Zed", "descricao": "AD damage + burst"},
+        {"campeao": "Pantheon", "descricao": "AD damage + point-click stun"},
+        {"campeao": "Diana", "descricao": "Out-trades early"}
+      ],
+      "counter_picks": ["AP mages (Lux, Xerath, Veigar)", "Squishy carries"]
+    },
+    "Katarina": {
+      "rotas": ["Meio"],
+      "sinergias": [
+        {"campeao": "Yuumi", "descricao": "Attached durante ultimate"},
+        {"campeao": "Lulu", "descricao": "Buffs maximizam burst"},
+        {"campeao": "Zilean", "descricao": "Revive permite Katarina agressiva"},
+        {"campeao": "Orianna", "descricao": "Ball em Katarina durante R"}
+      ],
+      "counters": [
+        {"campeao": "Galio", "descricao": "Anti-mage, tank AP damage"},
+        {"campeao": "Diana", "descricao": "Out-trades early"},
+        {"campeao": "Fizz", "descricao": "E dodges ultimate"},
+        {"campeao": "Malzahar", "descricao": "Supressão cancela ultimate"}
+      ],
+      "counter_picks": ["Immobile mages (Lux, Xerath, Veigar)", "Squishy ADCs"]
+    },
+    "Kayle": {
+      "rotas": ["Topo", "Meio"],
+      "sinergias": [
+        {"campeao": "Yuumi", "descricao": "Attached durante escala"},
+        {"campeao": "Lulu", "descricao": "Buffs maximizam DPS"},
+        {"campeao": "Zilean", "descricao": "Revive permite Kayle agressiva"},
+        {"campeao": "Janna", "descricao": "Peel para escala"}
+      ],
+      "counters": [
+        {"campeao": "Irelia", "descricao": "Gap close + all-in"},
+        {"campeao": "Jax", "descricao": "Gap close + burst"},
+        {"campeao": "Renekton", "descricao": "Early game dominance"},
+        {"campeao": "Pantheon", "descricao": "Point-click stun + burst"}
+      ],
+      "counter_picks": ["Tanks imóveis (Sion, Cho'Gath, Mundo)", "Melee sem gap close (Darius, Garen)"]
+    },
+    "Kayn": {
+      "rotas": ["Selva"],
+      "sinergias": [
+        {"campeao": "Yuumi", "descricao": "Attached durante dive"},
+        {"campeao": "Lulu", "descricao": "Buffs maximizam burst"},
+        {"campeao": "Zilean", "descricao": "Revive permite Kayn agressivo"},
+        {"campeao": "Orianna", "descricao": "Ball em Kayn durante R"}
+      ],
+      "counters": [
+        {"campeao": "Lee Sin", "descricao": "Invade early, out-tempo"},
+        {"campeao": "Graves", "descricao": "Invade, out-farms"},
+        {"campeao": "Kindred", "descricao": "R nega burst"},
+        {"campeao": "Udyr", "descricao": "Out-duels early"}
+      ],
+      "counter_picks": ["Squishy teams (Shadow Assassin)", "Tank teams (Rhaast)"]
+    },
+    "Kennen": {
+      "rotas": ["Topo", "Meio"],
+      "sinergias": [
+        {"campeao": "Yasuo", "descricao": "Kennen R + Yasuo R combo"},
+        {"campeao": "Orianna", "descricao": "Ball em Kennen R"},
+        {"campeao": "Amumu", "descricao": "Duplo AoE engage"},
+        {"campeao": "Malphite", "descricao": "Duplo engage devastador"}
+      ],
+      "counters": [
+        {"campeao": "Irelia", "descricao": "Gap close + sustain"},
+        {"campeao": "Jax", "descricao": "Counter Strike + gap close"},
+        {"campeao": "Fiora", "descricao": "Riposte + true damage"},
+        {"campeao": "Sion", "descricao": "Tankiness + waveclear"}
+      ],
+      "counter_picks": ["Melee imóveis (Darius, Garen)", "Squishy carries"]
+    },
+    "Kha'Zix": {
+      "rotas": ["Selva"],
+      "sinergias": [
+        {"campeao": "Rengar", "descricao": "Hunters duo"},
+        {"campeao": "Ivern", "descricao": "Brush synergy"},
+        {"campeao": "Twisted Fate", "descricao": "Gold card garante isolated Q"},
+        {"campeao": "Ryze", "descricao": "Root garante isolated Q"}
+      ],
+      "counters": [
+        {"campeao": "Lee Sin", "descricao": "Out-duels, kick cancela burst"},
+        {"campeao": "Graves", "descricao": "Out-duels, smoke screen"},
+        {"campeao": "Kindred", "descricao": "R nega execute"},
+        {"campeao": "Rammus", "descricao": "Tank + taunt"}
+      ],
+      "counter_picks": ["Squishy immobile junglers (Karthus, Nidalee)", "Isolated targets"]
+    },
+    "Kindred": {
+      "rotas": ["Selva"],
+      "sinergias": [
+        {"campeao": "Taric", "descricao": "R combo invencibilidade"},
+        {"campeao": "Zilean", "descricao": "Duplo revive"},
+        {"campeao": "Lulu", "descricao": "Buffs maximizam DPS"},
+        {"campeao": "Janna", "descricao": "Peel para escala"}
+      ],
+      "counters": [
+        {"campeao": "Lee Sin", "descricao": "Invade early, kick cancela R"},
+        {"campeao": "Graves", "descricao": "Invade, out-farms"},
+        {"campeao": "Kha'Zix", "descricao": "Assassination"},
+        {"campeao": "Rengar", "descricao": "Assassination"}
+      ],
+      "counter_picks": ["Tank junglers (Sejuani, Zac)", "Scaling comps"]
+    },
+    "Kled": {
+      "rotas": ["Topo"],
+      "sinergias": [
+        {"campeao": "Yuumi", "descricao": "Attached durante remount"},
+        {"campeao": "Lulu", "descricao": "Buffs maximizam all-in"},
+        {"campeao": "Zilean", "descricao": "Revive permite Kled agressivo"},
+        {"campeao": "Orianna", "descricao": "Ball em Kled durante engage"}
+      ],
+      "counters": [
+        {"campeao": "Fiora", "descricao": "Riposte + true damage"},
+        {"campeao": "Jax", "descricao": "Counter Strike + burst"},
+        {"campeao": "Garen", "descricao": "Silence + true damage execute"},
+        {"campeao": "Teemo", "descricao": "Blind + kiting"}
+      ],
+      "counter_picks": ["Melee imóveis (Darius, Garen)", "Tanks sem burst (Sion, Cho'Gath)"]
+    },
+    "Kog'Maw": {
+      "rotas": ["Atirador"],
+      "sinergias": [
+        {"campeao": "Lulu", "descricao": "Buffs maximizam DPS"},
+        {"campeao": "Janna", "descricao": "Peel perfeito"},
+        {"campeao": "Braum", "descricao": "Peel + passiva combo"},
+        {"campeao": "Thresh", "descricao": "Lantern salva Kog'Maw"}
+      ],
+      "counters": [
+        {"campeao": "Draven", "descricao": "Out-damages early"},
+        {"campeao": "Caitlyn", "descricao": "Outrange + poke"},
+        {"campeao": "Tristana", "descricao": "All-in pós-6"},
+        {"campeao": "Samira", "descricao": "All-in + wind wall"}
+      ],
+      "counter_picks": ["Short range ADCs (Vayne, Lucian)", "Immobile supports (Sona, Soraka)"]
+    },
+    "LeBlanc": {
+      "rotas": ["Meio"],
+      "sinergias": [
+        {"campeao": "Lee Sin", "descricao": "Kick para LeBlanc combo"},
+        {"campeao": "Nautilus", "descricao": "Lockdown garante combo"},
+        {"campeao": "Thresh", "descricao": "Lantern escape após assassinato"},
+        {"campeao": "Zilean", "descricao": "Revive permite LeBlanc agressiva"}
+      ],
+      "counters": [
+        {"campeao": "Galio", "descricao": "Anti-mage, tank AP damage"},
+        {"campeao": "Kassadin", "descricao": "Escala, tank damage"},
+        {"campeao": "Fizz", "descricao": "E dodges chain"},
+        {"campeao": "Malzahar", "descricao": "Supressão cancela mobility"}
+      ],
+      "counter_picks": ["Immobile mages (Lux, Xerath, Veigar)", "Squishy ADCs"]
+    },
+    "Lee Sin": {
+      "rotas": ["Selva"],
+      "sinergias": [
+        {"campeao": "Yasuo", "descricao": "Kick + Yasuo R combo"},
+        {"campeao": "Orianna", "descricao": "Ball em Lee Sin Q"},
+        {"campeao": "Zilean", "descricao": "Revive permite Lee Sin agressivo"},
+        {"campeao": "Karma", "descricao": "Speed boost + shield"}
+      ],
+      "counters": [
+        {"campeao": "Jax", "descricao": "Counter Strike dodges Q"},
+        {"campeao": "Graves", "descricao": "Out-duels, smoke screen"},
+        {"campeao": "Kindred", "descricao": "R nega execute"},
+        {"campeao": "Udyr", "descricao": "Out-duels early"}
+      ],
+      "counter_picks": ["Squishy immobile junglers (Karthus, Nidalee)", "Immobile laners"]
+    },
+    "Leona": {
+      "rotas": ["Suporte"],
+      "sinergias": [
+        {"campeao": "Miss Fortune", "descricao": "Lockdown = MF R perfeito"},
+        {"campeao": "Yasuo", "descricao": "Q knockup + Yasuo R"},
+        {"campeao": "Kai'Sa", "descricao": "CC chain para passive"},
+        {"campeao": "Samira", "descricao": "CC chain para ultimate"}
+      ],
+      "counters": [
+        {"campeao": "Morgana", "descricao": "Black Shield nega combo"},
+        {"campeao": "Janna", "descricao": "Q/R cancelam engage"},
+        {"campeao": "Alistar", "descricao": "Headbutt cancela E"},
+        {"campeao": "Tahm Kench", "descricao": "Devour salva aliado"}
+      ],
+      "counter_picks": ["Immobile ADCs (Ashe, Jhin, Varus)", "Squishy supports (Sona, Yuumi, Soraka)"]
+    },
+    "Lillia": {
+      "rotas": ["Selva", "Topo"],
+      "sinergias": [
+        {"campeao": "Yasuo", "descricao": "Lillia R sleep + Yasuo R"},
+        {"campeao": "Orianna", "descricao": "Ball em Lillia durante R"},
+        {"campeao": "Zilean", "descricao": "Speed boost maximiza kiting"},
+        {"campeao": "Karma", "descricao": "Speed boost + shield"}
+      ],
+      "counters": [
+        {"campeao": "Lee Sin", "descricao": "Invade early, out-tempo"},
+        {"campeao": "Graves", "descricao": "Invade, out-farms"},
+        {"campeao": "Kindred", "descricao": "R nega sleep"},
+        {"campeao": "Udyr", "descricao": "Out-duels early"}
+      ],
+      "counter_picks": ["Melee immobile teams", "Squishy comps"]
+    },
+    "Lissandra": {
+      "rotas": ["Meio"],
+      "sinergias": [
+        {"campeao": "Yasuo", "descricao": "Lissandra R + Yasuo R combo"},
+        {"campeao": "Orianna", "descricao": "Ball em Lissandra E/R"},
+        {"campeao": "Jarvan IV", "descricao": "Cataclysm + Lissandra R"},
+        {"campeao": "Malphite", "descricao": "R agrupamento + Lissandra R"}
+      ],
+      "counters": [
+        {"campeao": "Fizz", "descricao": "E dodges W/R"},
+        {"campeao": "Zed", "descricao": "R dodges burst"},
+        {"campeao": "Kassadin", "descricao": "Escala, R mobility"},
+        {"campeao": "Sylas", "descricao": "Rouba R de Lissandra"}
+      ],
+      "counter_picks": ["Immobile mages (Lux, Xerath, Veigar)", "Squishy ADCs"]
+    },
+    "Lucian": {
+      "rotas": ["Atirador", "Meio"],
+      "sinergias": [
+        {"campeao": "Nami", "descricao": "E buff maximiza damage"},
+        {"campeao": "Braum", "descricao": "Passiva combo rápida"},
+        {"campeao": "Yuumi", "descricao": "Attached durante all-in"},
+        {"campeao": "Lulu", "descricao": "Buffs maximizam burst"}
+      ],
+      "counters": [
+        {"campeao": "Caitlyn", "descricao": "Outrange + poke"},
+        {"campeao": "Ashe", "descricao": "Slow impede all-in"},
+        {"campeao": "Draven", "descricao": "Out-damages early"},
+        {"campeao": "Jhin", "descricao": "Poke + root"}
+      ],
+      "counter_picks": ["Short range ADCs (Vayne, Kog'Maw)", "Immobile supports (Sona, Soraka)"]
+    },
+    "Lulu": {
+      "rotas": ["Suporte"],
+      "sinergias": [
+        {"campeao": "Kog'Maw", "descricao": "Buffs maximizam DPS"},
+        {"campeao": "Jinx", "descricao": "Buffs para escala"},
+        {"campeao": "Vayne", "descricao": "Buffs para late game"},
+        {"campeao": "Twitch", "descricao": "Buffs durante ultimate"}
+      ],
+      "counters": [
+        {"campeao": "Blitzcrank", "descricao": "Hook burst down Lulu"},
+        {"campeao": "Leona", "descricao": "All-in ignora peel"},
+        {"campeao": "Nautilus", "descricao": "Lockdown through polymorph"},
+        {"campeao": "Pyke", "descricao": "Mobility + execute"}
+      ],
+      "counter_picks": ["Hypercarries (protect comp)", "Dive comps (counter with R)"]
+    },
+    "Lux": {
+      "rotas": ["Suporte", "Meio"],
+      "sinergias": [
+        {"campeao": "Morgana", "descricao": "Duplo root combo"},
+        {"campeao": "Jhin", "descricao": "Root garante W de Jhin"},
+        {"campeao": "Caitlyn", "descricao": "Root garante trap"},
+        {"campeao": "Miss Fortune", "descricao": "Slow garante R de MF"}
+      ],
+      "counters": [
+        {"campeao": "Fizz", "descricao": "E dodges tudo"},
+        {"campeao": "Zed", "descricao": "R dodges burst"},
+        {"campeao": "Yasuo", "descricao": "Wind wall bloqueia skills"},
+        {"campeao": "Sivir", "descricao": "Spell shield bloqueia Q"}
+      ],
+      "counter_picks": ["Immobile ADCs (Ashe, Jhin, Varus)", "Squishy supports (Sona, Yuumi)"]
+    },
+    "Malphite": {
+      "rotas": ["Topo", "Meio"],
+      "sinergias": [
+        {"campeao": "Yasuo", "descricao": "Malphite R + Yasuo R combo"},
+        {"campeao": "Orianna", "descricao": "Ball em Malphite R"},
+        {"campeao": "Miss Fortune", "descricao": "Malphite R = MF R perfeito"},
+        {"campeao": "Fiddlesticks", "descricao": "Malphite R = Fiddle R perfeito"}
+      ],
+      "counters": [
+        {"campeao": "Fiora", "descricao": "Riposte R, true damage"},
+        {"campeao": "Sylas", "descricao": "Rouba R de Malphite"},
+        {"campeao": "Morgana", "descricao": "Black Shield nega R"},
+        {"campeao": "Sivir", "descricao": "Spell shield bloqueia R"}
+      ],
+      "counter_picks": ["AD comps (armor stack)", "Immobile carries"]
+    },
+    "Malzahar": {
+      "rotas": ["Meio"],
+      "sinergias": [
+        {"campeao": "Jarvan IV", "descricao": "Cataclysm garante R"},
+        {"campeao": "Nautilus", "descricao": "Lockdown garante R"},
+        {"campeao": "Sejuani", "descricao": "CC chain para R"},
+        {"campeao": "Vi", "descricao": "R lockdown para Malzahar R"}
+      ],
+      "counters": [
+        {"campeao": "Fizz", "descricao": "E dodges R"},
+        {"campeao": "Zed", "descricao": "R dodges R"},
+        {"campeao": "Sivir", "descricao": "Spell shield bloqueia R"},
+        {"campeao": "Morgana", "descricao": "Black Shield nega R"}
+      ],
+      "counter_picks": ["Immobile mages (Lux, Xerath, Veigar)", "Squishy carries"]
+    },
+    "Maokai": {
+      "rotas": ["Topo", "Suporte"],
+      "sinergias": [
+        {"campeao": "Yasuo", "descricao": "Q knockup + Yasuo R"},
+        {"campeao": "Miss Fortune", "descricao": "R root = MF R perfeito"},
+        {"campeao": "Jhin", "descricao": "Root garante W de Jhin"},
+        {"campeao": "Caitlyn", "descricao": "Root garante trap"}
+      ],
+      "counters": [
+        {"campeao": "Fiora", "descricao": "Riposte + true damage"},
+        {"campeao": "Vayne", "descricao": "True damage + kiting"},
+        {"campeao": "Kog'Maw", "descricao": "%HP damage"},
+        {"campeao": "Brand", "descricao": "DoT ignora healing"}
+      ],
+      "counter_picks": ["AD comps (tankiness)", "Immobile carries"]
+    },
+    "Master Yi": {
+      "rotas": ["Selva"],
+      "sinergias": [
+        {"campeao": "Yuumi", "descricao": "Attached durante dive"},
+        {"campeao": "Lulu", "descricao": "Buffs maximizam DPS"},
+        {"campeao": "Zilean", "descricao": "Revive permite Yi agressivo"},
+        {"campeao": "Taric", "descricao": "R invencibilidade durante Yi dive"}
+      ],
+      "counters": [
+        {"campeao": "Jax", "descricao": "Counter Strike dodges AAs"},
+        {"campeao": "Rammus", "descricao": "Tank + taunt destroyer Yi"},
+        {"campeao": "Malphite", "descricao": "Attack speed slow + tankiness"},
+        {"campeao": "Kindred", "descricao": "R nega execute"}
+      ],
+      "counter_picks": ["Squishy teams", "Times sem CC"]
+    },
+    "Miss Fortune": {
+      "rotas": ["Atirador"],
+      "sinergias": [
+        {"campeao": "Leona", "descricao": "Lockdown = MF R perfeito"},
+        {"campeao": "Amumu", "descricao": "R agrupamento = MF R perfeito"},
+        {"campeao": "Malphite", "descricao": "R agrupamento = MF R perfeito"},
+        {"campeao": "Jarvan IV", "descricao": "Cataclysm = MF R perfeito"}
+      ],
+      "counters": [
+        {"campeao": "Sivir", "descricao": "Spell shield bloqueia R"},
+        {"campeao": "Yasuo", "descricao": "Wind wall bloqueia R"},
+        {"campeao": "Ezreal", "descricao": "E dodges R"},
+        {"campeao": "Tristana", "descricao": "W escape + out-scale"}
+      ],
+      "counter_picks": ["Immobile ADCs (Ashe, Jhin, Varus)", "Squishy supports (Sona, Yuumi)"]
+    },
+    "Mordekaiser": {
+      "rotas": ["Topo"],
+      "sinergias": [
+        {"campeao": "Yuumi", "descricao": "Attached durante R duel"},
+        {"campeao": "Lulu", "descricao": "Buffs maximizam duel"},
+        {"campeao": "Zilean", "descricao": "Revive permite Mordekaiser agressivo"},
+        {"campeao": "Orianna", "descricao": "Ball em Mordekaiser durante R"}
+      ],
+      "counters": [
+        {"campeao": "Fiora", "descricao": "Riposte + true damage"},
+        {"campeao": "Vayne", "descricao": "True damage + kiting"},
+        {"campeao": "Gangplank", "descricao": "Oranges cleanse R"},
+        {"campeao": "Olaf", "descricao": "R ignora R"}
+      ],
+      "counter_picks": ["Tanks imóveis (Sion, Cho'Gath, Mundo)", "Melee sem escape (Darius, Garen)"]
+    },
+    "Morgana": {
+      "rotas": ["Suporte", "Meio"],
+      "sinergias": [
+        {"campeao": "Caitlyn", "descricao": "Q root garante trap"},
+        {"campeao": "Jhin", "descricao": "Q root garante W de Jhin"},
+        {"campeao": "Miss Fortune", "descricao": "Q root garante R de MF"},
+        {"campeao": "Lux", "descricao": "Duplo root combo"}
+      ],
+      "counters": [
+        {"campeao": "Sivir", "descricao": "Spell shield bloqueia Q"},
+        {"campeao": "Ezreal", "descricao": "E dodges Q"},
+        {"campeao": "Tristana", "descricao": "W escape"},
+        {"campeao": "Morgana", "descricao": "Black Shield mirror"}
+      ],
+      "counter_picks": ["Engage supports (Alistar, Leona, Nautilus)", "Immobile ADCs (Ashe, Jhin)"]
+    },
+    "Nami": {
+      "rotas": ["Suporte"],
+      "sinergias": [
+        {"campeao": "Lucian", "descricao": "E buff maximiza damage"},
+        {"campeao": "Jhin", "descricao": "E buff maximiza damage"},
+        {"campeao": "Vayne", "descricao": "E buff + heal"},
+        {"campeao": "Ezreal", "descricao": "E buff + heal"}
+      ],
+      "counters": [
+        {"campeao": "Blitzcrank", "descricao": "Hook burst down Nami"},
+        {"campeao": "Leona", "descricao": "All-in ignora heal"},
+        {"campeao": "Nautilus", "descricao": "Lockdown through bubble"},
+        {"campeao": "Pyke", "descricao": "Mobility + execute"}
+      ],
+      "counter_picks": ["Poke comps (sustain)", "All-in comps (disengage)"]
+    },
+    "Nasus": {
+      "rotas": ["Topo"],
+      "sinergias": [
+        {"campeao": "Yuumi", "descricao": "Attached durante split push"},
+        {"campeao": "Lulu", "descricao": "Buffs maximizam duel"},
+        {"campeao": "Zilean", "descricao": "Speed boost + revive"},
+        {"campeao": "Janna", "descricao": "Peel para escala"}
+      ],
+      "counters": [
+        {"campeao": "Darius", "descricao": "Early game dominance"},
+        {"campeao": "Renekton", "descricao": "Early game dominance"},
+        {"campeao": "Teemo", "descricao": "Blind + poke"},
+        {"campeao": "Vayne", "descricao": "True damage + kiting"}
+      ],
+      "counter_picks": ["Tanks imóveis (Sion, Cho'Gath, Mundo)", "Melee sem early pressure (Garen)"]
+    },
+    "Nautilus": {
+      "rotas": ["Suporte", "Topo"],
+      "sinergias": [
+        {"campeao": "Miss Fortune", "descricao": "Lockdown = MF R perfeito"},
+        {"campeao": "Yasuo", "descricao": "Q knockup + Yasuo R"},
+        {"campeao": "Kai'Sa", "descricao": "CC chain para passive"},
+        {"campeao": "Samira", "descricao": "CC chain para ultimate"}
+      ],
+      "counters": [
+        {"campeao": "Morgana", "descricao": "Black Shield nega hook"},
+        {"campeao": "Janna", "descricao": "Q/R cancelam engage"},
+        {"campeao": "Alistar", "descricao": "Headbutt cancela hook"},
+        {"campeao": "Tahm Kench", "descricao": "Devour salva aliado"}
+      ],
+      "counter_picks": ["Immobile ADCs (Ashe, Jhin, Varus)", "Squishy supports (Sona, Yuumi, Soraka)"]
+    },
+    "Neeko": {
+      "rotas": ["Meio", "Suporte"],
+      "sinergias": [
+        {"campeao": "Yasuo", "descricao": "Neeko R + Yasuo R combo"},
+        {"campeao": "Orianna", "descricao": "Ball em Neeko R"},
+        {"campeao": "Jarvan IV", "descricao": "Cataclysm garante Neeko R"},
+        {"campeao": "Malphite", "descricao": "R agrupamento + Neeko R"}
+      ],
+      "counters": [
+        {"campeao": "Fizz", "descricao": "E dodges R"},
+        {"campeao": "Zed", "descricao": "R dodges R"},
+        {"campeao": "Yasuo", "descricao": "Wind wall bloqueia R"},
+        {"campeao": "Sivir", "descricao": "Spell shield bloqueia R"}
+      ],
+      "counter_picks": ["Immobile mages (Lux, Xerath, Veigar)", "Squishy carries"]
+    },
+    "Nidalee": {
+      "rotas": ["Selva"],
+      "sinergias": [
+        {"campeao": "Lee Sin", "descricao": "Duplo early game pressure"},
+        {"campeao": "Elise", "descricao": "Duplo early game pressure"},
+        {"campeao": "Twisted Fate", "descricao": "Gold card garante spear"},
+        {"campeao": "Ryze", "descricao": "Root garante spear"}
+      ],
+      "counters": [
+        {"campeao": "Graves", "descricao": "Invade, out-farms"},
+        {"campeao": "Kindred", "descricao": "Invade, counter-jungle"},
+        {"campeao": "Udyr", "descricao": "Out-duels early"},
+        {"campeao": "Hecarim", "descricao": "Out-tempo, out-scales"}
+      ],
+      "counter_picks": ["Squishy immobile junglers (Karthus)", "Immobile laners"]
+    },
+    "Nocturne": {
+      "rotas": ["Selva"],
+      "sinergias": [
+        {"campeao": "Twisted Fate", "descricao": "Duplo global pressure"},
+        {"campeao": "Shen", "descricao": "Duplo global pressure"},
+        {"campeao": "Pantheon", "descricao": "Triplo global pressure"},
+        {"campeao": "Galio", "descricao": "Ultimate combo"}
+      ],
+      "counters": [
+        {"campeao": "Jax", "descricao": "Counter Strike dodges AAs"},
+        {"campeao": "Lee Sin", "descricao": "Out-duels, kick cancela R"},
+        {"campeao": "Graves", "descricao": "Out-duels, smoke screen"},
+        {"campeao": "Kindred", "descricao": "R nega burst"}
+      ],
+      "counter_picks": ["Squishy immobile teams", "Split push comps"]
+    },
+    "Nunu & Willump": {
+      "rotas": ["Selva"],
+      "sinergias": [
+        {"campeao": "Yasuo", "descricao": "Snowball knockup + Yasuo R"},
+        {"campeao": "Orianna", "descricao": "Ball em Nunu R"},
+        {"campeao": "Miss Fortune", "descricao": "Snowball agrupamento = MF R"},
+        {"campeao": "Fiddlesticks", "descricao": "Snowball agrupamento = Fiddle R"}
+      ],
+      "counters": [
+        {"campeao": "Kindred", "descricao": "R nega R de Nunu"},
+        {"campeao": "Olaf", "descricao": "R ignora CC"},
+        {"campeao": "Graves", "descricao": "Invade, out-farms"},
+        {"campeao": "Lee Sin", "descricao": "Invade, out-tempo"}
+      ],
+      "counter_picks": ["Immobile laners", "Squishy teams"]
+    },
+    "Olaf": {
+      "rotas": ["Selva", "Topo"],
+      "sinergias": [
+        {"campeao": "Yuumi", "descricao": "Attached durante R dive"},
+        {"campeao": "Lulu", "descricao": "Buffs maximizam all-in"},
+        {"campeao": "Zilean", "descricao": "Speed boost + revive"},
+        {"campeao": "Karma", "descricao": "Speed boost + shield"}
+      ],
+      "counters": [
+        {"campeao": "Jax", "descricao": "Counter Strike dodges axes"},
+        {"campeao": "Fiora", "descricao": "Riposte + true damage"},
+        {"campeao": "Malphite", "descricao": "Tankiness + attack speed slow"},
+        {"campeao": "Kindred", "descricao": "R nega execute"}
+      ],
+      "counter_picks": ["CC-heavy teams (R immunity)", "Squishy carries"]
+    },
+    "Orianna": {
+      "rotas": ["Meio"],
+      "sinergias": [
+        {"campeao": "Malphite", "descricao": "Ball em Malphite R"},
+        {"campeao": "Jarvan IV", "descricao": "Ball em Jarvan R"},
+        {"campeao": "Hecarim", "descricao": "Ball em Hecarim R"},
+        {"campeao": "Shen", "descricao": "Ball em Shen taunt"}
+      ],
+      "counters": [
+        {"campeao": "Fizz", "descricao": "E dodges R"},
+        {"campeao": "Zed", "descricao": "R dodges R"},
+        {"campeao": "Kassadin", "descricao": "R mobility ignora ball"},
+        {"campeao": "Yasuo", "descricao": "Wind wall bloqueia ball"}
+      ],
+      "counter_picks": ["Immobile mages (Lux, Xerath, Veigar)", "Tank teams (DPS)"]
+    },
+    "Ornn": {
+      "rotas": ["Topo"],
+      "sinergias": [
+        {"campeao": "Yasuo", "descricao": "Q knockup + Yasuo R"},
+        {"campeao": "Orianna", "descricao": "Ball em Ornn R"},
+        {"campeao": "Miss Fortune", "descricao": "R knockup = MF R perfeito"},
+        {"campeao": "Fiddlesticks", "descricao": "R knockup = Fiddle R perfeito"}
+      ],
+      "counters": [
+        {"campeao": "Fiora", "descricao": "Riposte R, true damage"},
+        {"campeao": "Vayne", "descricao": "True damage + kiting"},
+        {"campeao": "Gangplank", "descricao": "Oranges cleanse R"},
+        {"campeao": "Sylas", "descricao": "Rouba R de Ornn"}
+      ],
+      "counter_picks": ["AD comps (armor stack)", "Immobile carries"]
+    },
+    "Pantheon": {
+      "rotas": ["Meio", "Suporte", "Topo"],
+      "sinergias": [
+        {"campeao": "Twisted Fate", "descricao": "Duplo roaming pressure"},
+        {"campeao": "Nocturne", "descricao": "Duplo global pressure"},
+        {"campeao": "Shen", "descricao": "Triplo global pressure"},
+        {"campeao": "Galio", "descricao": "Ultimate combo"}
+      ],
+      "counters": [
+        {"campeao": "Malphite", "descricao": "Tankiness + poke"},
+        {"campeao": "Sion", "descricao": "Tankiness + waveclear"},
+        {"campeao": "Yorick", "descricao": "Ghouls + all-in"},
+        {"campeao": "Garen", "descricao": "Tankiness + silence"}
+      ],
+      "counter_picks": ["Squishy mages (Lux, Xerath, Veigar)", "Immobile ADCs"]
+    },
+    "Poppy": {
+      "rotas": ["Selva", "Topo"],
+      "sinergias": [
+        {"campeao": "Yasuo", "descricao": "E knockup + Yasuo R"},
+        {"campeao": "Orianna", "descricao": "Ball em Poppy R"},
+        {"campeao": "Jarvan IV", "descricao": "W bloqueia E+Q combo"},
+        {"campeao": "Lee Sin", "descricao": "W bloqueia Q"}
+      ],
+      "counters": [
+        {"campeao": "Darius", "descricao": "Out-trades, pull cancels W"},
+        {"campeao": "Garen", "descricao": "Out-trades, silence cancels W"},
+        {"campeao": "Fiora", "descricao": "Riposte + true damage"},
+        {"campeao": "Vayne", "descricao": "True damage + kiting"}
+      ],
+      "counter_picks": ["Dash-heavy comps (W counter)", "Immobile carries"]
+    },
+    "Pyke": {
+      "rotas": ["Suporte"],
+      "sinergias": [
+        {"campeao": "Miss Fortune", "descricao": "Duplo execute ultimate"},
+        {"campeao": "Jhin", "descricao": "Root garante hook"},
+        {"campeao": "Caitlyn", "descricao": "Trap garante hook"},
+        {"campeao": "Lux", "descricao": "Root garante hook"}
+      ],
+      "counters": [
+        {"campeao": "Morgana", "descricao": "Black Shield nega hook"},
+        {"campeao": "Janna", "descricao": "Q/R cancelam engage"},
+        {"campeao": "Alistar", "descricao": "Headbutt cancela hook"},
+        {"campeao": "Tahm Kench", "descricao": "Devour salva aliado"}
+      ],
+      "counter_picks": ["Squishy ADCs (Ashe, Jhin, Varus)", "Immobile supports (Sona, Yuumi)"]
+    },
+    "Qiyana": {
+      "rotas": ["Meio"],
+      "sinergias": [
+        {"campeao": "Yasuo", "descricao": "Qiyana R + Yasuo R combo"},
+        {"campeao": "Orianna", "descricao": "Ball em Qiyana R"},
+        {"campeao": "Jarvan IV", "descricao": "Cataclysm garante Qiyana R"},
+        {"campeao": "Malphite", "descricao": "R agrupamento + Qiyana R"}
+      ],
+      "counters": [
+        {"campeao": "Galio", "descricao": "Anti-mage, tank AP damage"},
+        {"campeao": "Diana", "descricao": "Out-trades early"},
+        {"campeao": "Fizz", "descricao": "E dodges R"},
+        {"campeao": "Malzahar", "descricao": "Supressão cancela mobility"}
+      ],
+      "counter_picks": ["Immobile mages (Lux, Xerath, Veigar)", "Squishy ADCs"]
+    },
+    "Quinn": {
+      "rotas": ["Topo"],
+      "sinergias": [
+        {"campeao": "Nocturne", "descricao": "Duplo roaming pressure"},
+        {"campeao": "Twisted Fate", "descricao": "Duplo roaming pressure"},
+        {"campeao": "Shen", "descricao": "Duplo global pressure"},
+        {"campeao": "Pantheon", "descricao": "Triplo roaming pressure"}
+      ],
+      "counters": [
+        {"campeao": "Malphite", "descricao": "Tankiness + poke"},
+        {"campeao": "Irelia", "descricao": "Gap close + all-in"},
+        {"campeao": "Jax", "descricao": "Gap close + burst"},
+        {"campeao": "Pantheon", "descricao": "Point-click stun + burst"}
+      ],
+      "counter_picks": ["Melee imóveis (Darius, Garen, Mordekaiser)", "Tanks sem gap close (Sion, Cho'Gath)"]
+    },
+    "Rakan": {
+      "rotas": ["Suporte"],
+      "sinergias": [
+        {"campeao": "Xayah", "descricao": "Duo synergy + combo"},
+        {"campeao": "Yasuo", "descricao": "R knockup + Yasuo R"},
+        {"campeao": "Miss Fortune", "descricao": "R charm = MF R perfeito"},
+        {"campeao": "Fiddlesticks", "descricao": "R charm = Fiddle R perfeito"}
+      ],
+      "counters": [
+        {"campeao": "Morgana", "descricao": "Black Shield nega engage"},
+        {"campeao": "Janna", "descricao": "Q/R cancelam engage"},
+        {"campeao": "Alistar", "descricao": "Headbutt cancela W"},
+        {"campeao": "Thresh", "descricao": "Flay cancela W"}
+      ],
+      "counter_picks": ["Immobile ADCs (Ashe, Jhin, Varus)", "Squishy supports (Sona, Yuumi)"]
+    },
+    "Rammus": {
+      "rotas": ["Selva"],
+      "sinergias": [
+        {"campeao": "Yasuo", "descricao": "Rammus R knockup + Yasuo R"},
+        {"campeao": "Orianna", "descricao": "Ball em Rammus R"},
+        {"campeao": "Miss Fortune", "descricao": "Rammus R = MF R perfeito"},
+        {"campeao": "Fiddlesticks", "descricao": "Rammus R = Fiddle R perfeito"}
+      ],
+      "counters": [
+        {"campeao": "Fiora", "descricao": "True damage + riposte"},
+        {"campeao": "Vayne", "descricao": "True damage shred"},
+        {"campeao": "Kog'Maw", "descricao": "%HP damage"},
+        {"campeao": "Brand", "descricao": "AP damage ignora armor"}
+      ],
+      "counter_picks": ["AD comps (armor stack)", "Immobile ADCs"]
+    },
+    "Rek'Sai": {
+      "rotas": ["Selva"],
+      "sinergias": [
+        {"campeao": "Yasuo", "descricao": "Rek'Sai R knockup + Yasuo R"},
+        {"campeao": "Orianna", "descricao": "Ball em Rek'Sai R"},
+        {"campeao": "Twisted Fate", "descricao": "Gold card garante knockup"},
+        {"campeao": "Ryze", "descricao": "Root garante knockup"}
+      ],
+      "counters": [
+        {"campeao": "Kindred", "descricao": "R nega execute"},
+        {"campeao": "Lee Sin", "descricao": "Out-duels, kick cancela R"},
+        {"campeao": "Graves", "descricao": "Out-duels, smoke screen"},
+        {"campeao": "Udyr", "descricao": "Out-duels early"}
+      ],
+      "counter_picks": ["Squishy immobile junglers (Karthus, Nidalee)", "Immobile laners"]
+    },
+    "Rell": {
+      "rotas": ["Suporte"],
+      "sinergias": [
+        {"campeao": "Yasuo", "descricao": "Rell R + Yasuo R combo"},
+        {"campeao": "Orianna", "descricao": "Ball em Rell R"},
+        {"campeao": "Miss Fortune", "descricao": "Rell R = MF R perfeito"},
+        {"campeao": "Fiddlesticks", "descricao": "Rell R = Fiddle R perfeito"}
+      ],
+      "counters": [
+        {"campeao": "Morgana", "descricao": "Black Shield nega engage"},
+        {"campeao": "Janna", "descricao": "Q/R cancelam engage"},
+        {"campeao": "Alistar", "descricao": "Headbutt cancela W"},
+        {"campeao": "Thresh", "descricao": "Flay cancela W"}
+      ],
+      "counter_picks": ["Immobile ADCs (Ashe, Jhin, Varus)", "Squishy supports (Sona, Yuumi)"]
+    },
+    "Renata Glasc": {
+      "rotas": ["Suporte"],
+      "sinergias": [
+        {"campeao": "Kog'Maw", "descricao": "W revive + attack speed"},
+        {"campeao": "Jinx", "descricao": "W revive + attack speed"},
+        {"campeao": "Vayne", "descricao": "W revive + attack speed"},
+        {"campeao": "Twitch", "descricao": "W revive + attack speed"}
+      ],
+      "counters": [
+        {"campeao": "Blitzcrank", "descricao": "Hook burst down Renata"},
+        {"campeao": "Leona", "descricao": "All-in ignora W"},
+        {"campeao": "Nautilus", "descricao": "Lockdown through peel"},
+        {"campeao": "Pyke", "descricao": "Mobility + execute"}
+      ],
+      "counter_picks": ["Auto-attack comps (R berserk)", "Dive comps (counter with R)"]
+    },
+    "Renekton": {
+      "rotas": ["Topo"],
+      "sinergias": [
+        {"campeao": "Elise", "descricao": "Duplo early game pressure"},
+        {"campeao": "Lee Sin", "descricao": "Duplo early game pressure"},
+        {"campeao": "Nidalee", "descricao": "Duplo early game pressure"},
+        {"campeao": "Pantheon", "descricao": "Duplo early game pressure"}
+      ],
+      "counters": [
+        {"campeao": "Malphite", "descricao": "Tankiness + poke"},
+        {"campeao": "Quinn", "descricao": "Range + kiting"},
+        {"campeao": "Teemo", "descricao": "Blind + poke"},
+        {"campeao": "Gnar", "descricao": "Range + kiting"}
+      ],
+      "counter_picks": ["Melee imóveis (Darius, Garen, Mordekaiser)", "Tanks sem early pressure (Sion, Cho'Gath)"]
+    },
+    "Rengar": {
+      "rotas": ["Selva", "Topo"],
+      "sinergias": [
+        {"campeao": "Ivern", "descricao": "Brush synergy + shield"},
+        {"campeao": "Zilean", "descricao": "Speed boost + revive"},
+        {"campeao": "Lulu", "descricao": "Buffs maximizam burst"},
+        {"campeao": "Orianna", "descricao": "Ball em Rengar leap"}
+      ],
+      "counters": [
+        {"campeao": "Jax", "descricao": "Counter Strike dodges leap"},
+        {"campeao": "Lee Sin", "descricao": "Out-duels, kick cancela burst"},
+        {"campeao": "Graves", "descricao": "Out-duels, smoke screen"},
+        {"campeao": "Kindred", "descricao": "R nega execute"}
+      ],
+      "counter_picks": ["Squishy immobile teams", "Times sem vision control"]
+    },
+    "Riven": {
+      "rotas": ["Topo"],
+      "sinergias": [
+        {"campeao": "Yuumi", "descricao": "Attached durante all-in"},
+        {"campeao": "Lulu", "descricao": "Buffs maximizam burst"},
+        {"campeao": "Zilean", "descricao": "Speed boost + revive"},
+        {"campeao": "Orianna", "descricao": "Ball em Riven durante engage"}
+      ],
+      "counters": [
+        {"campeao": "Garen", "descricao": "Silence + tankiness"},
+        {"campeao": "Renekton", "descricao": "Out-trades early"},
+        {"campeao": "Quinn", "descricao": "Range + kiting"},
+        {"campeao": "Poppy", "descricao": "W bloqueia Q3"}
+      ],
+      "counter_picks": ["Tanks imóveis (Sion, Cho'Gath, Mundo)", "Melee sem early pressure (Nasus)"]
+    },
+    "Rumble": {
+      "rotas": ["Topo", "Meio"],
+      "sinergias": [
+        {"campeao": "Yasuo", "descricao": "Rumble R + Yasuo R combo"},
+        {"campeao": "Orianna", "descricao": "Ball em Rumble R"},
+        {"campeao": "Jarvan IV", "descricao": "Cataclysm garante Rumble R"},
+        {"campeao": "Malphite", "descricao": "R agrupamento + Rumble R"}
+      ],
+      "counters": [
+        {"campeao": "Fiora", "descricao": "Riposte + true damage"},
+        {"campeao": "Irelia", "descricao": "Gap close + sustain"},
+        {"campeao": "Yasuo", "descricao": "Wind wall bloqueia E"},
+        {"campeao": "Sylas", "descricao": "Rouba R de Rumble"}
+      ],
+      "counter_picks": ["Melee imóveis (Darius, Garen, Mordekaiser)", "Squishy teams"]
+    },
+    "Ryze": {
+      "rotas": ["Meio"],
+      "sinergias": [
+        {"campeao": "Shen", "descricao": "Duplo global ultimate"},
+        {"campeao": "Twisted Fate", "descricao": "Duplo roaming pressure"},
+        {"campeao": "Nocturne", "descricao": "Duplo global pressure"},
+        {"campeao": "Pantheon", "descricao": "Triplo roaming pressure"}
+      ],
+      "counters": [
+        {"campeao": "Fizz", "descricao": "E dodges root, gap close"},
+        {"campeao": "Zed", "descricao": "R assassina Ryze"},
+        {"campeao": "Kassadin", "descricao": "Escala melhor, R mobility"},
+        {"campeao": "Irelia", "descricao": "Gap close + all-in"}
+      ],
+      "counter_picks": ["Immobile mages (Lux, Xerath, Veigar)", "Tanks (DPS)"]
+    },
+    "Samira": {
+      "rotas": ["Atirador"],
+      "sinergias": [
+        {"campeao": "Nautilus", "descricao": "Lockdown garante combo"},
+        {"campeao": "Leona", "descricao": "CC chain para ultimate"},
+        {"campeao": "Alistar", "descricao": "Knockup para ultimate"},
+        {"campeao": "Rell", "descricao": "CC chain para ultimate"}
+      ],
+      "counters": [
+        {"campeao": "Caitlyn", "descricao": "Outrange + poke"},
+        {"campeao": "Ashe", "descricao": "Slow impede engage"},
+        {"campeao": "Draven", "descricao": "Out-damages early"},
+        {"campeao": "Jhin", "descricao": "Poke + root"}
+      ],
+      "counter_picks": ["Short range ADCs (Vayne, Lucian)", "Engage supports (Alistar, Leona)"]
+    },
+    "Sejuani": {
+      "rotas": ["Selva"],
+      "sinergias": [
+        {"campeao": "Yasuo", "descricao": "Sejuani R + Yasuo R combo"},
+        {"campeao": "Orianna", "descricao": "Ball em Sejuani R"},
+        {"campeao": "Miss Fortune", "descricao": "Sejuani R = MF R perfeito"},
+        {"campeao": "Fiddlesticks", "descricao": "Sejuani R = Fiddle R perfeito"}
+      ],
+      "counters": [
+        {"campeao": "Kindred", "descricao": "R nega burst"},
+        {"campeao": "Olaf", "descricao": "R ignora CC"},
+        {"campeao": "Graves", "descricao": "Invade, out-farms"},
+        {"campeao": "Lee Sin", "descricao": "Invade, out-tempo"}
+      ],
+      "counter_picks": ["Melee-heavy teams (passiva procs)", "Immobile carries"]
+    },
+    "Senna": {
+      "rotas": ["Suporte", "Atirador"],
+      "sinergias": [
+        {"campeao": "Tahm Kench", "descricao": "Duo fasting Senna"},
+        {"campeao": "Sion", "descricao": "Duo fasting Senna"},
+        {"campeao": "Cho'Gath", "descricao": "Duo fasting Senna"},
+        {"campeao": "Maokai", "descricao": "Duo fasting Senna"}
+      ],
+      "counters": [
+        {"campeao": "Blitzcrank", "descricao": "Hook burst down Senna"},
+        {"campeao": "Leona", "descricao": "All-in ignora range"},
+        {"campeao": "Nautilus", "descricao": "Lockdown through peel"},
+        {"campeao": "Pyke", "descricao": "Mobility + execute"}
+      ],
+      "counter_picks": ["Poke comps (out-range)", "Immobile ADCs (Ashe, Jhin)"]
+    },
+    "Seraphine": {
+      "rotas": ["Suporte", "Meio"],
+      "sinergias": [
+        {"campeao": "Miss Fortune", "descricao": "Seraphine R + MF R combo"},
+        {"campeao": "Yasuo", "descricao": "Seraphine R + Yasuo R combo"},
+        {"campeao": "Orianna", "descricao": "Ball em Seraphine R"},
+        {"campeao": "Sona", "descricao": "Duplo enchanter scaling"}
+      ],
+      "counters": [
+        {"campeao": "Fizz", "descricao": "E dodges R"},
+        {"campeao": "Zed", "descricao": "R assassina Seraphine"},
+        {"campeao": "Yasuo", "descricao": "Wind wall bloqueia R"},
+        {"campeao": "Sivir", "descricao": "Spell shield bloqueia R"}
+      ],
+      "counter_picks": ["Grouped teams (R extend)", "Immobile carries"]
+    },
+    "Sett": {
+      "rotas": ["Topo"],
+      "sinergias": [
+        {"campeao": "Yuumi", "descricao": "Attached durante W channel"},
+        {"campeao": "Lulu", "descricao": "Buffs maximizam all-in"},
+        {"campeao": "Zilean", "descricao": "Speed boost + revive"},
+        {"campeao": "Orianna", "descricao": "Ball em Sett durante R"}
+      ],
+      "counters": [
+        {"campeao": "Fiora", "descricao": "Riposte W, true damage"},
+        {"campeao": "Vayne", "descricao": "True damage + kiting"},
+        {"campeao": "Gangplank", "descricao": "Oranges cleanse E"},
+        {"campeao": "Mordekaiser", "descricao": "R remove from teamfight"}
+      ],
+      "counter_picks": ["Melee imóveis (Darius, Garen, Mordekaiser)", "Tanks sem burst (Sion, Cho'Gath)"]
+    },
+    "Shaco": {
+      "rotas": ["Selva"],
+      "sinergias": [
+        {"campeao": "Zilean", "descricao": "Bombs em boxes"},
+        {"campeao": "Orianna", "descricao": "Ball em Shaco durante R"},
+        {"campeao": "Twisted Fate", "descricao": "Gold card garante box fear"},
+        {"campeao": "Ryze", "descricao": "Root garante box fear"}
+      ],
+      "counters": [
+        {"campeao": "Lee Sin", "descricao": "R visibility, invade early"},
+        {"campeao": "Graves", "descricao": "Invade, out-farms"},
+        {"campeao": "Kindred", "descricao": "R nega burst"},
+        {"campeao": "Udyr", "descricao": "Out-duels early"}
+      ],
+      "counter_picks": ["Squishy immobile teams", "Times sem vision control"]
+    },
+    "Shen": {
+      "rotas": ["Topo"],
+      "sinergias": [
+        {"campeao": "Twisted Fate", "descricao": "Duplo global pressure"},
+        {"campeao": "Nocturne", "descricao": "Duplo global pressure"},
+        {"campeao": "Pantheon", "descricao": "Triplo global pressure"},
+        {"campeao": "Galio", "descricao": "Ultimate combo"}
+      ],
+      "counters": [
+        {"campeao": "Fiora", "descricao": "Riposte + true damage"},
+        {"campeao": "Vayne", "descricao": "True damage + kiting"},
+        {"campeao": "Gangplank", "descricao": "Oranges cleanse taunt"},
+        {"campeao": "Mordekaiser", "descricao": "R remove from map"}
+      ],
+      "counter_picks": ["Melee imóveis (Darius, Garen, Mordekaiser)", "Tanks sem split push (Sion, Cho'Gath)"]
+    },
+    "Shyvana": {
+      "rotas": ["Selva"],
+      "sinergias": [
+        {"campeao": "Yuumi", "descricao": "Attached durante dragon form"},
+        {"campeao": "Lulu", "descricao": "Buffs maximizam dragon form"},
+        {"campeao": "Zilean", "descricao": "Speed boost + revive"},
+        {"campeao": "Orianna", "descricao": "Ball em Shyvana durante R"}
+      ],
+      "counters": [
+        {"campeao": "Kindred", "descricao": "R nega burst"},
+        {"campeao": "Olaf", "descricao": "R ignora CC"},
+        {"campeao": "Graves", "descricao": "Invade, out-farms"},
+        {"campeao": "Lee Sin", "descricao": "Invade, out-tempo"}
+      ],
+      "counter_picks": ["Squishy teams (AP burst)", "Immobile carries"]
+    },
+    "Singed": {
+      "rotas": ["Topo"],
+      "sinergias": [
+        {"campeao": "Yuumi", "descricao": "Attached durante proxy"},
+        {"campeao": "Zilean", "descricao": "Speed boost + revive"},
+        {"campeao": "Karma", "descricao": "Speed boost + shield"},
+        {"campeao": "Orianna", "descricao": "Ball em Singed durante R"}
+      ],
+      "counters": [
+        {"campeao": "Fiora", "descricao": "True damage + mobility"},
+        {"campeao": "Vayne", "descricao": "True damage + kiting"},
+        {"campeao": "Gangplank", "descricao": "Oranges cleanse glue"},
+        {"campeao": "Kayle", "descricao": "Range + scaling"}
+      ],
+      "counter_picks": ["Melee imóveis (Darius, Garen, Mordekaiser)", "Tanks sem waveclear (Sion, Cho'Gath)"]
+    },
+    "Sion": {
+      "rotas": ["Topo"],
+      "sinergias": [
+        {"campeao": "Yasuo", "descricao": "Sion R knockup + Yasuo R"},
+        {"campeao": "Orianna", "descricao": "Ball em Sion R"},
+        {"campeao": "Miss Fortune", "descricao": "Sion R agrupamento = MF R"},
+        {"campeao": "Fiddlesticks", "descricao": "Sion R agrupamento = Fiddle R"}
+      ],
+      "counters": [
+        {"campeao": "Fiora", "descricao": "Riposte R, true damage"},
+        {"campeao": "Vayne", "descricao": "True damage + kiting"},
+        {"campeao": "Gangplank", "descricao": "Oranges cleanse Q"},
+        {"campeao": "Sylas", "descricao": "Rouba R de Sion"}
+      ],
+      "counter_picks": ["AD comps (armor stack)", "Immobile carries"]
+    },
+    "Sivir": {
+      "rotas": ["Atirador"],
+      "sinergias": [
+        {"campeao": "Yuumi", "descricao": "Attached durante push"},
+        {"campeao": "Lulu", "descricao": "Buffs maximizam DPS"},
+        {"campeao": "Zilean", "descricao": "Speed boost + revive"},
+        {"campeao": "Karma", "descricao": "Speed boost + shield"}
+      ],
+      "counters": [
+        {"campeao": "Draven", "descricao": "Out-damages early"},
+        {"campeao": "Caitlyn", "descricao": "Outrange + poke"},
+        {"campeao": "Tristana", "descricao": "All-in pós-6"},
+        {"campeao": "Samira", "descricao": "All-in + wind wall"}
+      ],
+      "counter_picks": ["Poke comps (spell shield)", "Immobile ADCs (Ashe, Jhin)"]
+    },
+    "Skarner": {
+      "rotas": ["Selva"],
+      "sinergias": [
+        {"campeao": "Yasuo", "descricao": "Skarner R + Yasuo R combo"},
+        {"campeao": "Orianna", "descricao": "Ball em Skarner R"},
+        {"campeao": "Miss Fortune", "descricao": "Skarner R pull = MF R"},
+        {"campeao": "Fiddlesticks", "descricao": "Skarner R pull = Fiddle R"}
+      ],
+      "counters": [
+        {"campeao": "Kindred", "descricao": "R nega R de Skarner"},
+        {"campeao": "Olaf", "descricao": "R ignora R de Skarner"},
+        {"campeao": "Gangplank", "descricao": "Oranges cleanse R"},
+        {"campeao": "Morgana", "descricao": "Black Shield nega R"}
+      ],
+      "counter_picks": ["Immobile carries (R picks)", "Squishy teams"]
+    },
+    "Sona": {
+      "rotas": ["Suporte"],
+      "sinergias": [
+        {"campeao": "Kog'Maw", "descricao": "Heal + speed para hypercarry"},
+        {"campeao": "Jinx", "descricao": "Heal + speed para escala"},
+        {"campeao": "Vayne", "descricao": "Heal + speed para late game"},
+        {"campeao": "Twitch", "descricao": "Heal + speed durante ultimate"}
+      ],
+      "counters": [
+        {"campeao": "Blitzcrank", "descricao": "Hook burst down Sona"},
+        {"campeao": "Leona", "descricao": "All-in ignora heal"},
+        {"campeao": "Nautilus", "descricao": "Lockdown through peel"},
+        {"campeao": "Pyke", "descricao": "Mobility + execute"}
+      ],
+      "counter_picks": ["Poke comps (sustain)", "Teamfight comps (R engage)"]
+    },
+    "Soraka": {
+      "rotas": ["Suporte"],
+      "sinergias": [
+        {"campeao": "Kog'Maw", "descricao": "Heal para hypercarry"},
+        {"campeao": "Jinx", "descricao": "Heal para escala"},
+        {"campeao": "Vayne", "descricao": "Heal para late game"},
+        {"campeao": "Twitch", "descricao": "Heal durante ultimate"}
+      ],
+      "counters": [
+        {"campeao": "Blitzcrank", "descricao": "Hook burst down Soraka"},
+        {"campeao": "Leona", "descricao": "All-in ignora heal"},
+        {"campeao": "Nautilus", "descricao": "Lockdown through silence"},
+        {"campeao": "Pyke", "descricao": "Mobility + execute"}
+      ],
+      "counter_picks": ["Poke comps (sustain)", "All-in comps (silence counter)"]
+    },
+    "Swain": {
+      "rotas": ["Suporte", "Meio"],
+      "sinergias": [
+        {"campeao": "Yasuo", "descricao": "Swain R + Yasuo R combo"},
+        {"campeao": "Orianna", "descricao": "Ball em Swain R"},
+        {"campeao": "Miss Fortune", "descricao": "Swain R agrupamento = MF R"},
+        {"campeao": "Fiddlesticks", "descricao": "Swain R agrupamento = Fiddle R"}
+      ],
+      "counters": [
+        {"campeao": "Fizz", "descricao": "E dodges E, burst down"},
+        {"campeao": "Zed", "descricao": "R assassina Swain"},
+        {"campeao": "Vayne", "descricao": "True damage + kiting"},
+        {"campeao": "Kog'Maw", "descricao": "%HP damage"}
+      ],
+      "counter_picks": ["Melee-heavy teams (R healing)", "Immobile carries"]
+    },
+    "Sylas": {
+      "rotas": ["Meio"],
+      "sinergias": [
+        {"campeao": "Malphite", "descricao": "Rouba R de Malphite"},
+        {"campeao": "Amumu", "descricao": "Rouba R de Amumu"},
+        {"campeao": "Neeko", "descricao": "Rouba R de Neeko"},
+        {"campeao": "Orianna", "descricao": "Rouba R de Orianna"}
+      ],
+      "counters": [
+        {"campeao": "Galio", "descricao": "Anti-mage, tank AP damage"},
+        {"campeao": "Diana", "descricao": "Out-trades early"},
+        {"campeao": "Fizz", "descricao": "E dodges chain"},
+        {"campeao": "Malzahar", "descricao": "Supressão cancela mobility"}
+      ],
+      "counter_picks": ["Ultimate-dependent champs (Malphite, Amumu)", "Squishy carries"]
+    },
+    "Syndra": {
+      "rotas": ["Meio"],
+      "sinergias": [
+        {"campeao": "Lee Sin", "descricao": "Kick para Syndra R"},
+        {"campeao": "Nautilus", "descricao": "Lockdown garante combo"},
+        {"campeao": "Thresh", "descricao": "Lantern escape após burst"},
+        {"campeao": "Zilean", "descricao": "Revive permite Syndra agressiva"}
+      ],
+      "counters": [
+        {"campeao": "Fizz", "descricao": "E dodges R, gap close"},
+        {"campeao": "Zed", "descricao": "R dodges burst"},
+        {"campeao": "Kassadin", "descricao": "Escala, R mobility"},
+        {"campeao": "Yasuo", "descricao": "Wind wall bloqueia Q/E"}
+      ],
+      "counter_picks": ["Immobile mages (Lux, Xerath, Veigar)", "Squishy ADCs"]
+    },
+    "Tahm Kench": {
+      "rotas": ["Suporte", "Topo"],
+      "sinergias": [
+        {"campeao": "Senna", "descricao": "Duo fasting Senna"},
+        {"campeao": "Kog'Maw", "descricao": "Devour protege hypercarry"},
+        {"campeao": "Jinx", "descricao": "Devour protege escala"},
+        {"campeao": "Vayne", "descricao": "Devour protege late game"}
+      ],
+      "counters": [
+        {"campeao": "Morgana", "descricao": "Black Shield nega devour"},
+        {"campeao": "Janna", "descricao": "Q/R cancelam engage"},
+        {"campeao": "Alistar", "descricao": "Headbutt cancela Q"},
+        {"campeao": "Thresh", "descricao": "Flay cancela Q"}
+      ],
+      "counter_picks": ["Pick comps (devour counter)", "Dive comps (counter with R)"]
+    },
+    "Taliyah": {
+      "rotas": ["Selva", "Meio"],
+      "sinergias": [
+        {"campeao": "Yasuo", "descricao": "Taliyah R + Yasuo R combo"},
+        {"campeao": "Orianna", "descricao": "Ball em Taliyah R"},
+        {"campeao": "Jarvan IV", "descricao": "Cataclysm + Taliyah wall"},
+        {"campeao": "Anivia", "descricao": "Duplo wall control"}
+      ],
+      "counters": [
+        {"campeao": "Fizz", "descricao": "E dodges W, gap close"},
+        {"campeao": "Zed", "descricao": "R assassina Taliyah"},
+        {"campeao": "Kassadin", "descricao": "R mobility ignora combo"},
+        {"campeao": "Yasuo", "descricao": "Wind wall bloqueia Q"}
+      ],
+      "counter_picks": ["Immobile mages (Lux, Xerath, Veigar)", "Squishy carries"]
+    },
+    "Talon": {
+      "rotas": ["Meio"],
+      "sinergias": [
+        {"campeao": "Lee Sin", "descricao": "Duplo early game pressure"},
+        {"campeao": "Nautilus", "descricao": "Lockdown garante combo"},
+        {"campeao": "Thresh", "descricao": "Lantern escape após assassinato"},
+        {"campeao": "Zilean", "descricao": "Revive permite Talon agressivo"}
+      ],
+      "counters": [
+        {"campeao": "Galio", "descricao": "Anti-AD, tank damage"},
+        {"campeao": "Diana", "descricao": "Out-trades early"},
+        {"campeao": "Malzahar", "descricao": "Supressão cancela mobility"},
+        {"campeao": "Lissandra", "descricao": "R self-cast nega all-in"}
+      ],
+      "counter_picks": ["Immobile mages (Lux, Xerath, Veigar)", "Squishy ADCs"]
+    },
+    "Taric": {
+      "rotas": ["Suporte"],
+      "sinergias": [
+        {"campeao": "Kindred", "descricao": "R combo invencibilidade"},
+        {"campeao": "Yasuo", "descricao": "Taric R + Yasuo R combo"},
+        {"campeao": "Master Yi", "descricao": "R invencibilidade durante dive"},
+        {"campeao": "Olaf", "descricao": "R invencibilidade durante dive"}
+      ],
+      "counters": [
+        {"campeao": "Morgana", "descricao": "Black Shield nega stun"},
+        {"campeao": "Janna", "descricao": "Q/R cancelam engage"},
+        {"campeao": "Alistar", "descricao": "Headbutt cancela stun"},
+        {"campeao": "Thresh", "descricao": "Flay cancela stun"}
+      ],
+      "counter_picks": ["Dive comps (R counter)", "Burst comps (R counter)"]
+    },
+    "Teemo": {
+      "rotas": ["Topo"],
+      "sinergias": [
+        {"campeao": "Yuumi", "descricao": "Attached durante split push"},
+        {"campeao": "Lulu", "descricao": "Buffs maximizam duel"},
+        {"campeao": "Zilean", "descricao": "Speed boost + revive"},
+        {"campeao": "Orianna", "descricao": "Ball em Teemo durante R"}
+      ],
+      "counters": [
+        {"campeao": "Irelia", "descricao": "Gap close + all-in"},
+        {"campeao": "Yasuo", "descricao": "Wind wall bloqueia Q"},
+        {"campeao": "Sion", "descricao": "Tankiness + waveclear"},
+        {"campeao": "Malphite", "descricao": "Tankiness + poke"}
+      ],
+      "counter_picks": ["Melee imóveis (Darius, Garen, Mordekaiser)", "Auto-attack champions (blind)"]
+    },
+    "Thresh": {
+      "rotas": ["Suporte"],
+      "sinergias": [
+        {"campeao": "Draven", "descricao": "Hook = kill instantâneo"},
+        {"campeao": "Kalista", "descricao": "Lantern + Kalista R combo"},
+        {"campeao": "Jhin", "descricao": "Hook garante W de Jhin"},
+        {"campeao": "Caitlyn", "descricao": "Hook garante trap"}
+      ],
+      "counters": [
+        {"campeao": "Morgana", "descricao": "Black Shield nega hook"},
+        {"campeao": "Sivir", "descricao": "Spell shield bloqueia hook"},
+        {"campeao": "Ezreal", "descricao": "E dodges hook"},
+        {"campeao": "Tristana", "descricao": "W escape"}
+      ],
+      "counter_picks": ["Immobile ADCs (Ashe, Jhin, Varus)", "Squishy supports (Sona, Yuumi)"]
+    },
+    "Tristana": {
+      "rotas": ["Atirador", "Meio"],
+      "sinergias": [
+        {"campeao": "Leona", "descricao": "All-in level 2 devastador"},
+        {"campeao": "Nautilus", "descricao": "Lockdown permite full combo"},
+        {"campeao": "Alistar", "descricao": "Knockup permite W reset"},
+        {"campeao": "Rell", "descricao": "CC chain para W reset"}
+      ],
+      "counters": [
+        {"campeao": "Caitlyn", "descricao": "Outrange early"},
+        {"campeao": "Draven", "descricao": "Out-damages early"},
+        {"campeao": "Sivir", "descricao": "Spell shield bloqueia E"},
+        {"campeao": "Ezreal", "descricao": "E dodges W"}
+      ],
+      "counter_picks": ["Short range ADCs (Vayne, Lucian)", "Immobile supports (Sona, Soraka)"]
+    },
+    "Trundle": {
+      "rotas": ["Selva", "Topo"],
+      "sinergias": [
+        {"campeao": "Anivia", "descricao": "Pillar + wall = prison"},
+        {"campeao": "Cassiopeia", "descricao": "Pillar garante Miasma"},
+        {"campeao": "Ashe", "descricao": "Pillar + slow = impossível escapar"},
+        {"campeao": "Jhin", "descricao": "Pillar garante root"}
+      ],
+      "counters": [
+        {"campeao": "Jax", "descricao": "Counter Strike dodges AAs"},
+        {"campeao": "Fiora", "descricao": "True damage + riposte"},
+        {"campeao": "Vayne", "descricao": "True damage + kiting"},
+        {"campeao": "Kog'Maw", "descricao": "%HP damage"}
+      ],
+      "counter_picks": ["Tank teams (R shred)", "Melee sem mobility (Darius, Garen)"]
+    },
+    "Tryndamere": {
+      "rotas": ["Topo"],
+      "sinergias": [
+        {"campeao": "Yuumi", "descricao": "Attached durante split push"},
+        {"campeao": "Lulu", "descricao": "Buffs maximizam duel"},
+        {"campeao": "Zilean", "descricao": "Speed boost + revive"},
+        {"campeao": "Karma", "descricao": "Speed boost + shield"}
+      ],
+      "counters": [
+        {"campeao": "Malphite", "descricao": "Attack speed slow + tankiness"},
+        {"campeao": "Jax", "descricao": "Counter Strike + burst"},
+        {"campeao": "Nasus", "descricao": "W slow + tankiness"},
+        {"campeao": "Teemo", "descricao": "Blind + kiting"}
+      ],
+      "counter_picks": ["Tanks imóveis (Sion, Cho'Gath, Mundo)", "Melee sem early pressure (Garen)"]
+    },
+    "Twisted Fate": {
+      "rotas": ["Meio"],
+      "sinergias": [
+        {"campeao": "Nocturne", "descricao": "Duplo global pressure"},
+        {"campeao": "Shen", "descricao": "Duplo global pressure"},
+        {"campeao": "Pantheon", "descricao": "Triplo global pressure"},
+        {"campeao": "Galio", "descricao": "Ultimate combo"}
+      ],
+      "counters": [
+        {"campeao": "Fizz", "descricao": "Gap close + burst"},
+        {"campeao": "Zed", "descricao": "R assassina TF"},
+        {"campeao": "Kassadin", "descricao": "R mobility + silence"},
+        {"campeao": "Yasuo", "descricao": "Wind wall bloqueia Q"}
+      ],
+      "counter_picks": ["Immobile mages (Lux, Xerath, Veigar)", "Squishy laners"]
+    },
+    "Twitch": {
+      "rotas": ["Atirador", "Selva"],
+      "sinergias": [
+        {"campeao": "Lulu", "descricao": "Buffs maximizam ultimate"},
+        {"campeao": "Yuumi", "descricao": "Attached durante ultimate"},
+        {"campeao": "Zilean", "descricao": "Speed boost + revive"},
+        {"campeao": "Karma", "descricao": "Speed boost + shield"}
+      ],
+      "counters": [
+        {"campeao": "Caitlyn", "descricao": "Outrange + poke"},
+        {"campeao": "Draven", "descricao": "Out-damages early"},
+        {"campeao": "Tristana", "descricao": "All-in pós-6"},
+        {"campeao": "Samira", "descricao": "All-in + wind wall"}
+      ],
+      "counter_picks": ["Immobile ADCs (Ashe, Jhin, Varus)", "Squishy supports (Sona, Soraka)"]
+    },
+    "Udyr": {
+      "rotas": ["Selva"],
+      "sinergias": [
+        {"campeao": "Yuumi", "descricao": "Attached durante engage"},
+        {"campeao": "Lulu", "descricao": "Buffs maximizam all-in"},
+        {"campeao": "Zilean", "descricao": "Speed boost + revive"},
+        {"campeao": "Karma", "descricao": "Speed boost + shield"}
+      ],
+      "counters": [
+        {"campeao": "Kindred", "descricao": "R nega burst"},
+        {"campeao": "Graves", "descricao": "Out-range, out-farms"},
+        {"campeao": "Lee Sin", "descricao": "Out-duels, kick cancela engage"},
+        {"campeao": "Hecarim", "descricao": "Out-tempo, out-scales"}
+      ],
+      "counter_picks": ["Squishy immobile teams", "Melee-heavy teams"]
+    },
+    "Urgot": {
+      "rotas": ["Topo"],
+      "sinergias": [
+        {"campeao": "Yuumi", "descricao": "Attached durante all-in"},
+        {"campeao": "Lulu", "descricao": "Buffs maximizam duel"},
+        {"campeao": "Zilean", "descricao": "Speed boost + revive"},
+        {"campeao": "Orianna", "descricao": "Ball em Urgot durante R"}
+      ],
+      "counters": [
+        {"campeao": "Fiora", "descricao": "Riposte R, true damage"},
+        {"campeao": "Vayne", "descricao": "True damage + kiting"},
+        {"campeao": "Gangplank", "descricao": "Oranges cleanse R"},
+        {"campeao": "Mordekaiser", "descricao": "R remove from teamfight"}
+      ],
+      "counter_picks": ["Melee imóveis (Darius, Garen, Mordekaiser)", "Tanks sem mobility (Sion, Cho'Gath)"]
+    },
+    "Varus": {
+      "rotas": ["Atirador"],
+      "sinergias": [
+        {"campeao": "Leona", "descricao": "Lockdown garante combo"},
+        {"campeao": "Nautilus", "descricao": "Lockdown garante combo"},
+        {"campeao": "Thresh", "descricao": "Hook garante combo"},
+        {"campeao": "Blitzcrank", "descricao": "Hook garante combo"}
+      ],
+      "counters": [
+        {"campeao": "Sivir", "descricao": "Spell shield bloqueia R"},
+        {"campeao": "Ezreal", "descricao": "E dodges R"},
+        {"campeao": "Tristana", "descricao": "W escape"},
+        {"campeao": "Samira", "descricao": "Wind wall bloqueia R"}
+      ],
+      "counter_picks": ["Immobile ADCs (Ashe, Jhin)", "Squishy supports (Sona, Yuumi)"]
+    },
+    "Vayne": {
+      "rotas": ["Atirador", "Topo"],
+      "sinergias": [
+        {"campeao": "Lulu", "descricao": "Buffs maximizam DPS"},
+        {"campeao": "Janna", "descricao": "Peel perfeito para escala"},
+        {"campeao": "Braum", "descricao": "Peel + passiva combo"},
+        {"campeao": "Thresh", "descricao": "Lantern salva Vayne"}
+      ],
+      "counters": [
+        {"campeao": "Caitlyn", "descricao": "Outrange + poke"},
+        {"campeao": "Draven", "descricao": "Out-damages early"},
+        {"campeao": "Tristana", "descricao": "All-in pós-6"},
+        {"campeao": "Samira", "descricao": "All-in + wind wall"}
+      ],
+      "counter_picks": ["Tank teams (true damage shred)", "Melee imóveis (Darius, Garen)"]
+    },
+    "Veigar": {
+      "rotas": ["Meio"],
+      "sinergias": [
+        {"campeao": "Jarvan IV", "descricao": "Cataclysm garante cage"},
+        {"campeao": "Nautilus", "descricao": "Lockdown garante cage"},
+        {"campeao": "Thresh", "descricao": "Hook garante cage"},
+        {"campeao": "Blitzcrank", "descricao": "Hook garante cage"}
+      ],
+      "counters": [
+        {"campeao": "Fizz", "descricao": "E dodges cage, gap close"},
+        {"campeao": "Zed", "descricao": "R assassina Veigar"},
+        {"campeao": "Kassadin", "descricao": "R mobility ignora cage"},
+        {"campeao": "Yasuo", "descricao": "Wind wall bloqueia Q"}
+      ],
+      "counter_picks": ["Immobile mages (Lux, Xerath)", "Squishy carries"]
+    },
+    "Vel'Koz": {
+      "rotas": ["Meio", "Suporte"],
+      "sinergias": [
+        {"campeao": "Yasuo", "descricao": "Vel'Koz R + Yasuo R combo"},
+        {"campeao": "Orianna", "descricao": "Ball em Vel'Koz R"},
+        {"campeao": "Jarvan IV", "descricao": "Cataclysm garante Vel'Koz R"},
+        {"campeao": "Malphite", "descricao": "R agrupamento + Vel'Koz R"}
+      ],
+      "counters": [
+        {"campeao": "Fizz", "descricao": "E dodges tudo, gap close"},
+        {"campeao": "Zed", "descricao": "R assassina Vel'Koz"},
+        {"campeao": "Kassadin", "descricao": "R mobility ignora combo"},
+        {"campeao": "Yasuo", "descricao": "Wind wall bloqueia Q/E"}
+      ],
+      "counter_picks": ["Immobile mages (Lux, Xerath, Veigar)", "Squishy teams"]
+    },
+    "Vi": {
+      "rotas": ["Selva"],
+      "sinergias": [
+        {"campeao": "Yasuo", "descricao": "Vi R + Yasuo R combo"},
+        {"campeao": "Orianna", "descricao": "Ball em Vi R"},
+        {"campeao": "Miss Fortune", "descricao": "Vi R lockdown = MF R"},
+        {"campeao": "Fiddlesticks", "descricao": "Vi R lockdown = Fiddle R"}
+      ],
+      "counters": [
+        {"campeao": "Kindred", "descricao": "R nega R de Vi"},
+        {"campeao": "Olaf", "descricao": "R ignora R de Vi"},
+        {"campeao": "Morgana", "descricao": "Black Shield nega R"},
+        {"campeao": "Sivir", "descricao": "Spell shield bloqueia R"}
+      ],
+      "counter_picks": ["Squishy immobile teams", "Carries sem peel"]
+    },
+    "Viego": {
+      "rotas": ["Selva"],
+      "sinergias": [
+        {"campeao": "Yuumi", "descricao": "Attached durante possess"},
+        {"campeao": "Lulu", "descricao": "Buffs maximizam all-in"},
+        {"campeao": "Zilean", "descricao": "Revive permite Viego agressivo"},
+        {"campeao": "Orianna", "descricao": "Ball em Viego durante R"}
+      ],
+      "counters": [
+        {"campeao": "Kindred", "descricao": "R nega execute"},
+        {"campeao": "Lee Sin", "descricao": "Out-duels, kick cancela R"},
+        {"campeao": "Graves", "descricao": "Out-duels, smoke screen"},
+        {"campeao": "Udyr", "descricao": "Out-duels early"}
+      ],
+      "counter_picks": ["Squishy teams (reset potential)", "Times sem burst"]
+    },
+    "Viktor": {
+      "rotas": ["Meio"],
+      "sinergias": [
+        {"campeao": "Jarvan IV", "descricao": "Cataclysm garante W stun"},
+        {"campeao": "Nautilus", "descricao": "Lockdown garante W stun"},
+        {"campeao": "Thresh", "descricao": "Hook garante W stun"},
+        {"campeao": "Blitzcrank", "descricao": "Hook garante W stun"}
+      ],
+      "counters": [
+        {"campeao": "Fizz", "descricao": "E dodges W, gap close"},
+        {"campeao": "Zed", "descricao": "R assassina Viktor"},
+        {"campeao": "Kassadin", "descricao": "R mobility ignora W"},
+        {"campeao": "Yasuo", "descricao": "Wind wall bloqueia E"}
+      ],
+      "counter_picks": ["Immobile mages (Lux, Xerath, Veigar)", "Squishy carries"]
+    },
+    "Vladimir": {
+      "rotas": ["Meio", "Topo"],
+      "sinergias": [
+        {"campeao": "Yuumi", "descricao": "Attached durante dive"},
+        {"campeao": "Lulu", "descricao": "Buffs maximizam burst"},
+        {"campeao": "Zilean", "descricao": "Revive permite Vladimir agressivo"},
+        {"campeao": "Orianna", "descricao": "Ball em Vladimir durante R"}
+      ],
+      "counters": [
+        {"campeao": "Galio", "descricao": "Anti-mage, tank AP damage"},
+        {"campeao": "Kassadin", "descricao": "Escala, tank damage"},
+        {"campeao": "Fizz", "descricao": "E dodges R, burst down"},
+        {"campeao": "Malzahar", "descricao": "Supressão cancela pool"}
+      ],
+      "counter_picks": ["Immobile mages (Lux, Xerath, Veigar)", "Squishy teams"]
+    },
+    "Volibear": {
+      "rotas": ["Topo", "Selva"],
+      "sinergias": [
+        {"campeao": "Yuumi", "descricao": "Attached durante dive"},
+        {"campeao": "Lulu", "descricao": "Buffs maximizam all-in"},
+        {"campeao": "Zilean", "descricao": "Speed boost + revive"},
+        {"campeao": "Orianna", "descricao": "Ball em Volibear durante R"}
+      ],
+      "counters": [
+        {"campeao": "Fiora", "descricao": "Riposte E, true damage"},
+        {"campeao": "Vayne", "descricao": "True damage + kiting"},
+        {"campeao": "Gangplank", "descricao": "Oranges cleanse Q"},
+        {"campeao": "Mordekaiser", "descricao": "R remove from teamfight"}
+      ],
+      "counter_picks": ["Melee imóveis (Darius, Garen, Mordekaiser)", "Tanks sem mobility (Sion, Cho'Gath)"]
+    },
+    "Warwick": {
+      "rotas": ["Selva", "Topo"],
+      "sinergias": [
+        {"campeao": "Yuumi", "descricao": "Attached durante chase"},
+        {"campeao": "Lulu", "descricao": "Buffs maximizam duel"},
+        {"campeao": "Zilean", "descricao": "Speed boost + revive"},
+        {"campeao": "Karma", "descricao": "Speed boost + shield"}
+      ],
+      "counters": [
+        {"campeao": "Kindred", "descricao": "R nega execute"},
+        {"campeao": "Olaf", "descricao": "R ignora fear"},
+        {"campeao": "Graves", "descricao": "Out-range, out-farms"},
+        {"campeao": "Lee Sin", "descricao": "Out-duels, kick cancela R"}
+      ],
+      "counter_picks": ["Low-health teams (W chase)", "Squishy immobile teams"]
+    },
+    "Wukong": {
+      "rotas": ["Topo", "Selva"],
+      "sinergias": [
+        {"campeao": "Yasuo", "descricao": "Wukong R + Yasuo R combo"},
+        {"campeao": "Orianna", "descricao": "Ball em Wukong R"},
+        {"campeao": "Miss Fortune", "descricao": "Wukong R agrupamento = MF R"},
+        {"campeao": "Fiddlesticks", "descricao": "Wukong R agrupamento = Fiddle R"}
+      ],
+      "counters": [
+        {"campeao": "Jax", "descricao": "Counter Strike dodges R"},
+        {"campeao": "Fiora", "descricao": "Riposte R, true damage"},
+        {"campeao": "Malphite", "descricao": "Tankiness + attack speed slow"},
+        {"campeao": "Garen", "descricao": "Silence + tankiness"}
+      ],
+      "counter_picks": ["Melee imóveis (Darius, Garen, Mordekaiser)", "Squishy teams"]
+    },
+    "Xayah": {
+      "rotas": ["Atirador"],
+      "sinergias": [
+        {"campeao": "Rakan", "descricao": "Duo synergy + combo"},
+        {"campeao": "Leona", "descricao": "Lockdown garante root"},
+        {"campeao": "Nautilus", "descricao": "Lockdown garante root"},
+        {"campeao": "Thresh", "descricao": "Hook garante root"}
+      ],
+      "counters": [
+        {"campeao": "Caitlyn", "descricao": "Outrange + poke"},
+        {"campeao": "Draven", "descricao": "Out-damages early"},
+        {"campeao": "Tristana", "descricao": "All-in pós-6"},
+        {"campeao": "Samira", "descricao": "All-in + wind wall"}
+      ],
+      "counter_picks": ["Dive comps (R counter)", "Immobile ADCs (Ashe, Jhin)"]
+    },
+    "Xerath": {
+      "rotas": ["Meio", "Suporte"],
+      "sinergias": [
+        {"campeao": "Jarvan IV", "descricao": "Cataclysm garante skill shots"},
+        {"campeao": "Nautilus", "descricao": "Lockdown garante skill shots"},
+        {"campeao": "Thresh", "descricao": "Hook garante skill shots"},
+        {"campeao": "Blitzcrank", "descricao": "Hook garante skill shots"}
+      ],
+      "counters": [
+        {"campeao": "Fizz", "descricao": "E dodges tudo, gap close"},
+        {"campeao": "Zed", "descricao": "R assassina Xerath"},
+        {"campeao": "Kassadin", "descricao": "R mobility ignora poke"},
+        {"campeao": "Yasuo", "descricao": "Wind wall bloqueia Q/W"}
+      ],
+      "counter_picks": ["Immobile mages (Lux, Veigar)", "Squishy teams"]
+    },
+    "Xin Zhao": {
+      "rotas": ["Selva"],
+      "sinergias": [
+        {"campeao": "Yuumi", "descricao": "Attached durante dive"},
+        {"campeao": "Lulu", "descricao": "Buffs maximizam all-in"},
+        {"campeao": "Zilean", "descricao": "Speed boost + revive"},
+        {"campeao": "Orianna", "descricao": "Ball em Xin Zhao durante R"}
+      ],
+      "counters": [
+        {"campeao": "Jax", "descricao": "Counter Strike dodges AAs"},
+        {"campeao": "Kindred", "descricao": "R nega burst"},
+        {"campeao": "Graves", "descricao": "Out-range, out-farms"},
+        {"campeao": "Lee Sin", "descricao": "Out-duels, kick cancela R"}
+      ],
+      "counter_picks": ["Squishy immobile teams", "Melee-heavy teams"]
+    },
+    "Yasuo": {
+      "rotas": ["Meio", "Topo"],
+      "sinergias": [
+        {"campeao": "Malphite", "descricao": "Malphite R + Yasuo R combo"},
+        {"campeao": "Diana", "descricao": "Diana R + Yasuo R combo"},
+        {"campeao": "Alistar", "descricao": "Q knockup + Yasuo R"},
+        {"campeao": "Nautilus", "descricao": "Q knockup + Yasuo R"}
+      ],
+      "counters": [
+        {"campeao": "Malphite", "descricao": "Tankiness + attack speed slow"},
+        {"campeao": "Renekton", "descricao": "Point-click stun + burst"},
+        {"campeao": "Pantheon", "descricao": "Point-click stun + burst"},
+        {"campeao": "Rumble", "descricao": "AP damage + shield break"}
+      ],
+      "counter_picks": ["Projectile-heavy teams (wind wall)", "Immobile mages (Lux, Xerath)"]
+    },
+    "Yone": {
+      "rotas": ["Meio", "Topo"],
+      "sinergias": [
+        {"campeao": "Yasuo", "descricao": "Brothers duo combo"},
+        {"campeao": "Malphite", "descricao": "Malphite R + Yone R combo"},
+        {"campeao": "Diana", "descricao": "Diana R + Yone R combo"},
+        {"campeao": "Alistar", "descricao": "Q knockup + Yone R"}
+      ],
+      "counters": [
+        {"campeao": "Malphite", "descricao": "Tankiness + attack speed slow"},
+        {"campeao": "Renekton", "descricao": "Point-click stun + burst"},
+        {"campeao": "Pantheon", "descricao": "Point-click stun + burst"},
+        {"campeao": "Fizz", "descricao": "E dodges R, burst down"}
+      ],
+      "counter_picks": ["Squishy teams (mobility + burst)", "Immobile carries"]
+    },
+    "Yorick": {
+      "rotas": ["Topo"],
+      "sinergias": [
+        {"campeao": "Yuumi", "descricao": "Attached durante split push"},
+        {"campeao": "Zilean", "descricao": "Speed boost + revive"},
+        {"campeao": "Karma", "descricao": "Speed boost + shield"},
+        {"campeao": "Orianna", "descricao": "Ball em Yorick durante R"}
+      ],
+      "counters": [
+        {"campeao": "Irelia", "descricao": "Q destrói ghouls rapidamente"},
+        {"campeao": "Jax", "descricao": "Counter Strike + burst"},
+        {"campeao": "Fiora", "descricao": "True damage + riposte"},
+        {"campeao": "Tryndamere", "descricao": "Out-split pushes"}
+      ],
+      "counter_picks": ["Tanks imóveis (Sion, Cho'Gath, Mundo)", "Melee sem waveclear (Darius, Garen)"]
+    },
+    "Yuumi": {
+      "rotas": ["Suporte"],
+      "sinergias": [
+        {"campeao": "Master Yi", "descricao": "Attached durante dive"},
+        {"campeao": "Hecarim", "descricao": "Attached durante engage"},
+        {"campeao": "Kog'Maw", "descricao": "Buffs para hypercarry"},
+        {"campeao": "Twitch", "descricao": "Buffs durante ultimate"}
+      ],
+      "counters": [
+        {"campeao": "Blitzcrank", "descricao": "Hook burst down Yuumi"},
+        {"campeao": "Leona", "descricao": "All-in ignora attach"},
+        {"campeao": "Nautilus", "descricao": "Lockdown through attach"},
+        {"campeao": "Pyke", "descricao": "Mobility + execute"}
+      ],
+      "counter_picks": ["Hypercarries (protect comp)", "Dive champions (attach during engage)"]
+    },
+    "Zac": {
+      "rotas": ["Selva"],
+      "sinergias": [
+        {"campeao": "Yasuo", "descricao": "Zac E/R + Yasuo R combo"},
+        {"campeao": "Orianna", "descricao": "Ball em Zac R"},
+        {"campeao": "Miss Fortune", "descricao": "Zac R agrupamento = MF R"},
+        {"campeao": "Fiddlesticks", "descricao": "Zac R agrupamento = Fiddle R"}
+      ],
+      "counters": [
+        {"campeao": "Kindred", "descricao": "R nega burst"},
+        {"campeao": "Olaf", "descricao": "R ignora CC"},
+        {"campeao": "Graves", "descricao": "Invade, out-farms"},
+        {"campeao": "Lee Sin", "descricao": "Invade, out-tempo"}
+      ],
+      "counter_picks": ["Immobile teams", "Squishy carries"]
+    },
+    "Zed": {
+      "rotas": ["Meio"],
+      "sinergias": [
+        {"campeao": "Lee Sin", "descricao": "Duplo early game pressure"},
+        {"campeao": "Nautilus", "descricao": "Lockdown garante combo"},
+        {"campeao": "Thresh", "descricao": "Lantern escape após assassinato"},
+        {"campeao": "Zilean", "descricao": "Revive permite Zed agressivo"}
+      ],
+      "counters": [
+        {"campeao": "Zhonya's", "descricao": "Item counter a Zed"},
+        {"campeao": "Malphite", "descricao": "Armor stack + attack speed slow"},
+        {"campeao": "Pantheon", "descricao": "Point-click stun + shield"},
+        {"campeao": "Lissandra", "descricao": "R self-cast nega all-in"}
+      ],
+      "counter_picks": ["Squishy mages (Lux, Xerath, Veigar)", "Immobile ADCs"]
+    },
+    "Zeri": {
+      "rotas": ["Atirador"],
+      "sinergias": [
+        {"campeao": "Yuumi", "descricao": "Attached durante kiting"},
+        {"campeao": "Lulu", "descricao": "Buffs maximizam DPS"},
+        {"campeao": "Zilean", "descricao": "Speed boost + revive"},
+        {"campeao": "Karma", "descricao": "Speed boost + shield"}
+      ],
+      "counters": [
+        {"campeao": "Caitlyn", "descricao": "Outrange + poke"},
+        {"campeao": "Draven", "descricao": "Out-damages early"},
+        {"campeao": "Tristana", "descricao": "All-in pós-6"},
+        {"campeao": "Samira", "descricao": "All-in + wind wall"}
+      ],
+      "counter_picks": ["Short range ADCs (Vayne, Lucian)", "Immobile supports (Sona, Soraka)"]
+    },
+    "Ziggs": {
+      "rotas": ["Meio", "Atirador"],
+      "sinergias": [
+        {"campeao": "Jarvan IV", "descricao": "Cataclysm garante skill shots"},
+        {"campeao": "Nautilus", "descricao": "Lockdown garante skill shots"},
+        {"campeao": "Thresh", "descricao": "Hook garante skill shots"},
+        {"campeao": "Blitzcrank", "descricao": "Hook garante skill shots"}
+      ],
+      "counters": [
+        {"campeao": "Fizz", "descricao": "E dodges tudo, gap close"},
+        {"campeao": "Zed", "descricao": "R assassina Ziggs"},
+        {"campeao": "Kassadin", "descricao": "R mobility ignora poke"},
+        {"campeao": "Yasuo", "descricao": "Wind wall bloqueia Q/W"}
+      ],
+      "counter_picks": ["Immobile mages (Lux, Xerath, Veigar)", "Siege comps"]
+    },
+    "Zilean": {
+      "rotas": ["Suporte", "Meio"],
+      "sinergias": [
+        {"campeao": "Master Yi", "descricao": "Revive + speed para dive"},
+        {"campeao": "Hecarim", "descricao": "Speed boost para engage"},
+        {"campeao": "Kog'Maw", "descricao": "Revive para hypercarry"},
+        {"campeao": "Twitch", "descricao": "Revive durante ultimate"}
+      ],
+      "counters": [
+        {"campeao": "Blitzcrank", "descricao": "Hook burst down Zilean"},
+        {"campeao": "Leona", "descricao": "All-in ignora revive"},
+        {"campeao": "Nautilus", "descricao": "Lockdown through speed"},
+        {"campeao": "Pyke", "descricao": "Mobility + execute"}
+      ],
+      "counter_picks": ["Assassins (revive counter)", "Dive champions (speed boost)"]
+    },
+    "Zoe": {
+      "rotas": ["Meio"],
+      "sinergias": [
+        {"campeao": "Lee Sin", "descricao": "Kick para Zoe bubble"},
+        {"campeao": "Nautilus", "descricao": "Lockdown garante bubble"},
+        {"campeao": "Thresh", "descricao": "Hook garante bubble"},
+        {"campeao": "Blitzcrank", "descricao": "Hook garante bubble"}
+      ],
+      "counters": [
+        {"campeao": "Fizz", "descricao": "E dodges bubble, gap close"},
+        {"campeao": "Zed", "descricao": "R assassina Zoe"},
+        {"campeao": "Kassadin", "descricao": "R mobility ignora combo"},
+        {"campeao": "Yasuo", "descricao": "Wind wall bloqueia Q"}
+      ],
+      "counter_picks": ["Immobile mages (Lux, Xerath, Veigar)", "Squishy carries"]
+    },
+    "Zyra": {
+      "rotas": ["Suporte"],
+      "sinergias": [
+        {"campeao": "Ashe", "descricao": "Slow garante root"},
+        {"campeao": "Jhin", "descricao": "Root garante W de Jhin"},
+        {"campeao": "Caitlyn", "descricao": "Root garante trap"},
+        {"campeao": "Miss Fortune", "descricao": "Slow garante R de MF"}
+      ],
+      "counters": [
+        {"campeao": "Blitzcrank", "descricao": "Hook burst down Zyra"},
+        {"campeao": "Leona", "descricao": "All-in ignora plants"},
+        {"campeao": "Nautilus", "descricao": "Lockdown through plants"},
+        {"campeao": "Pyke", "descricao": "Mobility + execute"}
+      ],
+      "counter_picks": ["Immobile ADCs (Ashe, Jhin, Varus)", "Squishy supports (Sona, Yuumi)"]
+    }
+  }
+}

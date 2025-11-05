@@ -1,5 +1,4 @@
-/* iacoach.css */
-/* Estilos específicos do relatório da IA */
+/* iacoach.css - APENAS ESTILOS DO RELATÓRIO IA */
 
 /* Caixa do relatório IA */
 .caixa-relatorio-ia {
@@ -77,9 +76,37 @@
     line-height: 1.6;
 }
 
+.score-destaque {
+    text-align: center;
+    margin-bottom: 25px;
+    padding: 20px;
+    background: rgba(200, 170, 110, 0.1);
+    border-radius: 10px;
+    border: 1px solid var(--cor-destaque);
+}
+
+.score-destaque h3 {
+    color: var(--cor-destaque);
+    margin: 0 0 10px 0;
+    font-size: 18px;
+}
+
+.score-valor {
+    font-size: 36px;
+    font-weight: bold;
+    color: var(--cor-destaque);
+    margin: 10px 0;
+}
+
+.score-descricao {
+    font-size: 14px;
+    opacity: 0.9;
+    margin: 0;
+}
+
 .resumo-ia h3 {
     color: var(--cor-destaque);
-    margin: 20px 0 12px 0;
+    margin: 25px 0 15px 0;
     font-size: 16px;
     border-left: 3px solid var(--cor-destaque);
     padding-left: 12px;
@@ -126,6 +153,32 @@
     color: var(--cor-destaque);
     font-size: 14px;
     line-height: 1.4;
+}
+
+.estatisticas-relatorio {
+    display: flex;
+    justify-content: space-around;
+    margin: 15px 0;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    font-size: 12px;
+    color: var(--cor-texto);
+}
+
+.estatistica-item {
+    text-align: center;
+}
+
+.estatistica-valor {
+    font-weight: bold;
+    color: var(--cor-destaque);
+    font-size: 14px;
+}
+
+.estatistica-label {
+    opacity: 0.7;
+    margin-top: 4px;
 }
 
 /* Loading */
@@ -204,27 +257,13 @@
     transform: translateY(-2px);
 }
 
-/* Estatísticas do relatório */
-.estatisticas-relatorio {
+/* Estado de carregamento dinâmico */
+#conteudoRelatorio.carregando .carregando-relatorio {
     display: flex;
-    justify-content: space-around;
-    margin: 15px 0;
-    padding: 10px;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 8px;
-    font-size: 12px;
-    color: var(--cor-texto);
-    opacity: 0.7;
 }
 
-.estatistica-item {
-    text-align: center;
-}
-
-.estatistica-valor {
-    font-weight: bold;
-    color: var(--cor-destaque);
-    font-size: 14px;
+#conteudoRelatorio:not(.carregando) .carregando-relatorio {
+    display: none;
 }
 
 /* Responsividade específica do relatório IA */

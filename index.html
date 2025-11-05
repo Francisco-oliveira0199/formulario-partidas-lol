@@ -1,31 +1,23 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Análise de Partida - Wild Rift</title>
     <meta name="description" content="Sistema profissional de análise de partidas para Wild Rift">
 
-    <!-- CSS Otimizado -->
-    <link rel="stylesheet" href="./src/css/reset.css">
+    <!-- CSS Unificado -->
     <link rel="stylesheet" href="./src/css/base.css">
-    <link rel="stylesheet" href="./src/css/layout.css">
-    <link rel="stylesheet" href="./src/css/components/forms.css">
-    <link rel="stylesheet" href="./src/css/components/progress.css">
-    <link rel="stylesheet" href="./src/css/components/drafts.css">
-    <link rel="stylesheet" href="./src/css/components/objetivos.css">
-    <link rel="stylesheet" href="./src/css/components/buttons.css">
-    <link rel="stylesheet" href="./src/css/components/upload.css">
-    <link rel="stylesheet" href="./src/css/components/iacoach.css">
-    <link rel="stylesheet" href="./src/css/components/agradecimento.css">
 
+    <!-- SDK EmailJS -->
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 </head>
 
 <body>
     <div class="container">
         <h1 id="tituloPrincipal">Análise de Partida - Wild Rift</h1>
 
+        <!-- Barra de Progresso -->
         <div class="progresso" role="progressbar" aria-label="Progresso do formulário">
             <div class="barra-progresso ativo" data-pagina="1" data-numero="1" aria-current="step"></div>
             <div class="barra-progresso" data-pagina="2" data-numero="2"></div>
@@ -42,8 +34,7 @@
             <div class="pagina ativo" id="pagina1" data-pagina="1">
                 <div class="secao">
                     <h2 class="titulo">
-                        <img src="https://i.ibb.co/Zp4KKnkR/4929-chat-did-you-see-that-inventory-accessories-15-19.png"
-                            alt="Pré-jogo" class="emote">
+                        <img src="https://i.ibb.co/Zp4KKnkR/4929-chat-did-you-see-that-inventory-accessories-15-19.png" alt="Pré-jogo" class="emote">
                         Pré-jogo
                     </h2>
 
@@ -62,40 +53,40 @@
                             <label for="elo">Elo</label>
                             <select id="elo" name="elo" required>
                                 <option value="">Selecione seu elo</option>
-                                <option value="Ferro">Ferro IV</option>
-                                <option value="Ferro">Ferro III</option>
-                                <option value="Ferro">Ferro II</option>
-                                <option value="Ferro">Ferro I</option>
-                                <option value="Bronze">Bronze IV</option>
-                                <option value="Bronze">Bronze III</option>
-                                <option value="Bronze">Bronze II</option>
-                                <option value="Bronze">Bronze I</option>
-                                <option value="Prata">Prata IV</option>
-                                <option value="Prata">Prata III</option>
-                                <option value="Prata">Prata II</option>
-                                <option value="Prata">Prata I</option>
-                                <option value="Ouro">Ouro IV</option>
-                                <option value="Ouro">Ouro III</option>
-                                <option value="Ouro">Ouro II</option>
-                                <option value="Ouro">Ouro I</option>
-                                <option value="Platina">Platina IV</option>
-                                <option value="Platina">Platina III</option>
-                                <option value="Platina">Platina II</option>
-                                <option value="Platina">Platina I</option>
-                                <option value="Esmeralda">Esmeralda IV</option>
-                                <option value="Esmeralda">Esmeralda III</option>
-                                <option value="Esmeralda">Esmeralda II</option>
-                                <option value="Esmeralda">Esmeralda I</option>
-                                <option value="Diamante">Diamante IV</option>
-                                <option value="Diamante">Diamante III</option>
-                                <option value="Diamante">Diamante II</option>
-                                <option value="Diamante">Diamante I</option>
-                                <option value="Mestre">Mestre III</option>
-                                <option value="Mestre">Mestre II</option>
-                                <option value="Mestre">Mestre I</option>
-                                <option value="Grão-Mestre">Grão-Mestre III</option>
-                                <option value="Grão-Mestre">Grão-Mestre II</option>
-                                <option value="Grão-Mestre">Grão-Mestre I</option>
+                                <option value="Ferro IV">Ferro IV</option>
+                                <option value="Ferro III">Ferro III</option>
+                                <option value="Ferro II">Ferro II</option>
+                                <option value="Ferro I">Ferro I</option>
+                                <option value="Bronze IV">Bronze IV</option>
+                                <option value="Bronze III">Bronze III</option>
+                                <option value="Bronze II">Bronze II</option>
+                                <option value="Bronze I">Bronze I</option>
+                                <option value="Prata IV">Prata IV</option>
+                                <option value="Prata III">Prata III</option>
+                                <option value="Prata II">Prata II</option>
+                                <option value="Prata I">Prata I</option>
+                                <option value="Ouro IV">Ouro IV</option>
+                                <option value="Ouro III">Ouro III</option>
+                                <option value="Ouro II">Ouro II</option>
+                                <option value="Ouro I">Ouro I</option>
+                                <option value="Platina IV">Platina IV</option>
+                                <option value="Platina III">Platina III</option>
+                                <option value="Platina II">Platina II</option>
+                                <option value="Platina I">Platina I</option>
+                                <option value="Esmeralda IV">Esmeralda IV</option>
+                                <option value="Esmeralda III">Esmeralda III</option>
+                                <option value="Esmeralda II">Esmeralda II</option>
+                                <option value="Esmeralda I">Esmeralda I</option>
+                                <option value="Diamante IV">Diamante IV</option>
+                                <option value="Diamante III">Diamante III</option>
+                                <option value="Diamante II">Diamante II</option>
+                                <option value="Diamante I">Diamante I</option>
+                                <option value="Mestre III">Mestre III</option>
+                                <option value="Mestre II">Mestre II</option>
+                                <option value="Mestre I">Mestre I</option>
+                                <option value="Grão-Mestre III">Grão-Mestre III</option>
+                                <option value="Grão-Mestre II">Grão-Mestre II</option>
+                                <option value="Grão-Mestre I">Grão-Mestre I</option>
                                 <option value="Desafiante">Desafiante</option>
                                 <option value="Monarca">Monarca</option>
                             </select>
@@ -103,8 +94,7 @@
 
                         <div class="form-group obrigatorio">
                             <label for="campeao">Campeão</label>
-                            <input type="text" id="campeao" name="campeao" placeholder="Campeão usado" required
-                                list="listaCampeoes">
+                            <input type="text" id="campeao" name="campeao" placeholder="Campeão usado" required list="listaCampeoes">
                             <datalist id="listaCampeoes"></datalist>
                         </div>
                     </div>
@@ -138,66 +128,54 @@
 
                     <!-- Drafts -->
                     <div class="drafts-container">
-                        <!-- Draft Aliado -->
                         <div class="draft-coluna">
                             <h3 class="titulo-draft">Draft Aliado</h3>
                             <div class="draft-fields">
                                 <div class="draft-field" data-rota="top">
                                     <label for="draftAliadoTop">Top</label>
-                                    <input type="text" id="draftAliadoTop" name="draft_aliado_top"
-                                        placeholder="Campeão aliado Top" list="listaCampeoes">
+                                    <input type="text" id="draftAliadoTop" name="draft_aliado_top" placeholder="Campeão aliado Top" list="listaCampeoes">
                                 </div>
                                 <div class="draft-field" data-rota="jungle">
                                     <label for="draftAliadoJungle">Jungle</label>
-                                    <input type="text" id="draftAliadoJungle" name="draft_aliado_jungle"
-                                        placeholder="Campeão aliado Jungle" list="listaCampeoes">
+                                    <input type="text" id="draftAliadoJungle" name="draft_aliado_jungle" placeholder="Campeão aliado Jungle" list="listaCampeoes">
                                 </div>
                                 <div class="draft-field" data-rota="mid">
                                     <label for="draftAliadoMid">Mid</label>
-                                    <input type="text" id="draftAliadoMid" name="draft_aliado_mid"
-                                        placeholder="Campeão aliado Mid" list="listaCampeoes">
+                                    <input type="text" id="draftAliadoMid" name="draft_aliado_mid" placeholder="Campeão aliado Mid" list="listaCampeoes">
                                 </div>
                                 <div class="draft-field" data-rota="adc">
                                     <label for="draftAliadoAdc">ADC</label>
-                                    <input type="text" id="draftAliadoAdc" name="draft_aliado_adc"
-                                        placeholder="Campeão aliado ADC" list="listaCampeoes">
+                                    <input type="text" id="draftAliadoAdc" name="draft_aliado_adc" placeholder="Campeão aliado ADC" list="listaCampeoes">
                                 </div>
                                 <div class="draft-field" data-rota="sup">
                                     <label for="draftAliadoSup">Suporte</label>
-                                    <input type="text" id="draftAliadoSup" name="draft_aliado_sup"
-                                        placeholder="Campeão aliado Sup" list="listaCampeoes">
+                                    <input type="text" id="draftAliadoSup" name="draft_aliado_sup" placeholder="Campeão aliado Sup" list="listaCampeoes">
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Draft Inimigo -->
                         <div class="draft-coluna">
                             <h3 class="titulo-draft">Draft Inimigo</h3>
                             <div class="draft-fields">
                                 <div class="draft-field" data-rota="top">
                                     <label for="draftInimigoTop">Top</label>
-                                    <input type="text" id="draftInimigoTop" name="draft_inimigo_top"
-                                        placeholder="Campeão inimigo Top" required list="listaCampeoes">
+                                    <input type="text" id="draftInimigoTop" name="draft_inimigo_top" placeholder="Campeão inimigo Top" required list="listaCampeoes">
                                 </div>
                                 <div class="draft-field" data-rota="jungle">
                                     <label for="draftInimigoJungle">Jungle</label>
-                                    <input type="text" id="draftInimigoJungle" name="draft_inimigo_jungle"
-                                        placeholder="Campeão inimigo Jungle" required list="listaCampeoes">
+                                    <input type="text" id="draftInimigoJungle" name="draft_inimigo_jungle" placeholder="Campeão inimigo Jungle" required list="listaCampeoes">
                                 </div>
                                 <div class="draft-field" data-rota="mid">
                                     <label for="draftInimigoMid">Mid</label>
-                                    <input type="text" id="draftInimigoMid" name="draft_inimigo_mid"
-                                        placeholder="Campeão inimigo Mid" required list="listaCampeoes">
+                                    <input type="text" id="draftInimigoMid" name="draft_inimigo_mid" placeholder="Campeão inimigo Mid" required list="listaCampeoes">
                                 </div>
                                 <div class="draft-field" data-rota="adc">
                                     <label for="draftInimigoAdc">ADC</label>
-                                    <input type="text" id="draftInimigoAdc" name="draft_inimigo_adc"
-                                        placeholder="Campeão inimigo ADC" required list="listaCampeoes">
+                                    <input type="text" id="draftInimigoAdc" name="draft_inimigo_adc" placeholder="Campeão inimigo ADC" required list="listaCampeoes">
                                 </div>
                                 <div class="draft-field" data-rota="sup">
                                     <label for="draftInimigoSup">Suporte</label>
-                                    <input type="text" id="draftInimigoSup" name="draft_inimigo_sup"
-                                        placeholder="Campeão inimigo Sup" required list="listaCampeoes">
+                                    <input type="text" id="draftInimigoSup" name="draft_inimigo_sup" placeholder="Campeão inimigo Sup" required list="listaCampeoes">
                                 </div>
                             </div>
                         </div>
@@ -207,14 +185,12 @@
                     <div class="condicoes-container">
                         <div class="form-group obrigatorio">
                             <label for="condicaoVitoriaTime">Condição de vitória do time</label>
-                            <textarea id="condicaoVitoriaTime" name="condicao_vitoria_time"
-                                placeholder="O que seu time deve fazer para ganhar" required></textarea>
+                            <textarea id="condicaoVitoriaTime" name="condicao_vitoria_time" placeholder="O que seu time deve fazer para ganhar" required></textarea>
                         </div>
 
                         <div class="form-group obrigatorio">
                             <label for="condicaoVitoriaCampeao">Condição de vitória do seu campeão</label>
-                            <textarea id="condicaoVitoriaCampeao" name="condicao_vitoria_campeao"
-                                placeholder="O que seu campeão deve fazer para ganhar" required></textarea>
+                            <textarea id="condicaoVitoriaCampeao" name="condicao_vitoria_campeao" placeholder="O que seu campeão deve fazer para ganhar" required></textarea>
                         </div>
                     </div>
 
@@ -263,11 +239,10 @@
                         </div>
                     </div>
 
-                    <!-- Jungle Pathing (APENAS Jungle) -->
+                    <!-- Jungle Pathing -->
                     <div class="form-group jungle-only oculta" id="pathingContainer">
                         <label for="pathingInicial">Pathing inicial planejado</label>
-                        <textarea id="pathingInicial" name="pathing_inicial"
-                            placeholder="Ideia inicial de clear na jungle"></textarea>
+                        <textarea id="pathingInicial" name="pathing_inicial" placeholder="Ideia inicial de clear na jungle"></textarea>
                     </div>
                 </div>
 
@@ -277,31 +252,27 @@
                 </div>
             </div>
 
-            <!-- Página 2: Clear Inicial (APENAS Jungle) -->
+            <!-- Página 2: Clear Inicial (Jungle) -->
             <div class="pagina oculta jungle-only" id="pagina2" data-pagina="2">
                 <div class="secao">
                     <h2 class="titulo">
-                        <img src="https://i.ibb.co/xKYCkPZ8/4914-power-up-inventory-accessories-15-19.png"
-                            alt="Clear Inicial" class="emote">
+                        <img src="https://i.ibb.co/xKYCkPZ8/4914-power-up-inventory-accessories-15-19.png" alt="Clear Inicial" class="emote">
                         Clear Inicial
                     </h2>
 
                     <div class="form-group">
                         <label for="skillOrder">Skill Order (1ª e 2ª)</label>
-                        <input type="text" id="skillOrder" name="skill_order"
-                            placeholder="Habilidades upadas para clear">
+                        <input type="text" id="skillOrder" name="skill_order" placeholder="Habilidades upadas para clear">
                     </div>
 
                     <div class="form-group">
                         <label for="ordemCampos">Ordem dos campos</label>
-                        <textarea id="ordemCampos" name="ordem_campos"
-                            placeholder="Ordem de monstros da jungle"></textarea>
+                        <textarea id="ordemCampos" name="ordem_campos" placeholder="Ordem de monstros da jungle"></textarea>
                     </div>
 
                     <div class="form-group">
                         <label for="combosClear">Combos de clear</label>
-                        <textarea id="combosClear" name="combos_clear"
-                            placeholder="Combos de habilidades para clear"></textarea>
+                        <textarea id="combosClear" name="combos_clear" placeholder="Combos de habilidades para clear"></textarea>
                     </div>
                 </div>
 
@@ -312,274 +283,66 @@
             </div>
 
             <!-- Página 3: Primeiros Ganks -->
-<div class="pagina oculta" id="pagina3" data-pagina="3">
-    <div class="secao">
-        <h2 class="titulo">
-            <img src="https://i.ibb.co/GZDTbbY/10029-em-unbound-thresh-fingerswag-inventory-tft-accessories-1515.png" alt="Primeiros Ganks" class="emote">
-            Primeiros Ganks
-        </h2>
+            <div class="pagina oculta" id="pagina3" data-pagina="3">
+                <div class="secao">
+                    <h2 class="titulo">
+                        <img src="https://i.ibb.co/GZDTbbY/10029-em-unbound-thresh-fingerswag-inventory-tft-accessories-1515.png" alt="Primeiros Ganks" class="emote">
+                        Primeiros Ganks
+                    </h2>
 
-        <!-- Rota Alvo (APENAS Jungle E Mid) -->
-        <div class="form-group jungle-mid-only oculta" id="rotaAlvoContainer">
-            <label for="rotaAlvo">Rota alvo</label>
-            <input type="text" id="rotaAlvo" name="rota_alvo" placeholder="Rota com prioridade de ganks" required>
-        </div>
+                    <!-- Rota Alvo (Jungle e Mid) -->
+                    <div class="form-group jungle-mid-only oculta" id="rotaAlvoContainer">
+                        <label for="rotaAlvo">Rota alvo</label>
+                        <input type="text" id="rotaAlvo" name="rota_alvo" placeholder="Rota com prioridade de ganks">
+                    </div>
 
-        <!-- CAMPOS PARA TODAS AS ROTAS (COM required) -->
-        <div class="form-group">
-            <label for="estadoInimigo">Estado do inimigo</label>
-            <textarea id="estadoInimigo" name="estado_inimigo" placeholder="HP, feitiços, ultimate do inimigo" required></textarea>
-        </div>
+                    <div class="form-group">
+                        <label for="estadoInimigo">Estado do inimigo</label>
+                        <textarea id="estadoInimigo" name="estado_inimigo" placeholder="HP, feitiços, ultimate do inimigo"></textarea>
+                    </div>
 
-        <div class="form-group">
-            <label for="recursosQueimados">Recursos queimados</label>
-            <textarea id="recursosQueimados" name="recursos_queimados" placeholder="Recursos usados no gank" required></textarea>
-        </div>
+                    <div class="form-group">
+                        <label for="recursosQueimados">Recursos queimados</label>
+                        <textarea id="recursosQueimados" name="recursos_queimados" placeholder="Recursos usados no gank"></textarea>
+                    </div>
 
-        <div class="form-group">
-            <label for="resultadoGank">Resultado</label>
-            <textarea id="resultadoGank" name="resultado_gank" placeholder="Resultado do gank" required></textarea>
-        </div>
+                    <div class="form-group">
+                        <label for="resultadoGank">Resultado</label>
+                        <textarea id="resultadoGank" name="resultado_gank" placeholder="Resultado do gank"></textarea>
+                    </div>
 
-        <div class="form-group">
-            <label for="ganhos">Ganhos</label>
-            <textarea id="ganhos" name="ganhos" placeholder="Ganhos obtidos" required></textarea>
-        </div>
+                    <div class="form-group">
+                        <label for="ganhos">Ganhos</label>
+                        <textarea id="ganhos" name="ganhos" placeholder="Ganhos obtidos"></textarea>
+                    </div>
 
-        <div class="form-group">
-            <label for="perdas">Perdas</label>
-            <textarea id="perdas" name="perdas" placeholder="Perdas sofridas" required></textarea>
-        </div>
-    </div>
+                    <div class="form-group">
+                        <label for="perdas">Perdas</label>
+                        <textarea id="perdas" name="perdas" placeholder="Perdas sofridas"></textarea>
+                    </div>
+                </div>
 
-    <div class="botoes-navegacao">
-        <button type="button" class="btn btn-voltar">Voltar</button>
-        <button type="button" class="btn btn-avancar">Avançar</button>
-    </div>
-</div>
+                <div class="botoes-navegacao">
+                    <button type="button" class="btn btn-voltar">Voltar</button>
+                    <button type="button" class="btn btn-avancar">Avançar</button>
+                </div>
+            </div>
+
             <!-- Página 4: Objetivos -->
             <div class="pagina oculta" id="pagina4" data-pagina="4">
                 <div class="secao">
                     <h2 class="titulo">
-                        <img src="https://i.ibb.co/PGFQtZhd/4824-stressed-inventory-accessories-15-4.png"
-                            alt="Objetivos" class="emote">
+                        <img src="https://i.ibb.co/PGFQtZhd/4824-stressed-inventory-accessories-15-4.png" alt="Objetivos" class="emote">
                         Objetivos
                     </h2>
 
                     <div class="objetivos-container">
-                        <!-- Primeiro Controle - Arongueijos (1:25) -->
-                        <div class="objetivo-grupo" data-tempo="1:25">
-                            <div class="objetivo-cabecalho">
-                                <span class="tempo-texto">
-                                    <input type="checkbox" class="objetivo-checkbox" name="objetivo_125_ativo">
-                                    <span class="checkmark"></span>
-                                    1:25 - Primeiro objetivo neutro
-                                </span>
-                            </div>
-                            <div class="objetivo-opcoes oculta">
-                                <select name="objetivo_125_tipo" class="select-objetivo">
-                                    <option value="">Selecione quantos arongueijos...</option>
-                                    <option value="Um">Arongueijo bot</option>
-                                    <option value="Um">Arongueijo top</option>
-                                    <option value="Dois">Dois arongueijos</option>
-                                    <option value="Nenhum">Nenhum</option>
-                                </select>
-                                <div class="objetivo-time">
-                                    <label class="radio-time">
-                                        <input type="radio" name="objetivo_125_time" value="Aliado">
-                                        <span class="radio-custom"></span>
-                                        Time Aliado
-                                    </label>
-                                    <label class="radio-time">
-                                        <input type="radio" name="objetivo_125_time" value="Inimigo">
-                                        <span class="radio-custom"></span>
-                                        Time Inimigo
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Primeiro Objetivo (6:00) -->
-                        <div class="objetivo-grupo" data-tempo="6:00">
-                            <div class="objetivo-cabecalho">
-                                <span class="tempo-texto">
-                                    <input type="checkbox" class="objetivo-checkbox" name="objetivo_600_ativo">
-                                    <span class="checkmark"></span>
-                                    6:00 - Primeiro Objetivo
-                                </span>
-                            </div>
-                            <div class="objetivo-opcoes oculta">
-                                <div class="objetivo-duplo">
-                                    <div class="select-duplo">
-                                        <select name="objetivo_600_tipo_1" class="select-objetivo">
-                                            <option value="">Primeiro objetivo...</option>
-                                            <option value="Fogo">Dragão de Fogo</option>
-                                            <option value="Gelo">Dragão de Gelo</option>
-                                            <option value="Montanha">Dragão de Montanha</option>
-                                            <option value="Oceano">Dragão de Oceano</option>
-                                            <option value="Arauto">Arauto</option>
-                                            <option value="Nenhum">Nenhum</option>
-                                        </select>
-                                    </div>
-                                    <div class="select-duplo">
-                                        <select name="objetivo_600_tipo_2" class="select-objetivo">
-                                            <option value="">Segundo objetivo...</option>
-                                            <option value="Fogo">Dragão de Fogo</option>
-                                            <option value="Gelo">Dragão de Gelo</option>
-                                            <option value="Montanha">Dragão de Montanha</option>
-                                            <option value="Oceano">Dragão de Oceano</option>
-                                            <option value="Arauto">Arauto</option>
-                                            <option value="Nenhum">Nenhum</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="objetivo-time">
-                                    <label class="radio-time">
-                                        <input type="radio" name="objetivo_600_time" value="Aliado">
-                                        <span class="radio-custom"></span>
-                                        Time Aliado
-                                    </label>
-                                    <label class="radio-time">
-                                        <input type="radio" name="objetivo_600_time" value="Inimigo">
-                                        <span class="radio-custom"></span>
-                                        Time Inimigo
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Segundo Dragão (11:00) -->
-                        <div class="objetivo-grupo" data-tempo="11:00">
-                            <div class="objetivo-cabecalho">
-                                <span class="tempo-texto">
-                                    <input type="checkbox" class="objetivo-checkbox" name="objetivo_1100_ativo">
-                                    <span class="checkmark"></span>
-                                    11:00 - Segundo Dragão
-                                </span>
-                            </div>
-                            <div class="objetivo-opcoes oculta">
-                                <select name="objetivo_1100_tipo" class="select-objetivo">
-                                    <option value="">Selecione o objetivo...</option>
-                                    <option value="Fogo">Dragão de Fogo</option>
-                                    <option value="Gelo">Dragão de Gelo</option>
-                                    <option value="Montanha">Dragão de Montanha</option>
-                                    <option value="Oceano">Dragão de Oceano</option>
-                                    <option value="Nenhum">Nenhum</option>
-                                </select>
-                                <div class="objetivo-time">
-                                    <label class="radio-time">
-                                        <input type="radio" name="objetivo_1100_time" value="Aliado">
-                                        <span class="radio-custom"></span>
-                                        Time Aliado
-                                    </label>
-                                    <label class="radio-time">
-                                        <input type="radio" name="objetivo_1100_time" value="Inimigo">
-                                        <span class="radio-custom"></span>
-                                        Time Inimigo
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Baron Nashor (15:00) -->
-                        <div class="objetivo-grupo" data-tempo="15:00">
-                            <div class="objetivo-cabecalho">
-                                <span class="tempo-texto">
-                                    <input type="checkbox" class="objetivo-checkbox" name="objetivo_1500_ativo">
-                                    <span class="checkmark"></span>
-                                    15:00 - Baron Nashor
-                                </span>
-                            </div>
-                            <div class="objetivo-opcoes oculta">
-                                <select name="objetivo_1500_tipo" class="select-objetivo">
-                                    <option value="">Selecione o objetivo...</option>
-                                    <option value="Baron">Baron Nashor</option>
-                                    <option value="Nenhum">Nenhum</option>
-                                </select>
-                                <div class="objetivo-time">
-                                    <label class="radio-time">
-                                        <input type="radio" name="objetivo_1500_time" value="Aliado">
-                                        <span class="radio-custom"></span>
-                                        Time Aliado
-                                    </label>
-                                    <label class="radio-time">
-                                        <input type="radio" name="objetivo_1500_time" value="Inimigo">
-                                        <span class="radio-custom"></span>
-                                        Time Inimigo
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Terceiro Dragão ou Baron (16:00) -->
-                        <div class="objetivo-grupo" data-tempo="16:00">
-                            <div class="objetivo-cabecalho">
-                                <span class="tempo-texto">
-                                    <input type="checkbox" class="objetivo-checkbox" name="objetivo_1600_ativo">
-                                    <span class="checkmark"></span>
-                                    16:00 - Terceiro Dragão ou Baron
-                                </span>
-                            </div>
-                            <div class="objetivo-opcoes oculta">
-                                <select name="objetivo_1600_tipo" class="select-objetivo">
-                                    <option value="">Selecione o objetivo...</option>
-                                    <option value="Fogo">Dragão de Fogo</option>
-                                    <option value="Gelo">Dragão de Gelo</option>
-                                    <option value="Montanha">Dragão de Montanha</option>
-                                    <option value="Oceano">Dragão de Oceano</option>
-                                    <option value="Baron">Baron Nashor</option>
-                                    <option value="Nenhum">Nenhum</option>
-                                </select>
-                                <div class="objetivo-time">
-                                    <label class="radio-time">
-                                        <input type="radio" name="objetivo_1600_time" value="Aliado">
-                                        <span class="radio-custom"></span>
-                                        Time Aliado
-                                    </label>
-                                    <label class="radio-time">
-                                        <input type="radio" name="objetivo_1600_time" value="Inimigo">
-                                        <span class="radio-custom"></span>
-                                        Time Inimigo
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Dragão Ancião (18:00) -->
-                        <div class="objetivo-grupo" data-tempo="18:00">
-                            <div class="objetivo-cabecalho">
-                                <span class="tempo-texto">
-                                    <input type="checkbox" class="objetivo-checkbox" name="objetivo_1800_ativo">
-                                    <span class="checkmark"></span>
-                                    18:00 - Dragão Ancião
-                                </span>
-                            </div>
-                            <div class="objetivo-opcoes oculta">
-                                <select name="objetivo_1800_tipo" class="select-objetivo">
-                                    <option value="">Selecione o objetivo...</option>
-                                    <option value="Ancião">Dragão Ancião</option>
-                                    <option value="Nenhum">Nenhum</option>
-                                </select>
-                                <div class="objetivo-time">
-                                    <label class="radio-time">
-                                        <input type="radio" name="objetivo_1800_time" value="Aliado">
-                                        <span class="radio-custom"></span>
-                                        Time Aliado
-                                    </label>
-                                    <label class="radio-time">
-                                        <input type="radio" name="objetivo_1800_time" value="Inimigo">
-                                        <span class="radio-custom"></span>
-                                        Time Inimigo
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
+                        <!-- Objetivos serão preenchidos via JavaScript -->
                     </div>
 
-                    <div class="form-group obrigatorio">
+                    <div class="form-group">
                         <label for="controleVisao">Controle de visão</label>
-                        <textarea id="controleVisao" name="controle_visao" placeholder="Uso de wards e visão"
-                            required></textarea>
+                        <textarea id="controleVisao" name="controle_visao" placeholder="Uso de wards e visão"></textarea>
                     </div>
                 </div>
 
@@ -593,32 +356,28 @@
             <div class="pagina oculta" id="pagina5" data-pagina="5">
                 <div class="secao">
                     <h2 class="titulo">
-                        <img src="https://i.ibb.co/fGFzJNZt/4932-loser-queue-inventory-accessories-15-20.png"
-                            alt="Erros" class="emote">
+                        <img src="https://i.ibb.co/fGFzJNZt/4932-loser-queue-inventory-accessories-15-20.png" alt="Erros" class="emote">
                         Erros
                     </h2>
 
                     <div class="form-group">
                         <label for="situacaoErro">Situação</label>
-                        <textarea id="situacaoErro" name="situacao_erro" placeholder="Descreva os erros cometidos"
-                            required></textarea>
+                        <textarea id="situacaoErro" name="situacao_erro" placeholder="Descreva os erros cometidos"></textarea>
                     </div>
 
                     <div class="form-group">
                         <label for="causaErro">Causa</label>
-                        <textarea id="causaErro" name="causa_erro" placeholder="Causa dos erros" required></textarea>
+                        <textarea id="causaErro" name="causa_erro" placeholder="Causa dos erros"></textarea>
                     </div>
 
                     <div class="form-group">
                         <label for="consequenciaErro">Consequência</label>
-                        <textarea id="consequenciaErro" name="consequencia_erro" placeholder="Consequências dos erros"
-                            required></textarea>
+                        <textarea id="consequenciaErro" name="consequencia_erro" placeholder="Consequências dos erros"></textarea>
                     </div>
 
                     <div class="form-group">
                         <label for="prevencaoErro">Como evitar</label>
-                        <textarea id="prevencaoErro" name="prevencao_erro" placeholder="Como prevenir esses erros"
-                            required></textarea>
+                        <textarea id="prevencaoErro" name="prevencao_erro" placeholder="Como prevenir esses erros"></textarea>
                     </div>
                 </div>
 
@@ -632,85 +391,73 @@
             <div class="pagina oculta" id="pagina6" data-pagina="6">
                 <div class="secao">
                     <h2 class="titulo">
-                        <img src="https://i.ibb.co/766YHfJ/4681-sweating-blitzcrank-inventory-accessories-14-19.png"
-                            alt="Pós-Jogo" class="emote">
+                        <img src="https://i.ibb.co/766YHfJ/4681-sweating-blitzcrank-inventory-accessories-14-19.png" alt="Pós-Jogo" class="emote">
                         Pós-Jogo
                     </h2>
 
                     <div class="form-group">
                         <label for="resumoPartida">Resumo da partida</label>
-                        <textarea id="resumoPartida" name="resumo_partida" placeholder="Resumo geral da partida"
-                            required></textarea>
+                        <textarea id="resumoPartida" name="resumo_partida" placeholder="Resumo geral da partida"></textarea>
                     </div>
 
-                    <!-- Rota Impactante (Jungle E Mid) -->
+                    <!-- Rota Impactante (Jungle e Mid) -->
                     <div class="form-group jungle-mid-only oculta" id="rotaImpactanteContainer">
                         <label for="rotaImpactante">Rota mais impactada</label>
-                        <input type="text" id="rotaImpactante" name="rota_impactante"
-                            placeholder="Rota com maior influência">
+                        <input type="text" id="rotaImpactante" name="rota_impactante" placeholder="Rota com maior influência">
                     </div>
 
                     <div class="form-group">
                         <label for="momentosChave">Momentos chave</label>
-                        <textarea id="momentosChave" name="momentos_chave" placeholder="Momentos decisivos"
-                            required></textarea>
+                        <textarea id="momentosChave" name="momentos_chave" placeholder="Momentos decisivos"></textarea>
                     </div>
 
                     <div class="form-group">
                         <label for="aprendizados">Aprendizados</label>
-                        <textarea id="aprendizados" name="aprendizados" placeholder="Aprendizados da partida"
-                            required></textarea>
+                        <textarea id="aprendizados" name="aprendizados" placeholder="Aprendizados da partida"></textarea>
                     </div>
                 </div>
 
-                <!-- Nova Seção: Upload de Imagens -->
+                <!-- Upload de Imagens -->
                 <div class="secao">
                     <h2 class="titulo">
-                        <img src="https://i.ibb.co/CsvL6HZB/10034-em-ll-pengu-phonescreenshot-inventory-tft-accessories-1519.png"
-                            alt="10034-em-ll-pengu-phonescreenshot-inventory-tft-accessories-1519" class="emote">
+                        <img src="https://i.ibb.co/CsvL6HZB/10034-em-ll-pengu-phonescreenshot-inventory-tft-accessories-1519.png" alt="Imagens" class="emote">
                         Imagens da Partida
                     </h2>
 
                     <div class="imagens-container">
-                        <!-- Upload da Build e KDA -->
                         <div class="upload-group">
                             <label class="upload-label">
                                 <span class="upload-title">Build e KDA</span>
-                                <span class="upload-description">Print da tela de final de partida mostrando itens e
-                                    estatísticas</span>
-                                <input type="file" name="imagem_build_kda" class="upload-input" accept="image/*"
-                                    capture="environment">
+                                <span class="upload-description">Print da tela de final de partida</span>
+                                <input type="file" name="imagem_build_kda" class="upload-input" accept="image/*">
                                 <div class="upload-area">
                                     <div class="upload-placeholder">
                                         <span class="upload-icon"></span>
-                                        <span class="upload-text">Clique para adicionar ou arraste uma imagem</span>
+                                        <span class="upload-text">Clique para adicionar imagem</span>
                                         <span class="upload-hint">PNG, JPG ou WebP (máx. 5MB)</span>
                                     </div>
                                     <div class="upload-preview oculta">
-                                        <img src="" alt="Preview da build e KDA" class="preview-image">
-                                        <button type="button" class="btn-remover-imagem"> Remover</button>
+                                        <img src="" alt="Preview" class="preview-image">
+                                        <button type="button" class="btn-remover-imagem">Remover</button>
                                     </div>
                                 </div>
                             </label>
                         </div>
 
-                        <!-- Upload das Runas -->
                         <div class="upload-group">
                             <label class="upload-label">
                                 <span class="upload-title">Runas</span>
-                                <span class="upload-description">Print da tela de runas usadas na partida</span>
-                                <input type="file" name="imagem_runas" class="upload-input" accept="image/*"
-                                    capture="environment">
+                                <span class="upload-description">Print da tela de runas</span>
+                                <input type="file" name="imagem_runas" class="upload-input" accept="image/*">
                                 <div class="upload-area">
                                     <div class="upload-placeholder">
                                         <span class="upload-icon"></span>
-                                        <span class="upload-text">Clique para adicionar ou arraste uma imagem</span>
+                                        <span class="upload-text">Clique para adicionar imagem</span>
                                         <span class="upload-hint">PNG, JPG ou WebP (máx. 5MB)</span>
                                     </div>
-
                                     <div class="upload-preview oculta">
-                                        <img src="" alt="Preview das runas" class="preview-image">
-                                        <button type="button" class="btn-remover-imagem"> Remover</button>
+                                        <img src="" alt="Preview" class="preview-image">
+                                        <button type="button" class="btn-remover-imagem">Remover</button>
                                     </div>
                                 </div>
                             </label>
@@ -718,19 +465,18 @@
                     </div>
                 </div>
 
+                <!-- Checklist Rápido -->
                 <div class="secao">
                     <h2 class="titulo">
-                        <img src="https://i.ibb.co/tMP8W18C/4866-onward-inventory-accessories-15-11.png"
-                            alt="4866-onward-inventory-accessories-15-11" class="emote"> Checklist Rápido
+                        <img src="https://i.ibb.co/tMP8W18C/4866-onward-inventory-accessories-15-11.png" alt="Checklist" class="emote">
+                        Checklist Rápido
                     </h2>
                     <div class="checklist-container">
-                        <!-- Checklist Pathing APENAS para Jungle -->
-                        <label class="checklist-item jungle-only oculta" id="checklistPathingContainer">
+                        <label class="checklist-item jungle-only oculta">
                             <input type="checkbox" name="check_pathing" value="Sim">
                             <span class="checkmark"></span>
                             Pathing condizente
                         </label>
-
                         <label class="checklist-item">
                             <input type="checkbox" name="check_recursos" value="Sim">
                             <span class="checkmark"></span>
@@ -763,26 +509,20 @@
             <!-- Página 7: Agradecimento -->
             <div class="pagina oculta" id="paginaAgradecimento" data-pagina="7">
                 <div class="pagina-agradecimento">
-                    <!-- Imagem de fundo -->
                     <div class="fundo-agradecimento"></div>
-
-                    <!-- Conteúdo principal -->
+                    
                     <div class="conteudo-agradecimento">
-                        <!-- Emote Teemo -->
                         <div class="emote-teemo">
-                            <img src="https://i.ibb.co/BHQVbzDw/em-teemo-esports-inventory.png" alt="Teemo Emote"
-                                class="teemo-image">
+                            <img src="https://i.ibb.co/BHQVbzDw/em-teemo-esports-inventory.png" alt="Teemo Emote" class="teemo-image">
                         </div>
 
-                        <!-- Caixa de texto do relatório IA -->
-                        <div class="caixa-relatorio-ia" id="caixaRelatorioIA">
+                        <div class="caixa-relatorio-ia">
                             <div class="cabecalho-relatorio">
                                 <h2>Relatório do Coach IA</h2>
-                                <div class="score-relatorio" id="scoreRelatorio">85</div>
+                                <div class="score-relatorio" id="scoreRelatorio">--</div>
                             </div>
 
                             <div class="conteudo-relatorio">
-                                <!-- Conteúdo será preenchido via JavaScript -->
                                 <div id="conteudoRelatorio">
                                     <div class="carregando-relatorio">
                                         <div class="loading-spinner"></div>
@@ -792,17 +532,16 @@
                             </div>
 
                             <div class="rodape-relatorio">
-                                <button class="btn-nova-analise" onclick="window.analyzer.iniciarNovaAnalise()">
+                                <button type="button" class="btn-nova-analise" id="btnNovaAnalise">
                                     Fazer Nova Análise
                                 </button>
-                                <button class="btn-compartilhar" onclick="window.analyzer.compartilharRelatorio()">
+                                <button type="button" class="btn-compartilhar" id="btnCompartilhar">
                                     Compartilhar
                                 </button>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Créditos -->
                     <div class="creditos-agradecimento">
                         <p>Análise enviada para <strong>nittocoach@gmail.com</strong></p>
                         <small>Obrigado por contribuir com seu desenvolvimento!</small>
@@ -812,18 +551,7 @@
         </form>
     </div>
 
-    <!-- SDK EmailJS -->
-    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-
+    <!-- JavaScript Unificado -->
     <script src="./src/js/index.js"></script>
-    <script src="./src/js/core/estilos.js"></script>
-    <script src="./src/js/core/nav.js"></script>
-    <script src="./src/js/core/validacao.js"></script>
-    <script src="./src/js/modules/draft.js"></script>
-    <script src="./src/js/modules/objetivos.js"></script>
-    <script src="./src/js/modules/template.js"></script>
-    <script src="./src/js/modules/upload.js"></script>
-    <script src="./src/js/modules/iacoach.js"></script>
 </body>
-
 </html>

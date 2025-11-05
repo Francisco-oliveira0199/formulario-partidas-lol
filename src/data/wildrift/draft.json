@@ -1,0 +1,299 @@
+{
+  "construcao_draft_competitivo": {
+    "fundamentos_leitura_meta": {
+      "prioridades_globais_vs_regionais": {
+        "metricas_avaliacao": [
+          "Taxa de disputa - frequência de pick/ban",
+          "Taxa de vitória contextual - performance em diferentes situações",
+          "Segurança de escalabilidade - relevância em todas as fases",
+          "Potencial de flexibilidade - versatilidade em múltiplas posições"
+        ],
+        "definicao_campeao_prioritario": "Vai além de estatísticas, considera encaixe na composição e negação de opções adversárias"
+      },
+      "ciclos_adaptacao": {
+        "estrategia": "Ciclos de 2-3 patches para exploração profunda",
+        "vantagem": "Janelas competitivas através de escolhas secretas e composições não-convencionais"
+      }
+    },
+
+    "tipos_composicao_fundamentais": {
+      "composicao_iniciacao": {
+        "identidade": "Iniciar lutas coordenadas com potencial explosivo",
+        "elementos_chave": ["Controle em área", "Dano em grupo", "Execução confiável"],
+        "janela_forca": "Meio do jogo, disputas de objetivos",
+        "consideracoes": "Execução de frente para trás, requisitos de posicionamento"
+      },
+      "protecao_carry_principal": {
+        "identidade": "Maximizar dano através de proteção em camadas",
+        "elementos_chave": ["Supports encantadores", "Tanks protetores", "Junglers utilitários"],
+        "janela_forca": "Final do jogo, segurança de escalabilidade",
+        "flexibilidade": "Prioridade flexível entre ADC/Mid"
+      },
+      "composicao_eliminacao": {
+        "identidade": "Isolar e eliminar alvos prioritários",
+        "elementos_chave": ["Mobilidade", "Potencial de explosão", "Controle de visão"],
+        "janela_forca": "Meio do jogo, controle de side lanes",
+        "contra_jogo": "Cobertura de wards, posicionamento agrupado"
+      },
+      "split_push": {
+        "identidade": "Pressão no mapa através de ameaça 1-3-1 ou 4-1",
+        "elementos_chave": ["Capacidade de duel", "Limpeza de ondas", "Coordenação de teleporte"],
+        "janela_forca": "Janelas de prioridade nas side lanes, provocação de objetivos",
+        "requisitos": "Protocolos de comunicação, mecanismos de escape"
+      }
+    },
+
+    "camadas_sinergia": {
+      "sinergia_mecanica": "Combinações de habilidades com timing sobreposto",
+      "sinergia_estrategica": "Convergência de condições de vitória e picos de poder",
+      "sinergia_ritmo": "Alinhamento de curvas de escalabilidade",
+      "sinergia_posicionamento": "Compatibilidade de alcance e padrões de engajamento"
+    },
+
+    "curvas_poder_escalabilidade": {
+      "foco_inicio_0_15min": {
+        "caracteristicas": [
+          "Dominância nas lanes através de vantagem de picks",
+          "Potencial de invasão e controle da jungle",
+          "Prioridade no Herald/Primeira Torre",
+          "Mecanismos de crescimento exponencial"
+        ],
+        "composicao_tipica": ["Renekton", "Lee Sin", "Lucian", "Nautilus", "Karma"],
+        "fatores_risco": ["Segurança no late game", "Diferencial de escalabilidade", "Confiabilidade em teamfights"]
+      },
+      "meio_jogo_15_30min": {
+        "caracteristicas": [
+          "Controle de objetivos através de força em teamfights",
+          "Potencial de roaming e estabelecimento de visão",
+          "Sincronização de picos de poder",
+          "Consolidação do controle de mapa"
+        ],
+        "composicao_tipica": ["Ornn", "Graves", "Azir", "Kai'Sa", "Leona"],
+        "requisitos": ["Coordenação de timing", "Disciplina de posicionamento"]
+      },
+      "late_game_30plus_min": {
+        "caracteristicas": [
+          "Segurança de escalabilidade através de mecanismos defensivos",
+          "Confiabilidade em teamfights em cenários críticos",
+          "Capacidade de execução de Baron/Elder",
+          "Mitigação de erros"
+        ],
+        "composicao_tipica": ["Gangplank", "Kindred", "Viktor", "Jinx", "Thresh"],
+        "consideracoes": ["Sobrevivência no early game", "Alocação de recursos"]
+      }
+    },
+
+    "estrategia_picks_flexiveis": {
+      "vantagens": {
+        "negacao_informacao": "Ocultar posições até últimas escolhas",
+        "mitigacao_counter_picks": "Reduzir matchups ruins via troca de posições",
+        "expansao_zona_conforto": "Maximizar pool efetivo de campeões",
+        "adaptacao_meta": "Explorar nichos posicionais"
+      },
+      "exemplos_alto_impacto": {
+        "Sylas": ["Mid", "Top", "Jungle"],
+        "Graves": ["Jungle", "Top"],
+        "Swain": ["Mid", "Bot", "Support"],
+        "Sett": ["Top", "Jungle", "Support"]
+      }
+    },
+
+    "filosofia_counter_pick": {
+      "fatores_consideracao": [
+        "Impacto na fase de lanes - diferencial de pressão e segurança de farm",
+        "Harmonia da composição - manutenção da clareza da condição de vitória",
+        "Conforto do jogador - proficiência vs. vantagem teórica",
+        "Adaptação ao estado do jogo - relevância em diferentes cenários"
+      ]
+    },
+
+    "conforto_jogadores_estilo_equipe": {
+      "filosofia_centrada_jogador": "Priorizar picks confortáveis e estilo natural da equipe sobre counter-picks teóricos",
+      "fatores_avaliacao_conforto": [
+        "Proficiência mecânica - confiabilidade de execução sob pressão",
+        "Entendimento de jogo - tomada de decisões macro com o campeão",
+        "Familiaridade com sinergia - experiência com composições específicas",
+        "Performance sob pressão - sucesso histórico em partidas críticas"
+      ],
+      "identidades_estilo_equipe": {
+        "early_game_agressivo": "Priorização de bullies de lane e pressão de jungle",
+        "escalabilidade_metodica": "Ênfase em picks defensivos e segurança no late game",
+        "orientado_teamfight": "Foco em potencial de combo devastador e ferramentas de iniciação",
+        "controle_mapa": "Priorização de ameaças de split push e mobilidade"
+      }
+    },
+
+    "selecao_lado_ordens_estrategicas": {
+      "vantagens_lado_azul": [
+        "Prioridade de primeira escolha para picks poderosos",
+        "Negação de counter-pick em posições-chave",
+        "Controle do ritmo do draft",
+        "Manutenção da zona de conforto"
+      ],
+      "vantagens_lado_vermelho": [
+        "Flexibilidade da última escolha (especialmente mid lane)",
+        "Coleta de informações através de revelações do oponente",
+        "Otimização de counter-pick",
+        "Oportunidades de adaptação"
+      ],
+      "psicologia_ordem_draft": {
+        "fase_1_3bans_3picks": {
+          "objetivo": "Negação do meta e securing de picks poderosos",
+          "caracteristicas": ["Fase de coleta de informações", "Estabelecimento da identidade principal"]
+        },
+        "fase_2_2bans_2picks": {
+          "objetivo": "Targeting específico e setup de counter-pick",
+          "caracteristicas": ["Clarificação de funções", "Refinamento da condição de vitória"]
+        },
+        "fase_3_1ban_1pick": {
+          "objetivo": "Adaptação final e otimização",
+          "caracteristicas": ["Execução de counter-pick", "Maximização da zona de conforto"]
+        }
+      }
+    },
+
+    "casos_historicos_estrategicos": {
+      "g2_esports_2019": {
+        "contexto": "Revolução através de picks não-convencionais e abuso extremo de flexibilidade",
+        "picks_emblematicos": ["Pyke Top", "Garen/Yuumi Bot", "Heimerdinger ADC"],
+        "logica_estrategica": "Disrupção da preparação dos oponentes como vantagem competitiva",
+        "execucao": ["Early game agressivo com picos inesperados", "Flexibilidade mid game", "Maximização do caos late game"],
+        "impacto_meta": "Execução mecânica pode transcender otimalidade teórica",
+        "licoes": [
+          "Timing de inovação deve alinhar com ciclos de preparação",
+          "Conforto com caos cria vantagens em séries Bo5",
+          "Disrupção requer entendimento profundo de estratégias convencionais"
+        ]
+      },
+      "damwon_gaming_2020": {
+        "contexto": "Novo padrão de controle de mapa através de dominância de visão",
+        "composicoes_caracteristicas": [
+          "Ornn + Nidalee + Twisted Fate - presença global e segurança",
+          "Jax + Graves + Azir - múltiplas ameaças de carry",
+          "Kennen + Kindred + Syndra - execução de teamfight com proteção"
+        ],
+        "logica_estrategica": "Consistência sobre inovação, perfeição na execução de composições padrão",
+        "execucao": ["Early game com rastreamento de jungle", "Controle de objetivos mid game", "Teamfights disciplinados late game"],
+        "impacto_meta": "Precisão mecânica em composições padrão pode superar inovação tática",
+        "licoes": [
+          "Consistência na execução supera complexidade no design",
+          "Correlação entre controle de visão e sucesso no draft",
+          "Clareza de papéis maximiza coordenação"
+        ]
+      },
+      "edward_gaming_2021": {
+        "contexto": "Abordagem equilibrada entre agressão e escalabilidade",
+        "composicoes_representativas": [
+          "Graves + Viktor + Aphelios - relevância em múltiplas fases",
+          "Jarvan IV + Ryze + Varus - iniciação com ameaças na retaguarda",
+          "Camille + Xin Zhao + LeBlanc - eliminação e execução de dive"
+        ],
+        "logica_estrategica": "Segurança de escalabilidade com capacidade de ação no meio do jogo",
+        "execucao": ["Adaptação flexível early game", "Timing de teamfights mid game", "Execução late game com múltiplas condições"],
+        "impacto_meta": "Flexibilidade no draft supera composições especializadas",
+        "licoes": [
+          "Múltiplas condições de vitória proporcionam segurança estratégica",
+          "Versatilidade dos jogadores permite adaptação",
+          "Equilíbrio entre fases supera especialização extrema"
+        ]
+      },
+      "t1_2022": {
+        "contexto": "Identidade em excelência individual e sinergia jungle-mid",
+        "composicoes_caracteristicas": [
+          "Aatrox + Viego + Azir - potencial de carry individual",
+          "Flora + Graves + Sylas - split push com backup para teamfight",
+          "Gnar + Lee Sin + Viktor - iniciação com proteção"
+        ],
+        "logica_estrategica": "Maximizar expressão mecânica através de potencial de outplay",
+        "execucao": ["Dominância na fase de lanes", "Skirmishes com coordenação jungle-mid", "Teamfights com vantagens de posicionamento"],
+        "filosofia_equipe": "Estrutura em torno da confiança e experiência dos veteranos",
+        "licoes": [
+          "Vantagens de habilidade individual justificam composições subótimas",
+          "Sinergia jungle-mid impacta prioridade no draft",
+          "Experiência em alta pressão influencia conforto com picks"
+        ]
+      },
+      "drx_2022": {
+        "contexto": "Adaptação progressiva para compensar gaps de habilidade",
+        "composicoes_evolutivas": [
+          "Maokai + Poppy + Viktor - base defensiva com segurança",
+          "Aatrox + Sejuani + Varus - execução de frente para trás",
+          "Fiora + Graves + Azir - confiança em plays mecânicos"
+        ],
+        "logica_estrategica": "Adaptação progressiva - começando defensivo e incorporando agressão gradual",
+        "execucao": ["Início: sobrevivência com picks defensivos", "Meio: construção de confiança", "Final: assumir riscos com campeões mecânicos"],
+        "impacto_meta": "Evolução do draft durante torneios pode compensar desvantagens iniciais",
+        "licoes": [
+          "Confiança no draft se correlaciona com resultados",
+          "Assumir riscos progressivamente permite sucesso de azarões",
+          "Bases defensivas podem transicionar para agressivo",
+          "Estado psicológico influencia escolhas ótimas"
+        ]
+      }
+    },
+
+    "terminologia_competitiva": {
+      "campeao_prioritario": "Campeão com alta taxa de disputa devido à versatilidade ou nível de poder",
+      "pick_negacao": "Seleção prioritária para impedir acesso do oponente",
+      "abuso_flexibilidade": "Utilização de campeões ambíguos de posição para vantagem informacional",
+      "seguranca_escalabilidade": "Mecanismos que garantem relevância no late game",
+      "alinhamento_picos_poder": "Sincronização de timings de força da equipe",
+      "clareza_condicao_vitoria": "Identificação definitiva do caminho para a vitória",
+      "zona_conforto": "Range de proficiência em campeões/composições",
+      "janela_counter_pick": "Timing ótimo para seleções reativas",
+      "ritmo_draft": "Velocidade e pressão durante o processo de seleção",
+      "guerra_informacoes": "Ocultação/revelação estratégica das intenções da equipe"
+    },
+
+    "implementacao_pratica": {
+      "framework_preparacao": {
+        "pre_torneio": [
+          "Análise do meta e identificação de adaptações regionais",
+          "Mapeamento da zona de conforto dos jogadores",
+          "Desenvolvimento de composições características",
+          "Preparação de contra-estratégias para oponentes"
+        ],
+        "durante_torneio": [
+          "Adaptação específica para oponentes baseada em padrões",
+          "Monitoramento da confiança dos jogadores",
+          "Rastreamento da evolução do meta",
+          "Refinamento de estratégias para séries"
+        ],
+        "pos_partida": [
+          "Análise da execução do draft e identificação de melhorias",
+          "Integração do feedback dos jogadores",
+          "Reconhecimento de adaptações dos oponentes",
+          "Avaliação da contribuição para o meta"
+        ]
+      },
+      "ferramentas_analise": {
+        "metricas_quantitativas": [
+          "Taxas de presença/ausência de campeões",
+          "Taxa de vitória por duração do jogo",
+          "Correlações de performance por jogador",
+          "Taxas de sucesso de composições"
+        ],
+        "avaliacao_qualitativa": [
+          "Avaliação da dificuldade de execução",
+          "Monitoramento do nível de conforto",
+          "Observação da efetividade da sinergia",
+          "Rastreamento da capacidade de adaptação"
+        ]
+      }
+    },
+
+    "conclusao_principios": {
+      "fatores_sucesso": [
+        "Profundidade de preparação",
+        "Capacidade de adaptação",
+        "Confiança na execução"
+      ],
+      "tendencias_futuras": [
+        "Importância crescente de flexibilidade",
+        "Desenvolvimento individual dos jogadores",
+        "Processos sistemáticos de preparação"
+      ],
+      "vantagem_competitiva": "Integração efetiva desses elementos estabelece benchmarks para excelência"
+    }
+  }
+}

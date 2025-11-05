@@ -1,0 +1,513 @@
+{
+  "versao_jogo": "Wild Rift",
+  "plataforma": "Mobile",
+  "ultima_atualizacao": "Patch 5.0",
+  "fonte_patch_notes": "https://wildrift.leagueoflegends.com/pt-br/news/tags/patch-notes/",
+  
+  "caracteristicas_wild_rift": {
+    "duracao_media_partida": "15-25 minutos",
+    "mapa": "Menor que LoL PC - rotacoes mais rapidas",
+    "tempo_respawn_objetivos": "Mais curtos que PC",
+    "impacto_early_game": "Mais decisivo",
+    "comebacks": "Mais dificeis - tempo menor",
+    "rotacoes_aceleradas": "10-15s entre rotas"
+  },
+
+  "hierarquia_objetivos": {
+    "nexus": {
+      "prioridade": 1,
+      "descricao": "Objetivo final do jogo - destruir para vencer",
+      "valor_estrategico": "MAXIMO"
+    },
+    "inibidor": {
+      "prioridade": 2,
+      "descricao": "Pressão massiva + super minions permanentes",
+      "valor_estrategico": "MUITO_ALTO",
+      "mecanica": "Destruído por 180 segundos, cria super minions na lane",
+      "impacto": "Força defesa constante do time inimigo"
+    },
+    "barao_nashor": {
+      "prioridade": 3,
+      "descricao": "Game changer do late game - pressão de mapa massiva",
+      "valor_estrategico": "MUITO_ALTO",
+      "buff": "+40 AD e AP, recall reduzido para 4s, buff massivo em minions",
+      "duracao": "180 segundos",
+      "spawn": "10:00",
+      "respawn": "5 minutos"
+    },
+    "dragao_elder": {
+      "prioridade": 4,
+      "descricao": "Buff de execução massivo - quase garantia de vitória",
+      "valor_estrategico": "MUITO_ALTO",
+      "buff": "Dano verdadeiro adicional + execute abaixo de 20% HP",
+      "duracao": "150 segundos",
+      "condicao_spawn": "Após uma equipe conquistar a Alma do Dragão"
+    },
+    "torres": {
+      "prioridade": 5,
+      "descricao": "Ouro global + controle de mapa + progressão",
+      "valor_estrategico": "ALTO_SITUACIONAL",
+      "valores": {
+        "primeira_torre": "250g global + 150g local",
+        "segunda_torre": "200g global + 100g local", 
+        "torre_inibidor": "150g global + 50g local",
+        "torre_nexus": "100g global"
+      }
+    },
+    "dragoes": {
+      "prioridade": 6,
+      "descricao": "Buffs permanentes cumulativos para todo time",
+      "valor_estrategico": "ALTO",
+      "observacoes": "4 tipos disponíveis no Wild Rift"
+    },
+    "arauto_vale": {
+      "prioridade": 7,
+      "descricao": "Ferramenta de pressão do early/mid game",
+      "valor_estrategico": "MODERADO_ALTO",
+      "spawn": "6:00",
+      "desaparece": "19:00",
+      "uso": "Derruba torres rapidamente"
+    },
+    "jungle_camps": {
+      "prioridade": 8,
+      "descricao": "Recursos individuais (ouro, experiência, buffs)",
+      "valor_estrategico": "BAIXO",
+      "observacoes": "Importante para scaling de junglers"
+    }
+  },
+
+  "hierarquia_objetivos_early": {
+    "arauto_vale": {
+      "prioridade": 1,
+      "valor_estrategico": "MAXIMO_EARLY",
+      "dano_torres": "1500 de dano (aproximadamente 75% de uma torre)",
+      "impacto": "Garante primeira torre + abre mapa + controle jungle inimigo",
+      "spawn": "6:00",
+      "desaparece": "19:00"
+    },
+    "primeira_torre": {
+      "prioridade": 2,
+      "valor_estrategico": "MUITO_ALTO",
+      "gold": "250 global + 150 local",
+      "impacto": "Vantagem econômica + pressão de mapa"
+    },
+    "primeiro_dragao": {
+      "prioridade": 3,
+      "valor_estrategico": "ALTO",
+      "impacto": "Buff permanente cumulativo"
+    }
+  },
+
+  "dragoes_wild_rift": {
+    "infernal": {
+      "nome": "Dragão Infernal",
+      "elemento": "Fogo",
+      "buff_acumulativo": "+3% Dano de Ataque e Poder de Habilidade por acúmulo",
+      "max_acumulos": 3,
+      "buff_maximo": "+9% AD e AP",
+      "tipo_buff": "DANO",
+      "valor": "EXTREMAMENTE_ALTO",
+      "prioridade": "MAXIMA",
+      "ideal_para": [
+        "composicoes_burst",
+        "carries_scaling", 
+        "múltiplos_danificadores",
+        "teamfight_explosivo"
+      ],
+      "campeoes_favorecidos": [
+        "Zed", "Ahri", "Jinx", "Miss Fortune", "Yasuo"
+      ]
+    },
+    "montanha": {
+      "nome": "Dragão da Montanha",
+      "elemento": "Terra", 
+      "buff_acumulativo": "+3 + 2% de bônus em Armadura e Resistência Mágica por acúmulo",
+      "max_acumulos": 3,
+      "buff_maximo": "+9 + 6% Armadura e MR de bônus",
+      "tipo_buff": "DEFESA",
+      "valor": "ALTO",
+      "prioridade": "MODERADA_ALTA", 
+      "ideal_para": [
+        "composicoes_tanque",
+        "frontline_pesado",
+        "protecao_hypercarries",
+        "engages_prolongados"
+      ],
+      "campeoes_favorecidos": [
+        "Malphite", "Alistar", "Braum", "Garen", "Darius"
+      ]
+    },
+    "oceano": {
+      "nome": "Dragão do Oceano",
+      "elemento": "Água",
+      "buff_acumulativo": "Regenera 2% da saúde perdida a cada 5 segundos por acúmulo", 
+      "max_acumulos": 3,
+      "buff_maximo": "Regenera 6% da saúde perdida a cada 5 segundos",
+      "tipo_buff": "SUSTENTAÇÃO",
+      "valor": "MODERADO",
+      "prioridade": "MODERADA",
+      "ideal_para": [
+        "composicoes_poke",
+        "sustain_lanes", 
+        "sieges_prolongados",
+        "rotacoes_constantes"
+      ],
+      "campeoes_favorecidos": [
+        "Ezreal", "Lux", "Seraphine", "Soraka", "Sona"
+      ]
+    },
+    "gelo": {
+      "nome": "Dragão de Gelo", 
+      "elemento": "Gelo",
+      "buff_acumulativo": "+7 de Aceleração de Habilidade por acúmulo",
+      "max_acumulos": 3,
+      "buff_maximo": "+21 de Aceleração de Habilidade",
+      "tipo_buff": "CDR",
+      "valor": "MODERADO_ALTO",
+      "prioridade": "MODERADA",
+      "ideal_para": [
+        "campeoes_cooldown_dependent",
+        "control_mages", 
+        "supports_utilitarios",
+        "spammers_de_habilidades"
+      ],
+      "campeoes_favorecidos": [
+        "Lux", "Orianna", "Karma", "Blitzcrank", "Thresh"
+      ]
+    }
+  },
+
+  "almas_dragao": {
+    "condicao": "Conquistar 4 dragões de qualquer tipo",
+    "tipo": "BUFF_PERMANENTE_TIME_INTEIRO",
+    "impacto_estrategico": "DEFINE_VENCEDOR",
+
+    "alma_gelo": {
+      "nome": "Alma do Dragão de Gelo",
+      "efeito": "Próximo ataque/habilidade marca inimigo por 3s, depois desacelera 50% e causa +12% de dano verdadeiro do dano recebido",
+      "recarga": "15 segundos",
+      "valor_estrategico": "ALTO",
+      "ideal_para": ["burst_combo", "picks", "assassinos"]
+    },
+
+    "alma_infernal": {
+      "nome": "Alma do Dragão Infernal", 
+      "efeito": "Próximo ataque/habilidade cria explosão de 250 alcance, causando 110 + 20% AD + 10% AP de dano adaptativo",
+      "recarga": "5 segundos", 
+      "valor_estrategico": "MUITO_ALTO",
+      "ideal_para": ["teamfight", "aoe_damage", "carries"]
+    },
+
+    "alma_montanha": {
+      "nome": "Alma do Dragão da Montanha",
+      "efeito": "Após 5s sem sofrer dano, ganha escudo de 210",
+      "recarga": "Constante",
+      "valor_estrategico": "MODERADO_ALTO", 
+      "ideal_para": ["engagers", "frontline", "split_push"]
+    },
+
+    "alma_oceano": {
+      "nome": "Alma do Dragão do Oceano",
+      "efeito": "Próximo ataque/habilidade cura 150 + 30% AD + 15% AP ao longo de 4s",
+      "recarga": "6 segundos",
+      "valor_estrategico": "MODERADO",
+      "ideal_para": ["sustain", "duelistas", "longas_trocas"]
+    }
+  },
+
+  "dragao_elder": {
+    "condicao_spawn": "Após uma equipe conquistar a Alma do Dragão",
+    "duracao": "150 segundos",
+    "respawn": "5 minutos",
+    
+    "buff_queimadura": {
+      "nome": "Aspecto do Dragão",
+      "efeito": "Causar dano inflige queimadura de 300 de dano verdadeiro em 3s",
+      "detalhes": "Primeiro pulso após 0.25s, demais a cada 1s"
+    },
+    
+    "buff_execucao": {
+      "nome": "Imolação do Ancião", 
+      "efeito": "Causar dano a inimigo abaixo de 15% HP o executa",
+      "detalhes": "Destrói escudos antes de causar 100% da vida atual como dano verdadeiro",
+      "recarga_alvo": "2 segundos por alvo"
+    },
+    
+    "valor_estrategico": "VITORIA_GARANTIDA",
+    "prioridade": "MAXIMA_ABSOLUTA"
+  },
+
+  "arauto_vale_detalhes": {
+    "spawn": "6:00",
+    "desaparece": "19:00",
+    "dano_torres": "1500 (75% de uma torre cheia)",
+    "vida": "7500 HP (aproximadamente)",
+    "dano_ataque": "100-150 por ataque",
+    
+    "uso_estrategico": {
+      "mid_lane_prioritario": {
+        "vantagens": [
+          "Abre jungle inimigo para invasões",
+          "Remove abrigo para inimigos em fights",
+          "Minions mid respawnam mais rápido = mais pressão",
+          "Controle de visão profunda",
+          "Acesso a todos os objetivos futuros"
+        ],
+        "condicoes_ideais": [
+          "Prioridade estabelecida no mid",
+          "Jungler aliado próximo para proteção",
+          "Visão no jungle inimigo"
+        ]
+      },
+      "side_lanes_alternativo": {
+        "vantagens": [
+          "Garantir primeira torre lateral",
+          "Criar pressão cruzada",
+          "Forçar resposta inimiga dividida",
+          "Opportunidade para duas torres"
+        ],
+        "condicoes": [
+          "Mid sem prioridade",
+          "Vantagem clara em side lane",
+          "Opportunidade de dive com vantagem numérica"
+        ]
+      },
+      "uso_dupla_torre": {
+        "estrategia": "Usar em torre já danificada para garantir destruição rápida + rotacionar para próxima torre",
+        "condicoes": [
+          "Vantagem numérica temporária",
+          "Wave management preparado",
+          "Inimigos respawnando ou distantes"
+        ]
+      }
+    },
+
+    "estrategias_avancadas_arauto": {
+      "aceleracao_jogo": {
+        "conceito": "Arauto como acelerador de vantagem",
+        "quando_usar_agressivo": [
+          "Vantagem clara de gold/experiência",
+          "Composição early game dominante", 
+          "Inimigos com scaling perigoso",
+          "Need to close game before 15min"
+        ],
+        "quando_usar_defensivo": [
+          "Em desvantagem mas com pickoff",
+          "Para quebrar freeze inimigo",
+          "Criar pressão para recuperar mapa",
+          "Stall para scaling ally"
+        ]
+      },
+
+      "dual_objective_control": {
+        "cenario_competitivo": {
+          "estrategia": "Garantir ambos objetivos com rotaciones",
+          "execucao": "Time divide - 3-4 no dragão, 1-2 no arauto",
+          "condicoes": [
+            "Vantagem numérica clara",
+            "Visão completa do mapa",
+            "Coordenação de time perfeita",
+            "Inimigos sem recursos para contestar ambos"
+          ],
+          "riscos": [
+            "Split do time pode ser punido",
+            "Perder ambos objetivos se mal executado",
+            "Burn de summoners desnecessário"
+          ]
+        },
+
+        "cenario_solo_queue": {
+          "estrategia": "Focar um objetivo + trade inteligente",
+          "execucao": "Comunicar objetivo principal + pressionar elsewhere",
+          "condicoes": [
+            "Coordenação limitada",
+            "Focar onde tem maior vantagem",
+            "Punir inimigos divididos"
+          ]
+        }
+      },
+
+      "lane_swap_strategies": {
+        "conceito": "Troca de rotas para otimizar matchups",
+        "scaling_weak_side": {
+          "situacao": "Hiper carregador perdendo lane early",
+          "solucao": "Swap com mid ou top para farm seguro",
+          "beneficios": [
+            "Scaler consegue farm sem pressão",
+            "Early game champ pressiona lane oponente",
+            "Quebra freeze inimigo",
+            "Surpresa elementar"
+          ],
+          "execucao": [
+            "Comunicar swap no min 3-4",
+            "Preparar wave para recall sincronizado",
+            "Ward profundidade nova rota",
+            "Ajustar builds para novo matchup"
+          ]
+        },
+
+        "mid_late_game_swaps": {
+          "situacao": "Mid game - sidelane assignments",
+          "estrategia": "Colocar scaling champ em side, early game no mid",
+          "logica": [
+            "Scaler precisa de farm isolado",
+            "Early game cria pressão no mapa",
+            "Controle de objetivos centralizado",
+            "Split push eficiente"
+          ]
+        }
+      }
+    },
+
+    "erros_comuns": [
+      "Segurar arauto por tempo excessivo",
+      "Usar sem wave preparada",
+      "Usar quando múltiplos inimigos podem contestar",
+      "Não proteger durante o uso"
+    ],
+
+    "timing_ideal": "Entre 6:00 e 12:00 minutos",
+    "impacto_estrategico": "MAIOR_OBJETIVO_EARLY_GAME"
+  },
+
+  "comparacao_arauto_vs_dragao_early": {
+    "arauto_vantagens": [
+      "Garante primeira torre (500-700g vantagem)",
+      "Abre mapa permanentemente",
+      "Permite controle de jungle inimigo",
+      "Cria pressão constante",
+      "Força resposta inimiga"
+    ],
+    "dragao_vantagens": [
+      "Buff permanente cumulativo",
+      "Não requer uso estratégico",
+      "Escala para late game",
+      "Não pode ser perdido após conquistado"
+    ],
+    "decisao_trade": "Arauto geralmente > Dragão early, exceto para composições de scaling extremo"
+  },
+
+  "decisao_arauto_vs_dragao_contextual": {
+    "prioridade_arauto_quando": [
+      "Vantagem clara early game",
+      "Composição de snowball",
+      "Opportunidade de primeira torre",
+      "Inimigo scaling perigoso",
+      "Need to accelerate game tempo"
+    ],
+
+    "prioridade_dragao_quando": [
+      "Composição scaling team",
+      "Dragão Infernal/Hextech disponível",
+      "Soul point próximo (3 dragoes)",
+      "Arauto risky/impossível",
+      "Late game insurance"
+    ],
+
+    "ambos_quando": [
+      "Vantagem esmagadora",
+      "Inimigos aceitam trade",
+      "Coordenação perfeita de time",
+      "Janela de tempo suficiente"
+    ]
+  },
+
+  "tabela_respawn_wild_rift": {
+    "dragao": {
+      "primeiro_spawn": "4:00",
+      "respawn": "5 minutos",
+      "observacao": "Tempo mais curto que LoL PC (6min)"
+    },
+    "arauto": {
+      "spawn": "6:00", 
+      "desaparece": "19:00",
+      "observacao": "Único por jogo - OBJETIVO MAIS IMPORTANTE EARLY GAME"
+    },
+    "barao": {
+      "spawn": "10:00",
+      "respawn": "5 minutos",
+      "observacao": "Tempo igual ao PC"
+    },
+    "elder_dragon": {
+      "spawn": "Após Alma do Dragão conquistada",
+      "respawn": "5 minutos",
+      "observacao": "Só spawna após Soul"
+    },
+    "inibidor": {
+      "respawn": "180 segundos (3 minutos)",
+      "observacao": "Volta com vida completa"
+    },
+    "torres": {
+      "respawn": "NÃO_RESPAWNAM",
+      "observacao": "Destruídas permanentemente"
+    }
+  },
+
+  "janelas_poder_temporizadores": {
+    "pre_dragao_300_400": [
+      "Estabelecer visão river e jungle inferior",
+      "Push bot lane para prioridade", 
+      "Posicionar support para controle de pit"
+    ],
+    "pos_dragao_400_600": [
+      "Rotacionar para Herald se não contestou dragão",
+      "Push mid para controlar scuttle superior",
+      "Setup para próximo dragão"
+    ],
+    "barao_disponivel_1000": [
+      "Vision control permanente ao redor de Barão",
+      "Nunca todos longe sem visão",
+      "Recalls consideram timer de Barão"
+    ],
+    "inibidor_down": [
+      "Aproveitar 3 minutos de pressão",
+      "Forçar Barão enquanto inimigos limpam super minions",
+      "Rotacionar para outros inibidores"
+    ]
+  },
+
+  "sistema_acumulos": {
+    "maximo_acumulos": 3,
+    "acumulos_por_dragao": 1,
+    "beneficio": "Buffs cumulativos permanentes",
+    "estrategia_early": "Focar dragões compatíveis com composição",
+    "estrategia_mid": "Buscar 3 acumulos para vantagem",
+    "estrategia_late": "Priorizar alma acima de tudo"
+  },
+
+  "prioridades_estrategicas": {
+    "early_game": {
+      "dragão_infernal": "PRIORIDADE_ALTA",
+      "dragão_gelo": "PRIORIDADE_MEDIA", 
+      "dragão_montanha": "PRIORIDADE_MEDIA",
+      "dragão_oceano": "PRIORIDADE_BAIXA",
+      "arauto": "PRIORIDADE_ALTA_SEM_DRAGÃO"
+    },
+    "soul_point": {
+      "time_3_dragoes": "PRIORIDADE_MAXIMA_4º_DRAGÃO",
+      "inimigo_3_dragoes": "CONTESTAR_A_TODO_CUSTO",
+      "alma_dragao": "VALE_RISCO_WIPE"
+    },
+    "elder_dragon": {
+      "prioridade": "MAXIMA_ABSOLUTA",
+      "contestar": "SEMPRE_POSSIVEL",
+      "risco": "VALE_TUDO_PARA_NEGAR"
+    }
+  },
+
+  "observacoes_wild_rift": {
+    "diferencas_principal": [
+      "Apenas 4 tipos de dragão (Fogo, Terra, Água, Gelo)",
+      "Tempo de jogo mais rápido que League PC",
+      "Mapa menor - rotacoes mais rápidas",
+      "Objetivos spawnam mais cedo",
+      "Jogos geralmente mais curtos (15-25 min)"
+    ],
+    "impacto_estrategico": [
+      "Early game mais decisivo",
+      "Rotacoes entre objetivos mais frequentes",
+      "Controle de visão ainda mais crucial",
+      "Comebacks mais difíceis por tempo menor"
+    ]
+  }
+}

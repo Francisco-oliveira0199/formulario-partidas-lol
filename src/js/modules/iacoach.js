@@ -1,4 +1,4 @@
-// iacoach.js
+// iacoach.js - VERSÃO SIMPLIFICADA E CORRIGIDA
 class IACoach {
     constructor() {
         this.categorias = {
@@ -12,13 +12,14 @@ class IACoach {
     }
 
     init() {
-        console.log('🧠 IA Coach inicializado');
+        console.log('🧠 IA Coach inicializado - Foco em análise');
     }
 
     analisarPartida(dadosPartida) {
-        console.log('🔍 Iniciando análise da partida...', dadosPartida);
+        console.log('🔍 IACoach: Analisando partida...');
         
-        // Coletar problemas por categoria
+        this.resetarProblemas();
+        
         this.analisarDraft(dadosPartida);
         this.analisarEarlyGame(dadosPartida);
         this.analisarRotacao(dadosPartida);
@@ -26,14 +27,17 @@ class IACoach {
         this.analisarTeamfight(dadosPartida);
         this.analisarVisao(dadosPartida);
 
-        // Calcular score
         const score = this.calcularScore();
-        
-        // Gerar relatório
         const relatorio = this.gerarRelatorio(score, dadosPartida);
         
-        console.log('✅ Análise concluída - Score:', score);
+        console.log('✅ IACoach: Análise concluída');
         return relatorio;
+    }
+
+    resetarProblemas() {
+        Object.values(this.categorias).forEach(categoria => {
+            categoria.problemas = [];
+        });
     }
 
     analisarDraft(dados) {
@@ -41,7 +45,6 @@ class IACoach {
         const rota = dados.rota;
         const campeao = dados.campeao;
 
-        // Verificar matchups problemáticos
         const matchupInimigo = this.obterMatchupInimigo(dados, rota);
         if (matchupInimigo && this.verificarMatchupDesfavoravel(campeao, matchupInimigo)) {
             problemas.push({
@@ -52,16 +55,6 @@ class IACoach {
             });
         }
 
-        // Verificar sinergia de time
-        if (!this.verificarSinergiaTime(dados)) {
-            problemas.push({
-                tipo: 'SINERGIA_TIME_BAIXA',
-                severidade: 'baixa',
-                descricao: 'Composição do time com sinergia limitada',
-                acao: 'Adaptar build e playstyle para compensar'
-            });
-        }
-
         this.categorias['Draft'].problemas = problemas;
     }
 
@@ -69,7 +62,6 @@ class IACoach {
         const problemas = [];
         const rota = dados.rota;
 
-        // Análise específica por rota
         if (rota === 'Jungle') {
             if (!dados.pathing_inicial || dados.pathing_inicial.length < 10) {
                 problemas.push({
@@ -81,16 +73,6 @@ class IACoach {
             }
         }
 
-        // Verificar primeiras trocas
-        if (dados.recursos_queimados && dados.recursos_queimados.includes('Flash')) {
-            problemas.push({
-                tipo: 'RECURSOS_QUEIMADOS',
-                severidade: 'alta',
-                descricao: 'Feitiços importantes usados muito cedo',
-                acao: 'Jogar mais defensivamente até que feitiços voltem'
-            });
-        }
-
         this.categorias['Early Game'].problemas = problemas;
     }
 
@@ -98,7 +80,6 @@ class IACoach {
         const problemas = [];
         const rota = dados.rota;
 
-        // Análise de rotação para Jungle e Mid
         if (['Jungle', 'Mid'].includes(rota)) {
             if (!dados.rota_alvo || dados.rota_alvo.length < 2) {
                 problemas.push({
@@ -117,7 +98,6 @@ class IACoach {
         const problemas = [];
         let objetivosPerdidos = 0;
 
-        // Verificar controle de objetivos
         const temposObjetivos = ['125', '600', '1100', '1500', '1600', '1800'];
         temposObjetivos.forEach(tempo => {
             const objetivoTime = dados[`objetivo_${tempo}_time`];
@@ -135,23 +115,12 @@ class IACoach {
             });
         }
 
-        // Verificar controle de visão em objetivos
-        if (!dados.controle_visao || dados.controle_visao.length < 20) {
-            problemas.push({
-                tipo: 'VISAO_OBJETIVOS_INSUFICIENTE',
-                severidade: 'media',
-                descricao: 'Controle de visão em objetivos insuficiente',
-                acao: 'Priorizar wards em pit de objetivos 1min antes do spawn'
-            });
-        }
-
         this.categorias['Objetivos'].problemas = problemas;
     }
 
     analisarTeamfight(dados) {
         const problemas = [];
 
-        // Analisar erros em teamfights
         if (dados.situacao_erro && dados.situacao_erro.toLowerCase().includes('teamfight')) {
             problemas.push({
                 tipo: 'POSICIONAMENTO_TEAMFIGHT',
@@ -212,17 +181,14 @@ class IACoach {
             pontosFortes: pontosFortes,
             areasMelhoria: areasMelhoria,
             sugestoesPriorizadas: sugestoesPriorizadas,
-            problemasPorCategoria: this.categorias,
             totalProblemas: this.contarTotalProblemas(),
-            metaProximaPartida: this.gerarMetaProximaPartida(areasMelhoria),
-            descricaoScore: this.getDescricaoScore(score)
+            metaProximaPartida: this.gerarMetaProximaPartida(areasMelhoria)
         };
     }
 
     identificarPontosFortes(dados) {
         const pontos = [];
         
-        // Verificar condições de vitória bem definidas
         if (dados.condicao_vitoria_time && dados.condicao_vitoria_time.length > 30) {
             pontos.push('Condições de vitória bem definidas');
         }
@@ -231,12 +197,10 @@ class IACoach {
             pontos.push('Entendimento claro do papel do campeão');
         }
 
-        // Verificar aprendizados
         if (dados.aprendizados && dados.aprendizados.length > 50) {
             pontos.push('Boa capacidade de aprendizado com erros');
         }
 
-        // Verificar análise de objetivos
         let objetivosAnalisados = 0;
         ['125', '600', '1100', '1500', '1600', '1800'].forEach(tempo => {
             if (dados[`objetivo_${tempo}_time`]) objetivosAnalisados++;
@@ -244,6 +208,10 @@ class IACoach {
         
         if (objetivosAnalisados >= 3) {
             pontos.push('Boa atenção aos objetivos de mapa');
+        }
+
+        if (this.calcularScore() > 80) {
+            pontos.push('Jogada consistente e estratégica');
         }
 
         return pontos.length > 0 ? pontos : ['Boa base para desenvolvimento - continue analisando!'];
@@ -263,7 +231,6 @@ class IACoach {
             });
         });
 
-        // Ordenar por severidade
         return areas.sort((a, b) => {
             const ordemSeveridade = { 'alta': 3, 'media': 2, 'baixa': 1 };
             return ordemSeveridade[b.severidade] - ordemSeveridade[a.severidade];
@@ -274,12 +241,19 @@ class IACoach {
         const sugestoes = [];
         const areas = this.extrairAreasMelhoria();
 
-        // Pegar as 3-5 principais sugestões
-        areas.slice(0, 5).forEach(area => {
+        const principais = areas.slice(0, 4);
+        
+        principais.forEach(area => {
             sugestoes.push(area.acao);
         });
 
-        return sugestoes.length > 0 ? sugestoes : ['Continue analisando suas partidas para identificar áreas de melhoria específicas'];
+        if (sugestoes.length < 3) {
+            sugestoes.push('Focar em farm consistente durante a partida');
+            sugestoes.push('Melhorar comunicação com o time usando pings');
+            sugestoes.push('Praticar controle de visão em áreas estratégicas');
+        }
+
+        return sugestoes;
     }
 
     contarTotalProblemas() {
@@ -297,22 +271,12 @@ class IACoach {
         return `Próxima partida: ${areaPrincipal.acao}`;
     }
 
-    getDescricaoScore(score) {
-        if (score >= 90) return 'Excelente! Continue com esse trabalho consistente.';
-        if (score >= 80) return 'Muito bom! Pequenos ajustes farão grande diferença.';
-        if (score >= 70) return 'Bom! Foque nas áreas de melhoria identificadas.';
-        if (score >= 60) return 'Regular. Há oportunidades claras de melhoria.';
-        return 'Há várias áreas para trabalhar. Foque nos fundamentos primeiro.';
-    }
-
-    // Métodos auxiliares
     obterMatchupInimigo(dados, rota) {
         const rotaKey = this.rotas[rota];
         return dados[`draft_inimigo_${rotaKey}`];
     }
 
     verificarMatchupDesfavoravel(campeaoAliado, campeaoInimigo) {
-        // Simulação simples - em implementação real, usaríamos uma base de dados de matchups
         const matchupsDesfavoraveis = {
             'Teemo': ['Caitlyn', 'Lux', 'Xerath'],
             'Vayne': ['Caitlyn', 'Ashe', 'Varus'],
@@ -321,19 +285,6 @@ class IACoach {
 
         return matchupsDesfavoraveis[campeaoAliado] && 
                matchupsDesfavoraveis[campeaoAliado].includes(campeaoInimigo);
-    }
-
-    verificarSinergiaTime(dados) {
-        // Simulação simples de sinergia
-        const composicaoAliada = [
-            dados.draft_aliado_top,
-            dados.draft_aliado_jungle, 
-            dados.draft_aliado_mid,
-            dados.draft_aliado_adc,
-            dados.draft_aliado_sup
-        ].filter(Boolean);
-
-        return composicaoAliada.length >= 3; // Considerar boa sinergia se pelo menos 3 campeões preenchidos
     }
 
     get rotas() {

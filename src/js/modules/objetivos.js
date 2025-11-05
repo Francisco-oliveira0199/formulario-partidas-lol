@@ -1,3 +1,4 @@
+// objetivos.js - VERSÃO COMPLETA E CORRIGIDA
 class ObjectiveSystem {
     constructor() {
         this.objetivosSelecionados = new Set();
@@ -5,10 +6,30 @@ class ObjectiveSystem {
 
     init() {
         this.configurarEventos();
-        console.log('✅ ObjectiveSystem inicializado (HTML estático)');
+        console.log('✅ ObjectiveSystem inicializado com interação completa');
     }
 
     configurarEventos() {
+        // CORREÇÃO: Evento de clique no cabeçalho do objetivo
+        document.addEventListener('click', (e) => {
+            const cabecalho = e.target.closest('.objetivo-cabecalho');
+            if (cabecalho) {
+                const checkbox = cabecalho.querySelector('.objetivo-checkbox');
+                if (checkbox) {
+                    checkbox.checked = !checkbox.checked;
+                    this.toggleOpcoesObjetivo(checkbox);
+                    e.stopPropagation();
+                }
+            }
+            
+            // Evento para remover erro ao clicar em qualquer lugar do grupo
+            const grupo = e.target.closest('.objetivo-grupo');
+            if (grupo && grupo.classList.contains('erro')) {
+                grupo.classList.remove('erro');
+            }
+        });
+
+        // Eventos de change para selects e radios
         document.addEventListener('change', (e) => {
             if (e.target.matches('.objetivo-checkbox')) {
                 this.toggleOpcoesObjetivo(e.target);
@@ -21,12 +42,25 @@ class ObjectiveSystem {
 
         // Validar objetivos ao tentar avançar de página
         document.addEventListener('click', (e) => {
-            if (e.target.matches('.btn-avancar') && document.getElementById('pagina4').classList.contains('ativo')) {
-                if (!this.validarTodosObjetivos()) {
-                    e.preventDefault();
-                    this.mostrarErroGeral();
+            if (e.target.matches('.btn-avancar')) {
+                const paginaAtiva = document.querySelector('.pagina.ativo');
+                if (paginaAtiva && paginaAtiva.id === 'pagina4') {
+                    if (!this.validarTodosObjetivos()) {
+                        e.preventDefault();
+                        this.mostrarErroGeral();
+                    }
                 }
             }
+        });
+
+        // CORREÇÃO: Inicializar objetivos que já estão checked
+        this.inicializarObjetivosPreSelecionados();
+    }
+
+    inicializarObjetivosPreSelecionados() {
+        const checkboxes = document.querySelectorAll('.objetivo-checkbox:checked');
+        checkboxes.forEach(checkbox => {
+            this.toggleOpcoesObjetivo(checkbox);
         });
     }
 
@@ -38,6 +72,12 @@ class ObjectiveSystem {
             grupo.classList.add('ativo');
             opcoes.classList.remove('oculta');
             this.objetivosSelecionados.add(grupo.dataset.tempo);
+            
+            // Focar no primeiro select quando abrir
+            setTimeout(() => {
+                const primeiroSelect = opcoes.querySelector('.select-objetivo');
+                if (primeiroSelect) primeiroSelect.focus();
+            }, 100);
         } else {
             grupo.classList.remove('ativo', 'erro');
             opcoes.classList.add('oculta');
@@ -80,6 +120,11 @@ class ObjectiveSystem {
         const valido = tipoValido && (this.contemNenhum(selects) || timeSelecionado);
 
         grupo.classList.toggle('erro', !valido);
+        
+        if (!valido) {
+            this.animacaoErro(grupo);
+        }
+        
         return valido;
     }
 
@@ -89,20 +134,33 @@ class ObjectiveSystem {
         );
     }
 
+    animacaoErro(grupo) {
+        grupo.style.animation = 'none';
+        setTimeout(() => {
+            grupo.style.animation = 'tremor 0.3s ease-in-out';
+        }, 10);
+    }
+
     validarTodosObjetivos() {
         const grupos = document.querySelectorAll('.objetivo-grupo');
         let valido = true;
+        let primeiroErro = null;
 
         grupos.forEach(grupo => {
             if (!this.validarObjetivo(grupo)) {
                 valido = false;
                 
-                // Scroll para o primeiro objetivo com erro
-                if (valido === false) {
-                    grupo.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                // Encontrar o primeiro erro para scroll
+                if (!primeiroErro) {
+                    primeiroErro = grupo;
                 }
             }
         });
+
+        // Scroll para o primeiro objetivo com erro
+        if (!valido && primeiroErro) {
+            primeiroErro.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
 
         return valido;
     }
@@ -110,7 +168,13 @@ class ObjectiveSystem {
     mostrarErroGeral() {
         const gruposComErro = document.querySelectorAll('.objetivo-grupo.erro');
         if (gruposComErro.length > 0) {
-            alert('⚠️ Por favor, complete as informações dos objetivos selecionados antes de avançar.');
+            const mensagem = `⚠️ Complete as informações de ${gruposComErro.length} objetivo(s) antes de avançar:\n\n` +
+                Array.from(gruposComErro).map(grupo => {
+                    const tempo = grupo.querySelector('.tempo-texto').textContent.trim();
+                    return `• ${tempo}`;
+                }).join('\n');
+            
+            alert(mensagem);
         }
     }
 
@@ -123,9 +187,12 @@ class ObjectiveSystem {
             const tempo = grupo.dataset.tempo.replace(':', '');
             const checkbox = grupo.querySelector('.objetivo-checkbox');
             
-            if (checkbox.checked) {
+            if (checkbox && checkbox.checked) {
                 const selects = grupo.querySelectorAll('.select-objetivo');
                 const radioSelecionado = grupo.querySelector('.objetivo-time input[type="radio"]:checked');
+                
+                // Marcar como ativo
+                dados[`objetivo_${tempo}_ativo`] = 'Sim';
                 
                 // Para objetivo duplo (6:00)
                 if (grupo.dataset.tempo === '6:00') {
@@ -135,10 +202,56 @@ class ObjectiveSystem {
                     dados[`objetivo_${tempo}_tipo`] = selects[0]?.value || '';
                 }
                 
-                dados[`objetivo_${tempo}_time`] = radioSelecionado?.value || '';
+                dados[`objetivo_${tempo}_time`] = radioSelecionado?.value || 'Nenhum';
+            } else {
+                // Marcar como não ativo
+                dados[`objetivo_${tempo}_ativo`] = 'Não';
+                dados[`objetivo_${tempo}_tipo`] = 'Não selecionado';
+                dados[`objetivo_${tempo}_time`] = 'Nenhum';
             }
         });
         
         return dados;
+    }
+
+    // Método para resetar todos os objetivos
+    resetarObjetivos() {
+        const grupos = document.querySelectorAll('.objetivo-grupo');
+        
+        grupos.forEach(grupo => {
+            const checkbox = grupo.querySelector('.objetivo-checkbox');
+            const opcoes = grupo.querySelector('.objetivo-opcoes');
+            
+            checkbox.checked = false;
+            grupo.classList.remove('ativo', 'erro');
+            opcoes.classList.add('oculta');
+            
+            // Limpar seleções
+            const selects = opcoes.querySelectorAll('.select-objetivo');
+            const radios = opcoes.querySelectorAll('input[type="radio"]');
+            
+            selects.forEach(select => select.value = '');
+            radios.forEach(radio => radio.checked = false);
+        });
+        
+        this.objetivosSelecionados.clear();
+    }
+
+    // Método para obter estatísticas dos objetivos
+    obterEstatisticas() {
+        const total = document.querySelectorAll('.objetivo-grupo').length;
+        const selecionados = this.objetivosSelecionados.size;
+        const completos = Array.from(document.querySelectorAll('.objetivo-grupo'))
+            .filter(grupo => {
+                const checkbox = grupo.querySelector('.objetivo-checkbox');
+                return checkbox.checked && this.validarObjetivo(grupo);
+            }).length;
+        
+        return {
+            total,
+            selecionados,
+            completos,
+            percentual: Math.round((completos / Math.max(selecionados, 1)) * 100)
+        };
     }
 }

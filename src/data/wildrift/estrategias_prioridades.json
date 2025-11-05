@@ -1,0 +1,103 @@
+{
+  "prioridades_por_fase": {
+    "early_game_0_8_min": {
+      "vantagem_bot": ["primeira_torre_bot", "dragao", "herald"],
+      "vantagem_top": ["primeira_torre_top", "herald", "dragao"],
+      "vantagem_mid": ["primeira_torre_mid", "herald", "dragao"],
+      "time_scaling": ["dragao", "farm_seguro", "herald"],
+      "time_early_aggro": ["herald", "primeira_torre", "dragao"]
+    },
+    "mid_game_8_14_min": {
+      "2_plus_dragoes": ["3º_4º_dragao_soul", "torres", "barao_setup"],
+      "inimigo_2_plus_dragoes": ["contestar_dragao", "torres_pressure", "vision_control"],
+      "composicao_teamfight": ["agrupar_dragao", "torres_mid_bot", "barao_setup"],
+      "composicao_split": ["torres_laterais", "herald_barao", "dragoes_secundarios"],
+      "atras_jogo": ["contestar_objetivos_criticos", "farm_seguro", "vision_denial"]
+    },
+    "late_game_14_plus_min": {
+      "vantagem_grande": ["barao", "inibidores", "elder_dragon"],
+      "vantagem_pequena": ["barao_com_setup", "torres_inibidor", "dragoes"],
+      "jogo_equilibrado": ["vision_control", "barao_bait", "picks_isolados"],
+      "em_desvantagem": ["negar_barao", "defender_inibidores", "stall_scaling"],
+      "elder_disponivel": ["elder_dragon", "barao", "inibidores"]
+    }
+  },
+
+  "trades_objetivos": {
+    "trades_favoraveis": {
+      "aceitar": [
+        "dragao_nuvens_por_primeira_torre_herald",
+        "dragao_1_2_por_duas_torres",
+        "torre_bot_por_torre_mid",
+        "herald_por_dragao_infernal_scaling"
+      ],
+      "evitar": [
+        "barao_por_qualquer_coisa_late",
+        "3º_dragao_por_torres_soul_point",
+        "dragao_infernal_por_nuvens_torre",
+        "inibidor_por_nada",
+        "torre_nexus_por_objetivo_menor"
+      ]
+    },
+    "matriz_decisao": {
+      "contestar_quando": [
+        "objetivo_critico_soul_barao_elder",
+        "time_tem_vantagem_teamfight",
+        "visao_estabelecida",
+        "composicao_favorece_fight_local",
+        "perder_objetivo_resulta_derrota"
+      ],
+      "trocar_quando": [
+        "objetivo_inimigo_valor_baixo",
+        "time_nao_pode_contestar_seguranca",
+        "objetivo_trade_valor_superior",
+        "time_sem_visao_desvantagem_numerica",
+        "composicao_nao_favorece_fight_direto"
+      ]
+    }
+  },
+
+  "exemplos_praticos": [
+    {
+      "cenario": "Inimigo começa 2º dragão (Nuvens) aos 12 minutos",
+      "estado": "Seu time tem primeira torre mid down, pode tomar Herald",
+      "decisao": "TROCAR",
+      "razao": "Herald + torre top vale mais que dragão Nuvens, não é Soul point"
+    },
+    {
+      "cenario": "Inimigo pode começar Barão aos 15 minutos após pick",
+      "estado": "Seu time 4v5, pode forçar inibidor bot",
+      "decisao": "CONTESTAR_BARÃO",
+      "razao": "Inibidor não compensa Barão no late game"
+    },
+    {
+      "cenario": "3º dragão (Infernal) spawn aos 16 minutos",
+      "estado": "Jogo equilibrado, ambos times vivos",
+      "decisao": "CONTESTAR",
+      "razao": "Soul point de dragão valioso, pode decidir jogo"
+    }
+  ],
+
+  "vision_control": {
+    "dragao": {
+      "tempo_preparacao": "60-90 segundos antes",
+      "wards": ["pixel_brush_lado_dragao", "entrada_jungle_inimigo_inferior"],
+      "acoes": ["sweep_support_negar_visao"],
+      "posicionamento": ["adc_support_prioridade_bot", "mid_vision_river", "jungler_proximo_pit", "top_tp_disponivel"]
+    },
+    "barao": {
+      "tempo_preparacao": "90-120 segundos antes",
+      "wards": ["pit_barao", "brush_superior_control", "tres_entradas_jungle_superior"],
+      "acoes": ["sweep_completo_antes_comecar"],
+      "posicionamento": ["support_mid_control_entradas", "adc_posicao_segura_dps", "jungler_top_fazem_barao"]
+    },
+    "negacao_visao": {
+      "tecnica": [
+        "sweep_areas_objetivo_90s_antes",
+        "control_wards_posicoes_chave",
+        "re_sweep_antes_comecar",
+        "manter_controle_ate_concluir"
+      ]
+    }
+  }
+}
