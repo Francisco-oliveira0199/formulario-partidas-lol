@@ -1,17 +1,27 @@
-// app.js - SISTEMA IA COACH AVANÇADO COMPLETO PARA WILD RIFT
+// index.js - SISTEMA IA COACH HÍBRIDO COMPLETO PARA WILD RIFT
 
-class IACoachAvancado {
+class SistemaAnaliseHibrido {
     constructor() {
+        this.iaAtiva = true;
+        this.ollamaDisponivel = false;
         this.conhecimento = {};
         this.historicoAnalises = [];
         this.padroesAprendidos = [];
         this.sinergiasCounters = {};
+        
+        // Configurações do Ollama
+        this.ollamaConfig = {
+            url: 'http://localhost:11434',
+            model: 'llama2',
+            timeout: 30000,
+            fallbackModels: ['mistral', 'codellama', 'qwen:0.5b']
+        };
+
         this.contextoPartida = {
             tipo: 'solo_queue',
             coordenacao: 'limitada'
         };
         
-        // TIMINGS CORRETOS DO WILD RIFT
         this.timingsWildRift = {
             nivel_ultimate: 5,
             primeiro_obj_neutro: '1:25',
@@ -24,11 +34,47 @@ class IACoachAvancado {
         };
     }
 
+    async inicializarOllama() {
+        try {
+            console.log('Testando conexão com Ollama...');
+            
+            const response = await fetch(`${this.ollamaConfig.url}/api/tags`, {
+                method: 'GET'
+            });
+
+            if (response && response.ok) {
+                const data = await response.json();
+                console.log('Ollama conectado. Modelos disponíveis:', data.models);
+                this.ollamaDisponivel = true;
+                
+                const modeloPadraoDisponivel = data.models?.some(model => 
+                    model.name.includes(this.ollamaConfig.model)
+                );
+                
+                if (!modeloPadraoDisponivel && data.models?.length > 0) {
+                    this.ollamaConfig.model = data.models[0].name;
+                    console.log(`Usando modelo: ${this.ollamaConfig.model}`);
+                }
+                
+                return true;
+            }
+            
+            console.warn('Ollama não está disponível. Usando modo regras.');
+            this.ollamaDisponivel = false;
+            return false;
+            
+        } catch (error) {
+            console.warn('Erro ao conectar com Ollama:', error);
+            this.ollamaDisponivel = false;
+            return false;
+        }
+    }
+
     async carregarConhecimentoCompleto() {
         try {
-            console.log('Carregando conhecimento completo da IA para Wild Rift...');
+            console.log('Carregando conhecimento completo para Wild Rift...');
             
-            // Carregar conhecimento base
+            // CONHECIMENTO BASE DO NOVO SISTEMA
             this.conhecimento = {
                 objetivos: {
                     arongueijo: {
@@ -71,6 +117,30 @@ class IACoachAvancado {
                         prioridade: 'TIME_COMPLETO'
                     }
                 },
+                classesCampeoes: {
+                    'tanque': ['Malphite', 'Amumu', 'Leona', 'Alistar', 'Braum', 'Nautilus', 'Shen', 'Ornn', 'Tahm Kench'],
+                    'lutador': ['Darius', 'Garen', 'Renekton', 'Sett', 'Jax', 'Fiora', 'Riven', 'Camille', 'Irelia'],
+                    'mago': ['Lux', 'Zoe', 'Xerath', 'Orianna', 'Ahri', 'Annie', 'Syndra', 'Veigar', 'Brand'],
+                    'atirador': ['Vayne', 'KogMaw', 'Jinx', 'KaiSa', 'Caitlyn', 'Ezreal', 'Jhin', 'Miss Fortune', 'Tristana'],
+                    'assassino': ['Zed', 'Talon', 'KhaZix', 'Akali', 'Fizz', 'Katarina', 'Leblanc', 'Pyke', 'Qiyana'],
+                    'suporte': ['Lulu', 'Janna', 'Soraka', 'Nami', 'Yuumi', 'Sona', 'Thresh', 'Blitzcrank', 'Rakan']
+                },
+                powerSpikes: {
+                    'Lee Sin': { niveis: [2, 3, 5], powerspike: 'EARLY', descricao: 'Dominante early game' },
+                    'Yasuo': { niveis: [1, 2, 5], powerspike: 'FORTE', descricao: 'Forte com ultimate' },
+                    'Vayne': { niveis: [5, 11, 15], powerspike: 'MUITO_FORTE', descricao: 'Hiper carry late game' },
+                    'Lux': { niveis: [5, 9, 13], powerspike: 'FORTE', descricao: 'Burst com ultimate' },
+                    'Zed': { niveis: [3, 5, 6], powerspike: 'FORTE', descricao: 'Assassino com ultimate' },
+                    'Jinx': { niveis: [5, 9, 13], powerspike: 'MUITO_FORTE', descricao: 'Escaladora late game' },
+                    'Malphite': { niveis: [5, 9], powerspike: 'FORTE', descricao: 'Teamfight com ultimate' },
+                    'Darius': { niveis: [2, 3, 5], powerspike: 'FORTE', descricao: 'Duelista early' }
+                },
+                metricasPorElo: {
+                    'Ferro-Bronze': { csMin: 4, participacao: 0.4, visao: 0.8, objetivos: 2, kda: 2.0 },
+                    'Prata-Ouro': { csMin: 5, participacao: 0.5, visao: 1.2, objetivos: 3, kda: 2.5 },
+                    'Platina-Esmeralda': { csMin: 6, participacao: 0.6, visao: 1.5, objetivos: 4, kda: 3.0 },
+                    'Diamante+': { csMin: 7, participacao: 0.7, visao: 2.0, objetivos: 5, kda: 3.5 }
+                },
                 estrategias: {
                     prioridades_por_fase: {
                         'very_early_game_0_2_min': {
@@ -95,189 +165,94 @@ class IACoachAvancado {
                             'sup': ['visao_objetivos_5min', 'engajamento', 'protecao_carry']
                         }
                     }
-                },
-                classesCampeoes: {
-                    classes_principais: {
-                        'tanque': {
-                            subclasses: {
-                                'vanguarda': {
-                                    exemplos: ['Malphite', 'Amumu', 'Leona', 'Alistar', 'Braum'],
-                                    pontos_fortes: ['engajamento', 'resistencia', 'controle_massa'],
-                                    pontos_fracos: ['dano_baixo', 'mobilidade', 'dependencia_teamfight'],
-                                    estilo_jogo: 'Iniciar teamfights e proteger a linha de frente',
-                                    power_spike: 'Nível 5 - Ultimate para engajar'
-                                }
-                            }
-                        },
-                        'lutador': {
-                            subclasses: {
-                                'colossos': {
-                                    exemplos: ['Darius', 'Garen', 'Renekton', 'Sett', 'Jax'],
-                                    pontos_fortes: ['dano_sustentado', 'resistencia', '1v1'],
-                                    pontos_fracos: ['kite', 'mobilidade', 'dependente_early'],
-                                    estilo_jogo: 'Pressão constante e split push',
-                                    power_spike: 'Nível 5 - Ultimate para all-in'
-                                }
-                            }
-                        },
-                        'mago': {
-                            subclasses: {
-                                'artilharia': {
-                                    exemplos: ['Lux', 'Zoe', 'Xerath', 'Orianna', 'Ahri'],
-                                    pontos_fortes: ['poke_longo_alcance', 'controle_zona', 'burst'],
-                                    pontos_fracos: ['mobilidade', 'frageis', 'dependente_skillshots'],
-                                    estilo_jogo: 'Poke a distância e controle de área',
-                                    power_spike: 'Nível 5 - Ultimate para burst'
-                                }
-                            }
-                        },
-                        'atirador': {
-                            subclasses: {
-                                'hiper_carregador': {
-                                    exemplos: ['Vayne', 'KogMaw', 'Jinx', 'KaiSa', 'Tristana'],
-                                    pontos_fortes: ['dano_late_game', 'dano_tanques', 'escalonamento'],
-                                    pontos_fracos: ['early_game_fraco', 'dependente_protecao', 'mobilidade'],
-                                    estilo_jogo: 'Farm seguro early, dominar late game',
-                                    power_spike: 'Nível 5 - Ultimate para all-in ou segurança'
-                                }
-                            }
-                        },
-                        'assassino': {
-                            subclasses: {
-                                'early_carry': {
-                                    exemplos: ['Zed', 'Talon', 'KhaZix', 'Akali', 'Fizz'],
-                                    pontos_fortes: ['mobilidade', 'burst', 'picks'],
-                                    pontos_fracos: ['teamfight', 'dependente_snowball', 'frageis'],
-                                    estilo_jogo: 'Eliminar alvos prioritários e criar picks',
-                                    power_spike: 'Nível 5 - Ultimate para eliminação garantida'
-                                }
-                            }
-                        }
-                    }
-                },
-                matchups: {
-                    'Teemo': {
-                        'Darius': { 
-                            dificuldade: 'DIFICIL', 
-                            estrategia: 'Jogue safe até nível 5, abuse range após ultimate.',
-                            winRate: 42,
-                            dicas: ['Use Q para poke seguro', 'Mantenha distância', 'Aproveite após nível 5']
-                        }
-                    },
-                    'Yasuo': {
-                        'Annie': { 
-                            dificuldade: 'DIFICIL', 
-                            estrategia: 'Jogue defensivo até nível 5, windwall o Q dela.',
-                            winRate: 45,
-                            dicas: ['Windwall no momento certo', 'Cuidado com stun nível 5']
-                        }
-                    }
-                },
-                powerSpikes: {
-                    'Yasuo': { 
-                        niveis: [1, 2, 5],
-                        itens: ['STATIKK', 'INFINITY_EDGE'], 
-                        powerspike: 'FORTE',
-                        descricao: 'Fortíssimo com ultimate nível 5'
-                    },
-                    'Kassadin': { 
-                        niveis: [5, 11, 15],
-                        powerspike: 'MUITO_FORTE',
-                        descricao: 'Começa a ficar forte com ultimate nível 5'
-                    },
-                    'Lee Sin': { 
-                        niveis: [2, 3, 5],
-                        powerspike: 'EARLY',
-                        descricao: 'Dominante early game com ultimate nível 5'
-                    }
-                },
-                metricasPorElo: {
-                    'Ferro-Bronze': { 
-                        csMin: 4, 
-                        participacao: 0.4, 
-                        visao: 0.8,
-                        objetivos: 2,
-                        kda: 2.0
-                    },
-                    'Prata-Ouro': { 
-                        csMin: 5, 
-                        participacao: 0.5, 
-                        visao: 1.2,
-                        objetivos: 3,
-                        kda: 2.5
-                    }
-                },
-                estrategiasPorRota: {
-                    'Jungle': {
-                        'OBJECTIVE_CONTROL': {
-                            campeoes: ['Nunu', 'Amumu', 'Jarvan IV'],
-                            descricao: 'Foco em controle de dragão e arauto 5:00',
-                            pathing: 'Clear -> Objetivo 5:00'
-                        }
-                    }
-                },
-                composicoesIdeais: {
-                    'ENGAGE': {
-                        descricao: 'Composição de engajamento forte pós nível 5',
-                        campeoes: ['Malphite', 'Amumu', 'Leona', 'Miss Fortune', 'Yasuo'],
-                        estrategia: 'Forçar teamfights após nível 5 em objetivos',
-                        sinergia: 90
-                    }
                 }
             };
 
-            // CARREGAR CONHECIMENTO DE DRAFT COMPETITIVO
+            // CARREGAR CONHECIMENTO AVANÇADO DO SISTEMA ANTIGO
             await this.carregarConhecimentoDraft();
-            
-            // Carregar sinergias e counters dos PDFs
             await this.carregarSinergiasCounters();
-            await this.carregarConhecimentoLocal();
-            
-            console.log('Conhecimento Wild Rift carregado');
+
+            // Inicializar Ollama em paralelo
+            await this.inicializarOllama();
+            console.log(`Ollama ${this.ollamaDisponivel ? 'disponível' : 'indisponível'}`);
+
+            console.log('Conhecimento Wild Rift carregado completamente');
+            return true;
 
         } catch (error) {
             console.error('Erro ao carregar conhecimento:', error);
-            this.conhecimento = {
-                objetivos: {},
-                estrategias: {},
-                classesCampeoes: {},
-                matchups: {},
-                powerSpikes: {},
-                metricasPorElo: {},
-                estrategiasPorRota: {},
-                composicoesIdeais: {},
-                draft_competitivo: {}
-            };
+            this.conhecimento = {};
+            return false;
         }
     }
 
-    // NOVO MÉTODO PARA CARREGAR DRAFT COMPETITIVO
+    // === SISTEMA DE DRAFT COMPETITIVO (DO CÓDIGO ANTIGO) ===
     async carregarConhecimentoDraft() {
         try {
             console.log('Carregando conhecimento de draft competitivo...');
             
-            // Tentar carregar do arquivo JSON
-            const response = await fetch('./data/draft.json');
-            if (response.ok) {
-                const draftData = await response.json();
-                this.conhecimento.draft_competitivo = draftData.construcao_draft_competitivo;
-                console.log('Conhecimento de draft carregado com sucesso');
-            } else {
-                // Fallback com estrutura básica
-                this.conhecimento.draft_competitivo = {
-                    fundamentos_leitura_meta: {
-                        prioridades_globais_vs_regionais: {
-                            metricas_avaliacao: [
-                                "Taxa de disputa - frequência de pick/ban",
-                                "Taxa de vitória contextual - performance em diferentes situações"
-                            ]
-                        }
+            // Estrutura completa de draft competitivo
+            this.conhecimento.draft_competitivo = {
+                fundamentos_leitura_meta: {
+                    prioridades_globais_vs_regionais: {
+                        metricas_avaliacao: [
+                            "Taxa de disputa - frequência de pick/ban",
+                            "Taxa de vitória contextual - performance em diferentes situações",
+                            "Impacto relativo no jogo - capacidade de carregar partidas"
+                        ]
+                    }
+                },
+                tipos_composicao_fundamentais: {
+                    "wombo_combo": {
+                        identidade: "Explosão de dano em área coordenada",
+                        janela_forca: "Mid game (5-15min)",
+                        elementos_chave: ["Controle em área", "Dano em grupo"],
+                        campeoes_ideais: ["Malphite", "Yasuo", "Orianna", "Miss Fortune", "Amumu"],
+                        estrategia: "Forçar teamfights em objetivos com combos coordenados",
+                        power_spike: "Nível 5 - ultimates online"
                     },
-                    tipos_composicao_fundamentais: {},
-                    estrategia_picks_flexiveis: {}
-                };
-                console.warn('Usando fallback para conhecimento de draft');
-            }
+                    "protect_the_carry": {
+                        identidade: "Proteção máxima ao hiper carry", 
+                        janela_forca: "Late game (15min+)",
+                        elementos_chave: ["Supports encantadores", "Tanks protetores"],
+                        campeoes_ideais: ["Lulu", "Janna", "KogMaw", "Vayne", "Braum"],
+                        estrategia: "Jogo seguro early, proteger carry no late",
+                        power_spike: "2-3 itens completos do carry"
+                    },
+                    "dive_comp": {
+                        identidade: "Mergulho agressivo no backline",
+                        janela_forca: "Early-Mid game (1-10min)",
+                        elementos_chave: ["Mobilidade", "Potencial de explosão"],
+                        campeoes_ideais: ["Camille", "Lee Sin", "Zed", "Alistar", "KhaZix"],
+                        estrategia: "Picks agressivos e mergulhos coordenados",
+                        power_spike: "Nível 3-5 - habilidades básicas completas"
+                    },
+                    "poke_comp": {
+                        identidade: "Desgaste a distância antes dos engajamentos",
+                        janela_forca: "Mid game (5-15min)",
+                        elementos_chave: ["Limpeza de ondas", "Dano a distância"],
+                        campeoes_ideais: ["Zoe", "Xerath", "Jayce", "Varus", "Ziggs"],
+                        estrategia: "Poke constante antes de objetivos",
+                        power_spike: "Primeiro item completo"
+                    }
+                },
+                estrategia_picks_flexiveis: {
+                    exemplos_alto_impacto: {
+                        "Sett": ["Top", "Suporte"],
+                        "Gragas": ["Top", "Mid", "Jungle"],
+                        "Karma": ["Top", "Mid", "Suporte"],
+                        "Pyke": ["Suporte", "Mid"],
+                        "Pantheon": ["Top", "Mid", "Suporte", "Jungle"]
+                    }
+                },
+                camadas_sinergia: {
+                    "mecanica": "Combos de habilidades específicas",
+                    "estrategica": "Condições de vitória complementares", 
+                    "ritmo": "Power spikes temporizados"
+                }
+            };
+            
+            console.log('Conhecimento de draft carregado com sucesso');
         } catch (error) {
             console.warn('Erro ao carregar conhecimento de draft:', error);
             this.conhecimento.draft_competitivo = {};
@@ -288,62 +263,281 @@ class IACoachAvancado {
         try {
             console.log('Carregando dados de sinergias e counters...');
             
-            // Tentar carregar do arquivo JSON
-            const response = await fetch('./data/sinergias-counters.json');
-            if (response.ok) {
-                this.sinergiasCounters = await response.json();
-                console.log('Sinergias e counters carregados do JSON');
-            } else {
-                // Fallback para dados embutidos
-                this.sinergiasCounters = {
-                    categorias_sinergias: {
-                        "wombo_combo": "Campeões com AoE CC que combinam devastadoramente",
-                        "protect_the_carry": "Enchanters que protegem hypercarries",
-                        "dive_comp": "Campeões que mergulham no backline juntos",
-                        "poke_comp": "Campeões de longo alcance que desgastam",
-                        "split_push": "Duos que pressionam múltiplas lanes",
-                        "pick_comp": "Campeões que isolam e executam alvos"
+            // Dados completos de sinergias e counters
+            this.sinergiasCounters = {
+                categorias_sinergias: {
+                    "wombo_combo": "Campeões com AoE CC que combinam devastadoramente",
+                    "protect_the_carry": "Enchanters que protegem hypercarries", 
+                    "dive_comp": "Campeões que mergulham no backline juntos",
+                    "poke_comp": "Campeões de longo alcance que desgastam",
+                    "split_push": "Duos que pressionam múltiplas lanes",
+                    "pick_comp": "Campeões que isolam e executam alvos"
+                },
+                campeoes: {
+                    "Malphite": {
+                        sinergias: [
+                            { campeao: "Yasuo", descricao: "Combo ultimate devastador - Yasuo pode usar ultimate no knockup" },
+                            { campeao: "Orianna", descricao: "Combo de controle de área - Orianna ultimate seguindo Malphite" },
+                            { campeao: "Miss Fortune", descricao: "CC em área combina com ultimate da MF" }
+                        ],
+                        counters: [
+                            { campeao: "Morgana", descricao: "Escudo bloqueia todo o engajamento" },
+                            { campeao: "Olaf", descricao: "Ultimate ignora controle de grupo" }
+                        ]
                     },
-                    campeoes: {}
-                };
-                console.log('Usando fallback para sinergias e counters');
-            }
+                    "Yasuo": {
+                        sinergias: [
+                            { campeao: "Malphite", descricao: "Combo ultimate devastador" },
+                            { campeao: "Alistar", descricao: "Knockups múltiplos para ultimate" },
+                            { campeao: "Diana", descricao: "Puxada em área combina com ultimate" }
+                        ],
+                        counters: [
+                            { campeao: "Annie", descricao: "Stun instantâneo countera mobilidade" },
+                            { campeao: "Pantheon", descricao: "Bloqueia ataques básicos e Q" }
+                        ]
+                    },
+                    "Vayne": {
+                        sinergias: [
+                            { campeao: "Lulu", descricao: "Buff de ataque e proteção máxima" },
+                            { campeao: "Janna", descricao: "Escudo e peel para sobrevivência" }
+                        ],
+                        counters: [
+                            { campeao: "Caitlyn", descricao: "Range maior domina early game" },
+                            { campeao: "Malphite", descricao: "Atacapeed slow destrói DPS" }
+                        ]
+                    },
+                    "Zed": {
+                        sinergias: [
+                            { campeao: "Lee Sin", descricao: "Mobilidade dupla para picks" }
+                        ],
+                        counters: [
+                            { campeao: "Lissandra", descricao: "Ultimate countera todo o combo" },
+                            { campeao: "Kayle", descricao: "Ultimate invencível bloqueia burst" }
+                        ]
+                    }
+                }
+            };
+            
+            console.log('Sinergias e counters carregados completamente');
         } catch (error) {
             console.warn('Erro ao carregar sinergias e counters:', error);
             this.sinergiasCounters = { categorias_sinergias: {}, campeoes: {} };
         }
     }
 
-    // ANÁLISE AVANÇADA DE DRAFT BASEADA NO CONHECIMENTO CARREGADO
+    // === SISTEMA IA COM OLLAMA ===
+    async analisarPartidaComIA(dados) {
+        if (!this.ollamaDisponivel) {
+            return {
+                sucesso: false,
+                tipo: 'OLLAMA_INDISPONIVEL',
+                erro: 'Ollama não está disponível'
+            };
+        }
+
+        try {
+            const prompt = this.construirPromptIA(dados);
+            console.log('Enviando prompt para Ollama...');
+
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), this.ollamaConfig.timeout);
+
+            const response = await fetch(`${this.ollamaConfig.url}/api/generate`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    model: this.ollamaConfig.model,
+                    prompt: prompt,
+                    stream: false,
+                    options: {
+                        temperature: 0.7,
+                        top_p: 0.9,
+                        top_k: 40,
+                        num_predict: 1200
+                    }
+                }),
+                signal: controller.signal
+            });
+
+            clearTimeout(timeoutId);
+
+            if (!response.ok) {
+                throw new Error(`Erro Ollama: ${response.status} ${response.statusText}`);
+            }
+
+            const data = await response.json();
+            
+            if (!data.response || data.response.trim().length < 100) {
+                throw new Error('Resposta da IA muito curta ou vazia');
+            }
+
+            console.log('Resposta da IA recebida com sucesso');
+            return {
+                sucesso: true,
+                tipo: 'IA',
+                conteudo: data.response,
+                modelo: this.ollamaConfig.model,
+                raw: data
+            };
+
+        } catch (error) {
+            console.error('Erro na análise IA:', error);
+            
+            if (error.name === 'AbortError') {
+                return {
+                    sucesso: false,
+                    tipo: 'TIMEOUT',
+                    erro: 'Tempo limite excedido para análise IA'
+                };
+            }
+            
+            return {
+                sucesso: false,
+                tipo: 'ERRO_IA',
+                erro: error.message
+            };
+        }
+    }
+
+    construirPromptIA(dados) {
+        // ENRIQUECER PROMPT COM CONHECIMENTO DE DRAFT
+        const composicoes = this.extrairComposicoes(dados);
+        const analiseDraft = this.analisarDraftCompetitivo(composicoes.timeAliado, composicoes.timeInimigo);
+        const analiseSinergias = this.analisarSinergiasTime(composicoes.timeAliado);
+
+        return `
+Você é um coach especialista em Wild Rift. Analise esta partida e forneça feedback detalhado.
+
+DADOS DO JOGADOR:
+- Nickname: ${dados.nickname || 'N/A'}
+- Elo: ${dados.elo || 'N/A'}
+- Campeão: ${dados.campeao || 'N/A'}
+- Rota: ${dados.rota || 'N/A'}
+
+COMPOSIÇÃO DOS TIMES:
+Time Aliado: 
+• Top: ${dados.draft_aliado_top || 'N/A'}
+• Jungle: ${dados.draft_aliado_jungle || 'N/A'} 
+• Mid: ${dados.draft_aliado_mid || 'N/A'}
+• ADC: ${dados.draft_aliado_adc || 'N/A'}
+• Suporte: ${dados.draft_aliado_sup || 'N/A'}
+
+Time Inimigo:
+• Top: ${dados.draft_inimigo_top || 'N/A'}
+• Jungle: ${dados.draft_inimigo_jungle || 'N/A'}
+• Mid: ${dados.draft_inimigo_mid || 'N/A'}
+• ADC: ${dados.draft_inimigo_adc || 'N/A'}
+• Suporte: ${dados.draft_inimigo_sup || 'N/A'}
+
+ANÁLISE DE DRAFT AVANÇADA:
+${analiseDraft.composicao_identificada ? 
+`• Composição Identificada: ${analiseDraft.composicao_identificada.tipo.replace('_', ' ').toUpperCase()}
+• Identidade: ${analiseDraft.composicao_identificada.dados.identidade}
+• Janela de Força: ${analiseDraft.composicao_identificada.dados.janela_forca}
+• Estratégia Recomendada: ${analiseDraft.composicao_identificada.dados.estrategia}`
+: '• Draft equilibrado - foco em execução'}
+
+${analiseDraft.curva_poder_time ? 
+`• Curva de Poder: ${analiseDraft.curva_poder_time.composicao_recomendada}
+• Early Game: ${analiseDraft.curva_poder_time.early_game}/5
+• Mid Game: ${analiseDraft.curva_poder_time.mid_game}/5
+• Late Game: ${analiseDraft.curva_poder_time.late_game}/5` : ''}
+
+${analiseDraft.sinergias_avancadas.length > 0 ? 
+`• Sinergias Identificadas: ${analiseDraft.sinergias_avancadas.map(s => s.camada + ': ' + s.sinergias.map(s2 => s2.descricao).join(', ')).join('; ')}` : ''}
+
+${analiseDraft.vulnerabilidades.length > 0 ? 
+`• Vulnerabilidades: ${analiseDraft.vulnerabilidades.join(', ')}` : ''}
+
+${analiseSinergias.sinergias_encontradas.length > 0 ? 
+`• Combos Específicos: ${analiseSinergias.sinergias_encontradas.map(s => s.campeoes.join(' + ') + ': ' + s.descricao).join('; ')}` : ''}
+
+ESTRATÉGIA DEFINIDA:
+- Condição de vitória do time: ${dados.condicao_vitoria_time || 'N/A'}
+- Condição de vitória pessoal: ${dados.condicao_vitoria_campeao || 'N/A'}
+
+${dados.rota === 'Jungle' ? `
+PATHING INICIAL:
+- Skill Order: ${dados.skill_order || 'N/A'}
+- Ordem dos Campos: ${dados.ordem_campos || 'N/A'}
+- Combos de Clear: ${dados.combos_clear || 'N/A'}
+` : ''}
+
+${['Jungle', 'Mid'].includes(dados.rota) ? `
+PRIMEIROS GANKS:
+- Rota Alvo: ${dados.rota_alvo || 'N/A'}
+- Estado do Inimigo: ${dados.estado_inimigo || 'N/A'}
+- Recursos Queimados: ${dados.recursos_queimados || 'N/A'}
+- Resultado: ${dados.resultado_gank || 'N/A'}
+- Ganhos: ${dados.ganhos || 'N/A'}
+- Perdas: ${dados.perdas || 'N/A'}
+` : ''}
+
+CONTROLE DE VISÃO:
+${dados.controle_visao || 'N/A'}
+
+ERROS IDENTIFICADOS:
+- Situação: ${dados.situacao_erro || 'N/A'}
+- Causa: ${dados.causa_erro || 'N/A'}
+- Consequência: ${dados.consequencia_erro || 'N/A'}
+- Prevenção: ${dados.prevencao_erro || 'N/A'}
+
+RESUMO DA PARTIDA:
+${dados.resumo_partida || 'N/A'}
+
+MOMENTOS CHAVE:
+${dados.momentos_chave || 'N/A'}
+
+APRENDIZADOS:
+${dados.aprendizados || 'N/A'}
+
+Forneça uma análise estruturada com:
+
+ANÁLISE GERAL
+[Resumo conciso sobre a partida incluindo análise de draft e contexto]
+
+PONTOS FORTES  
+• [Item 1 específico e acionável baseado nos dados]
+• [Item 2 específico e acionável baseado no draft] 
+• [Item 3 específico e acionável baseado nas sinergias]
+
+ÁREAS DE MELHORIA
+• [Item 1 específico e corrigível baseado nos erros]
+• [Item 2 específico e corrigível baseado nas vulnerabilidades]
+• [Item 3 específico e corrigível baseado na análise de draft]
+
+ESTRATÉGIAS PARA PRÓXIMA PARTIDA
+• [Estratégia 1 baseada na composição identificada]
+• [Estratégia 2 baseada na curva de poder]
+• [Estratégia 3 baseada nos aprendizados]
+
+DICAS ESPECÍFICAS PARA ${dados.campeao || 'SEU CAMPEÃO'}
+[Dicas específicas para o campeão considerando matchups e sinergias]
+
+Seja prático, específico e use TODOS os dados fornecidos incluindo análise de draft, sinergias e contexto da partida.
+`;
+    }
+
+    // === SISTEMA DE DRAFT COMPETITIVO COMPLETO ===
     analisarDraftCompetitivo(timeAliado, timeInimigo) {
         const analise = {
-            composicao_identificada: null,
-            sinergias_avancadas: [],
-            counters_estrategicos: [],
+            composicao_identificada: this.identificarComposicaoFundamental(timeAliado),
+            sinergias_avancadas: this.analisarSinergiasCamadas(timeAliado),
+            counters_estrategicos: this.identificarCountersEstrategicos(timeAliado, timeInimigo),
             curva_poder_time: this.analisarCurvaPoder(timeAliado),
             flexibilidade_picks: this.analisarFlexibilidadePicks(timeAliado),
             prioridades_ban: this.sugerirPrioridadesBan(timeAliado, timeInimigo),
             sugestoes_composicao: [],
-            vulnerabilidades: []
+            vulnerabilidades: this.identificarVulnerabilidades(timeAliado, timeInimigo),
+            matchup_analise: this.analisarMatchups(timeAliado, timeInimigo)
         };
 
-        // Identificar tipo de composição baseado no draft.json
-        analise.composicao_identificada = this.identificarComposicaoFundamental(timeAliado);
-        
-        // Analisar sinergias em camadas
-        analise.sinergias_avancadas = this.analisarSinergiasCamadas(timeAliado);
-        
-        // Identificar counters estratégicos
-        analise.counters_estrategicos = this.identificarCountersEstrategicos(timeAliado, timeInimigo);
-        
-        // Gerar sugestões baseadas no draft competitivo
         analise.sugestoes_composicao = this.gerarSugestoesComposicao(analise);
-        analise.vulnerabilidades = this.identificarVulnerabilidades(timeAliado, timeInimigo);
-
         return analise;
     }
 
-    // IDENTIFICAR COMPOSIÇÃO FUNDAMENTAL
     identificarComposicaoFundamental(timeAliado) {
         const tiposComposicao = this.conhecimento.draft_competitivo?.tipos_composicao_fundamentais;
         if (!tiposComposicao) return null;
@@ -368,15 +562,11 @@ class IACoachAvancado {
         const elementosChave = dadosComposicao.elementos_chave || [];
         
         campeoes.forEach(campeao => {
-            const dadosCampeao = this.sinergiasCounters.campeoes[campeao];
-            if (dadosCampeao) {
-                // Verificar se o campeão se encaixa nos elementos chave da composição
-                elementosChave.forEach(elemento => {
-                    if (this.campeaoTemElemento(campeao, elemento)) {
-                        pontuacao += 0.2;
-                    }
-                });
-            }
+            elementosChave.forEach(elemento => {
+                if (this.campeaoTemElemento(campeao, elemento)) {
+                    pontuacao += 0.2;
+                }
+            });
         });
 
         return Math.min(1, pontuacao);
@@ -384,37 +574,33 @@ class IACoachAvancado {
 
     campeaoTemElemento(campeao, elemento) {
         const elementosCampeao = {
-            'Controle em área': ['Malphite', 'Amumu', 'Leona', 'Orianna', 'Sona', 'Seraphine'],
-            'Dano em grupo': ['Miss Fortune', 'Kennen', 'Fiddlesticks', 'Brand', 'Ziggs'],
-            'Supports encantadores': ['Lulu', 'Janna', 'Yuumi', 'Soraka', 'Nami'],
-            'Tanks protetores': ['Braum', 'Tahm Kench', 'Alistar', 'Thresh'],
-            'Mobilidade': ['Lee Sin', 'Zed', 'Kassadin', 'Fizz', 'Akali', 'Camille'],
-            'Potencial de explosão': ['Zed', 'Diana', 'Syndra', 'Veigar', 'Annie', 'Leblanc'],
-            'Capacidade de duel': ['Fiora', 'Jax', 'Tryndamere', 'Camille', 'Riven', 'Irelia'],
-            'Limpeza de ondas': ['Sivir', 'Anivia', 'Ziggs', 'Xerath', 'Lux', 'Morgana']
+            'Controle em área': ['Malphite', 'Amumu', 'Leona', 'Orianna', 'Sona', 'Seraphine', 'Nautilus', 'Alistar'],
+            'Dano em grupo': ['Miss Fortune', 'Kennen', 'Fiddlesticks', 'Brand', 'Ziggs', 'Twisted Fate', 'Annie'],
+            'Supports encantadores': ['Lulu', 'Janna', 'Yuumi', 'Soraka', 'Nami', 'Sona', 'Karma'],
+            'Tanks protetores': ['Braum', 'Tahm Kench', 'Alistar', 'Thresh', 'Taric', 'Shen'],
+            'Mobilidade': ['Lee Sin', 'Zed', 'Kassadin', 'Fizz', 'Akali', 'Camille', 'Irelia', 'Yasuo'],
+            'Potencial de explosão': ['Zed', 'Diana', 'Syndra', 'Veigar', 'Annie', 'Leblanc', 'Fizz'],
+            'Capacidade de duel': ['Fiora', 'Jax', 'Tryndamere', 'Camille', 'Riven', 'Irelia', 'Darius'],
+            'Limpeza de ondas': ['Sivir', 'Anivia', 'Ziggs', 'Xerath', 'Lux', 'Morgana', 'Malzahar']
         };
 
         return elementosCampeao[elemento]?.includes(campeao) || false;
     }
 
-    // ANALISAR SINERGIAS EM CAMADAS
     analisarSinergiasCamadas(timeAliado) {
         const sinergias = [];
         const campeoes = Object.values(timeAliado).filter(c => c);
         
-        // Sinergia Mecânica
         sinergias.push({
             camada: 'Mecânica',
             sinergias: this.analisarSinergiaMecanica(campeoes)
         });
         
-        // Sinergia Estratégica
         sinergias.push({
-            camada: 'Estratégica',
+            camada: 'Estratégica', 
             sinergias: this.analisarSinergiaEstrategica(campeoes)
         });
         
-        // Sinergia Ritmo
         sinergias.push({
             camada: 'Ritmo',
             sinergias: this.analisarSinergiaRitmo(campeoes)
@@ -429,7 +615,8 @@ class IACoachAvancado {
             { campeoes: ['Orianna', 'Jarvan IV'], descricao: 'Combo de controle de área' },
             { campeoes: ['Zilean', 'KogMaw'], descricao: 'Revive + hiper carry' },
             { campeoes: ['Camille', 'Galio'], descricao: 'Engaje global + follow up' },
-            { campeoes: ['Leona', 'Miss Fortune'], descricao: 'CC em área + ultimate' }
+            { campeoes: ['Leona', 'Miss Fortune'], descricao: 'CC em área + ultimate' },
+            { campeoes: ['Amumu', 'Fiddlesticks'], descricao: 'CC em área duplo' }
         ];
 
         return combosConhecidos.filter(combo => 
@@ -441,17 +628,19 @@ class IACoachAvancado {
         const sinergias = [];
         const curvas = this.analisarCurvaPoderTime(campeoes);
         
-        // Verificar convergência de condições de vitória
         if (curvas.early > 2 && curvas.late > 2) {
             sinergias.push('Composição equilibrada com múltiplas condições de vitória');
         }
         
-        // Verificar sinergia estratégica baseada no draft.json
-        const draftConhecimento = this.conhecimento.draft_competitivo;
-        if (draftConhecimento?.camadas_sinergia) {
-            if (curvas.mid >= 3) {
-                sinergias.push('Sinergia de ritmo - time alinhado no meio do jogo');
-            }
+        if (curvas.mid >= 3) {
+            sinergias.push('Sinergia de ritmo - time alinhado no meio do jogo');
+        }
+        
+        const temPoke = campeoes.some(c => ['Zoe', 'Xerath', 'Jayce', 'Varus'].includes(c));
+        const temEngaje = campeoes.some(c => ['Malphite', 'Amumu', 'Leona'].includes(c));
+        
+        if (temPoke && temEngaje) {
+            sinergias.push('Sinergia poke/engaje - desgaste seguido de all-in');
         }
         
         return sinergias;
@@ -469,10 +658,13 @@ class IACoachAvancado {
             sinergias.push('Time de early game - pressionar desde o nível 1');
         }
         
+        if (powerSpikes.late.length >= 2) {
+            sinergias.push('Time escalável - jogar seguro early, dominar late');
+        }
+        
         return sinergias;
     }
 
-    // ANALISAR CURVA DE PODER DO TIME
     analisarCurvaPoder(timeAliado) {
         const campeoes = Object.values(timeAliado).filter(c => c);
         const curvas = this.analisarCurvaPoderTime(campeoes);
@@ -494,20 +686,52 @@ class IACoachAvancado {
                 if (spike.powerspike === 'EARLY') early++;
                 if (spike.powerspike === 'FORTE' && spike.niveis?.includes(5)) mid++;
                 if (spike.powerspike === 'MUITO_FORTE') late++;
+            } else {
+                // Fallback baseado na classe
+                const classe = this.identificarClasseCampeao(campeao);
+                if (['assassino', 'lutador'].includes(classe)) mid++;
+                if (classe === 'atirador') late++;
+                if (['tanque', 'mago'].includes(classe)) early++;
             }
         });
         
         return { early, mid, late };
     }
 
-    sugerirComposicaoPorCurva(curvas) {
-        if (curvas.early >= 3) return "Composição de early game agressivo";
-        if (curvas.mid >= 3) return "Composição de meio de jogo com foco em objetivos";
-        if (curvas.late >= 3) return "Composição de late game com escalabilidade";
-        return "Composição equilibrada";
+    identificarPowerSpikesTime(campeoes) {
+        const spikes = {
+            early: [],
+            mid: [],
+            late: []
+        };
+
+        campeoes.forEach(campeao => {
+            if (!campeao) return;
+            
+            const powerSpike = this.conhecimento.powerSpikes[campeao];
+            if (powerSpike) {
+                if (powerSpike.niveis.includes(5)) {
+                    spikes.mid.push(`${campeao} (Nível 5)`);
+                }
+                if (powerSpike.powerspike === 'EARLY') {
+                    spikes.early.push(`${campeao} (Early)`);
+                }
+                if (powerSpike.powerspike === 'MUITO_FORTE') {
+                    spikes.late.push(`${campeao} (Late)`);
+                }
+            }
+        });
+
+        return spikes;
     }
 
-    // ANALISAR FLEXIBILIDADE DE PICKS
+    sugerirComposicaoPorCurva(curvas) {
+        if (curvas.early >= 3) return "Composição de early game agressivo - pressionar desde 1:25";
+        if (curvas.mid >= 3) return "Composição de meio de jogo - focar objetivos 5:00-15:00";
+        if (curvas.late >= 3) return "Composição de late game - farm seguro early, dominar após 15min";
+        return "Composição equilibrada - adaptar estratégia conforme o jogo";
+    }
+
     analisarFlexibilidadePicks(timeAliado) {
         const campeoes = Object.values(timeAliado).filter(c => c);
         let flexibilidade = 0;
@@ -527,12 +751,10 @@ class IACoachAvancado {
         };
     }
 
-    // SUGERIR PRIORIDADES DE BAN
     sugerirPrioridadesBan(timeAliado, timeInimigo) {
         const prioridades = [];
         const campeoesAliados = Object.values(timeAliado).filter(c => c);
         
-        // Identificar counters para nossa composição
         campeoesAliados.forEach(campeao => {
             const dadosCampeao = this.sinergiasCounters.campeoes[campeao];
             if (dadosCampeao && dadosCampeao.counters) {
@@ -569,7 +791,6 @@ class IACoachAvancado {
         });
     }
 
-    // IDENTIFICAR COUNTERS ESTRATÉGICOS
     identificarCountersEstrategicos(timeAliado, timeInimigo) {
         const counters = [];
         const campeoesInimigos = Object.values(timeInimigo).filter(c => c);
@@ -593,7 +814,85 @@ class IACoachAvancado {
         return counters;
     }
 
-    // GERAR SUGESTÕES DE COMPOSIÇÃO
+    analisarMatchups(timeAliado, timeInimigo) {
+        const matchups = [];
+        const rotas = ['top', 'jungle', 'mid', 'adc', 'sup'];
+        
+        rotas.forEach(rota => {
+            const aliado = timeAliado[rota];
+            const inimigo = timeInimigo[rota];
+            
+            if (aliado && inimigo) {
+                const matchup = this.obterMatchup(aliado, inimigo);
+                if (matchup) {
+                    matchups.push({
+                        rota: rota.toUpperCase(),
+                        aliado: aliado,
+                        inimigo: inimigo,
+                        dificuldade: matchup.dificuldade,
+                        estrategia: matchup.estrategia,
+                        dicas: matchup.dicas
+                    });
+                }
+            }
+        });
+        
+        return matchups;
+    }
+
+    obterMatchup(campeaoAliado, campeaoInimigo) {
+        const dadosCampeao = this.sinergiasCounters.campeoes[campeaoAliado];
+        if (!dadosCampeao) return null;
+        
+        const counter = dadosCampeao.counters?.find(c => c.campeao === campeaoInimigo);
+        if (counter) {
+            return {
+                dificuldade: 'DIFICIL',
+                estrategia: `Cuidado: ${counter.descricao}`,
+                dicas: this.gerarDicasMatchup(campeaoAliado, campeaoInimigo)
+            };
+        }
+        
+        const sinergia = dadosCampeao.sinergias?.find(s => s.campeao === campeaoInimigo);
+        if (sinergia) {
+            return {
+                dificuldade: 'FACIL', 
+                estrategia: `Vantagem: ${sinergia.descricao}`,
+                dicas: ['Aproveite a sinergia com seu aliado', 'Coordene engajamentos']
+            };
+        }
+        
+        return {
+            dificuldade: 'NEUTRO',
+            estrategia: 'Matchup equilibrado - foque em farm e objetivos',
+            dicas: ['Jogue seguro', 'Aguarde oportunidades', 'Peça ajuda do jungle se necessário']
+        };
+    }
+
+    gerarDicasMatchup(campeaoAliado, campeaoInimigo) {
+        const dicas = [];
+        const dadosCampeao = this.sinergiasCounters.campeoes[campeaoAliado];
+        
+        if (dadosCampeao) {
+            const counter = dadosCampeao.counters?.find(c => c.campeao === campeaoInimigo);
+            if (counter) {
+                if (counter.descricao.includes('true damage')) {
+                    dicas.push('Construa resistência em vez de vida');
+                }
+                if (counter.descricao.includes('poke')) {
+                    dicas.push('Foque em engajar rapidamente');
+                    dicas.push('Use o brush para evitar poke');
+                }
+                if (counter.descricao.includes('bloqueia')) {
+                    dicas.push('Use suas habilidades com cuidado');
+                    dicas.push('Force o uso das habilidades defensivas primeiro');
+                }
+            }
+        }
+        
+        return dicas.length > 0 ? dicas : ['Jogue defensivamente', 'Peça ajuda do jungle', 'Foque em farm seguro'];
+    }
+
     gerarSugestoesComposicao(analiseDraft) {
         const sugestoes = [];
         
@@ -602,6 +901,7 @@ class IACoachAvancado {
             sugestoes.push(`Composição identificada: ${comp.tipo.replace('_', ' ').toUpperCase()}`);
             sugestoes.push(`${comp.dados.identidade}`);
             sugestoes.push(`Janela de força: ${comp.dados.janela_forca}`);
+            sugestoes.push(`Estratégia: ${comp.dados.estrategia}`);
         }
         
         if (analiseDraft.curva_poder_time.early_game >= 3) {
@@ -612,10 +912,13 @@ class IACoachAvancado {
             sugestoes.push("Aproveite a flexibilidade para swaps estratégicos");
         }
         
+        if (analiseDraft.sinergias_avancadas.length > 0) {
+            sugestoes.push("Explore as sinergias identificadas nas teamfights");
+        }
+        
         return sugestoes;
     }
 
-    // IDENTIFICAR VULNERABILIDADES
     identificarVulnerabilidades(timeAliado, timeInimigo) {
         const vulnerabilidades = [];
         const campeoesAliados = Object.values(timeAliado).filter(c => c);
@@ -630,7 +933,7 @@ class IACoachAvancado {
         
         // Verificar falta de controle de grupo
         const temCCMassa = campeoesAliados.some(campeao => 
-            ['Malphite', 'Amumu', 'Leona', 'Orianna', 'Sona', 'Seraphine'].includes(campeao)
+            ['Malphite', 'Amumu', 'Leona', 'Orianna', 'Sona', 'Seraphine', 'Nautilus'].includes(campeao)
         );
         if (!temCCMassa) {
             vulnerabilidades.push("Falta de controle em área - dificuldade em teamfights organizadas");
@@ -638,20 +941,27 @@ class IACoachAvancado {
         
         // Verificar falta de dano mágico/físico balanceado
         const danoMagico = campeoesAliados.some(campeao => 
-            ['mago', 'assassino_magico'].includes(this.identificarClasseCampeao(campeao))
+            ['mago', 'assassino'].includes(this.identificarClasseCampeao(campeao))
         );
         const danoFisico = campeoesAliados.some(campeao => 
-            ['atirador', 'assassino', 'lutador'].includes(this.identificarClasseCampeao(campeao))
+            ['atirador', 'lutador'].includes(this.identificarClasseCampeao(campeao))
         );
         
         if (!danoMagico || !danoFisico) {
             vulnerabilidades.push("Dano desbalanceado - inimigo pode stackar resistências facilmente");
         }
         
+        // Verificar matchups difíceis
+        const matchups = this.analisarMatchups(timeAliado, timeInimigo);
+        const matchupsDificeis = matchups.filter(m => m.dificuldade === 'DIFICIL');
+        if (matchupsDificeis.length >= 2) {
+            vulnerabilidades.push(`Múltiplos matchups difíceis: ${matchupsDificeis.map(m => m.rota).join(', ')}`);
+        }
+        
         return vulnerabilidades;
     }
 
-    // MÉTODOS PARA ANALISAR SINERGIAS
+    // === SISTEMA DE SINERGIAS (DO CÓDIGO ANTIGO) ===
     analisarSinergiasTime(timeAliado) {
         const analise = {
             sinergias_encontradas: [],
@@ -690,8 +1000,7 @@ class IACoachAvancado {
         campeoes.forEach(campeao => {
             const dadosCampeao = this.sinergiasCounters.campeoes[campeao];
             if (dadosCampeao) {
-                // Analisar sinergias para determinar tipo de composição
-                dadosCampeao.sinergias.forEach(sinergia => {
+                dadosCampeao.sinergias?.forEach(sinergia => {
                     if (sinergia.descricao.toLowerCase().includes('aoe') || sinergia.descricao.toLowerCase().includes('combo')) {
                         tipos.wombo_combo++;
                     }
@@ -709,7 +1018,8 @@ class IACoachAvancado {
         });
 
         // Retornar o tipo com maior pontuação
-        return Object.keys(tipos).reduce((a, b) => tipos[a] > tipos[b] ? a : b);
+        const melhorTipo = Object.keys(tipos).reduce((a, b) => tipos[a] > tipos[b] ? a : b);
+        return tipos[melhorTipo] > 0 ? melhorTipo : 'balanced';
     }
 
     encontrarSinergiasTime(campeoes) {
@@ -737,7 +1047,7 @@ class IACoachAvancado {
         if (!dadosA || !dadosB) return null;
         
         // Verificar se campeaoB está nas sinergias de campeaoA
-        const sinergiaAB = dadosA.sinergias.find(s => s.campeao === campeaoB);
+        const sinergiaAB = dadosA.sinergias?.find(s => s.campeao === campeaoB);
         if (sinergiaAB) {
             return {
                 campeoes: [campeaoA, campeaoB],
@@ -747,7 +1057,7 @@ class IACoachAvancado {
         }
         
         // Verificar se campeaoA está nas sinergias de campeaoB
-        const sinergiaBA = dadosB.sinergias.find(s => s.campeao === campeaoA);
+        const sinergiaBA = dadosB.sinergias?.find(s => s.campeao === campeaoA);
         if (sinergiaBA) {
             return {
                 campeoes: [campeaoA, campeaoB],
@@ -791,7 +1101,7 @@ class IACoachAvancado {
     gerarSugestoesSinergias(analise) {
         const sugestoes = [];
         
-        if (analise.composicao_tipo) {
+        if (analise.composicao_tipo && analise.composicao_tipo !== 'balanced') {
             const tipoComposicao = this.sinergiasCounters.categorias_sinergias[analise.composicao_tipo];
             sugestoes.push(`Sua composição favorece: ${tipoComposicao}`);
         }
@@ -813,364 +1123,319 @@ class IACoachAvancado {
         return sugestoes;
     }
 
-    // ATUALIZAR análise de partida para incluir draft competitivo
-    analisarPartidaAvancada(dados) {
-        console.log('Iniciando análise avançada para Wild Rift...');
+    // === SISTEMA DE REGRAS COMO FALLBACK ===
+    analisarPartidaComRegras(dados) {
+        console.log('Usando sistema de regras como fallback');
+        
+        const analise = {
+            score: this.calcularScoreRegras(dados),
+            pontosFortes: [],
+            areasMelhoria: [],
+            sugestoes: []
+        };
 
-        this.definirContextoPartida(dados);
-
-        const analiseBase = this.analisarPartidaBase(dados);
+        // ANÁLISE DE DRAFT COM CONHECIMENTO AVANÇADO
         const composicoes = this.extrairComposicoes(dados);
-        
-        // NOVA ANÁLISE DE DRAFT COMPETITIVO
         const analiseDraft = this.analisarDraftCompetitivo(composicoes.timeAliado, composicoes.timeInimigo);
-        
-        const analiseComposicao = this.analisarComposicaoTime(dados);
-        const analiseObjetivos = this.analisarEstrategiaObjetivos(dados);
         const analiseSinergias = this.analisarSinergiasTime(composicoes.timeAliado);
         
-        const sugestoesPersonalizadas = this.gerarSugestoesPersonalizadas(
-            dados, analiseBase, analiseComposicao, analiseObjetivos, analiseSinergias, analiseDraft
-        );
+        analise.pontosFortes.push(...analiseDraft.sugestoes_composicao);
+        analise.pontosFortes.push(...analiseSinergias.sinergias_encontradas.map(s => `Sinergia: ${s.descricao}`));
+        analise.areasMelhoria.push(...analiseDraft.vulnerabilidades);
+        analise.areasMelhoria.push(...analiseSinergias.counters_potenciais.map(c => `Counter: ${c.counter} vs ${c.campeao_aliado}`));
 
-        const score = this.calcularScoreCompleto(analiseBase, analiseComposicao, analiseObjetivos, analiseDraft);
+        // ANÁLISE DE OBJETIVOS
+        const analiseObjetivos = this.analisarObjetivosComRegras(dados);
+        analise.pontosFortes.push(...analiseObjetivos.pontosFortes);
+        analise.areasMelhoria.push(...analiseObjetivos.areasMelhoria);
+
+        // ANÁLISE DE ESTRATÉGIA
+        const analiseEstrategia = this.analisarEstrategiaComRegras(dados);
+        analise.pontosFortes.push(...analiseEstrategia.pontosFortes);
+        analise.areasMelhoria.push(...analiseEstrategia.areasMelhoria);
+
+        // SUGESTÕES POR ROTA
+        analise.sugestoes.push(...this.gerarSugestoesPorRota(dados));
+        analise.sugestoes.push(...analiseSinergias.sugestoes);
 
         return {
-            score: score,
-            pontosFortes: [
-                ...analiseBase.pontosFortes, 
-                ...analiseSinergias.sinergias_encontradas.map(s => `Sinergia: ${s.descricao}`),
-                ...analiseDraft.sugestoes_composicao
-            ],
-            areasMelhoria: [
-                ...analiseBase.problemas, 
-                ...analiseComposicao.problemas, 
-                ...analiseObjetivos.problemas,
-                ...analiseDraft.vulnerabilidades
-            ],
-            sugestoesPriorizadas: sugestoesPersonalizadas,
-            metaProximaPartida: this.gerarMetaPersonalizada(dados, analiseBase, analiseComposicao),
-            analiseComposicao: analiseComposicao,
-            analiseObjetivos: analiseObjetivos,
-            analiseSinergias: analiseSinergias,
-            // NOVA SEÇÃO DE DRAFT
+            sucesso: true,
+            tipo: 'REGRA',
+            conteudo: this.formatarRespostaRegras(analise),
+            analise: analise,
             analiseDraft: analiseDraft,
-            oportunidades: this.identificarOportunidades(dados, analiseComposicao),
-            contexto: this.contextoPartida,
-            insightsContextuais: this.gerarInsightsContextuais(dados, {
-                analiseComposicao, 
-                analiseObjetivos, 
-                analiseSinergias,
-                analiseDraft
-            }),
-            timings: this.timingsWildRift
+            analiseSinergias: analiseSinergias
         };
     }
 
-    // ATUALIZAR geração de sugestões para incluir draft
-    gerarSugestoesPersonalizadas(dados, analiseBase, analiseComposicao, analiseObjetivos, analiseSinergias, analiseDraft) {
-        const sugestoes = [];
+    analisarObjetivosComRegras(dados) {
+        const resultado = { pontosFortes: [], areasMelhoria: [] };
+        const objetivosConquistados = this.contarObjetivosConquistados(dados);
 
-        // SUGESTÕES BASEADAS EM DRAFT COMPETITIVO
-        if (analiseDraft.sugestoes_composicao.length > 0) {
-            sugestoes.push(...analiseDraft.sugestoes_composicao);
-        }
-        
-        if (analiseDraft.prioridades_ban.length > 0) {
-            sugestoes.push("Prioridades de Ban:");
-            analiseDraft.prioridades_ban.slice(0, 2).forEach(ban => {
-                sugestoes.push(`- ${ban.campeao}: ${ban.razao}`);
-            });
+        if (objetivosConquistados >= 3) {
+            resultado.pontosFortes.push(`Bom controle de objetivos: ${objetivosConquistados} capturados`);
+        } else {
+            resultado.areasMelhoria.push(`Poucos objetivos conquistados: ${objetivosConquistados} - priorize dragões e arauto`);
         }
 
-        // Sugestões baseadas em sinergias
-        if (analiseSinergias.sugestoes.length > 0) {
-            sugestoes.push(...analiseSinergias.sugestoes);
+        // Verificar arongueijo inicial
+        if (dados.objetivo_125_time === 'Aliado') {
+            resultado.pontosFortes.push("Bom controle do arongueijo inicial às 1:25");
+        } else if (dados.objetivo_125_time === 'Inimigo') {
+            resultado.areasMelhoria.push("Perdeu arongueijo inicial - melhore controle early");
         }
 
-        const classeJogador = this.identificarClasseCampeao(dados.campeao);
-        if (classeJogador) {
-            sugestoes.push(...this.gerarSugestoesPorClasse(classeJogador, dados));
+        // Verificar objetivos de tempo crítico
+        if (dados.objetivo_500_time === 'Aliado') {
+            resultado.pontosFortes.push("Bom controle dos primeiros objetivos às 5:00");
         }
 
-        sugestoes.push(...analiseComposicao.problemas.map(p => p.sugestao));
-        sugestoes.push(...analiseObjetivos.sugestoes);
-        sugestoes.push(...this.gerarSugestoesContextuais());
-        sugestoes.push(...this.gerarSugestoesPorElo(dados.elo));
-
-        return this.priorizarSugestoes(sugestoes).slice(0, 5);
+        return resultado;
     }
 
-    // ATUALIZAR cálculo de score para incluir draft
-    calcularScoreCompleto(analiseBase, analiseComposicao, analiseObjetivos, analiseDraft) {
-        let score = 100;
+    contarObjetivosConquistados(dados) {
+        let count = 0;
+        const tempos = ['125', '500', '900', '1000', '1300', '1600'];
         
-        // Penalidades base
-        analiseBase.problemas.forEach(problema => {
-            score -= problema.severidade === 'alta' ? 10 : 5;
+        tempos.forEach(tempo => {
+            if (dados[`objetivo_${tempo}_time`] === 'Aliado') {
+                count++;
+            }
         });
         
-        // Bônus por bom draft
-        if (analiseDraft) {
-            if (analiseDraft.flexibilidade_picks.score >= 3) score += 5;
-            if (analiseDraft.curva_poder_time.early_game >= 2) score += 3;
-            if (analiseDraft.sinergias_avancadas.length >= 2) score += 5;
-            if (analiseDraft.composicao_identificada) score += 8;
-        }
-        
-        return Math.max(0, Math.min(100, Math.round(score)));
+        return count;
     }
 
-    // MÉTODO para obter matchup específico
-    obterMatchup(campeaoAliado, campeaoInimigo) {
-        const dadosCampeao = this.sinergiasCounters.campeoes[campeaoAliado];
-        if (!dadosCampeao) return null;
-        
-        const counter = dadosCampeao.counters.find(c => c.campeao === campeaoInimigo);
-        if (counter) {
-            return {
-                dificuldade: 'DIFICIL',
-                estrategia: `Cuidado: ${counter.descricao}`,
-                dicas: this.gerarDicasMatchup(campeaoAliado, campeaoInimigo)
-            };
-        }
-        
-        // Verificar se é um bom matchup
-        const sinergia = dadosCampeao.sinergias.find(s => s.campeao === campeaoInimigo);
-        if (sinergia) {
-            return {
-                dificuldade: 'FACIL', 
-                estrategia: `Vantagem: ${sinergia.descricao}`,
-                dicas: ['Aproveite a sinergia com seu aliado', 'Coordene engajamentos']
-            };
-        }
-        
-        return {
-            dificuldade: 'NEUTRO',
-            estrategia: 'Matchup equilibrado - foque em farm e objetivos',
-            dicas: ['Jogue seguro', 'Aguarde oportunidades']
-        };
-    }
+    analisarEstrategiaComRegras(dados) {
+        const resultado = { pontosFortes: [], areasMelhoria: [] };
 
-    gerarDicasMatchup(campeaoAliado, campeaoInimigo) {
-        const dicas = [];
-        const dadosCampeao = this.sinergiasCounters.campeoes[campeaoAliado];
-        
-        if (dadosCampeao) {
-            const counter = dadosCampeao.counters.find(c => c.campeao === campeaoInimigo);
-            if (counter) {
-                if (counter.descricao.includes('true damage')) {
-                    dicas.push('Construa resistência em vez de vida');
-                }
-                if (counter.descricao.includes('poke')) {
-                    dicas.push('Foque em engajar rapidamente');
-                }
-                if (counter.descricao.includes('bloqueia')) {
-                    dicas.push('Use suas habilidades com cuidado');
-                }
-            }
-        }
-        
-        return dicas.length > 0 ? dicas : ['Jogue defensivamente', 'Peça ajuda do jungle'];
-    }
-
-    // MÉTODOS ORIGINAIS (mantidos da versão anterior)
-    definirContextoPartida(dados) {
-        if (dados.coordenacao_time === 'competitiva' || dados.premade === '5_man') {
-            this.contextoPartida = {
-                tipo: 'competitive',
-                coordenacao: 'total',
-                estrategia: 'complexa_possivel'
-            };
-        } else if (dados.coordenacao_time === 'flex_queue' || dados.premade === '2_3_man') {
-            this.contextoPartida = {
-                tipo: 'flex_queue', 
-                coordenacao: 'media',
-                estrategia: 'moderada'
-            };
+        // Análise de condições de vitória
+        if (dados.condicao_vitoria_time && dados.condicao_vitoria_time.length > 20) {
+            resultado.pontosFortes.push("Estratégia de vitória bem definida");
         } else {
-            this.contextoPartida = {
-                tipo: 'solo_queue',
-                coordenacao: 'limitada',
-                estrategia: 'simplificada'
-            };
+            resultado.areasMelhoria.push("Estratégia de vitória pouco clara - defina melhor as condições");
         }
+
+        if (dados.condicao_vitoria_campeao && dados.condicao_vitoria_campeao.length > 15) {
+            resultado.pontosFortes.push("Objetivo pessoal claro");
+        }
+
+        // Análise de aprendizado
+        if (dados.aprendizados && dados.aprendizados.length > 30) {
+            resultado.pontosFortes.push("Boa reflexão sobre aprendizados");
+        } else {
+            resultado.areasMelhoria.push("Aprendizados podem ser mais detalhados");
+        }
+
+        // Análise de erros
+        if (dados.situacao_erro && dados.situacao_erro.length > 20) {
+            resultado.pontosFortes.push("Análise de erros detalhada");
+        } else {
+            resultado.areasMelhoria.push("Análise de erros pode ser mais detalhada");
+        }
+
+        return resultado;
     }
 
-    analisarEstrategiaObjetivos(dados) {
-        const analise = {
-            problemas: [],
-            sugestoes: [],
-            prioridades: this.determinarPrioridadesObjetivos(dados),
-            decisaoArauto: this.analisarDecisaoArauto(dados),
-            decisaoArongueijo: this.analisarDecisaoArongueijo(dados)
-        };
-
-        analise.sugestoes.push(`ARONGUEIJO 1:25: ${this.gerarEstrategiaArongueijo(dados)}`);
+    calcularScoreRegras(dados) {
+        let score = 50;
         
-        if (this.contextoPartida.tipo === 'competitive') {
-            analise.sugestoes.push(...this.gerarSugestoesCompetitivas(dados));
-        } else {
-            analise.sugestoes.push(...this.gerarSugestoesSoloQueue(dados));
-        }
+        // Pontuação por objetivos (0-20 pontos)
+        const objetivos = this.contarObjetivosConquistados(dados);
+        score += objetivos * 4;
 
-        const dragãoIdeal = this.identificarDragaoIdeal(dados);
-        if (dragãoIdeal) {
-            analise.sugestoes.push(`Priorizar Dragão ${dragãoIdeal.nome} às 5:00 - ${dragãoIdeal.razao}`);
-        }
+        // Pontuação por draft (0-15 pontos)
+        const composicoes = this.extrairComposicoes(dados);
+        const analiseDraft = this.analisarDraftCompetitivo(composicoes.timeAliado, composicoes.timeInimigo);
+        if (analiseDraft.composicao_identificada) score += 10;
+        if (analiseDraft.vulnerabilidades.length <= 1) score += 5;
 
-        return analise;
+        // Pontuação por estratégia (0-15 pontos)
+        if (dados.condicao_vitoria_time && dados.condicao_vitoria_time.length > 30) score += 8;
+        if (dados.aprendizados && dados.aprendizados.length > 50) score += 7;
+
+        // Pontuação por análise de erros (0-10 pontos)
+        if (dados.situacao_erro && dados.situacao_erro.length > 25) score += 5;
+        if (dados.prevencao_erro && dados.prevencao_erro.length > 20) score += 5;
+
+        return Math.min(100, Math.max(0, score));
     }
 
-    analisarDecisaoArongueijo(dados) {
-        const vantagemEarly = this.calcularVantagemMuitoEarly(dados);
-        
-        if (vantagemEarly.alta) {
-            return {
-                decisao: "INVADIR_ARONGUEIJO",
-                estrategia: "Invadir e contestar arongueijo inimigo",
-                razao: "Vantagem early permite agressividade",
-                prioridade: "ALTA",
-                timing: "1:25"
-            };
-        } else {
-            return {
-                decisao: "PROTEGER_ARONGUEIJO",
-                estrategia: "Proteger nosso arongueijo e farmar",
-                razao: "Foco em segurança early",
-                prioridade: "MEDIA", 
-                timing: "1:25"
-            };
-        }
-    }
-
-    analisarDecisaoArauto(dados) {
-        const contexto = this.contextoPartida;
-        const vantagem = this.calcularVantagemEarly(dados);
-        const timingObjetivo = '5:00';
-        
-        if (contexto.tipo === 'competitive') {
-            return this.decisaoArautoCompetitiva(dados, vantagem, timingObjetivo);
-        } else {
-            return this.decisaoArautoSoloQueue(dados, vantagem, timingObjetivo);
-        }
-    }
-
-    decisaoArautoCompetitiva(dados, vantagem, timing) {
-        const podeDualObjective = this.podeFazerDualObjective(dados);
-        
-        if (podeDualObjective && vantagem.alta) {
-            return {
-                decisao: "DUAL_OBJECTIVE_5MIN",
-                estrategia: `Dividir time às ${timing} - 3-4 dragão, 1-2 arauto`,
-                razao: "Coordenação total permite controlar ambos objetivos",
-                prioridade: "MAXIMA",
-                timing: timing
-            };
-        } else {
-            return {
-                decisao: "ARAURO_PRIORITARIO", 
-                estrategia: `Focar arauto às ${timing} + pressionar mid`,
-                razao: "Acelerar jogo com vantagem existente",
-                prioridade: "ALTA",
-                timing: timing
-            };
-        }
-    }
-
-    decisaoArautoSoloQueue(dados, vantagem, timing) {
-        if (vantagem.alta) {
-            return {
-                decisao: "ARAURO_PRIORITARIO",
-                estrategia: `Focar arauto às ${timing} + comunicar com pings`,
-                razao: "Converter vantagem em pressão de mapa early",
-                prioridade: "ALTA",
-                timing: timing
-            };
-        } else {
-            return {
-                decisao: "DRAGAO_SEGURO",
-                estrategia: `Focar dragão às ${timing} + farm recuperação`,
-                razao: "Objetivo mais seguro",
-                prioridade: "BAIXA",
-                timing: timing
-            };
-        }
-    }
-
-    gerarSugestoesCompetitivas(dados) {
+    gerarSugestoesPorRota(dados) {
         const sugestoes = [];
-        const composicao = this.extrairComposicoes(dados);
-        const powerSpikes = this.identificarPowerSpikesTime(composicao.timeAliado);
-        
-        sugestoes.push("ARONGUEIJO 1:25: Coordenar jungle + mid/sup para controle");
-        
-        if (powerSpikes.mid.length > 0) {
-            sugestoes.push(`POWER SPIKE NÍVEL 5: ${powerSpikes.mid.join(', ')} - coordenar objetivos 5:00`);
+        const rota = dados.rota;
+
+        switch(rota) {
+            case 'Jungle':
+                sugestoes.push("Como jungle, priorize objetivos aos 5:00 (dragão/arauto)");
+                sugestoes.push("Comunique seus ganks com pings antes de ir");
+                sugestoes.push("Pathing eficiente é crucial - planeje seu clear inicial");
+                sugestoes.push("Trackeie o jungle inimigo e contra-ganke");
+                break;
+            case 'Mid':
+                sugestoes.push("Como mid, priorize rotações para ajudar outras rotas");
+                sugestoes.push("Controle a visão do river para evitar ganks");
+                sugestoes.push("Aproveite o nível 5 para fazer plays agressivas");
+                sugestoes.push("Pushe a wave antes de fazer rotações");
+                break;
+            case 'Top':
+                sugestoes.push("Como top, use TP para ajudar em objetivos importantes");
+                sugestoes.push("Foque em split push quando possível");
+                sugestoes.push("Comunique faltas do inimigo com pings");
+                sugestoes.push("Aprenda a controlar a wave para seu advantage");
+                break;
+            case 'Adc':
+                sugestoes.push("Como ADC, priorize farm seguro early game");
+                sugestoes.push("Posicione-se atrás do frontline em teamfights");
+                sugestoes.push("Acompanhe seu suporte em rotações");
+                sugestoes.push("Foque em sobreviver - dano zero se estiver morto");
+                break;
+            case 'Sup':
+                sugestoes.push("Como suporte, priorize visão em objetivos");
+                sugestoes.push("Proteja seu ADC em todas as fases do jogo");
+                sugestoes.push("Roam para mid quando seguro");
+                sugestoes.push("Comunique CDs importantes do inimigo");
+                break;
         }
-        
-        sugestoes.push("OBJETIVOS 5:00: Preparar dragão/arauto com recalls ~4:30");
-        
-        if (this.podeFazerDualObjective(dados)) {
-            sugestoes.push("DUAL OBJECTIVE POSSÍVEL: Dividir time para arauto + dragão às 5:00");
+
+        // Sugestões gerais baseadas em elo
+        const elo = dados.elo || '';
+        if (elo.includes('Ferro') || elo.includes('Bronze') || elo.includes('Prata')) {
+            sugestoes.push("Foque em farm consistente - não sacrifique CS por fights arriscadas");
+            sugestoes.push("Priorize objetivos em vez de perseguir kills");
+            sugestoes.push("Melhore o mapa awareness - olhe o minimap a cada 10 segundos");
+        } else if (elo.includes('Ouro') || elo.includes('Platina')) {
+            sugestoes.push("Trabalhe na comunicação com o time");
+            sugestoes.push("Aperfeiçoe o controle de wave");
+            sugestoes.push("Pratique decisões macro mais consistentes");
         }
-        
+
         return sugestoes;
     }
 
-    gerarSugestoesSoloQueue(dados) {
-        const sugestoes = [];
-        const composicao = this.extrairComposicoes(dados);
-        const powerSpikes = this.identificarPowerSpikesTime(composicao.timeAliado);
-        
-        sugestoes.push("ARONGUEIJO 1:25: Jungle priorize, lanes ajudem se seguro");
-        sugestoes.push("OBJETIVOS 5:00: Usar pings para comunicar foco (dragão OU arauto)");
-        
-        if (powerSpikes.mid.length > 0) {
-            sugestoes.push(`APROVEITAR NÍVEL 5: ${powerSpikes.mid[0]} tem powerspike para objetivos 5:00`);
-        }
-        
-        return sugestoes;
+    formatarRespostaRegras(analise) {
+        return `
+RELATÓRIO DO COACH (Sistema de Regras Avançado)
+
+ANÁLISE GERAL
+Score: ${analise.score}/100
+
+PONTOS FORTES
+${analise.pontosFortes.map(ponto => `• ${ponto}`).join('\n')}
+
+ÁREAS PARA MELHORIA  
+${analise.areasMelhoria.map(area => `• ${area}`).join('\n')}
+
+RECOMENDAÇÕES ESTRATÉGICAS
+${analise.sugestoes.map(sugestao => `• ${sugestao}`).join('\n')}
+
+PRÓXIMOS PASSOS
+• Revise os objetivos perdidos e identifique padrões
+• Pratique 2-3 das recomendações acima na próxima partida
+• Continue analisando suas próprias jogadas
+• Foque em uma área de melhoria por vez
+
+  Dica: Para análise mais detalhada e personalizada, use a IA Coach com Ollama.
+
+Sistema de regras avançado - Continue evoluindo! 
+        `.trim();
     }
 
-    identificarPowerSpikesTime(timeAliado) {
-        const spikes = {
-            early: [],
-            mid: [],
-            late: []
-        };
+    // === SISTEMA HÍBRIDO PRINCIPAL ===
+    async analisarPartidaHibrido(dados) {
+        console.log('Iniciando análise híbrida completa...');
 
-        Object.values(timeAliado).forEach(campeao => {
-            if (!campeao) return;
+        let resultadoIA = null;
+        let tentarIA = this.ollamaDisponivel;
+
+        // 1. PRIMEIRO TENTA IA SE DISPONÍVEL
+        if (tentarIA) {
+            console.log('Tentando análise com Ollama...');
+            resultadoIA = await this.analisarPartidaComIA(dados);
             
-            const powerSpike = this.conhecimento.powerSpikes[campeao];
-            if (powerSpike) {
-                if (powerSpike.niveis.includes(5)) {
-                    spikes.mid.push(`${campeao} (Nível 5)`);
-                }
-                if (powerSpike.powerspike === 'EARLY') {
-                    spikes.early.push(`${campeao} (Early)`);
-                }
-                if (powerSpike.powerspike === 'MUITO_FORTE') {
-                    spikes.late.push(`${campeao} (Late)`);
+            if (resultadoIA.sucesso && this.validarRespostaIA(resultadoIA.conteudo)) {
+                console.log('Análise IA bem-sucedida');
+                
+                // ENRIQUECER análise IA com conhecimento de draft
+                const composicoes = this.extrairComposicoes(dados);
+                const analiseDraft = this.analisarDraftCompetitivo(composicoes.timeAliado, composicoes.timeInimigo);
+                const analiseSinergias = this.analisarSinergiasTime(composicoes.timeAliado);
+                
+                return {
+                    ...resultadoIA,
+                    score: this.calcularScoreIA(resultadoIA.conteudo),
+                    metodo: 'IA',
+                    timestamp: new Date().toISOString(),
+                    ollamaModel: this.ollamaConfig.model,
+                    // ADICIONAR ANÁLISES COMPLEMENTARES
+                    analiseDraft: analiseDraft,
+                    analiseSinergias: analiseSinergias
+                };
+            } else {
+                console.log('Análise IA falhou:', resultadoIA.erro);
+                if (resultadoIA.tipo === 'OLLAMA_INDISPONIVEL' || resultadoIA.tipo === 'TIMEOUT') {
+                    this.ollamaDisponivel = false;
                 }
             }
-        });
+        }
 
-        return spikes;
-    }
-
-    calcularVantagemMuitoEarly(dados) {
+        // 2. FALLBACK PARA REGRAS COMPLETAS
+        console.log('Usando fallback para regras avançadas');
+        const resultadoRegras = this.analisarPartidaComRegras(dados);
+        
         return {
-            alta: Math.random() > 0.7,
-            moderada: Math.random() > 0.4 && Math.random() <= 0.7,
-            baixa: Math.random() <= 0.4
+            ...resultadoRegras,
+            metodo: 'REGRA',
+            fallback: true,
+            fallbackRazao: resultadoIA?.erro || 'Ollama indisponível',
+            timestamp: new Date().toISOString()
         };
     }
 
-    gerarEstrategiaArongueijo(dados) {
-        const vantagem = this.calcularVantagemMuitoEarly(dados);
-        return vantagem.alta ? "Invadir e contestar" : "Proteger e farmar seguro";
+    validarRespostaIA(resposta) {
+        if (!resposta || typeof resposta !== 'string') return false;
+        if (resposta.length < 100) return false;
+        
+        const respostaUpper = resposta.toUpperCase();
+        const secoesMinimas = ['PONTOS FORTES', 'MELHORIA', 'ESTRATÉGIA'];
+        const secoesEncontradas = secoesMinimas.filter(secao => 
+            respostaUpper.includes(secao)
+        );
+        
+        return secoesEncontradas.length >= 2;
+    }
+
+    calcularScoreIA(resposta) {
+        if (!resposta) return 75;
+        
+        let score = 70;
+        const respostaLower = resposta.toLowerCase();
+        
+        // Análise de sentimento básica
+        if (respostaLower.includes('excelente') || respostaLower.includes('excepcional')) score += 15;
+        if (respostaLower.includes('bom') || respostaLower.includes('sólido') || respostaLower.includes('positivo')) score += 10;
+        if (respostaLower.includes('precisa melhorar') || respostaLower.includes('atenção') || respostaLower.includes('cuidado')) score -= 10;
+        if (respostaLower.includes('recomendo') || respostaLower.includes('sugiro') || respostaLower.includes('aconselho')) score += 5;
+        
+        // Bônus por estrutura
+        if (respostaLower.includes('•') || respostaLower.includes('-')) score += 5;
+        
+        // Bônus por especificidade
+        if (respostaLower.includes('farm') || respostaLower.includes('objetivos') || respostaLower.includes('visão')) score += 5;
+        
+        return Math.min(95, Math.max(50, score));
+    }
+
+    // === MÉTODOS DE APOIO ===
+    identificarClasseCampeao(nomeCampeao) {
+        if (!nomeCampeao) return null;
+        
+        for (const [classe, campeoes] of Object.entries(this.conhecimento.classesCampeoes)) {
+            if (campeoes.some(c => c.toLowerCase().includes(nomeCampeao.toLowerCase()))) {
+                return classe;
+            }
+        }
+        return null;
     }
 
     extrairComposicoes(dados) {
@@ -1192,260 +1457,34 @@ class IACoachAvancado {
         };
     }
 
-    calcularVantagemEarly(dados) {
-        return {
-            alta: Math.random() > 0.7,
-            moderada: Math.random() > 0.4 && Math.random() <= 0.7,
-            baixa: Math.random() <= 0.4
-        };
-    }
-
-    podeFazerDualObjective(dados) {
-        const vantagem = this.calcularVantagemEarly(dados);
-        const visao = this.avaliarControleVisao(dados);
-        return vantagem.alta && visao.excelente && this.contextoPartida.coordenacao === 'total';
-    }
-
-    avaliarControleVisao(dados) {
-        return {
-            excelente: Math.random() > 0.8,
-            boa: Math.random() > 0.5,
-            ruim: Math.random() <= 0.5
-        };
-    }
-
-    identificarClasseCampeao(nomeCampeao) {
-        if (!nomeCampeao) return null;
-        const classesBase = {
-            'hiper_carregador': ['Vayne', 'KogMaw', 'Jinx', 'KaiSa'],
-            'tanque': ['Malphite', 'Amumu', 'Leona', 'Braum'],
-            'assassino': ['Zed', 'Talon', 'KhaZix', 'Akali'],
-            'atirador': ['Caitlyn', 'Jhin', 'Ezreal', 'Varus'],
-            'mago': ['Lux', 'Zoe', 'Xerath', 'Orianna'],
-            'lutador': ['Darius', 'Garen', 'Renekton', 'Sett']
-        };
-
-        for (const [classe, campeoes] of Object.entries(classesBase)) {
-            if (campeoes.some(c => c.toLowerCase().includes(nomeCampeao.toLowerCase()))) {
-                return classe;
-            }
-        }
-        return null;
-    }
-
-    identificarDragaoIdeal(dados) {
-        const composicao = this.extrairComposicoes(dados);
-        const classesTime = this.identificarClassesTime(composicao.timeAliado);
-
-        if (classesTime.atirador) {
-            return { nome: "Infernal", razao: "Aumenta dano dos atiradores" };
-        }
-        if (classesTime.tanque) {
-            return { nome: "Montanha", razao: "Aumenta resistência do frontline" };
-        }
-        return null;
-    }
-
-    analisarComposicaoTime(dados) {
-        const composicao = this.extrairComposicoes(dados);
-        return {
-            sinergia: this.calcularSinergiaTime(composicao.timeAliado),
-            balanceamento: this.analisarBalanceamentoTime(composicao.timeAliado),
-            vantagemComposicao: { desvantagem: false, detalhes: [], estrategia: "Jogar padrão" },
-            problemas: [],
-            pontosFortes: ["Composição balanceada"],
-            oportunidadesSwap: []
-        };
-    }
-
-    identificarClassesTime(time) {
-        const classes = {};
-        Object.values(time).forEach(campeao => {
-            if (!campeao) return;
-            const classe = this.identificarClasseCampeao(campeao);
-            if (classe) {
-                if (!classes[classe]) classes[classe] = [];
-                classes[classe].push(campeao);
-            }
-        });
-        return classes;
-    }
-
-    calcularSinergiaTime(timeAliado) {
-        return Math.random() * 0.3 + 0.7;
-    }
-
-    analisarBalanceamentoTime(timeAliado) {
-        return {
-            balanceado: Math.random() > 0.5,
-            problemas: [],
-            sugestoes: [],
-            composicao: { tank: 1, assasino: 1, atirador: 1, mago: 1 }
-        };
-    }
-
-    analisarPartidaBase(dados) {
-        const problemas = [];
-        
-        if (!dados.draft_inimigo_top || !dados.draft_inimigo_jungle) {
-            problemas.push({
-                categoria: 'DRAFT_INCOMPLETO',
-                severidade: 'baixa',
-                descricao: 'Análise de draft incompleta',
-                sugestao: 'Preencha todos os campeões inimigos'
-            });
-        }
-
-        return {
-            problemas: problemas,
-            pontosFortes: ["Análise base positiva", "Boa compreensão do jogo"],
-            score: 75
-        };
-    }
-
-    determinarPrioridadesObjetivos(dados) {
-        return this.conhecimento.estrategias?.prioridades_por_fase?.early_game_2_5_min || {};
-    }
-
-    gerarMetaPersonalizada(dados, analiseBase, analiseComposicao) {
-        return "Melhorar controle de objetivos early game";
-    }
-
-    identificarOportunidades(dados, analiseComposicao) {
-        return ["Oportunidade de swap identificada", "Arauto disponível para aceleração"];
-    }
-
-    gerarSugestoesPorClasse(classe, dados) {
-        const sugestoes = [];
-        if (classe === 'hiper_carregador') {
-            sugestoes.push("Como hiper carregador: Foque em farm seguro até nível 5");
-            sugestoes.push("Use ultimate nível 5 defensivamente para sobreviver ganks");
-        } else if (classe === 'tanque') {
-            sugestoes.push("Como tanque: Seja o frontline nas teamfights pós nível 5");
-        }
-        return sugestoes;
-    }
-
-    gerarSugestoesContextuais() {
-        const sugestoes = [];
-        if (this.contextoPartida.tipo === 'solo_queue') {
-            sugestoes.push("SOLO QUEUE: Focar comunicação clara com pings");
-        } else {
-            sugestoes.push("COMPETITIVE: Coordenar dual objectives quando possível");
-        }
-        return sugestoes;
-    }
-
-    gerarSugestoesPorElo(elo) {
-        return [`Dica para ${elo}: Foque em objetivos em vez de kills`];
-    }
-
-    priorizarSugestoes(sugestoes) {
-        return sugestoes.sort((a, b) => {
-            const prioridadeA = a.includes('PRIORIDADE') ? 3 : a.includes('OPORTUNIDADE') ? 2 : 1;
-            const prioridadeB = b.includes('PRIORIDADE') ? 3 : b.includes('OPORTUNIDADE') ? 2 : 1;
-            return prioridadeB - prioridadeA;
-        });
-    }
-
-    gerarInsightsContextuais(dados, analises) {
-        const insights = [];
-        if (this.contextoPartida.tipo === 'competitive') {
-            insights.push("Partida competitiva detectada - estratégias avançadas disponíveis");
-        }
-        
-        // Insights baseados no draft
-        if (analises.analiseDraft) {
-            if (analises.analiseDraft.composicao_identificada) {
-                insights.push(`Composição ${analises.analiseDraft.composicao_identificada.tipo} identificada`);
-            }
-            if (analises.analiseDraft.flexibilidade_picks.score >= 3) {
-                insights.push("Alta flexibilidade de picks detectada");
-            }
-        }
-        
-        return insights.length > 0 ? insights.join('. ') : 'Análise contextual padrão aplicada';
-    }
-
-    verificarLaneEstado(dados, rota) {
-        return Math.random() > 0.5;
-    }
-
-    verificarSoulPoint(dados) {
-        return {
-            devePriorizar: Math.random() > 0.7,
-            mensagem: "Soul point próximo - prioridade máxima no próximo dragão"
-        };
-    }
-
-    contarObjetivosPerdidos(dados) {
-        let perdidos = 0;
-        const tempos = ['125', '600', '1100', '1500', '1600', '1800'];
-        tempos.forEach(tempo => {
-            if (dados[`objetivo_${tempo}_time`] === 'Inimigo') {
-                perdidos++;
-            }
-        });
-        return perdidos;
-    }
-
-    identificarOportunidadesSwap(composicao) {
-        return [];
-    }
-
-    analisarMatchupComposicao(classesTime, classesInimigo) {
-        return [];
-    }
-
-    identificarPontosFortesClasses(classesTime) {
-        return ["Composição balanceada"];
-    }
-
-    verificarSinergiaClasses(classesTime) {
-        return [];
-    }
-
-    analisarNecessidadeSwap(dados) {
-        return false;
-    }
-
-    avaliarRecursosTime(dados) {
-        return {
-            suficientes: Math.random() > 0.6,
-            limitados: Math.random() <= 0.6
-        };
-    }
-
-    async carregarConhecimentoLocal() {
+    // === MÉTODOS PARA TESTAR CONEXÃO COM OLLAMA ===
+    async testarConexaoOllama() {
         try {
-            const conhecimentoSalvo = localStorage.getItem('ia_coach_conhecimento');
-            if (conhecimentoSalvo) {
-                const conhecimento = JSON.parse(conhecimentoSalvo);
-                this.conhecimento = this.mesclarConhecimento(this.conhecimento, conhecimento);
+            const response = await fetch(`${this.ollamaConfig.url}/api/tags`);
+            
+            if (response.ok) {
+                const data = await response.json();
+                this.ollamaDisponivel = true;
+                return {
+                    conectado: true,
+                    modelos: data.models || []
+                };
             }
         } catch (error) {
-            console.warn('Erro ao carregar conhecimento local:', error);
+            console.warn('Teste de conexão Ollama falhou:', error);
         }
-    }
-
-    mesclarConhecimento(base, novo) {
-        const resultado = { ...base };
-        for (const categoria in novo) {
-            if (resultado[categoria]) {
-                resultado[categoria] = { ...resultado[categoria], ...novo[categoria] };
-            } else {
-                resultado[categoria] = novo[categoria];
-            }
-        }
-        return resultado;
+        
+        this.ollamaDisponivel = false;
+        return { conectado: false, modelos: [] };
     }
 
     aprenderDeAnalise(analise, dados) {
         const padrao = {
             timestamp: new Date().toISOString(),
             contexto: this.contextoPartida,
-            score: analise.score,
-            sugestoesEfetivas: analise.sugestoesPriorizadas.slice(0, 2)
+            score: analise.score || 75,
+            metodo: analise.metodo,
+            sugestoesEfetivas: analise.analise?.sugestoes?.slice(0, 2) || []
         };
 
         this.padroesAprendidos.push(padrao);
@@ -1463,13 +1502,20 @@ class IACoachAvancado {
         }
     }
 
-    async carregarConhecimento() {
-        return this.carregarConhecimentoCompleto();
+    carregarPadroesAprendidos() {
+        try {
+            const padroes = localStorage.getItem('ia_coach_padroes');
+            if (padroes) {
+                this.padroesAprendidos = JSON.parse(padroes);
+            }
+        } catch (error) {
+            console.warn('Erro ao carregar padrões:', error);
+        }
     }
 }
 
 // ============================================================================
-// SISTEMA PRINCIPAL COMPLETO
+// SISTEMA PRINCIPAL COMPLETO - WildRiftAnalyzer (MANTIDO DO NOVO CÓDIGO)
 // ============================================================================
 
 class WildRiftAnalyzer {
@@ -1493,7 +1539,7 @@ class WildRiftAnalyzer {
             }
         };
 
-        this.iaCoach = new IACoachAvancado();
+        this.iaCoach = new SistemaAnaliseHibrido();
         
         this.campeoes = [
             'Aatrox', 'Ahri', 'Akali', 'Akshan', 'Alistar', 'Amumu', 'Anivia', 'Annie', 'Ashe',
@@ -1528,18 +1574,28 @@ class WildRiftAnalyzer {
 
     async init() {
         try {
-            console.log('Inicializando Wild Rift Analyzer Avançado...');
+            console.log('Inicializando Wild Rift Analyzer Híbrido Completo...');
             
             await this.inicializarSistemas();
             this.configurarEventos();
             await this.inicializarEmailJS();
             
+            // Testar Ollama durante inicialização
+            const testeOllama = await this.iaCoach.testarConexaoOllama();
+            console.log(`Ollama: ${testeOllama.conectado ? 'CONECTADO' : 'INDISPONÍVEL'}`);
+            
             this.sistemaPronto = true;
-            console.log('Sistema avançado inicializado com sucesso');
+            
+            // Mostrar status do Ollama para usuário
+            if (testeOllama.conectado) {
+                this.mostrarFeedback('Sistema IA Coach Avançado inicializado com sucesso!', 'sucesso');
+            } else {
+                this.mostrarFeedback('Sistema em modo regras avançado - Ollama não detectado', 'info');
+            }
             
         } catch (error) {
             console.error('Erro na inicialização:', error);
-            this.mostrarErro('Erro ao inicializar o sistema. Recarregue a página.');
+            this.mostrarFeedback('Sistema inicializado em modo avançado', 'info');
         }
     }
 
@@ -1548,11 +1604,53 @@ class WildRiftAnalyzer {
         this.inicializarObjetivos();
         this.inicializarUpload();
         await this.iaCoach.carregarConhecimentoCompleto();
+        this.iaCoach.carregarPadroesAprendidos();
+        
+        // Adicionar botão de status Ollama
+        this.adicionarStatusOllama();
+    }
+
+    adicionarStatusOllama() {
+        const titulo = document.getElementById('tituloPrincipal');
+        if (titulo) {
+            const statusDiv = document.createElement('div');
+            statusDiv.id = 'ollamaStatus';
+            statusDiv.style.cssText = `
+                text-align: center;
+                margin: 10px 0;
+                padding: 8px 16px;
+                border-radius: 20px;
+                font-size: 14px;
+                font-weight: 600;
+                display: inline-block;
+            `;
+            
+            titulo.parentNode.insertBefore(statusDiv, titulo.nextSibling);
+            this.atualizarStatusOllama();
+        }
+    }
+
+    async atualizarStatusOllama() {
+        const statusDiv = document.getElementById('ollamaStatus');
+        if (!statusDiv) return;
+
+        const teste = await this.iaCoach.testarConexaoOllama();
+        
+        if (teste.conectado) {
+            statusDiv.textContent = `🤖 IA Coach Conectado (${teste.modelos.length} modelos)`;
+            statusDiv.style.background = 'var(--cor-sucesso)';
+            statusDiv.style.color = 'white';
+        } else {
+            statusDiv.textContent = '⚡ Modo Avançado (Ollama offline)';
+            statusDiv.style.background = 'var(--cor-aviso)';
+            statusDiv.style.color = 'white';
+        }
     }
 
     inicializarAutocompleteCampeoes() {
         const datalist = document.getElementById('listaCampeoes');
         if (datalist) {
+            datalist.innerHTML = '';
             this.campeoes.forEach(campeao => {
                 const option = document.createElement('option');
                 option.value = campeao;
@@ -1671,6 +1769,16 @@ class WildRiftAnalyzer {
                 }
             });
         });
+
+        // Configurar click nos upload areas
+        document.querySelectorAll('.upload-area').forEach(area => {
+            area.addEventListener('click', (e) => {
+                if (!e.target.closest('.btn-remover-imagem')) {
+                    const input = area.closest('.upload-label').querySelector('.upload-input');
+                    input.click();
+                }
+            });
+        });
     }
 
     configurarEventos() {
@@ -1733,6 +1841,14 @@ class WildRiftAnalyzer {
         document.addEventListener('input', (e) => {
             if (e.target.matches('[required]')) {
                 this.validarCampo(e.target);
+            }
+        });
+
+        // Enter para avançar página
+        document.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' && this.paginaAtual < 6) {
+                e.preventDefault();
+                this.avancarPagina();
             }
         });
     }
@@ -1817,7 +1933,7 @@ class WildRiftAnalyzer {
         if (camposInvalidos.length > 0) {
             camposInvalidos[0].focus();
             camposInvalidos[0].classList.add('erro');
-            this.mostrarErro('Preencha todos os campos obrigatórios antes de avançar.');
+            this.mostrarFeedback('Preencha todos os campos obrigatórios antes de avançar.', 'erro');
             return false;
         }
         
@@ -1948,22 +2064,41 @@ class WildRiftAnalyzer {
 
     async enviarAnalise() {
         if (!this.validarFormularioCompleto()) {
-            this.mostrarErro('Preencha todos os campos obrigatórios antes de enviar.');
+            this.mostrarFeedback('Preencha todos os campos obrigatórios antes de enviar.', 'erro');
             return;
         }
 
         try {
             this.mostrarLoading(true);
             
+            // Atualizar status do Ollama antes de enviar
+            await this.atualizarStatusOllama();
+            
             const dados = this.coletarDadosFormulario();
-            const relatorioIA = this.iaCoach.analisarPartidaAvancada(dados);
-            this.iaCoach.aprenderDeAnalise(relatorioIA, dados);
+            
+            // ANÁLISE HÍBRIDA COMPLETA
+            const resultadoAnalise = await this.iaCoach.analisarPartidaHibrido(dados);
+            
+            console.log(`Análise concluída via: ${resultadoAnalise.metodo}`);
+            
+            if (resultadoAnalise.metodo === 'IA') {
+                this.mostrarFeedback('Análise IA Avançada concluída com sucesso!', 'sucesso');
+            } else {
+                this.mostrarFeedback('Análise avançada concluída (modo regras)', 'info');
+            }
+            
+            // Aprendizado da IA
+            this.iaCoach.aprenderDeAnalise(resultadoAnalise, dados);
+            
+            // Enviar email (opcional)
             this.enviarEmail(dados).catch(console.error);
-            this.mostrarResultadoAnalise(relatorioIA);
+            
+            // Mostrar resultado
+            this.mostrarResultadoAnalise(resultadoAnalise);
             
         } catch (error) {
             console.error('Erro ao enviar análise:', error);
-            this.mostrarErro('Erro ao processar análise. Tente novamente.');
+            this.mostrarFeedback('Erro ao processar análise. Tente novamente.', 'erro');
         } finally {
             this.mostrarLoading(false);
         }
@@ -2003,8 +2138,10 @@ class WildRiftAnalyzer {
             }
         }
         
+        // Adicionar dados calculados
         this.analiseAtualId = `WR-${Date.now().toString(36).toUpperCase()}`;
         dados.analysis_id = this.analiseAtualId;
+        dados.timestamp = new Date().toISOString();
         
         return dados;
     }
@@ -2049,165 +2186,218 @@ Rota: ${dados.rota || 'N/A'}
 ID da Análise: ${dados.analysis_id}
 Data: ${new Date().toLocaleString('pt-BR')}
 
---- Análise automatizada ---
+--- Análise automatizada avançada ---
         `.trim();
     }
 
-    mostrarResultadoAnalise(relatorioIA) {
+    mostrarResultadoAnalise(resultadoAnalise) {
         this.mostrarPagina(7);
-        this.preencherRelatorioIA(relatorioIA);
+        this.preencherRelatorio(resultadoAnalise);
     }
 
-    preencherRelatorioIA(relatorioIA) {
+    preencherRelatorio(resultadoAnalise) {
         const scoreElem = document.getElementById('scoreRelatorio');
         const conteudoElem = document.getElementById('conteudoRelatorio');
         
-        if (scoreElem) scoreElem.textContent = relatorioIA.score;
+        if (scoreElem) {
+            scoreElem.textContent = resultadoAnalise.score || '--';
+            scoreElem.className = 'score-relatorio ' + this.getClassScore(resultadoAnalise.score);
+        }
+        
         if (conteudoElem) {
-            conteudoElem.innerHTML = this.gerarHTMLRelatorio(relatorioIA);
+            conteudoElem.innerHTML = this.gerarHTMLRelatorio(resultadoAnalise);
+        }
+
+        this.adicionarBadgeMetodo(resultadoAnalise.metodo, resultadoAnalise.ollamaModel);
+    }
+
+    getClassScore(score) {
+        if (score >= 90) return 'excelente';
+        if (score >= 80) return 'bom';
+        if (score >= 70) return 'regular';
+        return 'baixo';
+    }
+
+    gerarHTMLRelatorio(resultadoAnalise) {
+        const isIA = resultadoAnalise.metodo === 'IA';
+        
+        if (isIA) {
+            return `
+                <div class="relatorio-ia">
+                    <div class="badge-metodo-ia">Análise IA Avançada • ${resultadoAnalise.ollamaModel || 'Ollama'}</div>
+                    <div class="conteudo-ia">${this.formatarRespostaIA(resultadoAnalise.conteudo)}</div>
+                    ${this.gerarSecaoDraft(resultadoAnalise.analiseDraft)}
+                    ${this.gerarSecaoSinergias(resultadoAnalise.analiseSinergias)}
+                </div>
+            `;
+        } else {
+            return `
+                <div class="relatorio-regras">
+                    <div class="badge-metodo-regras">Análise Avançada • Sistema de Regras</div>
+                    <div class="conteudo-regras">${resultadoAnalise.conteudo}</div>
+                    ${this.gerarSecaoDraft(resultadoAnalise.analiseDraft)}
+                    ${this.gerarSecaoSinergias(resultadoAnalise.analiseSinergias)}
+                    <div class="info-fallback">
+                        <small>Dica: Para análise mais detalhada, verifique se o Ollama está rodando localmente.</small>
+                        <small>Instruções: Execute "ollama serve" no terminal e baixe um modelo como "ollama pull llama2"</small>
+                    </div>
+                </div>
+            `;
         }
     }
 
-    gerarHTMLRelatorio(relatorioIA) {
+    gerarSecaoDraft(analiseDraft) {
+        if (!analiseDraft) return '';
+        
         return `
-            <div class="resumo-ia">
-                <div class="score-destaque">
-                    <h3>Pontuação da Análise</h3>
-                    <div class="score-valor">${relatorioIA.score}/100</div>
-                    <p class="score-descricao">${this.getDescricaoScore(relatorioIA.score)}</p>
-                </div>
-                
-                ${relatorioIA.insightsContextuais ? `
-                <div class="insights-contextuais">
-                    <h4>Insights Contextuais</h4>
-                    <p>${relatorioIA.insightsContextuais}</p>
+            <div class="secao-draft">
+                <h3>Análise de Draft Competitivo</h3>
+                ${analiseDraft.composicao_identificada ? `
+                <div class="composicao-identificada">
+                    <h4>Composição Identificada</h4>
+                    <p><strong>Tipo:</strong> ${analiseDraft.composicao_identificada.tipo.replace('_', ' ').toUpperCase()}</p>
+                    <p><strong>Identidade:</strong> ${analiseDraft.composicao_identificada.dados.identidade}</p>
+                    <p><strong>Janela de Força:</strong> ${analiseDraft.composicao_identificada.dados.janela_forca}</p>
+                    <p><strong>Estratégia:</strong> ${analiseDraft.composicao_identificada.dados.estrategia}</p>
                 </div>
                 ` : ''}
                 
-                <div class="contexto-partida">
-                    <h4>Contexto da Partida</h4>
-                    <p><strong>Tipo:</strong> ${relatorioIA.contexto.tipo} | 
-                    <strong>Coordenação:</strong> ${relatorioIA.contexto.coordenacao} | 
-                    <strong>Estratégia:</strong> ${relatorioIA.contexto.estrategia}</p>
+                <div class="curva-poder">
+                    <h4>Curva de Poder do Time</h4>
+                    <p><strong>Recomendação:</strong> ${analiseDraft.curva_poder_time.composicao_recomendada}</p>
+                    <div class="curva-barras">
+                        <div class="barra-curva">
+                            <span>Early Game: ${analiseDraft.curva_poder_time.early_game}/5</span>
+                            <div class="barra-progresso-curva" style="width: ${analiseDraft.curva_poder_time.early_game * 20}%"></div>
+                        </div>
+                        <div class="barra-curva">
+                            <span>Mid Game: ${analiseDraft.curva_poder_time.mid_game}/5</span>
+                            <div class="barra-progresso-curva" style="width: ${analiseDraft.curva_poder_time.mid_game * 20}%"></div>
+                        </div>
+                        <div class="barra-curva">
+                            <span>Late Game: ${analiseDraft.curva_poder_time.late_game}/5</span>
+                            <div class="barra-progresso-curva" style="width: ${analiseDraft.curva_poder_time.late_game * 20}%"></div>
+                        </div>
+                    </div>
                 </div>
                 
-                ${relatorioIA.analiseDraft ? `
-                <div class="analise-draft">
-                    <h4>Análise de Draft Competitivo</h4>
-                    ${relatorioIA.analiseDraft.composicao_identificada ? `
-                    <div class="composicao-identificada">
-                        <h5>Composição Identificada</h5>
-                        <p><strong>Tipo:</strong> ${relatorioIA.analiseDraft.composicao_identificada.tipo.replace('_', ' ').toUpperCase()}</p>
-                        <p><strong>Identidade:</strong> ${relatorioIA.analiseDraft.composicao_identificada.dados.identidade}</p>
-                        <p><strong>Janela de Força:</strong> ${relatorioIA.analiseDraft.composicao_identificada.dados.janela_forca}</p>
-                    </div>
-                    ` : ''}
-                    
-                    ${relatorioIA.analiseDraft.curva_poder_time ? `
-                    <div class="curva-poder">
-                        <h5>Curva de Poder do Time</h5>
-                        <p><strong>Early Game:</strong> ${relatorioIA.analiseDraft.curva_poder_time.early_game}/5</p>
-                        <p><strong>Mid Game:</strong> ${relatorioIA.analiseDraft.curva_poder_time.mid_game}/5</p>
-                        <p><strong>Late Game:</strong> ${relatorioIA.analiseDraft.curva_poder_time.late_game}/5</p>
-                        <p><strong>Recomendação:</strong> ${relatorioIA.analiseDraft.curva_poder_time.composicao_recomendada}</p>
-                    </div>
-                    ` : ''}
-                    
-                    ${relatorioIA.analiseDraft.flexibilidade_picks ? `
-                    <div class="flexibilidade-picks">
-                        <h5>Flexibilidade de Picks</h5>
-                        <p><strong>Score:</strong> ${relatorioIA.analiseDraft.flexibilidade_picks.score}/5</p>
-                        <p><strong>Análise:</strong> ${relatorioIA.analiseDraft.flexibilidade_picks.analise}</p>
-                    </div>
-                    ` : ''}
-                    
-                    ${relatorioIA.analiseDraft.prioridades_ban && relatorioIA.analiseDraft.prioridades_ban.length > 0 ? `
-                    <div class="prioridades-ban">
-                        <h5>Prioridades de Ban</h5>
-                        <ul>
-                            ${relatorioIA.analiseDraft.prioridades_ban.map(ban => `
-                                <li><strong>${ban.campeao}</strong> - ${ban.razao} (${ban.prioridade})</li>
-                            `).join('')}
-                        </ul>
-                    </div>
-                    ` : ''}
+                ${analiseDraft.sinergias_avancadas.length > 0 ? `
+                <div class="sinergias-avancadas">
+                    <h4>Sinergias Avançadas</h4>
+                    ${analiseDraft.sinergias_avancadas.map(sinergia => `
+                        <div class="sinergia-camada">
+                            <strong>${sinergia.camada}:</strong>
+                            <ul>
+                                ${sinergia.sinergias.map(s => `<li>${s.descricao || s}</li>`).join('')}
+                            </ul>
+                        </div>
+                    `).join('')}
                 </div>
                 ` : ''}
                 
-                ${relatorioIA.analiseSinergias ? `
-                <div class="analise-sinergias">
-                    <h4>Análise de Sinergias</h4>
-                    ${relatorioIA.analiseSinergias.sugestoes.map(sugestao => `<p>${sugestao}</p>`).join('')}
-                </div>
-                ` : ''}
-                
-                <h3>Pontos Fortes</h3>
-                <ul class="pontos-fortes">
-                    ${relatorioIA.pontosFortes.map(ponto => `<li>${ponto}</li>`).join('')}
-                </ul>
-                
-                ${relatorioIA.oportunidades && relatorioIA.oportunidades.length > 0 ? `
-                <div class="oportunidades">
-                    <h4>Oportunidades Identificadas</h4>
+                ${analiseDraft.vulnerabilidades.length > 0 ? `
+                <div class="vulnerabilidades">
+                    <h4>Vulnerabilidades Identificadas</h4>
                     <ul>
-                        ${relatorioIA.oportunidades.map(op => `<li>${op}</li>`).join('')}
+                        ${analiseDraft.vulnerabilidades.map(v => `<li>${v}</li>`).join('')}
                     </ul>
                 </div>
                 ` : ''}
-                
-                ${relatorioIA.analiseComposicao ? `
-                <div class="analise-composicao">
-                    <h4>Análise de Composição</h4>
-                    <p><strong>Sinergia:</strong> ${Math.round(relatorioIA.analiseComposicao.sinergia * 100)}%</p>
-                    <p><strong>Balanceamento:</strong> ${relatorioIA.analiseComposicao.balanceamento.balanceado ? 'Bom' : 'Precisa melhorar'}</p>
-                </div>
-                ` : ''}
-                
-                ${relatorioIA.analiseObjetivos ? `
-                <div class="analise-objetivos">
-                    <h4>Estratégia de Objetivos</h4>
-                    <p><strong>Arongueijo 1:25:</strong> ${relatorioIA.analiseObjetivos.decisaoArongueijo.estrategia}</p>
-                    <p><strong>Decisão 5:00:</strong> ${relatorioIA.analiseObjetivos.decisaoArauto.estrategia}</p>
-                </div>
-                ` : ''}
-                
-                <h3>Áreas para Melhorar</h3>
-                <ul class="areas-melhoria">
-                    ${relatorioIA.areasMelhoria.map(area => `
-                        <li><strong>${area.categoria || 'Geral'}:</strong> ${area.descricao || area}</li>
-                    `).join('')}
-                </ul>
-                
-                <h3>Ações Recomendadas</h3>
-                <ul class="sugestoes">
-                    ${relatorioIA.sugestoesPriorizadas.map(sugestao => `<li>${sugestao}</li>`).join('')}
-                </ul>
-                
-                <div class="meta-destaque">
-                    <strong>Meta para Próxima Partida:</strong><br>
-                    ${relatorioIA.metaProximaPartida}
-                </div>
             </div>
         `;
     }
 
-    getDescricaoScore(score) {
-        if (score >= 90) return 'Excelente! Continue com esse trabalho consistente.';
-        if (score >= 80) return 'Muito bom! Pequenos ajustes farão grande diferença.';
-        if (score >= 70) return 'Bom! Foque nas áreas de melhoria identificadas.';
-        if (score >= 60) return 'Sólido! Continue praticando para melhorar.';
-        return 'Continue analisando suas partidas para evoluir!';
+    gerarSecaoSinergias(analiseSinergias) {
+        if (!analiseSinergias) return '';
+        
+        return `
+            <div class="secao-sinergias">
+                <h3>Análise de Sinergias</h3>
+                
+                ${analiseSinergias.composicao_tipo && analiseSinergias.composicao_tipo !== 'balanced' ? `
+                <div class="tipo-composicao">
+                    <p><strong>Tipo de Composição:</strong> ${this.iaCoach.sinergiasCounters.categorias_sinergias[analiseSinergias.composicao_tipo]}</p>
+                </div>
+                ` : ''}
+                
+                ${analiseSinergias.sinergias_encontradas.length > 0 ? `
+                <div class="sinergias-encontradas">
+                    <h4>Combos Identificados</h4>
+                    <ul>
+                        ${analiseSinergias.sinergias_encontradas.map(s => `
+                            <li>
+                                <strong>${s.campeoes.join(' + ')}:</strong> ${s.descricao}
+                            </li>
+                        `).join('')}
+                    </ul>
+                </div>
+                ` : ''}
+                
+                ${analiseSinergias.counters_potenciais.length > 0 ? `
+                <div class="counters-potenciais">
+                    <h4>Counters Potenciais</h4>
+                    <ul>
+                        ${analiseSinergias.counters_potenciais.map(c => `
+                            <li>
+                                <strong>${c.counter}</strong> countera <strong>${c.campeao_aliado}</strong> - ${c.descricao}
+                            </li>
+                        `).join('')}
+                    </ul>
+                </div>
+                ` : ''}
+            </div>
+        `;
+    }
+
+    formatarRespostaIA(resposta) {
+        if (!resposta) return '<p>Erro ao gerar análise. Tente novamente.</p>';
+        
+        return resposta
+            .replace(/\n\s*\n/g, '</p><p>')
+            .replace(/\n/g, '<br>')
+            .replace(/^(.*)$/gm, '<p>$1</p>')
+            .replace(/<p><br><\/p>/g, '')
+            .replace(/ANÁLISE DA PARTIDA/g, '<h3>ANÁLISE DA PARTIDA</h3>')
+            .replace(/ANÁLISE GERAL/g, '<h3>ANÁLISE GERAL</h3>')
+            .replace(/PONTOS FORTES/g, '<h4>PONTOS FORTES</h4>')
+            .replace(/AREAS PARA EVOLUIR/g, '<h4>ÁREAS PARA EVOLUIR</h4>')
+            .replace(/AREAS DE MELHORIA/g, '<h4>ÁREAS DE MELHORIA</h4>')
+            .replace(/RECOMENDACOES ESTRATEGICAS/g, '<h4>RECOMENDAÇÕES ESTRATÉGICAS</h4>')
+            .replace(/ESTRATÉGIAS PARA PRÓXIMA PARTIDA/g, '<h4>ESTRATÉGIAS PARA PRÓXIMA PARTIDA</h4>')
+            .replace(/DICAS ESPECÍFICAS PARA/g, '<h4>DICAS ESPECÍFICAS</h4>');
+    }
+
+    adicionarBadgeMetodo(metodo, modelo) {
+        const cabecalho = document.querySelector('.cabecalho-relatorio');
+        if (cabecalho) {
+            let badge = cabecalho.querySelector('.badge-metodo');
+            if (!badge) {
+                badge = document.createElement('div');
+                badge.className = 'badge-metodo';
+                cabecalho.appendChild(badge);
+            }
+            
+            if (metodo === 'IA') {
+                badge.textContent = `IA Coach Avançado • ${modelo || 'Ollama'}`;
+                badge.className = 'badge-metodo ia';
+            } else {
+                badge.textContent = 'Sistema Avançado • Regras';
+                badge.className = 'badge-metodo regra';
+            }
+        }
     }
 
     iniciarNovaAnalise() {
         document.getElementById('formularioAnalisePartida')?.reset();
+        this.rotaSelecionada = null;
+        this.atualizarVisibilidadeRota();
         this.mostrarPagina(1);
         console.log('Nova análise iniciada');
     }
 
     compartilharRelatorio() {
         const score = document.getElementById('scoreRelatorio')?.textContent || '85';
-        const texto = `Minha análise no Wild Rift Analyzer: ${score}/100\n\nConfira seus relatórios em: ${window.location.href}`;
+        const texto = ` Minha análise no Wild Rift Analyzer Avançado: ${score}/100\n\nConfira seus relatórios em: ${window.location.href}`;
         
         if (navigator.share) {
             navigator.share({
@@ -2221,9 +2411,9 @@ Data: ${new Date().toLocaleString('pt-BR')}
 
     copiarParaAreaTransferencia(texto) {
         navigator.clipboard.writeText(texto).then(() => {
-            this.mostrarFeedback('Texto copiado para a área de transferência!');
+            this.mostrarFeedback('Texto copiado para a área de transferência!', 'sucesso');
         }).catch(() => {
-            this.mostrarFeedback('Texto pronto para compartilhar!');
+            this.mostrarFeedback('Texto pronto para compartilhar!', 'info');
         });
     }
 
@@ -2231,37 +2421,254 @@ Data: ${new Date().toLocaleString('pt-BR')}
         const btnEnviar = document.querySelector('.btn-enviar');
         if (btnEnviar) {
             btnEnviar.disabled = mostrar;
-            btnEnviar.textContent = mostrar ? 'Enviando...' : 'Enviar Análise';
+            btnEnviar.textContent = mostrar ? 'Analisando...' : 'Enviar Análise';
             btnEnviar.classList.toggle('carregando', mostrar);
         }
     }
 
-    mostrarErro(mensagem) {
-        alert(`${mensagem}`);
-    }
-
     mostrarFeedback(mensagem, tipo = 'sucesso') {
+        // Remover feedbacks anteriores
+        const feedbacksAntigos = document.querySelectorAll('.feedback-temporario');
+        feedbacksAntigos.forEach(feedback => feedback.remove());
+
         const feedback = document.createElement('div');
+        feedback.className = `feedback-temporario feedback-${tipo}`;
+        feedback.textContent = mensagem;
+        
+        // Estilos do feedback
         feedback.style.cssText = `
             position: fixed;
             top: 20px;
             right: 20px;
-            background: ${tipo === 'erro' ? 'var(--cor-erro)' : 'var(--cor-sucesso)'};
-            color: white;
             padding: 12px 20px;
-            border-radius: var(--border-radius);
+            border-radius: 6px;
+            color: white;
+            font-weight: 600;
             z-index: 10000;
-            box-shadow: var(--shadow);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            animation: slideIn 0.3s ease;
         `;
-        feedback.textContent = mensagem;
+        
+        if (tipo === 'sucesso') {
+            feedback.style.background = 'var(--cor-sucesso)';
+        } else if (tipo === 'erro') {
+            feedback.style.background = 'var(--cor-erro)';
+        } else {
+            feedback.style.background = 'var(--cor-info)';
+        }
+        
         document.body.appendChild(feedback);
         
-        setTimeout(() => feedback.remove(), 3000);
+        setTimeout(() => {
+            feedback.style.animation = 'slideOut 0.3s ease';
+            setTimeout(() => feedback.remove(), 300);
+        }, 3000);
     }
 }
+
+// Adicionar CSS para os novos elementos
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes slideIn {
+        from { transform: translateX(100%); opacity: 0; }
+        to { transform: translateX(0); opacity: 1; }
+    }
+    
+    @keyframes slideOut {
+        from { transform: translateX(0); opacity: 1; }
+        to { transform: translateX(100%); opacity: 0; }
+    }
+    
+    .badge-metodo {
+        padding: 6px 12px;
+        border-radius: 15px;
+        font-size: 12px;
+        font-weight: bold;
+        margin-left: 10px;
+        display: inline-block;
+    }
+    
+    .badge-metodo.ia {
+        background: linear-gradient(135deg, var(--cor-sucesso), #0a8);
+        color: white;
+    }
+    
+    .badge-metodo.regra {
+        background: linear-gradient(135deg, var(--cor-aviso), #d90);
+        color: white;
+    }
+    
+    #ollamaStatus {
+        transition: all 0.3s ease;
+        animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+        0% { opacity: 1; }
+        50% { opacity: 0.8; }
+        100% { opacity: 1; }
+    }
+    
+    .relatorio-ia, .relatorio-regras {
+        padding: 15px;
+        border-radius: 8px;
+        margin: 10px 0;
+    }
+    
+    .relatorio-ia {
+        background: rgba(10, 201, 134, 0.05);
+        border-left: 4px solid var(--cor-sucesso);
+    }
+    
+    .relatorio-regras {
+        background: rgba(255, 165, 0, 0.05);
+        border-left: 4px solid var(--cor-aviso);
+    }
+    
+    .badge-metodo-ia, .badge-metodo-regras {
+        display: inline-block;
+        padding: 4px 12px;
+        border-radius: 15px;
+        font-size: 12px;
+        font-weight: bold;
+        margin-bottom: 15px;
+    }
+    
+    .badge-metodo-ia {
+        background: var(--cor-sucesso);
+        color: white;
+    }
+    
+    .badge-metodo-regras {
+        background: var(--cor-aviso);
+        color: white;
+    }
+    
+    .info-fallback {
+        margin-top: 20px;
+        padding: 15px;
+        background: rgba(255, 165, 0, 0.1);
+        border: 1px solid var(--cor-aviso);
+        border-radius: 6px;
+        color: var(--cor-texto);
+        font-size: 14px;
+    }
+    
+    .info-fallback small {
+        display: block;
+        margin-top: 5px;
+        opacity: 0.8;
+    }
+    
+    .conteudo-ia, .conteudo-regras {
+        line-height: 1.6;
+        color: var(--cor-texto);
+    }
+    
+    .conteudo-ia h3, .conteudo-ia h4 {
+        color: var(--cor-destaque);
+        margin: 20px 0 10px 0;
+    }
+    
+    .conteudo-ia p {
+        margin-bottom: 10px;
+    }
+    
+    .secao-draft, .secao-sinergias {
+        margin: 25px 0;
+        padding: 20px;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 8px;
+        border-left: 4px solid var(--cor-destaque);
+    }
+    
+    .secao-draft h3, .secao-sinergias h3 {
+        color: var(--cor-destaque);
+        margin-bottom: 15px;
+    }
+    
+    .composicao-identificada, .curva-poder, .sinergias-avancadas, .vulnerabilidades {
+        margin: 15px 0;
+    }
+    
+    .curva-barras {
+        margin: 10px 0;
+    }
+    
+    .barra-curva {
+        margin: 8px 0;
+        display: flex;
+        align-items: center;
+    }
+    
+    .barra-curva span {
+        width: 120px;
+        font-size: 14px;
+    }
+    
+    .barra-progresso-curva {
+        height: 8px;
+        background: linear-gradient(90deg, var(--cor-sucesso), var(--cor-aviso));
+        border-radius: 4px;
+        transition: width 0.5s ease;
+    }
+    
+    .sinergia-camada {
+        margin: 10px 0;
+        padding: 10px;
+        background: rgba(255, 255, 255, 0.03);
+        border-radius: 6px;
+    }
+    
+    .score-relatorio.excelente {
+        background: linear-gradient(135deg, #00b09b, #96c93d);
+    }
+    
+    .score-relatorio.bom {
+        background: linear-gradient(135deg, #2196f3, #21cbf3);
+    }
+    
+    .score-relatorio.regular {
+        background: linear-gradient(135deg, #ff9800, #ffc107);
+    }
+    
+    .score-relatorio.baixo {
+        background: linear-gradient(135deg, #f44336, #e91e63);
+    }
+    
+    .carregando {
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .carregando::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+        animation: loading 1.5s infinite;
+    }
+    
+    @keyframes loading {
+        0% { left: -100%; }
+        100% { left: 100%; }
+    }
+`;
+document.head.appendChild(style);
 
 // Inicialização do sistema
 document.addEventListener('DOMContentLoaded', () => {
     window.analyzer = new WildRiftAnalyzer();
     window.analyzer.init();
+    
+    // Adicionar função global para testar Ollama
+    window.testarOllama = () => {
+        window.analyzer.iaCoach.testarConexaoOllama().then(resultado => {
+            alert(`Ollama: ${resultado.conectado ? 'CONECTADO' : 'OFFLINE'}\nModelos: ${resultado.modelos.length}`);
+            window.analyzer.atualizarStatusOllama();
+        });
+    };
 });
