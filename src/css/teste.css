@@ -132,61 +132,6 @@ body::before {
     background: rgba(255, 255, 255, 0.3);
 }
 
-/* ===== CONFIGURAÇÃO NGROK ===== */
-.configuracao-ngrok {
-    background: rgba(10, 20, 40, 0.5);
-    border: 1px solid var(--cor-borda);
-    border-radius: var(--border-radius);
-    padding: 20px;
-    margin-bottom: 25px;
-}
-
-.titulo-configuracao {
-    color: var(--cor-destaque);
-    margin-bottom: 15px;
-    font-size: 18px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.config-icon {
-    font-size: 20px;
-}
-
-.ngrok-help {
-    display: block;
-    margin-top: 8px;
-    font-size: 12px;
-    line-height: 1.4;
-    color: var(--cor-texto);
-    opacity: 0.8;
-}
-
-.ngrok-help code {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 2px 6px;
-    border-radius: 4px;
-    font-family: 'Courier New', monospace;
-    font-size: 11px;
-}
-
-.ngrok-actions {
-    display: flex;
-    gap: 10px;
-    margin-top: 15px;
-}
-
-.btn-salvar {
-    background: var(--cor-sucesso);
-    color: white;
-}
-
-.btn-testar {
-    background: var(--cor-info);
-    color: white;
-}
-
 /* ===== SISTEMA DE PÁGINAS ===== */
 .pagina {
     width: 100%;
